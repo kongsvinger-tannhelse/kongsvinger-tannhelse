@@ -1,0 +1,905 @@
+{
+  "start_url": "https://kongsvingertannhelse.no/",
+  "pages": [
+    {
+      "url": "https://kongsvingertannhelse.no/",
+      "slug": "index",
+      "success": true,
+      "status_code": 200,
+      "depth": 0,
+      "metadata": {
+        "title": "Kongsvinger Tannhelse - Hafthun & Zia",
+        "description": "Kongsvinger Tannhelse - Hafthun & Zia. Tannlege i Kongsvinger. Vi tilbyr alt fra tannsjekk og tannrens til estetisk tannbehandling.",
+        "keywords": null,
+        "author": null,
+        "depth": 0,
+        "parent_url": null
+      },
+      "headings": [
+        {
+          "level": 1,
+          "text": "Velkommen"
+        },
+        {
+          "level": 2,
+          "text": "Tjenester"
+        },
+        {
+          "level": 3,
+          "text": "Tannfylling"
+        },
+        {
+          "level": 3,
+          "text": "Tannbleking"
+        },
+        {
+          "level": 3,
+          "text": "Tannrens"
+        },
+        {
+          "level": 3,
+          "text": "Tannfylling"
+        },
+        {
+          "level": 3,
+          "text": "Tannbleking"
+        },
+        {
+          "level": 3,
+          "text": "Tannrens"
+        },
+        {
+          "level": 2,
+          "text": "Om oss – Velg oss fordi"
+        },
+        {
+          "level": 2,
+          "text": "Galleri"
+        },
+        {
+          "level": 3,
+          "text": "Vår adresse:"
+        },
+        {
+          "level": 3,
+          "text": "Åpningstider"
+        },
+        {
+          "level": 3,
+          "text": "Kontakt oss"
+        }
+      ],
+      "links": {
+        "internal": [
+          {
+            "href": "https://kongsvingertannhelse.no/index.html",
+            "text": "",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/tjenester.html",
+            "text": "Tjenester",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/omoss.html",
+            "text": "Om oss",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/kontakt.html",
+            "text": "Kontakt",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/",
+            "text": "Bestill time",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          }
+        ],
+        "external": [
+          {
+            "href": "tel:+4762815009",
+            "text": "+47 62 81 50 09",
+            "title": "",
+            "base_domain": "",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          }
+        ]
+      },
+      "images": [
+        {
+          "src": "bilde2.jpg",
+          "data": "",
+          "alt": "Vårt team",
+          "desc": "Om oss – Velg oss fordi\n      Hos oss møter du et dedikert team som brenner for å skape gode opplevelser og varige resultater. Vi kombinerer\n        moderne teknologi med varme smil, slik at du kan føle deg trygg i stolen.\n      Vårt team",
+          "score": 5,
+          "type": "image",
+          "group_id": 1,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "bilde8.jpg",
+          "data": "",
+          "alt": "Tannklinikk",
+          "desc": "Galleri\n    \n      \n      \n      \n      \n      \n      \n      \n      \n      \n    \n    ‹\n    ›",
+          "score": 5,
+          "type": "image",
+          "group_id": 2,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "bilde2.jpg",
+          "data": "",
+          "alt": "Tannklinikk",
+          "desc": "Galleri\n    \n      \n      \n      \n      \n      \n      \n      \n      \n      \n    \n    ‹\n    ›",
+          "score": 5,
+          "type": "image",
+          "group_id": 3,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "bilde3.jpg",
+          "data": "",
+          "alt": "Tannklinikk",
+          "desc": "Galleri\n    \n      \n      \n      \n      \n      \n      \n      \n      \n      \n    \n    ‹\n    ›",
+          "score": 5,
+          "type": "image",
+          "group_id": 4,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "bilde4.jpg",
+          "data": "",
+          "alt": "Tannklinikk",
+          "desc": "Galleri\n    \n      \n      \n      \n      \n      \n      \n      \n      \n      \n    \n    ‹\n    ›",
+          "score": 5,
+          "type": "image",
+          "group_id": 5,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "bilde5.jpg",
+          "data": "",
+          "alt": "Tannklinikk",
+          "desc": "Galleri\n    \n      \n      \n      \n      \n      \n      \n      \n      \n      \n    \n    ‹\n    ›",
+          "score": 4,
+          "type": "image",
+          "group_id": 6,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "bilde6.jpg",
+          "data": "",
+          "alt": "Tannklinikk",
+          "desc": "Galleri\n    \n      \n      \n      \n      \n      \n      \n      \n      \n      \n    \n    ‹\n    ›",
+          "score": 4,
+          "type": "image",
+          "group_id": 7,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "bilde7.jpg",
+          "data": "",
+          "alt": "Tannklinikk",
+          "desc": "Galleri\n    \n      \n      \n      \n      \n      \n      \n      \n      \n      \n    \n    ‹\n    ›",
+          "score": 4,
+          "type": "image",
+          "group_id": 8,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "bilde1.jpg",
+          "data": "",
+          "alt": "Tannklinikk",
+          "desc": "Galleri\n    \n      \n      \n      \n      \n      \n      \n      \n      \n      \n    \n    ‹\n    ›",
+          "score": 4,
+          "type": "image",
+          "group_id": 9,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "bilde9.jpg",
+          "data": "",
+          "alt": "Tannklinikk",
+          "desc": "Galleri\n    \n      \n      \n      \n      \n      \n      \n      \n      \n      \n    \n    ‹\n    ›",
+          "score": 4,
+          "type": "image",
+          "group_id": 10,
+          "format": "jpg",
+          "width": null
+        }
+      ],
+      "videos": [],
+      "asset_urls": [
+        "https://connect.facebook.net/en_US/fbevents.js",
+        "https://kongsvingertannhelse.no/bilde1.jpg",
+        "https://kongsvingertannhelse.no/bilde2.jpg",
+        "https://kongsvingertannhelse.no/bilde3.jpg",
+        "https://kongsvingertannhelse.no/bilde4.jpg",
+        "https://kongsvingertannhelse.no/bilde5.jpg",
+        "https://kongsvingertannhelse.no/bilde6.jpg",
+        "https://kongsvingertannhelse.no/bilde7.jpg",
+        "https://kongsvingertannhelse.no/bilde8.jpg",
+        "https://kongsvingertannhelse.no/bilde9.jpg",
+        "https://kongsvingertannhelse.no/icon.png",
+        "https://kongsvingertannhelse.no/logo.png",
+        "https://www.google.com/recaptcha/api.js",
+        "https://www.googletagmanager.com/gtm.js?id=",
+        "https://www.googletagmanager.com/gtm.js?id=GTM-NJD2BK4X",
+        "https://www.gstatic.com/recaptcha/releases/guXhH0v-XMxlzmbTwqkaT4i5/recaptcha__en.js"
+      ],
+      "markdown_chars": 3723
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/kontakt.html",
+      "slug": "kontakt",
+      "success": true,
+      "status_code": 200,
+      "depth": 1,
+      "metadata": {
+        "title": "Kongsvinger Tannhelse - Hafthun & Zia",
+        "description": "Kongsvinger Tannhelse - Hafthun & Zia. Tannlege i Kongsvinger. Vi tilbyr alt fra tannsjekk og tannrens til estetisk tannbehandling.",
+        "keywords": null,
+        "author": null,
+        "depth": 1,
+        "parent_url": "https://kongsvingertannhelse.no/"
+      },
+      "headings": [
+        {
+          "level": 1,
+          "text": "Kontakt oss"
+        },
+        {
+          "level": 3,
+          "text": "Vår adresse:"
+        },
+        {
+          "level": 3,
+          "text": "Åpningstider"
+        },
+        {
+          "level": 3,
+          "text": "Kontakt oss"
+        }
+      ],
+      "links": {
+        "internal": [
+          {
+            "href": "https://kongsvingertannhelse.no/index.html",
+            "text": "",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/tjenester.html",
+            "text": "Tjenester",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/omoss.html",
+            "text": "Om oss",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/kontakt.html",
+            "text": "Kontakt",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          }
+        ],
+        "external": [
+          {
+            "href": "tel:+4762815009",
+            "text": "+47 62 81 50 09",
+            "title": "",
+            "base_domain": "",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          }
+        ]
+      },
+      "images": [],
+      "videos": [],
+      "asset_urls": [
+        "https://kongsvingertannhelse.no/icon.png",
+        "https://kongsvingertannhelse.no/logo.png",
+        "https://www.google.com/recaptcha/api.js",
+        "https://www.gstatic.com/recaptcha/releases/guXhH0v-XMxlzmbTwqkaT4i5/recaptcha__en.js"
+      ],
+      "markdown_chars": 699
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/omoss.html",
+      "slug": "omoss",
+      "success": true,
+      "status_code": 200,
+      "depth": 1,
+      "metadata": {
+        "title": "Kongsvinger Tannhelse - Hafthun & Zia",
+        "description": "Kongsvinger Tannhelse - Hafthun & Zia. Tannlege i Kongsvinger. Vi tilbyr alt fra tannsjekk og tannrens til estetisk tannbehandling.",
+        "keywords": null,
+        "author": null,
+        "depth": 1,
+        "parent_url": "https://kongsvingertannhelse.no/"
+      },
+      "headings": [
+        {
+          "level": 1,
+          "text": "Om oss"
+        },
+        {
+          "level": 2,
+          "text": "Våre tannleger"
+        },
+        {
+          "level": 3,
+          "text": "Per Hafthun"
+        },
+        {
+          "level": 3,
+          "text": "Umer Zia"
+        },
+        {
+          "level": 2,
+          "text": "Våre tannpleiere"
+        },
+        {
+          "level": 3,
+          "text": "Eba Wasty"
+        },
+        {
+          "level": 3,
+          "text": "Vår adresse:"
+        },
+        {
+          "level": 3,
+          "text": "Åpningstider"
+        },
+        {
+          "level": 3,
+          "text": "Kontakt oss"
+        }
+      ],
+      "links": {
+        "internal": [
+          {
+            "href": "https://kongsvingertannhelse.no/index.html",
+            "text": "",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/tjenester.html",
+            "text": "Tjenester",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/omoss.html",
+            "text": "Om oss",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/kontakt.html",
+            "text": "Kontakt",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          }
+        ],
+        "external": [
+          {
+            "href": "tel:+4762815009",
+            "text": "+47 62 81 50 09",
+            "title": "",
+            "base_domain": "",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          }
+        ]
+      },
+      "images": [
+        {
+          "src": "hafthun.JPG",
+          "data": "",
+          "alt": "Tannlege Per Hafthun",
+          "desc": "Per Hafthun",
+          "score": 5,
+          "type": "image",
+          "group_id": 1,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "zia.JPG",
+          "data": "",
+          "alt": "Tannlege Umer Zia",
+          "desc": "Umer Zia",
+          "score": 4,
+          "type": "image",
+          "group_id": 2,
+          "format": "jpg",
+          "width": null
+        },
+        {
+          "src": "eba.JPG",
+          "data": "",
+          "alt": "Tannpleier Eba",
+          "desc": "Eba Wasty",
+          "score": 4,
+          "type": "image",
+          "group_id": 3,
+          "format": "jpg",
+          "width": null
+        }
+      ],
+      "videos": [],
+      "asset_urls": [
+        "https://kongsvingertannhelse.no/eba.JPG",
+        "https://kongsvingertannhelse.no/hafthun.JPG",
+        "https://kongsvingertannhelse.no/icon.png",
+        "https://kongsvingertannhelse.no/logo.png",
+        "https://kongsvingertannhelse.no/zia.JPG",
+        "https://www.google.com/recaptcha/api.js",
+        "https://www.gstatic.com/recaptcha/releases/guXhH0v-XMxlzmbTwqkaT4i5/recaptcha__en.js"
+      ],
+      "markdown_chars": 963
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/tjenester.html",
+      "slug": "tjenester",
+      "success": true,
+      "status_code": 200,
+      "depth": 1,
+      "metadata": {
+        "title": "Kongsvinger Tannhelse - Hafthun & Zia",
+        "description": "Kongsvinger Tannhelse - Hafthun & Zia. Tannlege i Kongsvinger. Vi tilbyr alt fra tannsjekk og tannrens til estetisk tannbehandling.",
+        "keywords": null,
+        "author": null,
+        "depth": 1,
+        "parent_url": "https://kongsvingertannhelse.no/"
+      },
+      "headings": [
+        {
+          "level": 1,
+          "text": "Tjenester"
+        },
+        {
+          "level": 3,
+          "text": "Tannsjekk"
+        },
+        {
+          "level": 3,
+          "text": "Tannfylling"
+        },
+        {
+          "level": 3,
+          "text": "Tannbleking"
+        },
+        {
+          "level": 3,
+          "text": "Tannrens"
+        },
+        {
+          "level": 3,
+          "text": "Tannkjøttbehandling"
+        },
+        {
+          "level": 3,
+          "text": "Tannstein"
+        },
+        {
+          "level": 3,
+          "text": "Rotfylling"
+        },
+        {
+          "level": 3,
+          "text": "Munntørrhet"
+        },
+        {
+          "level": 3,
+          "text": "Tanngnissing"
+        },
+        {
+          "level": 3,
+          "text": "Ising i tenner"
+        },
+        {
+          "level": 3,
+          "text": "Trekking av tenner"
+        },
+        {
+          "level": 3,
+          "text": "Dårlig ånde"
+        },
+        {
+          "level": 3,
+          "text": "Visdomstenner"
+        },
+        {
+          "level": 2,
+          "text": "Akutt tannbehandling"
+        },
+        {
+          "level": 3,
+          "text": "Tannsmerte"
+        },
+        {
+          "level": 3,
+          "text": "Tannskade"
+        },
+        {
+          "level": 3,
+          "text": "Tannverk"
+        },
+        {
+          "level": 3,
+          "text": "Ising i tenner"
+        },
+        {
+          "level": 3,
+          "text": "Mistet tannfyling"
+        },
+        {
+          "level": 3,
+          "text": "Hevelse rundt tann eller i ansiktet"
+        },
+        {
+          "level": 3,
+          "text": "Løsnet tannkrone"
+        },
+        {
+          "level": 2,
+          "text": "Estetisk tannbehandling"
+        },
+        {
+          "level": 3,
+          "text": "Tannfylling"
+        },
+        {
+          "level": 3,
+          "text": "Tannkrone"
+        },
+        {
+          "level": 3,
+          "text": "Tannbro"
+        },
+        {
+          "level": 3,
+          "text": "Tannbleking"
+        },
+        {
+          "level": 3,
+          "text": "Skallfasetter"
+        },
+        {
+          "level": 3,
+          "text": "Tannimplantat"
+        },
+        {
+          "level": 3,
+          "text": "Tannproteste"
+        },
+        {
+          "level": 3,
+          "text": "Delprotese"
+        },
+        {
+          "level": 3,
+          "text": "Helprotese"
+        },
+        {
+          "level": 3,
+          "text": "Vår adresse:"
+        },
+        {
+          "level": 3,
+          "text": "Åpningstider"
+        },
+        {
+          "level": 3,
+          "text": "Kontakt oss"
+        }
+      ],
+      "links": {
+        "internal": [
+          {
+            "href": "https://kongsvingertannhelse.no/index.html",
+            "text": "",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/tjenester.html",
+            "text": "Tjenester",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/omoss.html",
+            "text": "Om oss",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          },
+          {
+            "href": "https://kongsvingertannhelse.no/kontakt.html",
+            "text": "Kontakt",
+            "title": "",
+            "base_domain": "kongsvingertannhelse.no",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          }
+        ],
+        "external": [
+          {
+            "href": "tel:+4762815009",
+            "text": "+47 62 81 50 09",
+            "title": "",
+            "base_domain": "",
+            "head_data": null,
+            "head_extraction_status": null,
+            "head_extraction_error": null,
+            "intrinsic_score": 0.0,
+            "contextual_score": null,
+            "total_score": null
+          }
+        ]
+      },
+      "images": [],
+      "videos": [],
+      "asset_urls": [
+        "https://kongsvingertannhelse.no/icon.png",
+        "https://kongsvingertannhelse.no/logo.png",
+        "https://www.google.com/recaptcha/api.js",
+        "https://www.gstatic.com/recaptcha/releases/guXhH0v-XMxlzmbTwqkaT4i5/recaptcha__en.js"
+      ],
+      "markdown_chars": 10693
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://connect.facebook.net/en_US/fbevents.js",
+      "saved_to": "assets\\_external\\connect.facebook.net\\en_US\\fbevents.js",
+      "ok": true,
+      "info": "428544 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/bilde1.jpg",
+      "saved_to": "assets\\bilde1.jpg",
+      "ok": true,
+      "info": "151861 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/bilde2.jpg",
+      "saved_to": "assets\\bilde2.jpg",
+      "ok": true,
+      "info": "216687 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/bilde3.jpg",
+      "saved_to": "assets\\bilde3.jpg",
+      "ok": true,
+      "info": "200542 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/bilde4.jpg",
+      "saved_to": "assets\\bilde4.jpg",
+      "ok": true,
+      "info": "151289 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/bilde5.jpg",
+      "saved_to": "assets\\bilde5.jpg",
+      "ok": true,
+      "info": "193485 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/bilde6.jpg",
+      "saved_to": "assets\\bilde6.jpg",
+      "ok": true,
+      "info": "226411 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/bilde7.jpg",
+      "saved_to": "assets\\bilde7.jpg",
+      "ok": true,
+      "info": "156199 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/bilde8.jpg",
+      "saved_to": "assets\\bilde8.jpg",
+      "ok": true,
+      "info": "221791 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/bilde9.jpg",
+      "saved_to": "assets\\bilde9.jpg",
+      "ok": true,
+      "info": "260570 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/eba.JPG",
+      "saved_to": "assets\\eba.JPG",
+      "ok": true,
+      "info": "231283 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/hafthun.JPG",
+      "saved_to": "assets\\hafthun.JPG",
+      "ok": true,
+      "info": "191013 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/icon.png",
+      "saved_to": "assets\\icon.png",
+      "ok": true,
+      "info": "415338 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/logo.png",
+      "saved_to": "assets\\logo.png",
+      "ok": true,
+      "info": "161867 bytes"
+    },
+    {
+      "url": "https://kongsvingertannhelse.no/zia.JPG",
+      "saved_to": "assets\\zia.JPG",
+      "ok": true,
+      "info": "161384 bytes"
+    },
+    {
+      "url": "https://www.google.com/recaptcha/api.js",
+      "saved_to": "assets\\_external\\www.google.com\\recaptcha\\api.js",
+      "ok": true,
+      "info": "976 bytes"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtm.js?id=",
+      "saved_to": null,
+      "ok": false,
+      "info": "HTTP Error 400: Bad Request"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-NJD2BK4X",
+      "saved_to": "assets\\_external\\www.googletagmanager.com\\gtm.js",
+      "ok": true,
+      "info": "390195 bytes"
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/releases/guXhH0v-XMxlzmbTwqkaT4i5/recaptcha__en.js",
+      "saved_to": "assets\\_external\\www.gstatic.com\\recaptcha\\releases\\guXhH0v-XMxlzmbTwqkaT4i5\\recaptcha__en.js",
+      "ok": true,
+      "info": "850516 bytes"
+    }
+  ]
+}

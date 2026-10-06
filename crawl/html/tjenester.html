@@ -1,0 +1,558 @@
+<!DOCTYPE html><html lang="no"><head><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kongsvinger Tannhelse - Hafthun &amp; Zia. Tannlege i Kongsvinger. Vi tilbyr alt fra tannsjekk og tannrens til estetisk tannbehandling.">
+<title>Kongsvinger Tannhelse - Hafthun &amp; Zia</title>
+<link rel="icon" href="icon.png" type="image/png">
+<style>
+  /* ===== GLOBAL STYLING ===== */
+  html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* hindrer horisontal scroll */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FFF2E4;
+    scroll-behavior: smooth;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background-color: #FFF2E4;
+    border-bottom: 1px solid #e5e5e5;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    transition: transform 0.3s ease, padding 0.3s ease;
+  }
+  header.scrolled .header-inner {
+    transform: scale(0.9);
+    padding: 10px 30px;
+  }
+
+  .header-left { flex: 1; }
+  .header-center { flex: 1; display: flex; justify-content: center; }
+  .header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+
+  /* Logo */
+  .logo img { max-height: 100px; transition: all 0.3s ease; }
+
+  /* Bestill time */
+  .bestill-time a {
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #333;
+    padding: 15px 25px;
+    border-radius: 75px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  .bestill-time a:hover { background-color: #7197EF; color: #fff; }
+
+  #kontakt {
+  scroll-margin-top: 150px; /* juster høyden til headeren din */
+}
+
+  /* Hamburger-meny */
+  .menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    background: #7197EF;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 12px;
+    transition: background 0.3s ease;
+  }
+  .menu-toggle:hover { background-color: #5575c9; }
+
+  /* Meny */
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  nav ul li a:hover { color: #7197EF; }
+
+  /* ===== MAIN Tjenester ===== */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .service-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .service-box {
+    flex: 1 1 calc(33% - 20px);
+    min-height: 250px;
+    background-color: #FFF2E4;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .service-box:hover { transform: scale(1.07); }
+
+  .service-box h3 { font-size: 1.6rem; margin: 0; text-align: center; }
+  .service-box p { font-size: 1rem; line-height: 1.5; margin: 10px 0; text-align: left; }
+  .service-box a {
+    text-decoration: none;
+    border: 2px solid #000;
+    color: #000;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  .service-box a:hover { background-color: #000; color: #fff; }
+
+  .treatment-nav {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 40px 0;
+  flex-wrap: wrap; /* standard på store skjermer */
+}
+
+.treatment-nav a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* ikke bryt tekst */
+}
+
+
+
+/* Mobil: gjør den horisontal scroll + snap */
+@media (max-width: 600px) {
+  .treatment-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 10px;
+    scrollbar-width: none; /* Firefox */
+    scroll-snap-type: x mandatory; /* aktiver snap */
+  }
+
+  .treatment-nav::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .treatment-nav a {
+    scroll-snap-align: start; /* hvert element snapper til venstre */
+  }
+}
+
+
+
+.treatment-nav a:hover {
+  color: #7197EF;
+}
+#ordinær {
+  scroll-margin-top: 25px; /* juster høyden til headeren din */
+}
+#akutt {
+  scroll-margin-top: 25px; /* juster høyden til headeren din */
+}
+#estetisk {
+  scroll-margin-top: 25px; /* juster høyden til headeren din */
+}
+
+  /* ===== FOOTER ===== */
+  footer { background-color: #222; color: #f1f1f1; font-size: 1.05rem; }
+  .footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  .footer-left img { max-width: 250px; margin-bottom: 20px; }
+  .footer-left h3, .footer-center h3, .footer-right h3 { margin-bottom: 15px; font-size: 1.4rem; color: #fff; }
+  .footer-left p, .footer-center p { margin: 8px 0; }
+  .footer-center .book-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 25px;
+    border: 2px solid #f1f1f1;
+    text-decoration: none;
+    color: #f1f1f1;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+  .footer-center .book-btn:hover { background-color: #f1f1f1; color: #222; }
+  .footer-right form { display: flex; flex-direction: column; }
+  .footer-right input, .footer-right textarea { padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; font-size: 1rem; }
+  .footer-right button {
+    padding: 12px;
+    border: none;
+    background-color: #0077cc;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .footer-right button:hover { background-color: #f1f1f1; color: #222; }
+  .footer-map { grid-column: 1 / span 2; margin-top: 10px; }
+  .footer-map iframe { width: 100%; height: 250px; }
+  .footer-bottom { text-align: center; padding: 15px; background-color: #111; font-size: 0.95rem; margin-top: 20px; }
+
+  /* ===== RESPONSIV ===== */
+  @media (max-width: 992px) { .footer-container { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 768px) {
+    .header-inner { padding: 10px 10px 10px 15px; }
+    header.scrolled .header-inner { transform: none; padding: 10px 10px 10px 15px; }
+
+    .header-left, .header-center, .header-right { flex: none; }
+    .header-left { order: 1; }
+    .header-center { order: 2; }
+    .header-right { order: 3; }
+
+    .logo img { max-height: 77px; transform: none; }
+    .bestill-time { margin: 0 auto; }
+    .bestill-time a {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+    .menu-toggle { display: block; }
+
+    nav ul {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      flex-direction: column;
+      gap: 15px;
+      background: #FFF2E4;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: none;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      width: 200px;
+    }
+    nav ul.active { opacity: 1; transform: none; pointer-events: auto; }
+    nav ul li a { font-size: 1.2rem; }
+
+    .service-boxes { flex-direction: column; gap: 20px; }
+    .service-box { flex: 1 1 100%; }
+
+    .footer-container { grid-template-columns: 1fr; }
+    .footer-map { grid-column: 1; }
+  }
+
+  .phone-link {
+  color: #fff;              /* gjør hvit som resten av footer */
+  text-decoration: none;    /* fjerner understrek */
+}
+
+  .phone-link:hover {
+  text-decoration: underline; /* evt. vis understrek ved hover */
+}
+
+</style>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+          <!-- Venstre: Logo -->
+          <div class="header-left">
+            <a href="index.html" class="logo"><img src="logo.png" alt="Tannhelsesenter Logo" width="612" height="268"></a>
+          </div>
+      
+          <!-- Midt: Meny -->
+          <div class="header-center">
+            <nav>
+              <ul>
+                <li><a href="index.html">Hjem</a></li>
+                <li><a href="tjenester.html">Tjenester</a></li>
+                <li><a href="omoss.html">Om oss</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+              </ul>
+            </nav>
+          </div>
+      
+          <!-- Høyre: Bestill time + Hamburger -->
+          <div class="header-right">
+            <div class="bestill-time"><a href="#kontakt">Bestill time</a></div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+          </div>
+        </div>
+      </header>
+
+<main>
+  <h1>Tjenester</h1>
+  <div class="treatment-nav" id="ordinær">
+    <a href="#ordinær" class="">Ordinære behandlinger</a>
+    <a href="#akutt" class="">Akutt tannbehandling</a>
+    <a href="#estetisk" class="active">Estetisk tannbehandling</a>
+  </div>
+
+  <section>
+  <div class="service-boxes">
+      <div class="service-box">
+      <h3>Tannsjekk</h3>
+      <p>En tannsjekk lar tannlegen din se om du har noen tannproblemer og hjelper deg med å holde munnen frisk. Å la problemer i munnen stå ubehandlet kan gjøre dem vanskeligere å behandle i fremtiden. Det er derfor best å håndtere problemene tidlig, eller, hvis mulig, forhindre dem helt. </p>
+      <p>  Stort sett gjelder fortsatt: “DET BLIR IKKE HULL I EN TANN SOM ER REN”  </p>
+    </div>
+    <div class="service-box">
+      <h3>Tannfylling</h3>
+      <p>En fylling brukes til å behandle et lite hull i en tann. For å reparere et hull, fjerner tannlegen det ødelagte tannvevet og fyller deretter rommet med et fyllmateriale. Fyllingsmateriale kan også i noen tilfeller benyttes som estetisk behandling, f.eks ved ønske om endring av tannform, store mellomrom mellom tenner etc. Dette er en svært tannbesparende metode ved ønske om endringer av ulike slag.</p>
+    </div>
+    <div class="service-box">
+      <h3>Tannbleking</h3>
+      <p>Tannbleking innebærer å bleke tennene for å gjøre dem hvitere.Tannlegen vil ta et avtrykk av tennene dine for å lage en tannskinne og fortelle deg hvordan du bruker den med en blekegel. Deretter bruker du blekeskinnen hjemme i en periode alt etter eget ønske, men ikke over 10dager av gangen. Bør brukes sammen med fluorbehandling.</p>
+    </div>
+    <div class="service-box">
+      <h3>Tannrens</h3>
+      <p>En tannrensing fjerner plakk og tannstein som bygger seg opp på tennene over tid. Plakk er en klebrig, myk film som inneholder millioner av bakterier som liker å leve på tennene dine. Hvis de ikke fjernes regelmessig, kan disse bakteriene forårsake hull, tannkjøttsykdommer og andre komplikasjoner som du ønsker å unngå. </p>
+    </div>
+    <div class="service-box">
+      <h3>Tannkjøttbehandling</h3>
+      <p>Gingivitt er det tidligste stadiet av tannkjøttsykdom. Det skjer når plakk og bakterier bygger seg opp på tennene dine og forårsaker infeksjon. Vanlige symptomer inkluderer rødt, hovent, blødende tannkjøtt. Behandlinger inkluderer regelmessig tannrengjøring og forbedret munnhygiene hjemme mellom tannlegebesøkene. </p>
+    </div>
+    <div class="service-box">
+      <h3>Tannstein</h3>
+      <p>Tannstein er herdet(forkalket) tannplakk. Uten riktig munnhygiene kan tannstein bygge seg opp på tennene dine og føre til tannkjøttsykdommer (periodontitt eller tannløsnings-sykdom) og andre munnhelseproblemer. Bare en tannlege eller tannpleier kan fjerne tannstein. Du kan ikke fjerne den med børsting og tanntråd alene. </p>
+    </div>
+    <div class="service-box">
+      <h3>Rotfylling</h3>
+      <p>En rotbehandling er en prosedyre for å fjerne betent, infisert eller død nerve og bløtvev på innsiden av tannen. Behandlingen er ofte en følgetilstand av dype hull som har utviklet seg helt inn til kjernen av tannen. Behovet for rotfylling kommer gjerne etter en voldsom smerteepisode for pasienten, og behandlingen har derfor fått et litt dårlig rykte hos folk flest. Behandlingen kan dog som oftest utføres smertefritt og effektivt, og kan ofte eliminere smerte umiddelbart.</p>
+      <p>Behandlingen utføres ved at bløtvevet inne i tannen fjernes, og deretter blir nerverommet nøye rengjort og desinfisert, av og til med et antibiotika-innlegg som du skal gå med en periode før behandingen avsluttes. Deretter blir tannen fylt og forseglet.  </p>
+    </div>
+    <div class="service-box">
+      <h3>Munntørrhet</h3>
+      <p>Munntørrhet er forårsaket av redusert eller fraværende spyttstrøm. Denne tilstanden kan forårsake ubehag, forstyrre tale og svelging, gjøre bruk av proteser vanskelig, forårsake dårlig ånde og forverre munnhygienen ved å forårsake en reduksjon i surheten i munnen og en økning i bakterievekst, noe som bidrar til utviklingen av hull. Langvarig munntørrhet kan føre til alvorlig tannråte og sopp i munnen.</p>
+      <p>Munntørrhet er vanlig blant eldre mennesker, ved medisinbruk og hos kreftpasienter. </p>
+    </div>
+    <div class="service-box">
+      <h3>Tanngnissing</h3>
+      <p>Tanngnissing er ufrivillig sammenbiting/gnissing av tenner som vanligvis skjer under søvn. Årsaker kan være stress, konsentrasjon og bruk av illegale rusmidler. Behandlinger inkluderer bittskinner (som skal brukes om natten), reparasjon av tannskader og stressbehandling. </p>
+    </div>
+    <div class="service-box">
+      <h3>Ising i tenner</h3>
+      <p>Følsomme tenner er vanligvis et resultat av slitt tannemalje eller utsatte, eksponerte tannrøtter. Noen ganger er imidlertid tannubehag forårsaket av andre faktorer, for eksempel et hull, en sprukket tann, en slitt fylling eller tannkjøttsykdom. </p>
+    </div>
+    <div class="service-box">
+      <h3>Trekking av tenner</h3>
+      <p>Ekstraksjoner, eller trekking, utføres av en rekke årsaker, men oftest for å fjerne tenner som har blitt uopprettelige på grunn av tannråte, periodontal sykdom eller tanntraumer, spesielt når de er forbundet med tannpine. </p>
+    </div>
+    <div class="service-box">
+      <h3>Dårlig ånde</h3>
+      <p>Dårlig ånde er svært vanlig. Du kan vanligvis behandle det selv. Den beste måten å unngå dårlig ånde på er å holde tennene, tungen og munnen rene. </p>
+    </div>
+    <div class="service-box">
+      <h3>Visdomstenner</h3>
+      <p>Noen ganger forårsaker påvirkede visdomstenner (visdomstenner som sitter fast og ikke kan vokse normalt inn i munnen) tilbakevendende infeksjoner i tannkjøttet, og kan fjernes når andre konservative behandlinger har mislyktes. </p>
+    </div>
+  </div>
+  </section>
+  <section id="akutt">
+  <h2>Akutt tannbehandling</h2>
+  <div class="service-boxes">
+    <div class="service-box">
+    <h3>Tannsmerte</h3>
+    <p>Kilden til tannsmerter kan være tannråte, en sprukket tann eller en infeksjon. Uansett årsak, hvis du har vedvarende smerter, er det på tide oppsøke en tannlege eller tannpleier for behandling. </p>
+  </div>
+  <div class="service-box">
+    <h3>Tannskade</h3>
+    <p>Tannskade kan bl.a. være løs tann, innslått tann, mistet tann eller knekt tann. I alle tilfeller anbefales det å kontakte oss så snart som mulig.</p>
+  </div>
+  <div class="service-box">
+    <h3>Tannverk</h3>
+    <p>En tannpine refererer til smerte i eller rundt tannen din. Mindre tannpine kan oppstå fra en midlertidig tannkjøttirritasjon som du kan behandle hjemme. Mer alvorlig tannpine skyldes hull, infeksjon eller andre tannsykdommer som ikke blir bedre av seg selv.</p>
+  </div>
+  <div class="service-box">
+    <h3>Ising i tenner</h3>
+    <p>Følsomme tenner er vanligvis et resultat av slitt tannemalje eller utsatte tannrøtter. Noen ganger er imidlertid tannubehag forårsaket av andre faktorer, for eksempel et hulrom, en sprukket tann, en slitt fylling eller tannkjøttsykdom.</p>
+  </div>
+  <div class="service-box">
+    <h3>Mistet tannfyling</h3>
+    <p>Hvis en fylling faller ut, kontakt tannlegen din så snart som mulig. Å vente for lenge med å få erstattet fyllingen kan forårsake tannråte og ytterligere problemer. Hold området rent til du kan se.   Oppsøke tannlegen din og prøv å begrense spising eller tygging på det berørte området.</p>
+  </div>
+  <div class="service-box">
+    <h3>Hevelse rundt tann eller i ansiktet</h3>
+    <p>Jo lenger plakk og tannstein forblir på tennene dine, jo mer irriterer de tannkjøttet og forårsaker betennelse. Med tiden blir tannkjøttet ditt hovent og blør lett. Tannråte (tannkaries) og en dødt vev inne i tannen kan også i ytterste konsekvens føre til smerter og hevelse. Ta kontakt med tannlegen så fort det lar seg gjøre, noen ganger er det behov for antibiotika for å få ned hevelsen.</p>
+  </div>
+  <div class="service-box">
+    <h3>Løsnet tannkrone</h3>
+    <p>Tanngnissing kan føre til at en tannkrone løsner. En annen årsak til løse tannkroner er tannråte. Når en tann har et hull, blir dens struktur kompromittert, noe som forårsaker forandret hold inne i tannkronen. Traumer på tannen, samt å spise klissete matvarer, kan føre til at en tannkrone løsner. I noen tilfeller påvirkes en tannkrone fordi tannsementen svekkes over tid.</p>
+  </div>
+</div>
+</section>
+<section id="estetisk">
+<h2>Estetisk tannbehandling</h2>
+<div class="service-boxes">
+  <div class="service-box">
+  <h3>Tannfylling</h3>
+  <p>En fylling brukes til å behandle et lite hull i en tann. For å reparere et hull, fjerner tannlegen det ødelagte tannvevet og fyller deretter rommet med et fyllmateriale. Fyllingsmateriale kan også i noen tilfeller benyttes som estetisk behandling, f.eks ved ønske om endring av tannform, store mellomrom mellom tenner etc. Dette er en svært tannbesparende metode ved ønske om endringer av ulike slag.</p>
+</div>
+<div class="service-box">
+  <h3>Tannkrone</h3>
+  <p>En tannkrone er en tannformet hette. Tannleger bruker kroner for å gjenopprette svekkede eller svært ødelagte tenner. En krone passer over hele tannen din. For å sikre en riktig passform, må en tannlegen av og til fjerne en liten mengde emalje før den nye kronen limes på plass. Fordelen med en tannkrone er at den kan forlenge levetiden til en naturlig tann.</p>
+</div>
+<div class="service-box">
+  <h3>Tannbro</h3>
+  <p>Tannbroer erstatter manglende tenner. Nærmere bestemt kan de erstatte en tann eller en flere manglende tenner. De kan gjenopprette tyggefunksjonen, i noen tilfeller forbedre utseendet ditt og munnhelsen. En tannbro består av kroner som passer over dine naturlige tenner og kunstige tenner der tenner mangler. Denne "broen" sementeres på plass og blir en løsning som som skal sitte permanent fast i munnen.</p>
+</div>
+<div class="service-box">
+  <h3>Tannbleking</h3>
+  <p>Tannbleking innebærer å bleke tennene for å gjøre dem hvitere.Tannlegen vil ta et avtrykk av tennene dine for å lage en tannskinne og fortelle deg hvordan du bruker den med en blekegel. Deretter bruker du blekeskinnen hjemme i en periode alt etter eget ønske, men ikke over 10dager av gangen. Bør brukes sammen med fluorbehandling.</p>
+</div>
+<div class="service-box">
+  <h3>Skallfasetter</h3>
+  <p>Skallfasetter er tynne skall som festes på tannen for å gi en hvitere overflate. Skallfasettene er vanligvis fremstilt av keramisk materielle eller plast (kompositt).</p>
+</div>
+<div class="service-box">
+  <h3>Tannimplantat</h3>
+  <p>Tannimplantat er en fast tannprotese; en medisinsk skrue i kjevebenet, som skal vokse fast i benet. På skruen blir det etter en tid satt fast en krone som kun din tannlage kan ta ut ved nødstilfeller. Implantat kan være et godt alternativ til proteser og tannbroer når mangel på naturlige tannrøtter ikke tillater å bygge proteser eller tannbroer. Behandlingen krever at kjevebenet er godt nok til å bære et implantat.</p>
+</div>
+<div class="service-box">
+  <h3>Tannproteste</h3>
+  <p>En tannprotese er en samlebetegnelse på det som erstatter en manglende tann (eller tenner) eller dekker tannfeil.</p>
+</div>
+<div class="service-box">
+  <h3>Delprotese</h3>
+  <p>Denne løsningen benyttes når en eller flere tenner mangler. Det er en protese som ikke sementeres fast i munnen, men som kan taes ut og inn.  Som regel støpes det opp et skjellett som passer/ festes på resterende tenner i munnen. Der det mangler tenner, støpes det på akryltenner som passer perfekt i tannbuen, og tapt vev erstattes således. Dersom det er nok tenner igjen til å lage en fast bro, kan dette være en økonomisk løsning som benyttes på vegen.</p>
+</div>
+<div class="service-box">
+  <h3>Helprotese</h3>
+  <p>Helprotese eller gebiss er et avtakbart tannsett som brukes når alle tenner i en kjeve har gått tapt og må skiftes ut med en protese. Protesen framstilles i plast og skal passe så godt som mulig på kjevekammen så den holder seg fast med et vakuumsug på kjeven.  </p>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-left">
+      <h3>Vår adresse:</h3>
+      <p>Fjellgata 4, 2212 Kongsvinger</p>
+      <p>E-post: post@kongsvingertannhelse.no</p>
+      <p>Ring oss: <a href="tel:+4762815009" class="phone-link">+47 62 81 50 09</a></p>
+    </div>
+    <div class="footer-center">
+      <h3>Åpningstider</h3>
+      <p>Man–Fre: 08:30 – 15:30</p>
+      <p>Lør–Søn: Stengt</p>
+    </div>
+    <div class="footer-right" id="kontakt">
+      <h3>Kontakt oss</h3>
+      <form id="kontaktSkjema" action="send_mail.php" method="POST">
+        <input type="text" name="Navn" placeholder="Navn" required="">
+        <input type="text" name="Emne" placeholder="Emne" required="">
+        <input type="email" name="Epost" placeholder="E-post" required="">
+        <textarea name="Melding" rows="4" placeholder="Melding" required=""></textarea>
+      
+        <!-- reCAPTCHA v2 -->
+        <div class="g-recaptcha" data-sitekey="6Lds7scrAAAAAPjuQH4gAK0q2gkAZf3nqXVWJm-X"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-saxkx4f8axrm" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Lds7scrAAAAAPjuQH4gAK0q2gkAZf3nqXVWJm-X&amp;co=aHR0cHM6Ly9rb25nc3ZpbmdlcnRhbm5oZWxzZS5ubzo0NDM.&amp;hl=en&amp;v=guXhH0v-XMxlzmbTwqkaT4i5&amp;size=normal&amp;anchor-ms=20000&amp;execute-ms=30000&amp;cb=mlckqe9rjujy"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+      
+        <button type="submit">Send</button>
+      </form>
+      
+      <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/guXhH0v-XMxlzmbTwqkaT4i5/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-hC9D98xBXYbEu4dt1OTOUEfSfKHxW5VSB/KvC5wfm1Dl42E/ppKetKNpzoO9NCxo"></script><script src="https://www.google.com/recaptcha/api.js" async="" defer=""></script>      
+      
+    </div>
+    <div class="footer-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.348144820015!2d11.995526977314483!3d60.19152117504335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464248580d9c510f%3A0x2cab43f7af8556de!2sFjellgata%204%2C%202212%20Kongsvinger!5e0!3m2!1sno!2sno!4v1757705276490!5m2!1sno!2sno" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Kongsvinger Tannhelse. Alle rettigheter reservert.</p>
+  </div>
+</footer>
+
+  <script>
+    // Burger toggle
+    const menuToggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("nav ul");
+    menuToggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+    });
+  
+    // Skjul header på scroll ned (kun mobil)
+    let lastScroll = 0;
+    const header = document.querySelector("header");
+  
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset;
+  
+      if (window.innerWidth <= 768) {
+        if (currentScroll > lastScroll && currentScroll > 50) {
+          header.classList.add("hide");
+        } else {
+          header.classList.remove("hide");
+        }
+      }
+  
+      lastScroll = currentScroll;
+    });
+
+
+    const navLinks = document.querySelectorAll(".treatment-nav a");
+
+// Klikk: sett aktiv lenke
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.forEach(l => l.classList.remove("active"));
+    link.classList.add("active");
+  });
+});
+
+// Scroll: marker aktiv seksjon
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 150;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+  </script>
+  
+
+
+
+<div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility linear 0.3s, opacity 0.3s linear; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe title="recaptcha challenge expires in two minutes" name="c-saxkx4f8axrm" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/bframe?hl=en&amp;v=guXhH0v-XMxlzmbTwqkaT4i5&amp;k=6Lds7scrAAAAAPjuQH4gAK0q2gkAZf3nqXVWJm-X&amp;bft=0dAFcWeA4PqAmNzgWNc3ZCewX1hhSHISMaIvzJ5NhhI94sK0lqoAX--p5i1CJl0TymsAxCvHqgPCbHHxyHdkHJklQTGgRlcM99nw" style="width: 100%; height: 100%;"></iframe></div></div></body></html>

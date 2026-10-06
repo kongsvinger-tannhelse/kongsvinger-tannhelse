@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* ── Kongsvinger: the river, the fortress stone, the limewashed walls ── */
+  --color-glomma:       #22404D;   /* deep river slate — dark anchor, primary CTA */
+  --color-glomma-deep:  #16303B;   /* footer, text on paper */
+  --color-papir:        #F3F4F1;   /* limestone paper, default background */
+  --color-kalk:         #E7E8E2;   /* one notch deeper, for sections that need separating */
+  --color-stein:        #8A8B84;   /* fortress stone — hairlines, captions */
+  --color-bjork:        #A7B88A;   /* spring birch — accents on dark */
+  --color-teal:         #2DA4B4;   /* the clinic's logo */
+
+  --color-tekst:        #172228;
+  --color-tekst-2:      #4B565C;
+  --color-tekst-svak:   #7A8388;
+  --color-tekst-lys:    #F3F4F1;
+  --color-tekst-lys-2:  rgba(243, 244, 241, 0.72);
+
+  --color-strek:        rgba(23, 34, 40, 0.12);
+  --color-strek-lys:    rgba(243, 244, 241, 0.22);
+
+  --color-apen:         #3FA36B;   /* the "open now" dot */
+
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+
+  --ease-film: cubic-bezier(0.7, 0, 0.2, 1);
+  --ease-rolig: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Layout values used through var(); kept out of @theme so Tailwind does not
+   build (and override) its w- and max-w- utilities from them. */
+:root {
+  --container-max: 1280px;
+  --container-px: clamp(20px, 4vw, 40px);
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--color-papir);
+  color: var(--color-tekst);
+}
+
+::selection { background: var(--color-glomma); color: var(--color-papir); }
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Shared hero entrance helpers ── */
+@keyframes stig {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+@keyframes loft {
+  from { opacity: 0; transform: translateY(var(--fra-y, 12px)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-linje { animation: stig 1.1s var(--ease-film) both; }
+.hero-loft  { animation: loft 0.9s var(--ease-rolig) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-linje, .hero-loft { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
