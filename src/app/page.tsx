@@ -4,6 +4,7 @@ import { Hero } from "@/components/forside/Hero";
 import { Behandlinger } from "@/components/forside/behandlinger/Behandlinger";
 import { OmOss } from "@/components/forside/omoss/OmOss";
 import { Kontakt } from "@/components/forside/kontakt/Kontakt";
+import { Brua } from "@/components/forside/brua/Brua";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -18,6 +19,7 @@ export default function Home() {
         <Behandlinger />
         <OmOss />
         <Kontakt />
+        <Brua />
       </main>
     </>
   );
