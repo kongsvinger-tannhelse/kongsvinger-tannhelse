@@ -1,0 +1,239 @@
+/* The pop-up scenes' loops. Each runs only while its scene plays
+   (data-on="true"), and none runs under reduced motion. */
+
+/* The shadow cut paper throws: its shapes again, lower, in one flat ink. */
+.skygge {
+  opacity: 0.16;
+}
+.skygge * {
+  fill: #16303b !important;
+  stroke: none !important;
+}
+.skygge [fill="none"] {
+  fill: none !important;
+}
+
+/* A loose layer whose loop moves a finished picture. */
+.los {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/* The mirror sweeps to and fro from the foot of its rod. */
+.sveip {
+  transform-origin: var(--fot, 10% 100%);
+}
+.sveip[data-on="true"] {
+  animation: sveip 5.5s ease-in-out infinite;
+}
+@keyframes sveip {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(4deg); }
+}
+
+/* The probe taps: two quick taps, then a rest. */
+.bank {
+  transform-origin: var(--fot, 100% 100%);
+}
+.bank[data-on="true"] {
+  animation: bank 2.8s ease-in-out infinite;
+}
+@keyframes bank {
+  0%, 30%, 60%, 100% { transform: rotate(0deg); }
+  10%, 40% { transform: rotate(-3deg); }
+}
+
+/* The lamp's light breathes. */
+.lys {
+  opacity: 0.5;
+}
+.lys[data-on="true"] {
+  animation: lys 6s ease-in-out infinite;
+}
+@keyframes lys {
+  0%, 100% { opacity: 0.42; }
+  50% { opacity: 0.62; }
+}
+
+/* A star that winks. */
+.blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+}
+.blink[data-on="true"] {
+  animation: blink var(--tid, 2.8s) ease-in-out var(--forsink, 0s) infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  20% { opacity: 1; transform: scale(1) rotate(20deg); }
+  45% { opacity: 0; transform: scale(0.6) rotate(40deg); }
+}
+
+/* The ache: shapes that beat out from the tooth. */
+.verk {
+  transform-box: fill-box;
+  transform-origin: var(--fra, center);
+}
+.verk[data-on="true"] {
+  animation: verk 1.3s ease-out var(--forsink, 0s) infinite;
+}
+@keyframes verk {
+  0% { transform: scale(0.88); opacity: 0.55; }
+  35% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(0.88); opacity: 0.55; }
+}
+
+/* The nerve glows in time with the ache. */
+.glod[data-on="true"] {
+  animation: glod 1.3s ease-in-out infinite;
+}
+@keyframes glod {
+  0%, 100% { opacity: 0.55; }
+  35% { opacity: 1; }
+}
+
+/* A ring of throbbing that spreads out from the tooth and fades. */
+.ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+}
+.ring[data-on="true"] {
+  animation: ring 2.4s ease-out var(--forsink, 0s) infinite;
+}
+@keyframes ring {
+  0% { transform: scale(0.6); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+/* A swelling that breathes. */
+.puste {
+  transform-box: fill-box;
+  transform-origin: var(--fra, 50% 100%);
+}
+.puste[data-on="true"] {
+  animation: puste 2.6s ease-in-out infinite;
+}
+@keyframes puste {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* The drill's head hums. */
+.dirr[data-on="true"] {
+  animation: dirr 0.12s linear infinite;
+}
+@keyframes dirr {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(0.6px, -0.6px); }
+}
+
+/* A brush or a polisher scrubbing to and fro. */
+.puss[data-on="true"] {
+  animation: puss 0.7s ease-in-out infinite;
+}
+@keyframes puss {
+  0%, 100% { transform: translateX(calc(var(--slag, 10px) * -1)); }
+  50% { transform: translateX(var(--slag, 10px)); }
+}
+
+/* The lower teeth grinding against the upper. */
+.gnis[data-on="true"] {
+  animation: gnis 1.1s ease-in-out infinite;
+}
+@keyframes gnis {
+  0%, 100% { transform: translateX(-7px); }
+  50% { transform: translateX(7px); }
+}
+
+/* A loose crown rocking on its stump. */
+.vakle {
+  transform-origin: var(--fot, 50% 100%);
+}
+.vakle[data-on="true"] {
+  animation: vakle 1.6s ease-in-out infinite;
+}
+@keyframes vakle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-4deg); }
+  60% { transform: rotate(3deg); }
+}
+
+/* A piece hanging on its strings, bobbing. */
+.svev[data-on="true"] {
+  animation: svev 3.2s ease-in-out infinite;
+}
+@keyframes svev {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Drops falling from the glass. */
+.drypp {
+  opacity: 0;
+}
+.drypp[data-on="true"] {
+  animation: drypp 1.6s ease-in var(--forsink, 0s) infinite;
+}
+@keyframes drypp {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(var(--fall, 120px)); opacity: 0; }
+}
+
+/* Snow drifting down. */
+.sno {
+  opacity: 0;
+}
+.sno[data-on="true"] {
+  animation: sno var(--tid, 5s) linear var(--forsink, 0s) infinite;
+}
+@keyframes sno {
+  0% { transform: translate(0, -20px) rotate(0deg); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translate(var(--drift, 12px), 90px) rotate(60deg); opacity: 0; }
+}
+
+/* A cold flash out of the bare root. */
+.isne {
+  opacity: 0.3;
+}
+.isne[data-on="true"] {
+  animation: isne 2.2s ease-out var(--forsink, 0s) infinite;
+}
+@keyframes isne {
+  0%, 60%, 100% { opacity: 0.25; }
+  12% { opacity: 1; }
+}
+
+/* A cloud drifting and rising. */
+.drive[data-on="true"] {
+  animation: drive 4s ease-in-out var(--forsink, 0s) infinite;
+}
+@keyframes drive {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(6px, -8px); }
+}
+
+/* The clock's minute hand going round. */
+.viser {
+  transform-box: view-box;
+  transform-origin: var(--nav, 50% 50%);
+}
+.viser[data-on="true"] {
+  animation: viser 6s linear infinite;
+}
+@keyframes viser {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sveip, .bank, .lys, .blink, .verk, .glod, .ring, .puste, .dirr, .puss, .gnis, .vakle, .svev, .drypp, .sno, .isne, .drive, .viser {
+    animation: none !important;
+  }
+}

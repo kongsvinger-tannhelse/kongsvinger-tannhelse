@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/forside/Hero";
-import { Plassholder } from "@/components/forside/Plassholder";
+import { Behandlinger } from "@/components/forside/behandlinger/Behandlinger";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -13,7 +13,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Plassholder />
+        <Behandlinger />
       </main>
     </>
   );
