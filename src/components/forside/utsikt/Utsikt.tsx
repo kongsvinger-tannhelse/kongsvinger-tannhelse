@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { getImageProps, type StaticImageData } from "next/image";
 import { useEffect, useRef, useSyncExternalStore, type CSSProperties } from "react";
 import { m, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -30,6 +30,28 @@ function subscribeReduce(cb: () => void) {
 
 /** The photo's aspect ratio (4800 x 3200 layers) */
 const AR = 1.5;
+
+/**
+ * One depth of the photograph. Wide screens choose from the full range of
+ * widths by `sizes`; phones get a single 2048 px version, whatever their
+ * pixel density: the panorama is about 1600 CSS px wide there, and 3200–3840
+ * px cost twice the bytes for treetops a little sharper than anyone sees in
+ * motion. Loaded eagerly at high priority, not through Next's preload, which
+ * would fetch the wide-screen size on phones as well.
+ */
+function Dybdefoto({ src, onLoad }: { src: StaticImageData; onLoad: () => void }) {
+  const felles = { src, alt: "", quality: 75 } as const;
+  const { props: bred } = getImageProps({ ...felles, sizes: "max(130vw, 195vh)" });
+  const { props: smal } = getImageProps({ ...felles, width: 2048, height: Math.round(2048 / AR) });
+  // getImageProps gives the phone version as "…w=2048 1x, …w=3840 2x"; keep only 2048
+  const smalSrc = smal.srcSet?.split(", ")[0].split(" ")[0] ?? smal.src;
+  return (
+    <picture>
+      <source media="(max-width: 767px)" srcSet={`${smalSrc} 2048w`} sizes="max(130vw, 195vh)" />
+      <img {...bred} alt="" loading="eager" fetchPriority="high" onLoad={onLoad} />
+    </picture>
+  );
+}
 
 type Props = {
   /** horizontal spot (0–1 across the panorama) kept in view; phones can use another */
@@ -125,7 +147,7 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
         <div className={s.inngang}>
           <div className={s.pust}>
             <m.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: farX, y: farY }}>
-              <Image src={far} alt="" priority sizes="max(130vw, 195vh)" quality={75} onLoad={klar} />
+              <Dybdefoto src={far} onLoad={klar} />
             </m.div>
           </div>
         </div>
@@ -137,7 +159,7 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
         <div className={cn(s.inngang, s.inngangNaer)}>
           <div className={cn(s.pust, s.pustNaer)}>
             <m.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: naerX, y: naerY }}>
-              <Image src={near} alt="" priority sizes="max(130vw, 195vh)" quality={75} onLoad={klar} />
+              <Dybdefoto src={near} onLoad={klar} />
             </m.div>
           </div>
         </div>
