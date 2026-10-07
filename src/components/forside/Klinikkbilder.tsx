@@ -9,7 +9,11 @@ import { Galleri } from "@/components/forside/Galleri";
 import { useHeroKlar } from "@/components/forside/useHeroKlar";
 import s from "./klinikkbilder.module.css";
 
-const VIS = 5200; // ms each room is shown
+const VIS = 3700; // ms each room is shown
+
+/** The rooms that take turns in the pane, in this order. The gallery still shows them all. */
+const RUNDE = ["bilde8", "bilde5", "bilde9", "bilde6"].map((navn) => klinikkbilder.findIndex((b) => b.src.endsWith(`/${navn}.webp`)));
+const ruta = RUNDE.map((i) => klinikkbilder[i]);
 
 /**
  * «Speilet», square. The treatment room at Fjellgata 4 has a mirror with a
@@ -33,7 +37,7 @@ export function Klinikkbilder() {
 
   useEffect(() => {
     if (!går) return;
-    const t = window.setInterval(() => setNr((n) => (n + 1) % klinikkbilder.length), VIS);
+    const t = window.setInterval(() => setNr((n) => (n + 1) % ruta.length), VIS);
     return () => window.clearInterval(t);
   }, [går]);
 
@@ -50,8 +54,8 @@ export function Klinikkbilder() {
         onPointerLeave={() => setPause(false)}
       >
         <div className={s.ramme}>
-          <button type="button" className={s.glass} onClick={() => setApen(nr)} aria-label={`Vis bildene fra klinikken. Nå: ${klinikkbilder[nr].tekst}`}>
-            {klinikkbilder.map((b, i) => (
+          <button type="button" className={s.glass} onClick={() => setApen(RUNDE[nr])} aria-label={`Vis bildene fra klinikken. Nå: ${ruta[nr].tekst}`}>
+            {ruta.map((b, i) => (
               <Image key={b.src} src={b.src} alt="" fill sizes="(min-width: 768px) 420px, 58vw" className={s.rom} data-vis={klar && i === nr} loading={i < 2 ? "eager" : "lazy"} />
             ))}
             <span className={s.innerskygge} aria-hidden="true" />
@@ -66,7 +70,7 @@ export function Klinikkbilder() {
 
         <figcaption className={s.tekst}>
           <span key={nr} className={s.bytt}>
-            {klinikkbilder[nr].tekst}
+            {ruta[nr].tekst}
           </span>
           <span className="text-white/75">Fra klinikken i {klinikk.adresse.gate}</span>
           <button

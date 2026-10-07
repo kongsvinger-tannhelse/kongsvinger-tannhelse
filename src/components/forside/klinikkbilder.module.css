@@ -32,12 +32,12 @@
   object-fit: cover;
   opacity: 0;
   transform: scale(1.14);
-  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0s linear 1.6s;
+  transition: opacity 1.15s cubic-bezier(0.4, 0, 0.2, 1), transform 0s linear 1.15s;
 }
 .rom[data-vis="true"] {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1), transform 7s cubic-bezier(0.2, 0.6, 0.3, 1);
+  transition: opacity 1.15s cubic-bezier(0.4, 0, 0.2, 1), transform 5s cubic-bezier(0.2, 0.6, 0.3, 1);
 }
 .innerskygge {
   position: absolute;
