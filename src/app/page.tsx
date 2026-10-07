@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/forside/Hero";
-import { Behandlinger } from "@/components/forside/behandlinger/Behandlinger";
+import { Leporello } from "@/components/forside/behandlinger/leporello/Leporello";
 import { OmOss } from "@/components/forside/omoss/OmOss";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Behandlinger />
+        <Leporello />
         <OmOss />
       </main>
     </>
