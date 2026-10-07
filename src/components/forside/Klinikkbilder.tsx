@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Images } from "lucide-react";
 import { klinikk, klinikkbilder } from "@/data/klinikk";
 import { Galleri } from "@/components/forside/Galleri";
 import { useHeroKlar } from "@/components/forside/useHeroKlar";
@@ -73,14 +72,6 @@ export function Klinikkbilder() {
             {ruta[nr].tekst}
           </span>
           <span className="text-white/75">Fra klinikken i {klinikk.adresse.gate}</span>
-          <button
-            type="button"
-            onClick={() => setApen(0)}
-            className="mt-2 inline-flex items-center gap-1.5 self-center rounded-full bg-white/15 px-3 py-1.5 text-[13px] font-medium backdrop-blur-md transition-colors hover:bg-white/25"
-          >
-            <Images className="size-3.5" aria-hidden="true" />
-            Se alle {klinikkbilder.length}
-          </button>
         </figcaption>
       </motion.figure>
       <Galleri indeks={apen} onLukk={() => setApen(null)} onBytt={setApen} />
