@@ -38,6 +38,8 @@ type Props = {
   fy?: number;
   /** open out of the embrasure slit on first paint */
   skar?: boolean;
+  /** enter with a camera glide from the panorama's top-left corner to the resting spot */
+  glid?: boolean;
   /** enlarge beyond cover, to give a camera move room */
   zoom?: number;
   /** how far the valley lags behind on scroll, in % of the hero's height */
@@ -47,7 +49,7 @@ type Props = {
   mellom?: React.ReactNode;
 };
 
-export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, zoom = 1, etterslep = 14, className, mellom }: Props) {
+export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = false, zoom = 1, etterslep = 14, className, mellom }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
   const reduced = useSyncExternalStore(subscribeReduce, () => window.matchMedia(REDUCE).matches, () => false);
 
@@ -117,7 +119,7 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, zoom = 
   const vars = { "--fx": fx, "--fy": fy, "--fx-smal": fxSmal, "--zoom": zoom, "--ar": AR } as CSSProperties;
 
   return (
-    <div ref={ref} data-on="false" className={cn(s.scene, skar && s.skar, "utsikt", className)} style={vars}>
+    <div ref={ref} data-on="false" className={cn(s.scene, skar && s.skar, glid && s.glid, "utsikt", className)} style={vars}>
       {/* the two depths are pure picture; anything placed between them (mellom) stays reachable */}
       <motion.div aria-hidden="true" className={s.dybde} style={{ y: slep }}>
         <div className={s.inngang}>

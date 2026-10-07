@@ -22,10 +22,13 @@
 /* the picture never takes the pointer, so whatever stands between the depths can */
 .dybde { pointer-events: none; }
 
-.ramme {
+.ramme,
+.inngang {
   /* 6% bleed for the lean and the breathing, times any zoom */
   --w: calc(max(100cqw, calc(var(--ar, 1.5) * 100cqh)) * 1.06 * var(--zoom, 1));
   --h: calc(var(--w) / var(--ar, 1.5));
+}
+.ramme {
   position: absolute;
   width: var(--w);
   height: var(--h);
@@ -66,6 +69,24 @@
 .scene:not([data-klar="true"]) .inngang { animation-play-state: paused; }
 @keyframes tilbake     { from { transform: scale(1.14); } to { transform: scale(1); } }
 @keyframes tilbakeNaer { from { transform: scale(1.2); } to { transform: scale(1); } }
+
+/* ── Or a camera glide: from the top-left corner of the panorama to the spot
+   in --fx / --fy, in one straight line. The pan and the pull-back share one
+   curve and a fixed centre, so every point on screen travels straight and
+   eases the same; nothing turns a corner on the way. --mx / --my are the
+   frame's resting offset (the same clamp as .ramme), so the start shows the
+   picture's own corner and never an edge. ── */
+.glid .inngang {
+  --mx: calc(-1 * clamp(calc(100cqw - var(--w)), calc(50cqw - var(--fx, 0.6) * var(--w)), 0px));
+  --my: calc(-1 * clamp(calc(100cqh - var(--h)), calc(50cqh - var(--fy, 0.5) * var(--h)), 0px));
+  transform-origin: 50% 50%;
+  animation: glid 3.8s cubic-bezier(0.45, 0, 0.15, 1) 0.2s both;
+}
+/* the treetops pull back a touch further, so the valley seems to turn behind them */
+.glid .inngangNaer { animation-name: glidNaer; }
+.glid .pust { animation-delay: 4s; }
+@keyframes glid     { from { transform: translate3d(var(--mx), var(--my), 0) scale(1.1); }  to { transform: translate3d(0, 0, 0) scale(1); } }
+@keyframes glidNaer { from { transform: translate3d(var(--mx), var(--my), 0) scale(1.15); } to { transform: translate3d(0, 0, 0) scale(1); } }
 
 /* ── After the entrance, the two depths breathe against each other ── */
 .pust {
