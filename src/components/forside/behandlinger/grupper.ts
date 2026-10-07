@@ -34,3 +34,6 @@ const UTVALG = ["tannsjekk", "tannsmerte", "tannimplantat"];
 export const UTVALGTE = GRUPPER.map((g) => ({ ...g, liste: g.liste.filter((t) => UTVALG.includes(t.id)) }));
 
 export const UTVALGTE_REKKE = UTVALGTE.map((_, gi) => ({ g: gi, i: 0 }));
+
+/** The front page's three, flat: each treatment with the group it belongs to. */
+export const TRE = UTVALGTE.map((g) => ({ ...g.liste[0], gruppe: g }));

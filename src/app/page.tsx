@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/forside/Hero";
-import { Behandlinger } from "@/components/forside/behandlinger/Behandlinger";
+import { Leporello } from "@/components/forside/behandlinger/leporello/Leporello";
 import { OmOss } from "@/components/forside/omoss/OmOss";
 import { Kontakt } from "@/components/forside/kontakt/Kontakt";
 import { Brua } from "@/components/forside/brua/Brua";
@@ -16,7 +16,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Behandlinger />
+        <Leporello />
         <OmOss />
         <Kontakt />
         <Brua />

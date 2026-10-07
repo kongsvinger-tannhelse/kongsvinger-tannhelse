@@ -1,0 +1,103 @@
+/* «Leporelloen». */
+
+/* ───── Wide: the strip stands across the page ─────
+   --w is one panel's width; four panels at 16° to the page fill the
+   container. */
+
+.bred {
+  --w: min(312px, calc((100vw - 2 * var(--container-px)) / 3.85));
+  --bred: calc(var(--w) * 4 * cos(16deg));
+}
+
+.bredBoks {
+  position: relative;
+  width: var(--bred);
+  height: calc(var(--w) * 1.2);
+  margin-inline: auto;
+}
+
+/* the strip's shadow on the page, under its feet */
+.bredSkygge {
+  position: absolute;
+  bottom: calc(var(--w) * -0.05);
+  height: calc(var(--w) * 0.1);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(11, 26, 32, 0.3), rgba(11, 26, 32, 0));
+  filter: blur(4px);
+}
+
+/* one face of a panel */
+.flate {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.bak {
+  transform: rotateY(180deg);
+}
+/* the paper's cut edge */
+.kant {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(22, 48, 59, 0.1);
+}
+
+.bredTekster {
+  display: grid;
+  grid-template-columns: repeat(4, calc(var(--w) * cos(16deg)));
+  width: var(--bred);
+  margin: clamp(36px, 4vw, 52px) auto 0;
+}
+.bredTekst {
+  padding-right: clamp(20px, 2.4vw, 36px);
+}
+
+/* ───── Narrow: the strip hangs down the page ───── */
+
+.heng {
+  max-width: 460px;
+  margin-inline: auto;
+}
+
+/* a panel: the paper, its cut edges at the sides, and its shadow on the page */
+.brett {
+  position: relative;
+  background: #fbf8f1;
+  box-shadow: inset 1px 0 0 rgba(22, 48, 59, 0.09), inset -1px 0 0 rgba(22, 48, 59, 0.09), 0 26px 40px -34px rgba(10, 25, 32, 0.55);
+}
+/* the strip's top and bottom ends are cut edges too */
+.forste {
+  box-shadow: inset 0 1px 0 rgba(22, 48, 59, 0.09), inset 1px 0 0 rgba(22, 48, 59, 0.09), inset -1px 0 0 rgba(22, 48, 59, 0.09);
+}
+.siste {
+  box-shadow: inset 0 -1px 0 rgba(22, 48, 59, 0.09), inset 1px 0 0 rgba(22, 48, 59, 0.09), inset -1px 0 0 rgba(22, 48, 59, 0.09), 0 34px 54px -32px rgba(10, 25, 32, 0.5);
+}
+
+/* a crease folding in: the paper below it lies a shade deeper, in the fold's shadow */
+.inn {
+  background: #f6f2e8;
+}
+.inn::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 26px;
+  background: linear-gradient(to bottom, rgba(59, 52, 36, 0.11), rgba(59, 52, 36, 0));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* a crease folding out: a thin line of light along the fold */
+.ut::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 12px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+  border-top: 1px solid rgba(59, 52, 36, 0.12);
+  pointer-events: none;
+  z-index: 1;
+}
