@@ -1,0 +1,61 @@
+/* The forest's motion: trees stand up from their foot, one after another,
+   when their forest comes into view (data-vis="ja" on an ancestor); the
+   nearest sway a little in the wind; light falls in through the gaps. */
+
+.tre,
+.tue {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scaleY(0.04);
+  opacity: 0;
+  transition:
+    transform 0.9s cubic-bezier(0.34, 1.45, 0.64, 1) calc(var(--n, 0) * 55ms + 120ms),
+    opacity 0.25s ease calc(var(--n, 0) * 55ms + 120ms);
+}
+.tue {
+  transform: scale(0.2, 0.04);
+}
+[data-vis="ja"] .tre,
+[data-vis="ja"] .tue {
+  transform: none;
+  opacity: 1;
+}
+
+/* the wind: a slow lean from the foot. It runs on the same element as the
+   standing up, so it waits (no fill) until the tree has stood. */
+[data-vis="ja"] .vind {
+  animation: vind 7s ease-in-out calc(var(--n, 0) * 55ms + 1.4s) infinite;
+}
+@keyframes vind {
+  0%, 100% { transform: rotate(0deg); }
+  40% { transform: rotate(0.9deg); }
+  70% { transform: rotate(-0.4deg); }
+}
+
+/* light through the trees */
+.strale {
+  mix-blend-mode: screen;
+  animation: strale 9s ease-in-out infinite;
+}
+.strale:nth-child(2n) { animation-duration: 11s; animation-delay: -3s; }
+.strale:nth-child(3n) { animation-duration: 13s; animation-delay: -6s; }
+@keyframes strale {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.9; }
+}
+
+/* the path in «Stien» draws itself down as you read (see Sti.tsx); its stones come after */
+
+@media (prefers-reduced-motion: reduce) {
+  .tre,
+  .tue {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+  .vind,
+  [data-vis="ja"] .vind,
+  .strale {
+    animation: none;
+  }
+}

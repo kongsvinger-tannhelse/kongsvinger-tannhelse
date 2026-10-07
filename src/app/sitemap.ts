@@ -10,5 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: klinikk.url, changeFrequency: "monthly", priority: 1 },
     { url: `${klinikk.url}/behandlinger`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${klinikk.url}/om-oss`, changeFrequency: "monthly", priority: 0.7 },
   ];
 }

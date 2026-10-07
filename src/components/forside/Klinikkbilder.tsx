@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { m, useReducedMotion } from "framer-motion";
-import { klinikk, klinikkbilder } from "@/data/klinikk";
+import { klinikkbilder } from "@/data/klinikk";
 import { useHeroKlar } from "@/components/forside/useHeroKlar";
 import s from "./klinikkbilder.module.css";
 
@@ -62,13 +62,6 @@ export function Klinikkbilder() {
           {går && <path key={nr} className={s.tid} d={LYS} pathLength={1} style={{ animationDuration: `${VIS}ms` }} />}
         </svg>
       </div>
-
-      <figcaption className={s.tekst}>
-        <span key={nr} className={s.bytt}>
-          {ruta[nr].tekst}
-        </span>
-        <span className="text-white/75">Fra klinikken i {klinikk.adresse.gate}</span>
-      </figcaption>
     </m.figure>
   );
 }
