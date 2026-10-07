@@ -9,7 +9,7 @@ export const klinikk = {
   adresse: { gate: "Fjellgata 4", postnummer: "2212", sted: "Kongsvinger" },
   // From the Google Maps embed on the old site
   geo: { lat: 60.1915, lng: 11.9955 },
-  apningstider: { dager: "Mandag–fredag", fra: "08:30", til: "15:30" },
+  apningstider: { dager: "Mandag–fredag", fra: "08:30", til: "15:30", stengt: "Lørdag–søndag" },
 } as const;
 
 export const ansatte = [
