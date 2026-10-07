@@ -36,6 +36,8 @@
   top: clamp(calc(100cqh - var(--h)), calc(50cqh - var(--fy, 0.5) * var(--h)), 0px);
   will-change: transform;
 }
+/* the <picture> around each photo takes no box of its own */
+.ramme picture { display: contents; }
 .ramme img {
   width: 100%;
   height: 100%;
