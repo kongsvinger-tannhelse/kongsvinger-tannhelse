@@ -96,6 +96,8 @@ export function Behandlinger({ alle = false }: { alle?: boolean }) {
 
   const gruppe = grupper[valg.g];
   const Tittel = alle ? "h1" : "h2";
+  // the treatment's name sits one level under the section's title
+  const Navn = alle ? "h2" : "h3";
   const b = gruppe.liste[valg.i[valg.g]];
 
   return (
@@ -197,9 +199,9 @@ export function Behandlinger({ alle = false }: { alle?: boolean }) {
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div key={b.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: redusert ? 0 : 0.3 }}>
                     <p className="text-[13px] font-semibold text-[var(--color-bjork)]">{gruppe.tittel}</p>
-                    <h3 className="mt-2 font-bold" style={{ fontSize: "clamp(32px, 3.4vw, 48px)", lineHeight: 1, letterSpacing: "-0.045em" }}>
+                    <Navn className="mt-2 font-bold" style={{ fontSize: "clamp(32px, 3.4vw, 48px)", lineHeight: 1, letterSpacing: "-0.045em" }}>
                       {b.navn}
-                    </h3>
+                    </Navn>
                     <p className="mx-auto mt-5 max-w-[40ch] text-[16px] leading-[1.6] text-[var(--color-tekst-lys-2)] md:mx-0">{b.tekst}</p>
                   </motion.div>
                 </AnimatePresence>

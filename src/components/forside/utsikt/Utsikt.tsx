@@ -125,7 +125,7 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
         <div className={s.inngang}>
           <div className={s.pust}>
             <motion.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: farX, y: farY }}>
-              <Image src={far} alt="" priority sizes="max(130vw, 195vh)" quality={90} onLoad={klar} />
+              <Image src={far} alt="" priority sizes="max(130vw, 195vh)" quality={75} onLoad={klar} />
             </motion.div>
           </div>
         </div>
@@ -137,7 +137,7 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
         <div className={cn(s.inngang, s.inngangNaer)}>
           <div className={cn(s.pust, s.pustNaer)}>
             <motion.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: naerX, y: naerY }}>
-              <Image src={near} alt="" priority sizes="max(130vw, 195vh)" quality={90} onLoad={klar} />
+              <Image src={near} alt="" priority sizes="max(130vw, 195vh)" quality={75} onLoad={klar} />
             </motion.div>
           </div>
         </div>
