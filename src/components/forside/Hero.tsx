@@ -42,7 +42,7 @@ export function Hero() {
 
             <div className="hero-loft mt-7 flex flex-wrap gap-2.5" style={{ animationDelay: "3.05s" }}>
               <Link
-                href="/kontakt"
+                href="/#kontakt"
                 className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
               >
                 Bestill time
