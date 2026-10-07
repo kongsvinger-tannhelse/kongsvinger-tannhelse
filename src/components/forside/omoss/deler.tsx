@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import type { Person } from "./ansatte";
@@ -25,7 +25,7 @@ function Foto({ person, sizes }: { person: Person; sizes: string }) {
 /** Stands up from flat like a page in a pop-up book: the hero's spring. */
 export function Opp({ vis, n, redusert, className, style, children }: { vis: boolean; n: number; redusert: boolean; className?: string; style?: CSSProperties; children: ReactNode }) {
   return (
-    <motion.div
+    <m.div
       className={className}
       style={{ ...style, transformOrigin: "50% 100%", transformPerspective: 900 }}
       initial={{ rotateX: 88, opacity: 0 }}
@@ -37,7 +37,7 @@ export function Opp({ vis, n, redusert, className, style, children }: { vis: boo
       }
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
