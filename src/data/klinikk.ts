@@ -13,9 +13,9 @@ export const klinikk = {
 } as const;
 
 export const ansatte = [
-  { navn: "Per Hafthun", rolle: "Tannlege", bilde: "/images/klinikk/hafthun.jpg" },
-  { navn: "Umer Zia", rolle: "Tannlege", bilde: "/images/klinikk/zia.jpg" },
-  { navn: "Eba Wasty", rolle: "Tannpleier", bilde: "/images/klinikk/eba.jpg" },
+  { navn: "Per Hafthun", rolle: "Tannlege", bilde: "/images/klinikk/hafthun.webp" },
+  { navn: "Umer Zia", rolle: "Tannlege", bilde: "/images/klinikk/zia.webp" },
+  { navn: "Eba Wasty", rolle: "Tannpleier", bilde: "/images/klinikk/eba.webp" },
 ] as const;
 
 export type Behandling = { navn: string; tekst: string };
@@ -67,14 +67,14 @@ export const behandlinger: Record<"ordinaer" | "akutt" | "estetisk", { tittel: s
 /* Photos from the clinic (from the old site). The first three are the ones the
    front page shows; the rest open in the gallery. */
 export const klinikkbilder = [
-  { src: "/images/klinikk/bilde3.jpg", tekst: "Behandlingsrommet, sett i det runde speilet", bredde: 2400, hoyde: 1920 },
-  { src: "/images/klinikk/bilde8.jpg", tekst: "Et av behandlingsrommene", bredde: 2400, hoyde: 1920 },
-  { src: "/images/klinikk/bilde9.jpg", tekst: "Venterommet", bredde: 1946, hoyde: 1556 },
-  { src: "/images/klinikk/bilde6.jpg", tekst: "Behandlingsstolen, klar for neste pasient", bredde: 2400, hoyde: 1920 },
-  { src: "/images/klinikk/bilde5.jpg", tekst: "Instrumentene ved stolen", bredde: 2400, hoyde: 1920 },
-  { src: "/images/klinikk/bilde2.jpg", tekst: "Utstyret i behandlingsrommet", bredde: 2400, hoyde: 1920 },
-  { src: "/images/klinikk/bilde4.jpg", tekst: "Benken i behandlingsrommet", bredde: 2400, hoyde: 1920 },
-  { src: "/images/klinikk/bilde1.jpg", tekst: "En detalj fra venterommet", bredde: 2400, hoyde: 1920 },
+  { src: "/images/klinikk/bilde3.webp", tekst: "Behandlingsrommet, sett i det runde speilet", bredde: 2400, hoyde: 1920 },
+  { src: "/images/klinikk/bilde8.webp", tekst: "Et av behandlingsrommene", bredde: 2400, hoyde: 1920 },
+  { src: "/images/klinikk/bilde9.webp", tekst: "Venterommet", bredde: 1946, hoyde: 1556 },
+  { src: "/images/klinikk/bilde6.webp", tekst: "Behandlingsstolen, klar for neste pasient", bredde: 2400, hoyde: 1920 },
+  { src: "/images/klinikk/bilde5.webp", tekst: "Instrumentene ved stolen", bredde: 2400, hoyde: 1920 },
+  { src: "/images/klinikk/bilde2.webp", tekst: "Utstyret i behandlingsrommet", bredde: 2400, hoyde: 1920 },
+  { src: "/images/klinikk/bilde4.webp", tekst: "Benken i behandlingsrommet", bredde: 2400, hoyde: 1920 },
+  { src: "/images/klinikk/bilde1.webp", tekst: "En detalj fra venterommet", bredde: 2400, hoyde: 1920 },
 ] as const;
 
 /* The hero photograph. Kept here, not in the client component that shows it:

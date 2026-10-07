@@ -18,7 +18,8 @@ without changing what is in the picture:
   6. a very fine grain, so smooth walls do not break into bands
 
 The masters are in kilder/klinikk/ and are never overwritten; the results go to
-public/images/klinikk/ under the same names.
+public/images/klinikk/ as WebP under the same names (bilde3.jpg -> bilde3.webp),
+which keeps the doubled photos smaller than the original JPEGs.
 
 Run from the repo root:  python tools/lys_bilder.py   (needs numpy, opencv-python, Pillow)
 """
@@ -32,6 +33,7 @@ KILDE = os.path.join("kilder", "klinikk")
 MAL = os.path.join("public", "images", "klinikk")
 SKALA = 2
 MAKS = 3200  # longest side
+KVALITET = 80  # WebP quality
 
 # Portraits get gentler local contrast, so skin stays soft.
 PORTRETT = {"hafthun.jpg", "zia.jpg", "eba.jpg"}
@@ -116,9 +118,9 @@ def behandle(navn):
     bilde = Image.fromarray(ut)
 
     # Write next to the target and rename over it, so a failed save never leaves an empty file.
-    maal = os.path.join(MAL, navn)
-    tmp = maal + ".tmp.jpg"
-    bilde.save(tmp, "JPEG", quality=88, optimize=True, progressive=True, subsampling=0)
+    maal = os.path.join(MAL, os.path.splitext(navn)[0] + ".webp")
+    tmp = maal + ".tmp"
+    bilde.save(tmp, "WEBP", quality=KVALITET, method=6)
     os.replace(tmp, maal)
     return bilde.size
 
