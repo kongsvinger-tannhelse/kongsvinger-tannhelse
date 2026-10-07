@@ -1,8 +1,8 @@
 /* «Langs elva». On first paint the camera follows Glomma: from the farms and
    fields up on the left, down and across to the bend in the river. Both
    depths travel together; the treetops a touch further, so the valley seems
-   to turn behind them. When it comes to rest, the name arrives, and then the
-   clinic's own rooms are laid in beside the view. */
+   to turn behind them. When it comes to rest, the name arrives in the sky,
+   and then the clinic's rooms pop up beside the view. */
 @property --fx {
   syntax: "<number>";
   inherits: true;
@@ -34,43 +34,17 @@
   @keyframes glidNaer { from { --fx-smal: 0.234; --fy: 0.074; } to { --fx-smal: 0.7; --fy: 0.5; } }
 }
 
-/* the shade the words stand in */
-.skygge {
-  background: linear-gradient(0deg, rgba(14, 30, 37, 0.74) 0%, rgba(14, 30, 37, 0.44) 34%, rgba(14, 30, 37, 0) 64%);
-}
-
-/* ── The clinic's rooms, laid in one by one once the camera has stopped ── */
-.flis {
-  animation: flisInn 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  animation-delay: calc(3.9s + var(--i, 0) * 0.13s);
-}
-@keyframes flisInn {
-  from { opacity: 0; transform: translateY(18px) scale(0.985); }
-  to   { opacity: 1; transform: none; }
-}
-
 /* Hold the whole sequence until the photographs are in, so the camera
-   never moves over an empty wall and nothing arrives before the view. */
+   never moves over an empty wall and nothing arrives before the view.
+   (The clinic photos wait in JS, through useHeroKlar.) */
 .glid :global(.utsikt:not([data-klar="true"])),
 .glid :global(.utsikt:not([data-klar="true"])) > div:last-child,
-.glid :global(.utsikt:not([data-klar="true"])) ~ * .flis,
 .glid :global(.utsikt:not([data-klar="true"])) ~ * :global(.hero-linje),
-.glid :global(.utsikt:not([data-klar="true"])) ~ * :global(.hero-loft),
-.glid :global(.utsikt:not([data-klar="true"])) ~ :global(.hero-loft) {
+.glid :global(.utsikt:not([data-klar="true"])) ~ * :global(.hero-loft) {
   animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .glid :global(.utsikt),
-  .glid :global(.utsikt) > div:last-child,
-  .flis { animation: none; }
-}
-
-.klinikk {
-  position: relative;
-  width: 100%;
-}
-@media (min-width: 768px) {
-  /* sized by the screen's height too, so it never runs into the words below */
-  .klinikk { width: clamp(260px, min(26vw, 50vh), 400px); }
+  .glid :global(.utsikt) > div:last-child { animation: none; }
 }

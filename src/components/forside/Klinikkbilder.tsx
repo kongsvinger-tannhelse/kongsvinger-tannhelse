@@ -1,203 +1,147 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Images, X } from "lucide-react";
-import { klinikk, klinikkbilder } from "@/data/klinikk";
+import { useState, type CSSProperties } from "react";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { klinikkbilder } from "@/data/klinikk";
+import { Galleri } from "@/components/forside/Galleri";
+import { useHeroKlar } from "@/components/forside/useHeroKlar";
 import { cn } from "@/lib/utils";
-import s from "./hero.module.css";
+
+const EASE = [0.25, 0.1, 0.25, 1] as const;
+
+// By index into klinikkbilder: the arch, and the two squares stacked beside it.
+const BUE = 0; // the treatment room in its round mirror
+const SMA = [3, 2]; // the treatment chair, the waiting room
 
 /**
- * Three photos from inside the clinic, set beside the view once the camera
- * has come to rest: the treatment room in its round mirror large, the room
- * and the waiting room under it. Any of them opens the full set.
+ * «Buen og rutene». The clinic's rooms beside the view. One arch, as on Ringebu: a tall rectangle with a
+ * half circle on top, and the treatment room in it. Beside it, two plain
+ * squares with four corners, one over the other. When the camera has stopped
+ * they pop up in turn, the arch first, each room standing up from flat like a
+ * page in a pop-up book. Then they keep still; a hand over one leans it in,
+ * a click opens the gallery.
+ *
+ * Geometry: the column of squares is as tall as the arch, the arch is 300:540
+ * like Ringebu's, so the arch takes 0.526 of the width (less the gap) and the
+ * group is about 1.06 times as wide as it is tall. Its size follows the
+ * screen's width and height, whichever is tighter. No caption: a click on
+ * any of the three opens the full set.
  */
-export function Klinikkbilder({ className }: { className?: string }) {
+export function Klinikkbilder() {
+  const klar = useHeroKlar(3700);
+  const redusert = useReducedMotion() ?? false;
   const [apen, setApen] = useState<number | null>(null);
-  const [stor, sma1, sma2] = klinikkbilder;
 
   return (
     <>
-      <div className={cn(s.klinikk, className)}>
-        <div className="grid grid-cols-3 gap-2 md:grid-cols-2 md:gap-2.5">
-          <Flis bilde={stor} indeks={0} onApne={setApen} className="md:col-span-2 md:aspect-[4/3]" sizes="(min-width: 768px) 380px, 33vw" />
-          <Flis bilde={sma1} indeks={1} onApne={setApen} sizes="(min-width: 768px) 190px, 33vw" />
-          <Flis bilde={sma2} indeks={2} onApne={setApen} sizes="(min-width: 768px) 190px, 33vw" />
+      <div
+        className="w-[66vw] self-end md:mr-[clamp(0px,1vw,16px)] md:w-[clamp(290px,min(35.7vw,56vh),545px)] md:self-auto"
+        style={{ "--mellom": "clamp(8px, 1vw, 14px)" } as CSSProperties}
+      >
+        <div
+          className="grid"
+          style={{
+            gridTemplateColumns: "calc((100% - var(--mellom)) * 0.526) 1fr",
+            gridTemplateRows: "1fr 1fr",
+            gap: "var(--mellom)",
+            aspectRatio: "1.06 / 1",
+          }}
+        >
+          <Flis indeks={BUE} form="bue" n={0} vis={klar} redusert={redusert} onApne={setApen} className="row-span-2" sizes="(min-width: 768px) 340px, 40vw" />
+          {SMA.map((indeks, k) => (
+            <Flis key={indeks} indeks={indeks} form="rute" n={1 + k} vis={klar} redusert={redusert} onApne={setApen} sizes="(min-width: 768px) 300px, 36vw" />
+          ))}
         </div>
-        <div className={cn(s.flis, "mt-2.5 flex items-center justify-between gap-4 text-[13px] text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]")} style={{ "--i": 3 } as React.CSSProperties}>
-          <span className="font-medium">Fra klinikken i {klinikk.adresse.gate}</span>
-          <button
-            type="button"
-            onClick={() => setApen(0)}
-            className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 font-medium backdrop-blur-md transition-colors hover:bg-white/25"
-          >
-            <Images className="size-3.5" aria-hidden="true" />
-            Se alle {klinikkbilder.length}
-          </button>
-        </div>
-      </div>
 
+      </div>
       <Galleri indeks={apen} onLukk={() => setApen(null)} onBytt={setApen} />
     </>
   );
 }
 
-type Bilde = (typeof klinikkbilder)[number];
-
 function Flis({
-  bilde,
   indeks,
+  form,
+  n,
+  vis,
+  redusert,
   onApne,
   className,
   sizes,
 }: {
-  bilde: Bilde;
   indeks: number;
+  form: "bue" | "rute";
+  n: number;
+  vis: boolean;
+  redusert: boolean;
   onApne: (i: number) => void;
   className?: string;
   sizes: string;
 }) {
+  const bilde = klinikkbilder[indeks];
+  // a hand over the pane leans it in, a little, toward the pointer
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const sx = useSpring(px, { stiffness: 120, damping: 16 });
+  const sy = useSpring(py, { stiffness: 120, damping: 16 });
+  const rotateY = useTransform(sx, (v) => v * (form === "bue" ? 6 : 4));
+  const rotateX = useTransform(sy, (v) => v * -4);
+  const forsinkelse = 0.1 + n * 0.17;
+
   return (
-    <button
-      type="button"
-      onClick={() => onApne(indeks)}
-      aria-label={`Vis bildet: ${bilde.tekst}`}
-      className={cn(
-        s.flis,
-        "group relative aspect-[4/3] overflow-hidden rounded-[10px] bg-white/10 shadow-[0_20px_44px_-22px_rgba(0,0,0,0.6)] ring-1 ring-white/25",
-        className
-      )}
-      style={{ "--i": indeks } as React.CSSProperties}
+    <motion.div
+      className={cn("relative min-h-0 [perspective:1000px]", className)}
+      initial={{ opacity: 0, y: 26 }}
+      animate={vis ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
+      transition={redusert ? { duration: 0 } : { duration: 0.55, delay: forsinkelse, ease: EASE }}
     >
-      <Image
-        src={bilde.src}
-        alt=""
-        fill
-        sizes={sizes}
-        className="object-cover transition-transform duration-700 ease-[var(--ease-rolig)] group-hover:scale-[1.04]"
-      />
-    </button>
-  );
-}
-
-/** The full set, one at a time, over a dark veil. Arrows and Esc work. */
-function Galleri({ indeks, onLukk, onBytt }: { indeks: number | null; onLukk: () => void; onBytt: (i: number) => void }) {
-  const lukkRef = useRef<HTMLButtonElement | null>(null);
-  const forrigeFokus = useRef<HTMLElement | null>(null);
-  const n = klinikkbilder.length;
-  const apen = indeks !== null;
-
-  const bytt = useCallback((steg: number) => indeks !== null && onBytt((indeks + steg + n) % n), [indeks, n, onBytt]);
-
-  useEffect(() => {
-    if (!apen) return;
-    forrigeFokus.current = document.activeElement as HTMLElement | null;
-    lukkRef.current?.focus();
-    const overflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = overflow;
-      forrigeFokus.current?.focus();
-    };
-  }, [apen]);
-
-  useEffect(() => {
-    if (!apen) return;
-    const tast = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onLukk();
-      if (e.key === "ArrowRight") bytt(1);
-      if (e.key === "ArrowLeft") bytt(-1);
-    };
-    window.addEventListener("keydown", tast);
-    return () => window.removeEventListener("keydown", tast);
-  }, [apen, bytt, onLukk]);
-
-  const bilde = indeks !== null ? klinikkbilder[indeks] : null;
-
-  return (
-    <AnimatePresence>
-      {bilde && indeks !== null && (
-        <motion.div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Bilder fra klinikken"
-          className="fixed inset-0 z-[100] flex flex-col bg-[rgba(10,22,28,0.94)] text-white"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-          onClick={onLukk}
+      <motion.button
+        type="button"
+        onClick={() => onApne(indeks)}
+        onPointerMove={(e) => {
+          if (e.pointerType !== "mouse") return;
+          const r = e.currentTarget.getBoundingClientRect();
+          px.set(((e.clientX - r.left) / r.width) * 2 - 1);
+          py.set(((e.clientY - r.top) / r.height) * 2 - 1);
+        }}
+        onPointerLeave={() => {
+          px.set(0);
+          py.set(0);
+        }}
+        aria-label={`Vis bildet: ${bilde.tekst}`}
+        className={cn(
+          "group absolute inset-0 block overflow-hidden shadow-[0_26px_50px_-26px_rgba(0,0,0,0.65)] ring-1 ring-white/25 [transform-style:preserve-3d]",
+          form === "bue" ? "rounded-t-full" : "rounded-[10px]"
+        )}
+        style={{ rotateX, rotateY }}
+      >
+        {/* the room stands up from flat, like a page in a pop-up book */}
+        <motion.span
+          className="absolute inset-0 block origin-bottom"
+          initial={{ rotateX: 88, opacity: 0 }}
+          animate={vis ? { rotateX: 0, opacity: 1 } : { rotateX: 88, opacity: 0 }}
+          transition={
+            redusert
+              ? { duration: 0 }
+              : {
+                  rotateX: { type: "spring", stiffness: 85, damping: 13, delay: forsinkelse + 0.25 },
+                  opacity: { duration: 0.25, delay: forsinkelse + 0.25 },
+                }
+          }
         >
-          <div className="flex items-center justify-between px-[var(--container-px)] py-4 text-[14px]">
-            <span className="tabular-nums text-white/70">
-              {indeks + 1} av {n}
-            </span>
-            <button
-              ref={lukkRef}
-              type="button"
-              onClick={onLukk}
-              className="inline-flex size-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20"
-              aria-label="Lukk"
-            >
-              <X className="size-5" aria-hidden="true" />
-            </button>
-          </div>
-
-          <div className="relative flex min-h-0 flex-1 items-center justify-center px-4 md:px-20" onClick={(e) => e.stopPropagation()}>
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.figure
-                key={bilde.src}
-                className="relative flex h-full w-full max-w-[1200px] flex-col items-center justify-center"
-                initial={{ opacity: 0, scale: 0.985 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.985 }}
-                transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-              >
-                <div className="relative h-[min(72vh,900px)] w-full">
-                  <Image src={bilde.src} alt={bilde.tekst} fill sizes="(min-width: 1200px) 1200px, 100vw" className="object-contain" />
-                </div>
-                <figcaption className="mt-4 text-center text-[15px] text-white/85">{bilde.tekst}</figcaption>
-              </motion.figure>
-            </AnimatePresence>
-
-            <button
-              type="button"
-              onClick={() => bytt(-1)}
-              className="absolute left-2 top-1/2 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:left-6"
-              aria-label="Forrige bilde"
-            >
-              <ArrowLeft className="size-5" aria-hidden="true" />
-            </button>
-            <button
-              type="button"
-              onClick={() => bytt(1)}
-              className="absolute right-2 top-1/2 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 md:right-6"
-              aria-label="Neste bilde"
-            >
-              <ArrowRight className="size-5" aria-hidden="true" />
-            </button>
-          </div>
-
-          <div className="flex justify-center gap-2 overflow-x-auto px-4 py-4" onClick={(e) => e.stopPropagation()}>
-            {klinikkbilder.map((b, i) => (
-              <button
-                key={b.src}
-                type="button"
-                onClick={() => onBytt(i)}
-                aria-label={`Bilde ${i + 1}: ${b.tekst}`}
-                aria-current={i === indeks}
-                className={cn(
-                  "relative h-12 w-16 shrink-0 overflow-hidden rounded-[6px] ring-1 transition-opacity",
-                  i === indeks ? "opacity-100 ring-white" : "opacity-50 ring-white/20 hover:opacity-80"
-                )}
-              >
-                <Image src={b.src} alt="" fill sizes="64px" className="object-cover" />
-              </button>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          <Image
+            src={bilde.src}
+            alt=""
+            fill
+            sizes={sizes}
+            className="object-cover transition-transform duration-700 ease-[var(--ease-rolig)] group-hover:scale-[1.05]"
+          />
+          {form === "bue" && (
+            <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_50%_at_50%_0%,rgba(255,255,255,0.18),transparent_60%)]" />
+          )}
+        </motion.span>
+      </motion.button>
+    </motion.div>
   );
 }

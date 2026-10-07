@@ -19,6 +19,8 @@
   inset: 0;
   will-change: transform;
 }
+/* the picture never takes the pointer, so whatever stands between the depths can */
+.dybde { pointer-events: none; }
 
 .ramme {
   /* 6% bleed for the lean and the breathing, times any zoom */
