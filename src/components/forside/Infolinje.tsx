@@ -32,7 +32,7 @@ export function Infolinje({
     >
       <div>
         <dt className="text-[12px] text-[var(--color-tekst-svak)]">Akkurat nå</dt>
-        <dd className="mt-0.5 flex items-center gap-2 whitespace-nowrap font-medium">
+        <dd className="mt-0.5 flex items-center gap-2 font-medium xl:whitespace-nowrap">
           <span
             aria-hidden="true"
             className={cn("size-2 rounded-full", status?.apen ? "bg-[var(--color-apen)] shadow-[0_0_0_4px_rgba(63,163,107,0.18)]" : film ? "bg-white/50" : "bg-[var(--color-stein)]")}

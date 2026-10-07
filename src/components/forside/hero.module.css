@@ -56,7 +56,9 @@
 .glid :global(.utsikt:not([data-klar="true"])) ~ * .flis,
 .glid :global(.utsikt:not([data-klar="true"])) ~ * :global(.hero-linje),
 .glid :global(.utsikt:not([data-klar="true"])) ~ * :global(.hero-loft),
-.glid :global(.utsikt:not([data-klar="true"])) ~ :global(.hero-loft) {
+.glid :global(.utsikt:not([data-klar="true"])) ~ :global(.hero-loft),
+.glid :global(.utsikt:not([data-klar="true"])) ~ * :global(.vent),
+.glid :global(.utsikt:not([data-klar="true"])) :global(.vent) {
   animation-play-state: paused;
 }
 

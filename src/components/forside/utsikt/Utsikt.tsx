@@ -117,8 +117,9 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, zoom = 
   const vars = { "--fx": fx, "--fy": fy, "--fx-smal": fxSmal, "--zoom": zoom, "--ar": AR } as CSSProperties;
 
   return (
-    <div ref={ref} data-on="false" aria-hidden="true" className={cn(s.scene, skar && s.skar, "utsikt", className)} style={vars}>
-      <motion.div className={s.dybde} style={{ y: slep }}>
+    <div ref={ref} data-on="false" className={cn(s.scene, skar && s.skar, "utsikt", className)} style={vars}>
+      {/* the two depths are pure picture; anything placed between them (mellom) stays reachable */}
+      <motion.div aria-hidden="true" className={s.dybde} style={{ y: slep }}>
         <div className={s.inngang}>
           <div className={s.pust}>
             <motion.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: farX, y: farY }}>
@@ -130,7 +131,7 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, zoom = 
 
       {mellom}
 
-      <div className={s.dybde}>
+      <div aria-hidden="true" className={s.dybde}>
         <div className={cn(s.inngang, s.inngangNaer)}>
           <div className={cn(s.pust, s.pustNaer)}>
             <motion.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: naerX, y: naerY }}>

@@ -1,0 +1,135 @@
+/* This layer sits inside the view's scene, so it can work out where the
+   treeline falls on screen from the same geometry as the photograph
+   (see utsikt.module.css): the 3:2 frame at zoom 1.22, resting at --fy. */
+.lag {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --ar: 1.5;
+  --zoom: 1.22;
+  --fy-slutt: 0.46;
+  --w: calc(max(100cqw, calc(var(--ar) * 100cqh)) * 1.06 * var(--zoom));
+  --h: calc(var(--w) / var(--ar));
+  --topp: clamp(calc(100cqh - var(--h)), calc(50cqh - var(--fy-slutt) * var(--h)), 0px);
+  /* a little below the treeline on the right, where the river runs: the
+     bottoms of the frames are hidden in the forest */
+  --tregrense: calc(var(--topp) + var(--h) * 0.725);
+  --hoyre: max(var(--container-px), calc((100cqw - var(--container-max)) / 2 + var(--container-px)));
+}
+@media (max-width: 767px) {
+  .lag { --fy-slutt: 0.5; }
+}
+
+.rekke {
+  position: absolute;
+  right: var(--hoyre);
+  top: var(--tregrense);
+  translate: 0 -100%;
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(10px, 1.4vw, 22px);
+}
+
+/* each frame rises up from behind the trees, the middle one first and highest */
+.stige {
+  pointer-events: auto;
+  animation: stig 1.9s cubic-bezier(0.2, 0.75, 0.15, 1) both;
+  animation-delay: calc(3.85s + var(--i) * 0.22s);
+}
+.stige:nth-child(2) { animation-delay: 3.75s; margin-bottom: clamp(14px, 3vh, 34px); }
+@keyframes stig {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+
+.ramme {
+  position: relative;
+  display: block;
+  width: clamp(92px, 12vw, 190px);
+  aspect-ratio: 3 / 4;
+  padding: 4px;
+  border-radius: 6px;
+  background: #fbfbf8;
+  box-shadow: 0 30px 60px -28px rgba(6, 18, 24, 0.75);
+  cursor: zoom-in;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s;
+}
+.ramme:hover,
+.ramme:focus-visible {
+  transform: translateY(-34px);
+  box-shadow: 0 40px 70px -26px rgba(6, 18, 24, 0.8);
+}
+.bilde {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+/* the room's name appears above the frame as it lifts */
+.navn {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  translate: -50% 4px;
+  width: max-content;
+  max-width: 220px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity 0.4s, translate 0.4s;
+  pointer-events: none;
+}
+.ramme:hover .navn,
+.ramme:focus-visible .navn { opacity: 1; translate: -50% 0; }
+
+.alle {
+  position: absolute;
+  right: var(--hoyre);
+  top: calc(var(--tregrense) - clamp(92px, 12vw, 190px) * 4 / 3 - clamp(14px, 3vh, 34px) - 104px);
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  transition: background 0.3s;
+  animation: inn 0.8s ease 5.4s both;
+}
+.alle:hover { background: rgba(255, 255, 255, 0.28); }
+@keyframes inn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Phones: in portrait the treeline falls behind the name and the buttons, so
+   the frames cannot rise out of the forest there. They stand in a row under
+   the menu instead, and simply fade in. */
+@media (max-width: 767px) {
+  .rekke {
+    top: 86px;
+    translate: 0 0;
+    align-items: flex-start;
+  }
+  .ramme { width: 26vw; }
+  .stige,
+  .stige:nth-child(2) { animation-name: inn; animation-duration: 0.9s; margin-bottom: 0; }
+  .navn { display: none; }
+  .alle {
+    top: calc(86px + 26vw * 4 / 3 + 12px);
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stige, .alle { animation: none; }
+  .ramme { transition: none; }
+}

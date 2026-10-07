@@ -1,0 +1,63 @@
+/* The first line is set a size up and at full weight, so the letters are
+   wide enough to look through */
+.ord { font-size: 1.1em; font-weight: 900; letter-spacing: -0.06em; }
+
+/* The white word, until the letters turn to glass */
+.hvit {
+  display: inline-block;
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hvit[data-av="true"] { opacity: 0; }
+
+/* The same word, filled with a room and rimmed with a hair of light, so the
+   letters still read as letters against the trees */
+.vindu {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.8);
+  background-size: 125% auto;
+  background-position: var(--start) 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0;
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+  /* a soft shadow lifts the glass letters off the landscape behind */
+  filter: saturate(1.1) brightness(1.1) drop-shadow(0 6px 18px rgba(4, 14, 20, 0.55));
+}
+.vindu[data-vis="true"] {
+  opacity: 1;
+  animation: drift 9s linear both;
+}
+@keyframes drift {
+  from { background-position: var(--start) 35%; background-size: 135% auto; }
+  to   { background-position: calc(var(--start) + 14%) 60%; background-size: 120% auto; }
+}
+
+/* the note at the top right, saying which room shows through */
+.merknad {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px 10px;
+  color: #fff;
+  font-size: 13px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.8s ease 1.4s, transform 0.8s ease 1.4s;
+}
+.merknad[data-vis="true"] { opacity: 1; transform: none; }
+.rom {
+  font-weight: 600;
+  animation: bytt 0.7s ease 0.6s both;
+}
+@keyframes bytt { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .vindu[data-vis="true"] { animation: none; }
+  .hvit, .vindu, .merknad { transition: none; }
+  .rom { animation: none; }
+}

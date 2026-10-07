@@ -31,3 +31,6 @@ next-env.d.ts
 # the crawler's Python environment (tools/crawl_site.py); the crawl output in crawl/ is kept
 .venv-crawl/
 src/components/forside/utsikt/debug-*.jpg
+
+# Playwright MCP screenshots and logs
+.playwright-mcp/
