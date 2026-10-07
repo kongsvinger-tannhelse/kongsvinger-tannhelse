@@ -1,0 +1,25 @@
+/* «Om oss»: the two things that move by themselves. */
+
+/* Clouds drifting over the hill. */
+.sky {
+  animation: sky var(--tid, 60s) linear var(--d, 0s) infinite alternate;
+}
+@keyframes sky {
+  from { transform: translateX(0); }
+  to { transform: translateX(var(--vei, 80px)); }
+}
+
+/* The flag on the fortress lifts and falls in the wind, from its hoist. */
+.flagg {
+  transform-box: fill-box;
+  transform-origin: 0% 50%;
+  animation: flagg 4.5s ease-in-out infinite;
+}
+@keyframes flagg {
+  0%, 100% { transform: skewY(0deg) scaleX(1); }
+  50% { transform: skewY(-4deg) scaleX(0.95); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky, .flagg { animation: none; }
+}
