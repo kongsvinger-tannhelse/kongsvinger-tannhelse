@@ -44,7 +44,6 @@
   50% { opacity: 0.9; }
 }
 
-/* the path in «Stien» draws itself down as you read (see Sti.tsx); its stones come after */
 
 @media (prefers-reduced-motion: reduce) {
   .tre,
