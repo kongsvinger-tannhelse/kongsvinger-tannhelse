@@ -1,0 +1,147 @@
+/* «Speilet», square: the clinic's rooms in a pane with a ring of light. */
+
+.rute {
+  --d: clamp(240px, min(30vw, 50vh), 420px);
+  --luft: 12px; /* between the glass and its light */
+  position: relative;
+  width: var(--d);
+  margin: 0 clamp(0px, 3vw, 48px) 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ramme {
+  position: relative;
+  width: var(--d);
+  aspect-ratio: 1;
+}
+
+/* The glass the rooms are seen in. */
+.glass {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 30px 70px -30px rgba(10, 25, 32, 0.65);
+  isolation: isolate;
+}
+.rom {
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.14);
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0s linear 1.6s;
+}
+.rom[data-vis="true"] {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1), transform 7s cubic-bezier(0.2, 0.6, 0.3, 1);
+}
+.innerskygge {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+/* The light round the pane, warm white with a glow. */
+.ring {
+  position: absolute;
+  inset: calc(var(--luft) * -1);
+  width: calc(100% + var(--luft) * 2);
+  height: calc(100% + var(--luft) * 2);
+  overflow: visible;
+  pointer-events: none;
+}
+.lys {
+  fill: none;
+  stroke: #fff4dc;
+  stroke-width: 1.2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 2px rgba(255, 238, 204, 0.95)) drop-shadow(0 0 6px rgba(255, 226, 170, 0.7));
+}
+.rute[data-klar="true"] .lys {
+  animation: tegn 1.8s cubic-bezier(0.65, 0, 0.25, 1) 0.5s forwards;
+}
+/* each room's time: the light brightens round, like a clock hand */
+.tid {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
+  animation: tegn linear forwards;
+}
+@keyframes tegn {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.tekst {
+  margin-top: calc(var(--luft) + 18px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+.rute[data-klar="true"] .tekst {
+  animation: inn 0.9s ease 1.2s both;
+}
+.bytt {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  animation: inn 0.8s ease both;
+}
+@keyframes inn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Phones: a smaller pane at the right, under the name, with no caption */
+@media (max-width: 767px) {
+  .rute {
+    --d: min(54vw, 32svh);
+    --luft: 8px;
+    align-self: flex-end;
+    margin: 8px var(--luft) 0 0;
+  }
+  .tekst {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rute[data-klar="true"] .lys {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .rom,
+  .rom[data-vis="true"] {
+    transition: opacity 0.4s;
+    transform: none;
+  }
+  .rute[data-klar="true"] .tekst,
+  .bytt {
+    animation: none;
+    opacity: 1;
+  }
+}

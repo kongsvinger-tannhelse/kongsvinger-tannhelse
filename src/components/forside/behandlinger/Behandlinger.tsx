@@ -1,10 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, animate, motion, useInView, useMotionValue, useReducedMotion, useTransform, type MotionValue } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ALLE, GRUPPER } from "./grupper";
+import { ALLE, GRUPPER, UTVALGTE, UTVALGTE_REKKE } from "./grupper";
 import { FOLD_MS, Kasse } from "./popup/Popup";
 import { FARGE } from "./popup/tegning";
 import { SCENER } from "./scener";
@@ -19,6 +20,10 @@ import s from "./behandlinger.module.css";
  * treatment in the same group folds the scene and stands up the new one
  * in its place. The sides turning away fall into shadow, and the ring of
  * the turntable turns with them.
+ *
+ * On the front page each side carries one treatment (one from each group)
+ * and a button leads on to /behandlinger, where the same stage carries all
+ * of them (`alle`).
  */
 
 const SNU_MS = 1150;
@@ -27,7 +32,9 @@ type Fase = "stille" | "fold" | "snur";
 /** What is chosen: the group in front, and the chosen treatment in each group. */
 type Valg = { g: number; i: readonly number[] };
 
-export function Behandlinger() {
+export function Behandlinger({ alle = false }: { alle?: boolean }) {
+  const grupper = alle ? GRUPPER : UTVALGTE;
+  const rekke = alle ? ALLE : UTVALGTE_REKKE;
   const redusert = useReducedMotion() ?? false;
   const ref = useRef<HTMLDivElement | null>(null);
   const vist = useInView(ref, { once: true, margin: "0px 0px -25% 0px" });
@@ -80,24 +87,27 @@ export function Behandlinger() {
 
   const velgGruppe = (g: number) => setValg((v) => ({ g, i: v.i }));
   const velg = (g: number, i: number) => setValg((v) => ({ g, i: v.i.map((x, k) => (k === g ? i : x)) }));
-  const nå = ALLE.findIndex((a) => a.g === valg.g && a.i === valg.i[valg.g]);
+  const nå = rekke.findIndex((a) => a.g === valg.g && a.i === valg.i[valg.g]);
   const steg = (d: number) => {
-    const a = ALLE[(nå + d + ALLE.length) % ALLE.length];
+    const a = rekke[(nå + d + rekke.length) % rekke.length];
     velg(a.g, a.i);
   };
 
   const ring = useTransform(vinkel, (v) => `rotate(${v}deg)`);
-  const gruppe = GRUPPER[valg.g];
+  const gruppe = grupper[valg.g];
+  const Tittel = alle ? "h1" : "h2";
   const b = gruppe.liste[valg.i[valg.g]];
 
   return (
-    <section id="behandlinger" aria-labelledby="behandlinger-tittel" className="bg-[var(--color-papir)] py-[clamp(88px,11vw,152px)]">
+    <section id="behandlinger" aria-labelledby="behandlinger-tittel" className={cn("bg-[var(--color-papir)] py-[clamp(88px,11vw,152px)]", alle && "pt-[clamp(128px,14vw,184px)]")}>
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
-        <h2 id="behandlinger-tittel" className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.05em" }}>
+        <Tittel id="behandlinger-tittel" className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.05em" }}>
           Behandlinger
-        </h2>
+        </Tittel>
         <p className="mt-4 max-w-[46ch] text-[17px] leading-[1.55] text-[var(--color-tekst-2)]">
-          Alle de {ALLE.length} behandlingene våre, i tre grupper på én scene. Velg en gruppe, så dreier scenen.
+          {alle
+            ? `Alle de ${ALLE.length} behandlingene våre, i tre grupper på én scene. Velg en gruppe, så dreier scenen.`
+            : "Tre av behandlingene våre på én scene. Velg en, så dreier scenen."}
         </p>
 
         <div
@@ -117,7 +127,7 @@ export function Behandlinger() {
             <div aria-hidden="true" className={cn(s.scene, "relative flex min-w-0 flex-col items-center")}>
               <div className="relative" style={{ perspective: 1500, width: "var(--b)", aspectRatio: "400 / 480" }}>
                 <motion.div className="absolute inset-0" style={{ rotateY: vinkel, transformStyle: "preserve-3d" }}>
-                  {GRUPPER.map((g, gi) => {
+                  {grupper.map((g, gi) => {
                     const t = g.liste[scene.i[gi]];
                     return (
                       <Side key={g.id} gi={gi} vinkel={vinkel}>
@@ -151,8 +161,8 @@ export function Behandlinger() {
 
             {/* what stands in the light */}
             <div className="flex min-w-0 flex-col items-center text-center text-[var(--color-tekst-lys)] md:items-start md:text-left">
-              <div role="group" aria-label="Velg gruppe" className="inline-flex max-w-full rounded-full bg-black/20 p-1 ring-1 ring-[var(--color-strek-lys)]">
-                {GRUPPER.map((g, gi) => (
+              <div role="group" aria-label={alle ? "Velg gruppe" : "Velg behandling"} className="inline-flex max-w-full rounded-full bg-black/20 p-1 ring-1 ring-[var(--color-strek-lys)]">
+                {grupper.map((g, gi) => (
                   <button
                     key={g.id}
                     type="button"
@@ -160,16 +170,18 @@ export function Behandlinger() {
                     onClick={() => velgGruppe(gi)}
                     className={cn(
                       s.knapp,
-                      "rounded-full px-3.5 py-2 text-[14px] font-semibold transition-colors duration-300 sm:px-5",
+                      "rounded-full py-2 font-semibold transition-colors duration-300 sm:px-5 sm:text-[14px]",
+                      alle ? "px-3.5 text-[14px]" : "px-3 text-[13px]",
                       valg.g === gi ? "bg-[var(--color-papir)] text-[var(--color-glomma-deep)]" : "text-[var(--color-tekst-lys)] hover:bg-white/10"
                     )}
                   >
-                    {g.kort}
-                    <span className={cn("ml-1.5 tabular-nums", valg.g === gi ? "text-[var(--color-tekst-2)]" : "text-[var(--color-tekst-lys-2)]")}>{g.liste.length}</span>
+                    {alle ? g.kort : g.liste[0].navn}
+                    {alle && <span className={cn("ml-1.5 tabular-nums", valg.g === gi ? "text-[var(--color-tekst-2)]" : "text-[var(--color-tekst-lys-2)]")}>{g.liste.length}</span>}
                   </button>
                 ))}
               </div>
 
+              {alle && (
               <ul aria-label={gruppe.tittel} className="mt-6 flex w-full flex-wrap content-start justify-center gap-1.5 md:order-3 md:min-h-[9.5rem] md:justify-start">
                 {gruppe.liste.map((t, i) => {
                   const på = valg.i[valg.g] === i;
@@ -191,6 +203,7 @@ export function Behandlinger() {
                   );
                 })}
               </ul>
+              )}
 
               <div aria-live="polite" className="mt-8 w-full md:order-2 md:mt-8 md:min-h-[12.5em]">
                 <AnimatePresence mode="wait" initial={false}>
@@ -204,17 +217,30 @@ export function Behandlinger() {
                 </AnimatePresence>
               </div>
 
-              <div className="mt-7 flex items-center justify-center gap-2 md:order-4 md:justify-start">
-                <button type="button" aria-label="Forrige behandling" onClick={() => steg(-1)} className={cn(s.knapp, "inline-flex size-10 items-center justify-center rounded-full text-[var(--color-tekst-lys)] ring-1 ring-[var(--color-strek-lys)] transition-colors hover:bg-white/10")}>
-                  <ArrowLeft className="size-4" aria-hidden="true" />
-                </button>
-                <button type="button" aria-label="Neste behandling" onClick={() => steg(1)} className={cn(s.knapp, "inline-flex size-10 items-center justify-center rounded-full text-[var(--color-tekst-lys)] ring-1 ring-[var(--color-strek-lys)] transition-colors hover:bg-white/10")}>
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </button>
-                <p className="ml-2 text-[13px] font-semibold tabular-nums text-[var(--color-tekst-lys-2)]">
-                  {nå + 1} / {ALLE.length}
-                </p>
-              </div>
+              {alle ? (
+                <div className="mt-7 flex items-center justify-center gap-2 md:order-4 md:justify-start">
+                  <button type="button" aria-label="Forrige behandling" onClick={() => steg(-1)} className={cn(s.knapp, "inline-flex size-10 items-center justify-center rounded-full text-[var(--color-tekst-lys)] ring-1 ring-[var(--color-strek-lys)] transition-colors hover:bg-white/10")}>
+                    <ArrowLeft className="size-4" aria-hidden="true" />
+                  </button>
+                  <button type="button" aria-label="Neste behandling" onClick={() => steg(1)} className={cn(s.knapp, "inline-flex size-10 items-center justify-center rounded-full text-[var(--color-tekst-lys)] ring-1 ring-[var(--color-strek-lys)] transition-colors hover:bg-white/10")}>
+                    <ArrowRight className="size-4" aria-hidden="true" />
+                  </button>
+                  <p className="ml-2 text-[13px] font-semibold tabular-nums text-[var(--color-tekst-lys-2)]">
+                    {nå + 1} / {rekke.length}
+                  </p>
+                </div>
+              ) : (
+                <Link
+                  href="/behandlinger"
+                  className={cn(
+                    s.knapp,
+                    "group mt-7 inline-flex items-center gap-2 rounded-full bg-[var(--color-papir)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-glomma-deep)] transition-colors duration-300 hover:bg-white md:order-4"
+                  )}
+                >
+                  Se alle {ALLE.length} behandlingene
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -9,8 +9,9 @@ import s from "./hero.module.css";
  * «Langs elva». On first paint the camera follows Glomma from the fortress,
  * from the farms on the left down to the bend in the river, and comes to
  * rest. The name arrives up in the sky, top left, in the river's own dark
- * slate, with the two buttons under it. Then the clinic's rooms pop up beside
- * it: an arch and two squares. Nothing stands at the foot of the view.
+ * slate, with the two buttons under it. Then the clinic's rooms appear beside
+ * it, one after another, in a square pane with a ring of light. Nothing
+ * stands at the foot of the view.
  *
  * (Earlier versions of the clinic photos are kept on the git branch
  * mockups/klinikkbilder.)

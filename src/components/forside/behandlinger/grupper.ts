@@ -27,3 +27,10 @@ export type Gruppe = (typeof GRUPPER)[number];
 
 /** Every treatment in order, for stepping through them all. */
 export const ALLE = GRUPPER.flatMap((g, gi) => g.liste.map((_, i) => ({ g: gi, i })));
+
+/** The front page shows one treatment from each group; the rest are on /behandlinger. */
+const UTVALG = ["tannsjekk", "tannsmerte", "tannimplantat"];
+
+export const UTVALGTE = GRUPPER.map((g) => ({ ...g, liste: g.liste.filter((t) => UTVALG.includes(t.id)) }));
+
+export const UTVALGTE_REKKE = UTVALGTE.map((_, gi) => ({ g: gi, i: 0 }));

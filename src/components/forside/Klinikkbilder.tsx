@@ -1,147 +1,88 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type CSSProperties } from "react";
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
-import { klinikkbilder } from "@/data/klinikk";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Images } from "lucide-react";
+import { klinikk, klinikkbilder } from "@/data/klinikk";
 import { Galleri } from "@/components/forside/Galleri";
 import { useHeroKlar } from "@/components/forside/useHeroKlar";
-import { cn } from "@/lib/utils";
+import s from "./klinikkbilder.module.css";
 
-const EASE = [0.25, 0.1, 0.25, 1] as const;
-
-// By index into klinikkbilder: the arch, and the two squares stacked beside it.
-const BUE = 0; // the treatment room in its round mirror
-const SMA = [3, 2]; // the treatment chair, the waiting room
+const VIS = 5200; // ms each room is shown
 
 /**
- * «Buen og rutene». The clinic's rooms beside the view. One arch, as on Ringebu: a tall rectangle with a
- * half circle on top, and the treatment room in it. Beside it, two plain
- * squares with four corners, one over the other. When the camera has stopped
- * they pop up in turn, the arch first, each room standing up from flat like a
- * page in a pop-up book. Then they keep still; a hand over one leans it in,
- * a click opens the gallery.
+ * «Speilet», square. The treatment room at Fjellgata 4 has a mirror with a
+ * ring of warm light round it; here it hangs in the sky over Glomma as a
+ * square pane. When the camera has stopped, the pane stands up like a page
+ * in a pop-up book and its light draws itself round. Then the clinic's rooms
+ * come and go in the glass, each drifting slowly closer, while a brighter
+ * line runs round the light like a clock hand, measuring out each room's
+ * time. A hand over it holds the picture; a click opens the gallery.
  *
- * Geometry: the column of squares is as tall as the arch, the arch is 300:540
- * like Ringebu's, so the arch takes 0.526 of the width (less the gap) and the
- * group is about 1.06 times as wide as it is tall. Its size follows the
- * screen's width and height, whichever is tighter. No caption: a click on
- * any of the three opens the full set.
+ * (The round original and the other versions are on the git branch
+ * mockups/klinikkbilder.)
  */
 export function Klinikkbilder() {
   const klar = useHeroKlar(3700);
   const redusert = useReducedMotion() ?? false;
+  const [nr, setNr] = useState(0);
+  const [pause, setPause] = useState(false);
   const [apen, setApen] = useState<number | null>(null);
+  const går = klar && !pause && apen === null;
+
+  useEffect(() => {
+    if (!går) return;
+    const t = window.setInterval(() => setNr((n) => (n + 1) % klinikkbilder.length), VIS);
+    return () => window.clearInterval(t);
+  }, [går]);
 
   return (
     <>
-      <div
-        className="w-[66vw] self-end md:mr-[clamp(0px,1vw,16px)] md:w-[clamp(290px,min(35.7vw,56vh),545px)] md:self-auto"
-        style={{ "--mellom": "clamp(8px, 1vw, 14px)" } as CSSProperties}
+      <motion.figure
+        className={s.rute}
+        data-klar={klar}
+        style={{ transformOrigin: "50% 100%", transformPerspective: 1000 }}
+        initial={{ rotateX: 88, opacity: 0 }}
+        animate={klar ? { rotateX: 0, opacity: 1 } : { rotateX: 88, opacity: 0 }}
+        transition={redusert ? { duration: 0 } : { rotateX: { type: "spring", stiffness: 85, damping: 13 }, opacity: { duration: 0.25 } }}
+        onPointerEnter={(e) => e.pointerType === "mouse" && setPause(true)}
+        onPointerLeave={() => setPause(false)}
       >
-        <div
-          className="grid"
-          style={{
-            gridTemplateColumns: "calc((100% - var(--mellom)) * 0.526) 1fr",
-            gridTemplateRows: "1fr 1fr",
-            gap: "var(--mellom)",
-            aspectRatio: "1.06 / 1",
-          }}
-        >
-          <Flis indeks={BUE} form="bue" n={0} vis={klar} redusert={redusert} onApne={setApen} className="row-span-2" sizes="(min-width: 768px) 340px, 40vw" />
-          {SMA.map((indeks, k) => (
-            <Flis key={indeks} indeks={indeks} form="rute" n={1 + k} vis={klar} redusert={redusert} onApne={setApen} sizes="(min-width: 768px) 300px, 36vw" />
-          ))}
+        <div className={s.ramme}>
+          <button type="button" className={s.glass} onClick={() => setApen(nr)} aria-label={`Vis bildene fra klinikken. Nå: ${klinikkbilder[nr].tekst}`}>
+            {klinikkbilder.map((b, i) => (
+              <Image key={b.src} src={b.src} alt="" fill sizes="(min-width: 768px) 420px, 58vw" className={s.rom} data-vis={klar && i === nr} loading={i < 2 ? "eager" : "lazy"} />
+            ))}
+            <span className={s.innerskygge} aria-hidden="true" />
+          </button>
+
+          {/* the light round the pane, and a brighter line that measures out each room's time */}
+          <svg className={s.ring} viewBox="0 0 100 100" aria-hidden="true">
+            <path className={s.lys} d={LYS} pathLength={1} />
+            {går && <path key={nr} className={s.tid} d={LYS} pathLength={1} style={{ animationDuration: `${VIS}ms` }} />}
+          </svg>
         </div>
 
-      </div>
+        <figcaption className={s.tekst}>
+          <span key={nr} className={s.bytt}>
+            {klinikkbilder[nr].tekst}
+          </span>
+          <span className="text-white/75">Fra klinikken i {klinikk.adresse.gate}</span>
+          <button
+            type="button"
+            onClick={() => setApen(0)}
+            className="mt-2 inline-flex items-center gap-1.5 self-center rounded-full bg-white/15 px-3 py-1.5 text-[13px] font-medium backdrop-blur-md transition-colors hover:bg-white/25"
+          >
+            <Images className="size-3.5" aria-hidden="true" />
+            Se alle {klinikkbilder.length}
+          </button>
+        </figcaption>
+      </motion.figure>
       <Galleri indeks={apen} onLukk={() => setApen(null)} onBytt={setApen} />
     </>
   );
 }
 
-function Flis({
-  indeks,
-  form,
-  n,
-  vis,
-  redusert,
-  onApne,
-  className,
-  sizes,
-}: {
-  indeks: number;
-  form: "bue" | "rute";
-  n: number;
-  vis: boolean;
-  redusert: boolean;
-  onApne: (i: number) => void;
-  className?: string;
-  sizes: string;
-}) {
-  const bilde = klinikkbilder[indeks];
-  // a hand over the pane leans it in, a little, toward the pointer
-  const px = useMotionValue(0);
-  const py = useMotionValue(0);
-  const sx = useSpring(px, { stiffness: 120, damping: 16 });
-  const sy = useSpring(py, { stiffness: 120, damping: 16 });
-  const rotateY = useTransform(sx, (v) => v * (form === "bue" ? 6 : 4));
-  const rotateX = useTransform(sy, (v) => v * -4);
-  const forsinkelse = 0.1 + n * 0.17;
-
-  return (
-    <motion.div
-      className={cn("relative min-h-0 [perspective:1000px]", className)}
-      initial={{ opacity: 0, y: 26 }}
-      animate={vis ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
-      transition={redusert ? { duration: 0 } : { duration: 0.55, delay: forsinkelse, ease: EASE }}
-    >
-      <motion.button
-        type="button"
-        onClick={() => onApne(indeks)}
-        onPointerMove={(e) => {
-          if (e.pointerType !== "mouse") return;
-          const r = e.currentTarget.getBoundingClientRect();
-          px.set(((e.clientX - r.left) / r.width) * 2 - 1);
-          py.set(((e.clientY - r.top) / r.height) * 2 - 1);
-        }}
-        onPointerLeave={() => {
-          px.set(0);
-          py.set(0);
-        }}
-        aria-label={`Vis bildet: ${bilde.tekst}`}
-        className={cn(
-          "group absolute inset-0 block overflow-hidden shadow-[0_26px_50px_-26px_rgba(0,0,0,0.65)] ring-1 ring-white/25 [transform-style:preserve-3d]",
-          form === "bue" ? "rounded-t-full" : "rounded-[10px]"
-        )}
-        style={{ rotateX, rotateY }}
-      >
-        {/* the room stands up from flat, like a page in a pop-up book */}
-        <motion.span
-          className="absolute inset-0 block origin-bottom"
-          initial={{ rotateX: 88, opacity: 0 }}
-          animate={vis ? { rotateX: 0, opacity: 1 } : { rotateX: 88, opacity: 0 }}
-          transition={
-            redusert
-              ? { duration: 0 }
-              : {
-                  rotateX: { type: "spring", stiffness: 85, damping: 13, delay: forsinkelse + 0.25 },
-                  opacity: { duration: 0.25, delay: forsinkelse + 0.25 },
-                }
-          }
-        >
-          <Image
-            src={bilde.src}
-            alt=""
-            fill
-            sizes={sizes}
-            className="object-cover transition-transform duration-700 ease-[var(--ease-rolig)] group-hover:scale-[1.05]"
-          />
-          {form === "bue" && (
-            <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_50%_at_50%_0%,rgba(255,255,255,0.18),transparent_60%)]" />
-          )}
-        </motion.span>
-      </motion.button>
-    </motion.div>
-  );
-}
+/** The ring of light: a rounded square, starting at the top middle and running clockwise, like a clock. */
+const LYS = "M50,1 H94 A5,5 0 0 1 99,6 V94 A5,5 0 0 1 94,99 H6 A5,5 0 0 1 1,94 V6 A5,5 0 0 1 6,1 Z";
