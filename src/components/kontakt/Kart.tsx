@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useId } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
@@ -76,7 +76,7 @@ export function Kart({
 
       {/* the pin, standing on the clinic */}
       <span className="pointer-events-none absolute" style={{ left: `${(-x / b) * 100}%`, top: `${(-y / h) * 100}%` }}>
-        <motion.span
+        <m.span
           className="absolute bottom-0 left-0 flex -translate-x-1/2 flex-col items-center"
           initial={{ y: -36, opacity: 0 }}
           animate={vis ? { y: 0, opacity: 1 } : { y: -36, opacity: 0 }}
@@ -93,8 +93,8 @@ export function Kart({
           </span>
           <span className="block h-[9px] w-[2px] bg-[var(--color-glomma-deep)]" />
           <span className="block size-[6px] -translate-y-[1px] rounded-full bg-[var(--color-glomma-deep)]" />
-        </motion.span>
-        <motion.span
+        </m.span>
+        <m.span
           className="absolute bottom-[26px] left-[24px] whitespace-nowrap rounded-[8px] bg-[#FBF8F1] px-2.5 py-1.5 shadow-[0_8px_18px_-10px_rgba(10,25,32,0.55)]"
           initial={{ opacity: 0, x: -6 }}
           animate={vis ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
@@ -102,7 +102,7 @@ export function Kart({
         >
           <span className="block text-[12.5px] font-semibold leading-tight tracking-[-0.01em] text-[var(--color-glomma-deep)]">{klinikk.navn}</span>
           <span className="block text-[11.5px] leading-tight text-[var(--color-tekst-2)]">{klinikk.adresse.gate}</span>
-        </motion.span>
+        </m.span>
       </span>
 
       <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-[#FBF8F1]/95 px-3.5 py-2 text-[12.5px] font-semibold text-[var(--color-glomma-deep)] shadow-[0_6px_16px_-8px_rgba(10,25,32,0.5)] transition-colors group-hover:bg-white">

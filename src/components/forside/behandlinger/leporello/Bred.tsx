@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { animate, motion, useInView, useMotionTemplate, useMotionValue, useReducedMotion, useTransform, type MotionValue } from "framer-motion";
+import { animate, m, useInView, useMotionTemplate, useMotionValue, useReducedMotion, useTransform, type MotionValue } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TRE } from "../grupper";
@@ -104,10 +104,10 @@ export function Bred() {
     <div ref={ref} className={s.bred}>
       <div className={s.bredBoks}>
         {/* its shadow on the page */}
-        <motion.div aria-hidden="true" className={s.bredSkygge} style={skyggeStil} />
+        <m.div aria-hidden="true" className={s.bredSkygge} style={skyggeStil} />
 
         <div aria-hidden="true" className="absolute inset-0" style={{ perspective: 2400, perspectiveOrigin: "50% 35%" }}>
-          <motion.div className="absolute inset-y-0 left-0 w-[var(--w)]" style={{ transform: flytt, transformStyle: "preserve-3d" }}>
+          <m.div className="absolute inset-y-0 left-0 w-[var(--w)]" style={{ transform: flytt, transformStyle: "preserve-3d" }}>
             <Panel forste ledd={fot} vinkel={a0} forside={scene(0)}>
               <Panel ledd={l1} vinkel={a1} forside={scene(1)}>
                 <Panel ledd={l2} vinkel={a2} forside={scene(2)}>
@@ -115,7 +115,7 @@ export function Bred() {
                 </Panel>
               </Panel>
             </Panel>
-          </motion.div>
+          </m.div>
         </div>
       </div>
 
@@ -155,18 +155,18 @@ function Panel({ forste = false, ledd, vinkel, forside, bakside, children }: { f
   const skyggeFor = useTransform(vinkel, (v) => skygge(v));
   const skyggeBak = useTransform(vinkel, (v) => skygge(v, true));
   return (
-    <motion.div className={cn("absolute top-0 h-full w-[var(--w)]", forste ? "left-0" : "left-full")} style={{ rotateY: ledd, transformOrigin: "0% 50%", transformStyle: "preserve-3d" }}>
+    <m.div className={cn("absolute top-0 h-full w-[var(--w)]", forste ? "left-0" : "left-full")} style={{ rotateY: ledd, transformOrigin: "0% 50%", transformStyle: "preserve-3d" }}>
       <div className={s.flate}>
         {forside}
         <div className={s.kant} />
-        <motion.div className="pointer-events-none absolute inset-0 bg-[#3B3424]" style={{ opacity: skyggeFor }} />
+        <m.div className="pointer-events-none absolute inset-0 bg-[#3B3424]" style={{ opacity: skyggeFor }} />
       </div>
       <div className={cn(s.flate, s.bak)}>
         {bakside}
-        <motion.div className="pointer-events-none absolute inset-0 bg-[#3B3424]" style={{ opacity: skyggeBak }} />
+        <m.div className="pointer-events-none absolute inset-0 bg-[#3B3424]" style={{ opacity: skyggeBak }} />
       </div>
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 

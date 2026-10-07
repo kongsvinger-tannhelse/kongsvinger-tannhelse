@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useId } from "react";
 import { Ark, Fri, Senk, UtenSkygge, naadd, useFase, type PopupProps } from "../popup/Popup";
 import { Ben, Fortann, Jeksel, Krone, Smekke, Stjerner, Stubb, Tannkjott, Trykk, tannkjottLinje } from "../popup/deler";
@@ -140,7 +140,7 @@ export function Skallfasetter({ oppe, spiller, redusert }: PopupProps) {
         over={
           <Fri>
             {FORAN.map((x, i) => (
-              <motion.g
+              <m.g
                 key={x}
                 initial={false}
                 animate={på[i] ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 1.3, y: -36 }}
@@ -152,10 +152,10 @@ export function Skallfasetter({ oppe, spiller, redusert }: PopupProps) {
                   <path d={FORTANN.kroneSkygge} fill={F.skyggeside} opacity={0.7} />
                   <UtenSkygge>
                     <path d={FORTANN.glans} fill="none" stroke="#EEF3F4" strokeWidth={3} strokeLinecap="round" />
-                    <motion.path d={FORTANN.krone} fill="none" stroke={F.teal} strokeWidth={1.4} initial={false} animate={{ opacity: ferdig ? 0 : 0.55 }} transition={{ duration: redusert ? 0 : 0.8 }} />
+                    <m.path d={FORTANN.krone} fill="none" stroke={F.teal} strokeWidth={1.4} initial={false} animate={{ opacity: ferdig ? 0 : 0.55 }} transition={{ duration: redusert ? 0 : 0.8 }} />
                   </UtenSkygge>
                 </g>
-              </motion.g>
+              </m.g>
             ))}
           </Fri>
         }
@@ -211,13 +211,13 @@ export function Tannimplantat({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri skygge={false}>
-            <motion.g
+            <m.g
               initial={false}
               animate={{ y: skrueY }}
               transition={redusert ? { duration: 0 } : fase === "inn" ? { type: "spring", stiffness: 40, damping: 11 } : { duration: 1.6, ease: [0.4, 0, 0.2, 1] }}
             >
               <g transform="translate(200 340)">
-                <motion.path d="M-14,-26 L-34,-560 M14,-26 L34,-560" stroke={F.dyp} strokeWidth={1.2} initial={false} animate={{ opacity: trader && fase === "inn" ? 0.7 : 0 }} transition={{ duration: 0.4 }} />
+                <m.path d="M-14,-26 L-34,-560 M14,-26 L34,-560" stroke={F.dyp} strokeWidth={1.2} initial={false} animate={{ opacity: trader && fase === "inn" ? 0.7 : 0 }} transition={{ duration: 0.4 }} />
                 <path d={sk.distanse} fill={F.metall} />
                 <path d={sk.skrue} fill={F.metall} />
                 <path d="M6,0 L18,0 L11,84 Q6,92 2,86 Z" fill={F.metallMork} opacity={0.5} />
@@ -225,7 +225,7 @@ export function Tannimplantat({ oppe, spiller, redusert }: PopupProps) {
                   <path d={sk.skrue} />
                 </clipPath>
                 <g clipPath={`url(#skr-${id})`}>
-                  <motion.path
+                  <m.path
                     d={sk.gjenger}
                     stroke={F.metallMork}
                     strokeWidth={2.4}
@@ -235,7 +235,7 @@ export function Tannimplantat({ oppe, spiller, redusert }: PopupProps) {
                   />
                 </g>
               </g>
-            </motion.g>
+            </m.g>
           </Fri>
         }
       >
@@ -247,16 +247,16 @@ export function Tannimplantat({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri skygge={false}>
-            <motion.g
+            <m.g
               initial={false}
               animate={{ y: kroneY }}
               transition={redusert ? { duration: 0 } : fase === "krone" ? { type: "spring", stiffness: 42, damping: 8, mass: 1.1 } : { duration: 0.6 }}
             >
               <g transform="translate(200 321) scale(0.92)">
-                <motion.path d="M-30,-98 L-46,-640 M30,-98 L46,-640" stroke={F.dyp} strokeWidth={1.2} initial={false} animate={{ opacity: trader && fase === "krone" ? 0.7 : 0 }} transition={{ duration: 0.5 }} />
+                <m.path d="M-30,-98 L-46,-640 M30,-98 L46,-640" stroke={F.dyp} strokeWidth={1.2} initial={false} animate={{ opacity: trader && fase === "krone" ? 0.7 : 0 }} transition={{ duration: 0.5 }} />
                 <Krone />
               </g>
-            </motion.g>
+            </m.g>
           </Fri>
         }
       >
@@ -350,7 +350,7 @@ export function Helprotese({ oppe, spiller, redusert }: PopupProps) {
         over={
           <Fri>
             <Senk nede={nede} redusert={redusert} snorer={{ d: "M80,350 L60,-200 M160,288 L150,-200 M240,288 L250,-200 M320,350 L340,-200", synlige: fase === "senk" }}>
-              <motion.g initial={false} animate={{ scaleY: suger ? [1, 0.95, 1.02, 1] : 1 }} style={{ originX: "50%", originY: "100%" }} transition={{ duration: 0.8, ease: "easeInOut" }}>
+              <m.g initial={false} animate={{ scaleY: suger ? [1, 0.95, 1.02, 1] : 1 }} style={{ originX: "50%", originY: "100%" }} transition={{ duration: 0.8, ease: "easeInOut" }}>
                 {HEL_TENNER.map((x, i) => (
                   <Fortann key={x} x={x} y={356} s={i === 0 || i === 5 ? 0.66 : 0.74} />
                 ))}
@@ -358,7 +358,7 @@ export function Helprotese({ oppe, spiller, redusert }: PopupProps) {
                 <UtenSkygge>
                   <path d={kurve(BASE_TOPP)} fill="none" stroke="#CF8278" strokeWidth={1.6} opacity={0.6} />
                 </UtenSkygge>
-              </motion.g>
+              </m.g>
             </Senk>
           </Fri>
         }

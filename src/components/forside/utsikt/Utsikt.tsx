@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useSyncExternalStore, type CSSProperties } from "react";
-import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
+import { m, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import far from "./far.webp";
 import near from "./near.webp";
@@ -121,24 +121,24 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
   return (
     <div ref={ref} data-on="false" className={cn(s.scene, skar && s.skar, glid && s.glid, "utsikt", className)} style={vars}>
       {/* the two depths are pure picture; anything placed between them (mellom) stays reachable */}
-      <motion.div aria-hidden="true" className={s.dybde} style={{ y: slep }}>
+      <m.div aria-hidden="true" className={s.dybde} style={{ y: slep }}>
         <div className={s.inngang}>
           <div className={s.pust}>
-            <motion.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: farX, y: farY }}>
+            <m.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: farX, y: farY }}>
               <Image src={far} alt="" priority sizes="max(130vw, 195vh)" quality={75} onLoad={klar} />
-            </motion.div>
+            </m.div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       {mellom}
 
       <div aria-hidden="true" className={s.dybde}>
         <div className={cn(s.inngang, s.inngangNaer)}>
           <div className={cn(s.pust, s.pustNaer)}>
-            <motion.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: naerX, y: naerY }}>
+            <m.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: naerX, y: naerY }}>
               <Image src={near} alt="" priority sizes="max(130vw, 195vh)" quality={75} onLoad={klar} />
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Ark, Flate, Fri, Los, UtenSkygge, css, loop, naadd, useFase, type PopupProps } from "../popup/Popup";
 import { Ben, Jeksel, Klokke, Krone, Smekke, Stjerner, Stubb, Tannkjott, Trykk, tannkjottLinje } from "../popup/deler";
 import { FARGE as F, FORTANN, JEKSEL, PULPA, kurve, lauv, r2, type Pt } from "../popup/tegning";
@@ -81,7 +81,7 @@ export function Tannsmerte({ oppe, spiller, redusert }: PopupProps) {
           <path d={JEKSEL.tann} fill={F.hvit} />
           <path d={JEKSEL.skygge} fill={F.skyggeside} />
           <UtenSkygge>
-            <motion.path
+            <m.path
               d={PULPA}
               className={loop.glod}
               data-on={verker}
@@ -126,7 +126,7 @@ export function Tannskade({ oppe, spiller, redusert }: PopupProps) {
         over={
           <Fri>
             {/* the corner, falling to the bib */}
-            <motion.g
+            <m.g
               initial={false}
               animate={brutt ? { x: 88, y: 168, rotate: 118 } : { x: 0, y: 0, rotate: 0 }}
               transition={redusert ? { duration: 0 } : { y: { type: "spring", stiffness: 70, damping: 11 }, x: { duration: 0.9, ease: "easeOut" }, rotate: { duration: 0.9, ease: "easeOut" } }}
@@ -135,7 +135,7 @@ export function Tannskade({ oppe, spiller, redusert }: PopupProps) {
                 <path d={FLIS} fill={F.hvit} />
                 <path d="M19,-96 Q28,-95 29,-86 C30.5,-72 30.4,-62 30,-56 L22,-60 C22,-72 21,-84 19,-96 Z" fill={F.skyggeside} opacity={0.85} />
               </g>
-            </motion.g>
+            </m.g>
           </Fri>
         }
       >
@@ -145,8 +145,8 @@ export function Tannskade({ oppe, spiller, redusert }: PopupProps) {
           <UtenSkygge>
             <path d={FORTANN.glans} fill="none" stroke={F.hvit} strokeWidth={3} strokeLinecap="round" />
             <path d="M-18,-86 Q-16,-60 -18,-30" fill="none" stroke="#EDF1F2" strokeWidth={3} strokeLinecap="round" />
-            <motion.path d={SPREKK} fill="none" stroke={F.dyp} strokeWidth={1.4} strokeLinejoin="round" initial={false} animate={{ pathLength: sprukket ? 1 : 0, opacity: sprukket && !brutt ? 0.7 : 0 }} transition={{ duration: redusert ? 0 : 0.7 }} />
-            <motion.path d="M13,-70 L8,-58 L10,-46" fill="none" stroke={F.dyp} strokeWidth={1} initial={false} animate={{ pathLength: sprukket ? 1 : 0, opacity: sprukket ? 0.45 : 0 }} transition={{ duration: redusert ? 0 : 0.7, delay: redusert ? 0 : 0.4 }} />
+            <m.path d={SPREKK} fill="none" stroke={F.dyp} strokeWidth={1.4} strokeLinejoin="round" initial={false} animate={{ pathLength: sprukket ? 1 : 0, opacity: sprukket && !brutt ? 0.7 : 0 }} transition={{ duration: redusert ? 0 : 0.7 }} />
+            <m.path d="M13,-70 L8,-58 L10,-46" fill="none" stroke={F.dyp} strokeWidth={1} initial={false} animate={{ pathLength: sprukket ? 1 : 0, opacity: sprukket ? 0.45 : 0 }} transition={{ duration: redusert ? 0 : 0.7, delay: redusert ? 0 : 0.4 }} />
           </UtenSkygge>
         </g>
         <Tannkjott linje={tannkjottLinje([200], 384, 18, 60)} />
@@ -223,7 +223,7 @@ export function MistetFylling({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri>
-            <motion.g
+            <m.g
               initial={false}
               animate={ute ? { x: 104, y: 168, rotate: 200 } : { x: 0, y: 0, rotate: vakler ? [0, -7, 6, -5, 4, 0] : 0 }}
               transition={
@@ -237,7 +237,7 @@ export function MistetFylling({ oppe, spiller, redusert }: PopupProps) {
               <g transform="translate(200 372) scale(1.35)">
                 <path d={FYLLING} fill={F.fylling} stroke={F.teal} strokeWidth={1.4} strokeOpacity={0.6} />
               </g>
-            </motion.g>
+            </m.g>
           </Fri>
         }
       >
@@ -340,12 +340,12 @@ export function LosnetTannkrone({ oppe, spiller, redusert }: PopupProps) {
         over={
           <>
             <Fri>
-              <motion.g initial={false} animate={{ y: løftet ? -58 : 0 }} transition={redusert ? { duration: 0 } : { type: "spring", stiffness: 40, damping: 10 }}>
+              <m.g initial={false} animate={{ y: løftet ? -58 : 0 }} transition={redusert ? { duration: 0 } : { type: "spring", stiffness: 40, damping: 10 }}>
                 <g className={loop.svev} data-on={løftet && spiller && !redusert}>
                   <UtenSkygge>
-                    <motion.path d="M168,252 L150,-220 M232,252 L250,-220" stroke={F.dyp} strokeWidth={1.2} initial={false} animate={{ opacity: løftet && !redusert ? 0.7 : 0 }} transition={{ duration: 0.5 }} />
+                    <m.path d="M168,252 L150,-220 M232,252 L250,-220" stroke={F.dyp} strokeWidth={1.2} initial={false} animate={{ opacity: løftet && !redusert ? 0.7 : 0 }} transition={{ duration: 0.5 }} />
                   </UtenSkygge>
-                  <motion.g
+                  <m.g
                     initial={false}
                     animate={{ rotate: vakler ? [0, -5, 4, -4, 3, 0] : 0 }}
                     style={{ originX: "15%", originY: "100%" }}
@@ -354,9 +354,9 @@ export function LosnetTannkrone({ oppe, spiller, redusert }: PopupProps) {
                     <g transform="translate(200 380) scale(1.3)">
                       <Krone />
                     </g>
-                  </motion.g>
+                  </m.g>
                 </g>
-              </motion.g>
+              </m.g>
             </Fri>
             <Flate>
               {[

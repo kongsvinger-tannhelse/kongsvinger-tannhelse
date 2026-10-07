@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import { klinikk } from "@/data/klinikk";
 import { Bunntekst } from "@/components/bunntekst/Bunntekst";
+import { Bevegelse } from "@/components/Bevegelse";
 import "./globals.css";
 
 const geist = Geist({
@@ -67,8 +68,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body className="antialiased font-sans min-h-screen">
-        {children}
-        <Bunntekst />
+        <Bevegelse>
+          {children}
+          <Bunntekst />
+        </Bevegelse>
       </body>
     </html>
   );

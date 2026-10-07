@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useId } from "react";
 import { Ark, Flate, Fri, Los, Senk, UtenSkygge, css, loop, naadd, useFase, type PopupProps } from "../popup/Popup";
 import { Ben, Bor, Fil, Fortann, Jeksel, Polerer, Skrape, Smekke, Stjerner, Tang, Tannborste, Tannkjott, Trykk, tannkjottLinje } from "../popup/deler";
@@ -120,16 +120,16 @@ export function Tannfylling({ oppe, spiller, redusert }: PopupProps) {
       <Ark n={0} {...p}>
         <Jeksel x={200} y={372} s={1.35}>
           <UtenSkygge>
-            <motion.path
+            <m.path
               d={HULL}
               initial={false}
               animate={{ fill: rent ? "#F4E8D6" : F.hull, stroke: rent ? F.dentinMork : "rgba(0,0,0,0)" }}
               strokeWidth={1.5}
               transition={{ duration: redusert ? 0 : 0.5 }}
             />
-            <motion.g initial={false} animate={{ opacity: fylt ? 1 : 0, scale: fylt ? 1 : 1.35 }} style={{ originX: "50%", originY: "50%" }} transition={redusert ? { duration: 0 } : { type: "spring", stiffness: 160, damping: 14 }}>
+            <m.g initial={false} animate={{ opacity: fylt ? 1 : 0, scale: fylt ? 1 : 1.35 }} style={{ originX: "50%", originY: "50%" }} transition={redusert ? { duration: 0 } : { type: "spring", stiffness: 160, damping: 14 }}>
               <path d={HULL} fill={F.fylling} stroke={F.teal} strokeWidth={1.4} strokeOpacity={0.55} />
-            </motion.g>
+            </m.g>
           </UtenSkygge>
         </Jeksel>
         <Tannkjott linje={EN_LINJE} />
@@ -140,7 +140,7 @@ export function Tannfylling({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri>
-            <motion.g initial={false} animate={{ x: fase === "bor" && !redusert ? 0 : 300, y: fase === "bor" && !redusert ? 0 : -260 }} transition={{ type: "spring", stiffness: 60, damping: 14 }}>
+            <m.g initial={false} animate={{ x: fase === "bor" && !redusert ? 0 : 300, y: fase === "bor" && !redusert ? 0 : -260 }} transition={{ type: "spring", stiffness: 60, damping: 14 }}>
               <Bor
                 x={204}
                 y={262}
@@ -152,7 +152,7 @@ export function Tannfylling({ oppe, spiller, redusert }: PopupProps) {
                   </g>
                 }
               />
-            </motion.g>
+            </m.g>
           </Fri>
         }
       />
@@ -235,7 +235,7 @@ export function Tannrens({ oppe, spiller, redusert }: PopupProps) {
         {RAD.map((x, i) => (
           <Jeksel key={x} x={x} y={382} s={0.82}>
             <UtenSkygge>
-              <motion.path d={PLAKK} fill="#E3D07E" initial={false} animate={{ opacity: ren[i] ? 0 : 0.9 }} transition={{ duration: redusert ? 0 : 0.6 }} />
+              <m.path d={PLAKK} fill="#E3D07E" initial={false} animate={{ opacity: ren[i] ? 0 : 0.9 }} transition={{ duration: redusert ? 0 : 0.6 }} />
             </UtenSkygge>
           </Jeksel>
         ))}
@@ -246,11 +246,11 @@ export function Tannrens({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri>
-            <motion.g initial={false} animate={{ x: her >= 0 ? RAD[her] - 200 : 260, y: her >= 0 ? 0 : -200 }} transition={{ type: "spring", stiffness: 70, damping: 15 }}>
+            <m.g initial={false} animate={{ x: her >= 0 ? RAD[her] - 200 : 260, y: her >= 0 ? 0 : -200 }} transition={{ type: "spring", stiffness: 70, damping: 15 }}>
               <g className={loop.puss} data-on={her >= 0} style={css({ "--slag": "6px" })}>
                 <Polerer x={208} y={350} v={-20} />
               </g>
-            </motion.g>
+            </m.g>
           </Fri>
         }
       />
@@ -284,14 +284,14 @@ export function Tannkjottbehandling({ oppe, spiller, redusert }: PopupProps) {
         <Tannkjott linje={RAD_LINJE} farge={frisk ? F.tannkjott : F.sart} strek={frisk ? F.tannkjottMork : "#B85A4D"} tid={redusert ? 0 : 2.6} />
         {/* the swelling: a puffier edge over the gum, which goes down */}
         <UtenSkygge>
-          <motion.path
+          <m.path
             d={`${kurve(HOVEN)} L420,${HOVEN[HOVEN.length - 1][1] + 16} ${kurve([...HOVEN].reverse().map(([x, y]) => [x, y + 16] as Pt)).replace("M", "L")} Z`}
             fill={F.sart}
             initial={false}
             animate={{ opacity: frisk ? 0 : 0.9 }}
             transition={{ duration: redusert ? 0 : 2.4 }}
           />
-          <motion.path d={kurve(HOVEN)} fill="none" stroke="#C0574A" strokeWidth={2.5} initial={false} animate={{ opacity: frisk ? 0 : 0.8 }} transition={{ duration: redusert ? 0 : 2.4 }} />
+          <m.path d={kurve(HOVEN)} fill="none" stroke="#C0574A" strokeWidth={2.5} initial={false} animate={{ opacity: frisk ? 0 : 0.8 }} transition={{ duration: redusert ? 0 : 2.4 }} />
         </UtenSkygge>
       </Ark>
       <Ark
@@ -299,11 +299,11 @@ export function Tannkjottbehandling({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri>
-            <motion.g initial={false} animate={{ x: pusser ? 0 : 260, y: pusser ? 0 : -160 }} transition={{ type: "spring", stiffness: 60, damping: 14 }}>
+            <m.g initial={false} animate={{ x: pusser ? 0 : 260, y: pusser ? 0 : -160 }} transition={{ type: "spring", stiffness: 60, damping: 14 }}>
               <g className={loop.puss} data-on={pusser} style={css({ "--slag": "34px" })}>
                 <Tannborste x={196} y={350} v={8} />
               </g>
-            </motion.g>
+            </m.g>
           </Fri>
         }
       />
@@ -347,7 +347,7 @@ export function Tannstein({ oppe, spiller, redusert }: PopupProps) {
           <>
             <Fri>
               {SKORPE.map(([x, y, frø], i) => (
-                <motion.g
+                <m.g
                   key={i}
                   initial={false}
                   animate={løs[i] ? { y: redusert ? 0 : 92 + i * 4, x: (i - 1) * 18, rotate: 40 + i * 30, opacity: redusert ? 0 : 1 } : { y: 0, x: 0, rotate: 0, opacity: 1 }}
@@ -357,17 +357,17 @@ export function Tannstein({ oppe, spiller, redusert }: PopupProps) {
                   <UtenSkygge>
                     <path d={lauv(x - 4, y - 2, 5, 3, frø * 7, 5)} fill="#C2B178" />
                   </UtenSkygge>
-                </motion.g>
+                </m.g>
               ))}
             </Fri>
             <Fri>
-              <motion.g
+              <m.g
                 initial={false}
                 animate={her >= 0 ? { x: SKORPE[her][0] - 200, y: SKORPE[her][1] - 350 } : { x: 260, y: -220 }}
                 transition={{ type: "spring", stiffness: 80, damping: 15 }}
               >
                 <Skrape x={210} y={356} v={-14} />
-              </motion.g>
+              </m.g>
             </Fri>
           </>
         }
@@ -406,7 +406,7 @@ export function Rotfylling({ oppe, spiller, redusert }: PopupProps) {
       <Ark n={0} {...p}>
         <Jeksel x={200} y={318} s={1.42}>
           <UtenSkygge>
-            <motion.path
+            <m.path
               d={PULPA}
               className={loop.glod}
               data-on={betent}
@@ -419,9 +419,9 @@ export function Rotfylling({ oppe, spiller, redusert }: PopupProps) {
               <path d={PULPA} />
             </clipPath>
             <g clipPath={`url(#kanal-${id})`}>
-              <motion.rect x={-40} width={80} height={200} fill="#E59A7A" initial={false} animate={{ y: fylt ? -80 : 80 }} transition={{ duration: redusert ? 0 : 1.6, ease: [0.4, 0, 0.2, 1] }} />
+              <m.rect x={-40} width={80} height={200} fill="#E59A7A" initial={false} animate={{ y: fylt ? -80 : 80 }} transition={{ duration: redusert ? 0 : 1.6, ease: [0.4, 0, 0.2, 1] }} />
             </g>
-            <motion.path d={LOKK} fill={F.fylling} stroke={F.teal} strokeWidth={1.2} strokeOpacity={0.6} initial={false} animate={{ opacity: lukket ? 1 : 0 }} transition={{ duration: redusert ? 0 : 0.4 }} />
+            <m.path d={LOKK} fill={F.fylling} stroke={F.teal} strokeWidth={1.2} strokeOpacity={0.6} initial={false} animate={{ opacity: lukket ? 1 : 0 }} transition={{ duration: redusert ? 0 : 0.4 }} />
           </UtenSkygge>
         </Jeksel>
       </Ark>
@@ -430,11 +430,11 @@ export function Rotfylling({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri>
-            <motion.g initial={false} animate={{ y: filer ? 0 : -360 }} transition={{ type: "spring", stiffness: 70, damping: 14 }}>
-              <motion.g initial={false} animate={filer ? { y: [0, 34, 0] } : { y: 0 }} transition={filer ? { duration: 0.9, repeat: Infinity, ease: "easeInOut", delay: 0.6 } : { duration: 0 }}>
+            <m.g initial={false} animate={{ y: filer ? 0 : -360 }} transition={{ type: "spring", stiffness: 70, damping: 14 }}>
+              <m.g initial={false} animate={filer ? { y: [0, 34, 0] } : { y: 0 }} transition={filer ? { duration: 0.9, repeat: Infinity, ease: "easeInOut", delay: 0.6 } : { duration: 0 }}>
                 <Fil x={188} y={286} v={4} />
-              </motion.g>
-            </motion.g>
+              </m.g>
+            </m.g>
           </Fri>
         }
       />
@@ -466,8 +466,8 @@ export function Munntorrhet({ oppe, spiller, redusert }: PopupProps) {
         ))}
         <Tannkjott linje={RAD_LINJE} farge={fukt ? F.tannkjott : "#E9CBC0"} strek={fukt ? F.tannkjottMork : "#D3AFA3"} tid={redusert ? 0 : 1.2} />
         <UtenSkygge>
-          <motion.path d={SPREKKER} fill="none" stroke="#C99A8E" strokeWidth={1.6} strokeLinecap="round" initial={false} animate={{ opacity: fukt ? 0 : 1 }} transition={{ duration: redusert ? 0 : 1 }} />
-          <motion.path
+          <m.path d={SPREKKER} fill="none" stroke="#C99A8E" strokeWidth={1.6} strokeLinecap="round" initial={false} animate={{ opacity: fukt ? 0 : 1 }} transition={{ duration: redusert ? 0 : 1 }} />
+          <m.path
             d="M60,384 Q84,376 100,380 M186,382 Q204,376 222,380 M280,384 Q298,378 318,382"
             fill="none"
             stroke={F.hvit}
@@ -486,11 +486,11 @@ export function Munntorrhet({ oppe, spiller, redusert }: PopupProps) {
         over={
           <>
             <Fri>
-              <motion.g initial={false} animate={{ rotate: drypper ? -32 : 0 }} style={{ originX: "50%", originY: "100%" }} transition={{ type: "spring", stiffness: 50, damping: 12 }}>
+              <m.g initial={false} animate={{ rotate: drypper ? -32 : 0 }} style={{ originX: "50%", originY: "100%" }} transition={{ type: "spring", stiffness: 50, damping: 12 }}>
                 <path d="M262,128 L338,128 L330,236 Q329,244 320,244 L280,244 Q271,244 270,236 Z" fill="rgba(234,246,248,0.9)" stroke={F.metallMork} strokeWidth={2} />
                 <path d="M266,170 L334,170 L330,236 Q329,244 320,244 L280,244 Q271,244 270,236 Z" fill={F.kulde} opacity={0.7} />
                 <path d="M276,140 L280,228" stroke={F.hvit} strokeWidth={5} strokeLinecap="round" opacity={0.9} />
-              </motion.g>
+              </m.g>
             </Fri>
             <Flate>
               {[
@@ -556,7 +556,7 @@ export function Tanngnissing({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri>
-            <motion.g initial={false} animate={{ y: apen ? 34 : skinne ? 12 : 0 }} transition={{ type: "spring", stiffness: 90, damping: 14 }}>
+            <m.g initial={false} animate={{ y: apen ? 34 : skinne ? 12 : 0 }} transition={{ type: "spring", stiffness: 90, damping: 14 }}>
               <g className={loop.gnis} data-on={gnisser}>
                 {PAR.map((x) => (
                   <Jeksel key={x} x={x} y={360} s={0.9} rot={false} />
@@ -564,13 +564,13 @@ export function Tanngnissing({ oppe, spiller, redusert }: PopupProps) {
                 <Tannkjott linje={NEDRE_LINJE} />
               </g>
               {/* the splint, sliding in over the lower teeth */}
-              <motion.g initial={false} animate={{ x: skinne ? 0 : -420 }} transition={redusert ? { duration: 0 } : { type: "spring", stiffness: 55, damping: 13 }}>
+              <m.g initial={false} animate={{ x: skinne ? 0 : -420 }} transition={redusert ? { duration: 0 } : { type: "spring", stiffness: 55, damping: 13 }}>
                 <path d="M86,290 Q86,260 112,258 L288,258 Q314,260 314,290 L314,322 Q260,316 200,318 Q140,316 86,322 Z" fill="rgba(45,164,180,0.28)" stroke={F.teal} strokeWidth={2.2} />
                 <UtenSkygge>
                   <path d="M104,274 Q110,266 128,266" fill="none" stroke={F.hvit} strokeWidth={4} strokeLinecap="round" />
                 </UtenSkygge>
-              </motion.g>
-            </motion.g>
+              </m.g>
+            </m.g>
           </Fri>
         }
       />
@@ -688,14 +688,14 @@ export function TrekkingAvTenner({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri>
-            <motion.g initial={false} animate={løft} style={{ originX: "50%", originY: "100%" }} transition={fart}>
+            <m.g initial={false} animate={løft} style={{ originX: "50%", originY: "100%" }} transition={fart}>
               <Jeksel x={200} y={382} s={0.82} farge="#F2EDE3">
                 <UtenSkygge>
                   <path d="M-8,-84 C-4,-94 20,-92 22,-80 C24,-66 8,-60 0,-64 C-10,-68 -12,-76 -8,-84 Z" fill={F.hull} />
                   <path d="M-30,-60 C-22,-50 -24,-36 -34,-30" fill="none" stroke="#B9A98F" strokeWidth={3} strokeLinecap="round" />
                 </UtenSkygge>
               </Jeksel>
-            </motion.g>
+            </m.g>
           </Fri>
         }
       >
@@ -710,11 +710,11 @@ export function TrekkingAvTenner({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri>
-            <motion.g initial={false} animate={{ y: tang ? (ute ? -560 : 0) : -560, opacity: tang ? 1 : 0 }} transition={ute ? { y: { duration: 1.4, ease: [0.5, 0, 0.3, 1] } } : { type: "spring", stiffness: 60, damping: 13 }}>
-              <motion.g initial={false} animate={{ rotate: vrikk ? [0, -4, 3, -3, 0] : 0 }} style={{ originX: "50%", originY: "100%" }} transition={{ duration: 1, ease: "easeInOut" }}>
+            <m.g initial={false} animate={{ y: tang ? (ute ? -560 : 0) : -560, opacity: tang ? 1 : 0 }} transition={ute ? { y: { duration: 1.4, ease: [0.5, 0, 0.3, 1] } } : { type: "spring", stiffness: 60, damping: 13 }}>
+              <m.g initial={false} animate={{ rotate: vrikk ? [0, -4, 3, -3, 0] : 0 }} style={{ originX: "50%", originY: "100%" }} transition={{ duration: 1, ease: "easeInOut" }}>
                 <Tang x={200} y={350} w={90} />
-              </motion.g>
-            </motion.g>
+              </m.g>
+            </m.g>
           </Fri>
         }
       >
@@ -753,14 +753,14 @@ export function DarligAnde({ oppe, spiller, redusert }: PopupProps) {
         n={1}
         {...p}
         over={
-          <motion.div className="absolute inset-0" initial={false} animate={{ opacity: borte ? 0 : 1, scale: borte ? 0.7 : 1 }} transition={{ duration: redusert ? 0 : 2.2 }}>
+          <m.div className="absolute inset-0" initial={false} animate={{ opacity: borte ? 0 : 1, scale: borte ? 0.7 : 1 }} transition={{ duration: redusert ? 0 : 2.2 }}>
             <Los klasse={loop.drive} spiller={spill && !borte}>
               <path d={sky} fill="#D6DAC6" />
               <UtenSkygge>
                 <path d="M160,170 q8,-10 0,-20 q-8,-10 0,-20 M204,156 q8,-10 0,-20 q-8,-10 0,-20 M248,166 q8,-10 0,-20 q-8,-10 0,-20" fill="none" stroke="#AEB591" strokeWidth={3} strokeLinecap="round" />
               </UtenSkygge>
             </Los>
-          </motion.div>
+          </m.div>
         }
       />
       <Ark
@@ -768,17 +768,17 @@ export function DarligAnde({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri>
-            <motion.g initial={false} animate={{ x: pusser ? 0 : 260, y: pusser ? 0 : -160 }} transition={{ type: "spring", stiffness: 60, damping: 14 }}>
+            <m.g initial={false} animate={{ x: pusser ? 0 : 260, y: pusser ? 0 : -160 }} transition={{ type: "spring", stiffness: 60, damping: 14 }}>
               <g className={loop.puss} data-on={pusser} style={css({ "--slag": "40px" })}>
                 <Tannborste x={196} y={326} v={4} />
               </g>
-            </motion.g>
+            </m.g>
           </Fri>
         }
       />
       <Ark n={3} {...p} skygge={false}>
         <UtenSkygge>
-          <motion.path
+          <m.path
             d="M86,214 C126,186 170,232 214,204 C246,184 280,196 296,214 M120,250 C160,232 200,262 250,242"
             fill="none"
             stroke={F.teal}
@@ -817,9 +817,9 @@ export function Visdomstenner({ oppe, spiller, redusert }: PopupProps) {
         {...p}
         over={
           <Fri>
-            <motion.g initial={false} animate={{ y: ute ? -520 : 0, rotate: ute ? 38 : 0 }} style={{ originX: "50%", originY: "50%" }} transition={redusert ? { duration: 0 } : { duration: 1.7, ease: [0.5, 0, 0.3, 1] }}>
+            <m.g initial={false} animate={{ y: ute ? -520 : 0, rotate: ute ? 38 : 0 }} style={{ originX: "50%", originY: "50%" }} transition={redusert ? { duration: 0 } : { duration: 1.7, ease: [0.5, 0, 0.3, 1] }}>
               <UtenSkygge>
-                <motion.path d="M290,374 L270,-120 M314,366 L330,-120" stroke={F.dyp} strokeWidth={1.2} initial={false} animate={{ opacity: fase === "loft" ? 0.7 : 0 }} transition={{ duration: 0.4 }} />
+                <m.path d="M290,374 L270,-120 M314,366 L330,-120" stroke={F.dyp} strokeWidth={1.2} initial={false} animate={{ opacity: fase === "loft" ? 0.7 : 0 }} transition={{ duration: 0.4 }} />
               </UtenSkygge>
               <g transform="rotate(-40 300 392)">
                 <Jeksel x={300} y={392} s={0.78} />
@@ -831,7 +831,7 @@ export function Visdomstenner({ oppe, spiller, redusert }: PopupProps) {
                   </g>
                 ))}
               </UtenSkygge>
-            </motion.g>
+            </m.g>
           </Fri>
         }
       >

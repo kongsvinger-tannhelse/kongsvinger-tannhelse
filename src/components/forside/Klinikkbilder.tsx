@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { klinikk, klinikkbilder } from "@/data/klinikk";
 import { useHeroKlar } from "@/components/forside/useHeroKlar";
 import s from "./klinikkbilder.module.css";
@@ -38,7 +38,7 @@ export function Klinikkbilder() {
   }, [går]);
 
   return (
-    <motion.figure
+    <m.figure
       className={s.rute}
       data-klar={klar}
       style={{ transformOrigin: "50% 100%", transformPerspective: 1000 }}
@@ -69,7 +69,7 @@ export function Klinikkbilder() {
         </span>
         <span className="text-white/75">Fra klinikken i {klinikk.adresse.gate}</span>
       </figcaption>
-    </motion.figure>
+    </m.figure>
   );
 }
 

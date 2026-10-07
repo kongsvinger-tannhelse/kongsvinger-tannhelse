@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useId, useRef, type CSSProperties } from "react";
 import {
-  motion,
+  m,
   useInView,
   useMotionValue,
   useMotionValueEvent,
@@ -71,13 +71,13 @@ function Lys({ lampe, skumring, terskel, glod }: { lampe: Lampe; skumring: Motio
   const opacity = useTransform(skumring, [terskel, terskel + 0.06], [0, 1]);
   const r = lampe.langt ? 13 : 17;
   return (
-    <motion.g style={{ opacity }}>
+    <m.g style={{ opacity }}>
       {speilbiter(lampe).map((b) => (
         <rect key={b.y} x={b.x - b.b / 2} y={b.y} width={b.b} height={1.6} rx={0.8} fill="#FFD48A" opacity={b.o} />
       ))}
       <circle cx={lampe.x} cy={lampe.y} r={r} fill={`url(#${glod})`} />
       <circle cx={lampe.x} cy={lampe.y} r={lampe.langt ? 1.3 : 1.7} fill="#FFF6DE" />
-    </motion.g>
+    </m.g>
   );
 }
 
@@ -109,7 +109,7 @@ function Tegning({ utsnitt, skumring, overgang, className }: { utsnitt: Utsnitt;
   return (
     <div ref={ref} className={cn("relative overflow-hidden", vist && s.aktiv, vist && !iBilde && s.pause, className)} style={{ aspectRatio: `${u.b} / ${u.h}` }}>
       {/* the dusk sky, behind the scene, whose own sky is open */}
-      <motion.div
+      <m.div
         className="absolute inset-0"
         style={{
           opacity: skumring,
@@ -118,9 +118,9 @@ function Tegning({ utsnitt, skumring, overgang, className }: { utsnitt: Utsnitt;
         }}
       />
 
-      <motion.div className="absolute" style={plass(LAG.scene, u)} initial={{ opacity: 0, y: 16 }} animate={vist ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }} transition={myk(0)}>
+      <m.div className="absolute" style={plass(LAG.scene, u)} initial={{ opacity: 0, y: 16 }} animate={vist ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }} transition={myk(0)}>
         <Bilde navn="scene" lag={LAG.scene} />
-      </motion.div>
+      </m.div>
 
       {/* the light on the water, over the scene and under the near layers */}
       <svg viewBox={`${u.x} ${u.y} ${u.b} ${u.h}`} className="absolute inset-0 size-full">
@@ -133,27 +133,27 @@ function Tegning({ utsnitt, skumring, overgang, className }: { utsnitt: Utsnitt;
       </svg>
 
       {viser(LAG.bjork, u) && (
-        <motion.div className="absolute will-change-transform" style={{ ...plass(LAG.bjork, u), y: bjorkY }}>
-          <motion.div className="size-full" initial={{ opacity: 0, x: -26 }} animate={vist ? { opacity: 1, x: 0 } : { opacity: 0, x: -26 }} transition={myk(0.2)}>
+        <m.div className="absolute will-change-transform" style={{ ...plass(LAG.bjork, u), y: bjorkY }}>
+          <m.div className="size-full" initial={{ opacity: 0, x: -26 }} animate={vist ? { opacity: 1, x: 0 } : { opacity: 0, x: -26 }} transition={myk(0.2)}>
             <div className={cn("size-full", s.bjork)}>
               <Bilde navn="bjork" lag={LAG.bjork} />
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
 
       {viser(LAG.furu, u) && (
-        <motion.div className="absolute will-change-transform" style={{ ...plass(LAG.furu, u), ...toning(LAG.furu, u), y: furuY }}>
-          <motion.div className="size-full" initial={{ opacity: 0, y: -30 }} animate={vist ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }} transition={myk(0.35)}>
+        <m.div className="absolute will-change-transform" style={{ ...plass(LAG.furu, u), ...toning(LAG.furu, u), y: furuY }}>
+          <m.div className="size-full" initial={{ opacity: 0, y: -30 }} animate={vist ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }} transition={myk(0.35)}>
             <div className={cn("size-full", s.furu)}>
               <Bilde navn="furu" lag={LAG.furu} />
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
 
       {/* the landscape dims; the top stays clear so the page above runs into the sky */}
-      <motion.div
+      <m.div
         className="absolute inset-0"
         style={{
           opacity: skumring,

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, type CSSProperties, type ReactNode } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import s from "./popup.module.css";
 
 /**
@@ -108,7 +108,7 @@ export function Ark({
   children?: ReactNode;
 }) {
   return (
-    <motion.div
+    <m.div
       className="absolute inset-0"
       style={{ transformOrigin: "50% 100%" }}
       initial={{ rotateX: 88, opacity: 0 }}
@@ -128,7 +128,7 @@ export function Ark({
         </Flate>
       )}
       {over}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -161,14 +161,14 @@ export function Senk({
   children: ReactNode;
 }) {
   return (
-    <motion.g
+    <m.g
       initial={false}
       animate={{ y: nede ? 0 : fra }}
       transition={redusert ? { duration: 0 } : nede ? { type: "spring", ...fjaer } : { duration: 1.2, ease: [0.5, 0, 0.3, 1] }}
     >
       {snorer && (
         <UtenSkygge>
-          <motion.path
+          <m.path
             d={snorer.d}
             fill="none"
             stroke="#16303B"
@@ -180,7 +180,7 @@ export function Senk({
         </UtenSkygge>
       )}
       {children}
-    </motion.g>
+    </m.g>
   );
 }
 
