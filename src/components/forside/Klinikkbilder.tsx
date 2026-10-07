@@ -4,15 +4,13 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { klinikk, klinikkbilder } from "@/data/klinikk";
-import { Galleri } from "@/components/forside/Galleri";
 import { useHeroKlar } from "@/components/forside/useHeroKlar";
 import s from "./klinikkbilder.module.css";
 
 const VIS = 3700; // ms each room is shown
 
-/** The rooms that take turns in the pane, in this order. The gallery still shows them all. */
-const RUNDE = ["bilde8", "bilde5", "bilde9", "bilde6"].map((navn) => klinikkbilder.findIndex((b) => b.src.endsWith(`/${navn}.webp`)));
-const ruta = RUNDE.map((i) => klinikkbilder[i]);
+/** The rooms that take turns in the pane, in this order. */
+const ruta = ["bilde8", "bilde5", "bilde9", "bilde6"].map((navn) => klinikkbilder.find((b) => b.src.endsWith(`/${navn}.webp`))!);
 
 /**
  * «Speilet», square. The treatment room at Fjellgata 4 has a mirror with a
@@ -21,7 +19,7 @@ const ruta = RUNDE.map((i) => klinikkbilder[i]);
  * in a pop-up book and its light draws itself round. Then the clinic's rooms
  * come and go in the glass, each drifting slowly closer, while a brighter
  * line runs round the light like a clock hand, measuring out each room's
- * time. A hand over it holds the picture; a click opens the gallery.
+ * time. A hand over it holds the picture.
  *
  * (The round original and the other versions are on the git branch
  * mockups/klinikkbilder.)
@@ -31,8 +29,7 @@ export function Klinikkbilder() {
   const redusert = useReducedMotion() ?? false;
   const [nr, setNr] = useState(0);
   const [pause, setPause] = useState(false);
-  const [apen, setApen] = useState<number | null>(null);
-  const går = klar && !pause && apen === null;
+  const går = klar && !pause;
 
   useEffect(() => {
     if (!går) return;
@@ -41,41 +38,38 @@ export function Klinikkbilder() {
   }, [går]);
 
   return (
-    <>
-      <motion.figure
-        className={s.rute}
-        data-klar={klar}
-        style={{ transformOrigin: "50% 100%", transformPerspective: 1000 }}
-        initial={{ rotateX: 88, opacity: 0 }}
-        animate={klar ? { rotateX: 0, opacity: 1 } : { rotateX: 88, opacity: 0 }}
-        transition={redusert ? { duration: 0 } : { rotateX: { type: "spring", stiffness: 85, damping: 13 }, opacity: { duration: 0.25 } }}
-        onPointerEnter={(e) => e.pointerType === "mouse" && setPause(true)}
-        onPointerLeave={() => setPause(false)}
-      >
-        <div className={s.ramme}>
-          <button type="button" className={s.glass} onClick={() => setApen(RUNDE[nr])} aria-label={`Vis bildene fra klinikken. Nå: ${ruta[nr].tekst}`}>
-            {ruta.map((b, i) => (
-              <Image key={b.src} src={b.src} alt="" fill sizes="(min-width: 768px) 420px, 58vw" className={s.rom} data-vis={klar && i === nr} loading={i < 2 ? "eager" : "lazy"} />
-            ))}
-            <span className={s.innerskygge} aria-hidden="true" />
-          </button>
-
-          {/* the light round the pane, and a brighter line that measures out each room's time */}
-          <svg className={s.ring} viewBox="0 0 100 100" aria-hidden="true">
-            <path className={s.lys} d={LYS} pathLength={1} />
-            {går && <path key={nr} className={s.tid} d={LYS} pathLength={1} style={{ animationDuration: `${VIS}ms` }} />}
-          </svg>
+    <motion.figure
+      className={s.rute}
+      data-klar={klar}
+      style={{ transformOrigin: "50% 100%", transformPerspective: 1000 }}
+      initial={{ rotateX: 88, opacity: 0 }}
+      animate={klar ? { rotateX: 0, opacity: 1 } : { rotateX: 88, opacity: 0 }}
+      transition={redusert ? { duration: 0 } : { rotateX: { type: "spring", stiffness: 85, damping: 13 }, opacity: { duration: 0.25 } }}
+      onPointerEnter={(e) => e.pointerType === "mouse" && setPause(true)}
+      onPointerLeave={() => setPause(false)}
+    >
+      <div className={s.ramme}>
+        <div className={s.glass}>
+          {ruta.map((b, i) => (
+            <Image key={b.src} src={b.src} alt="" fill sizes="(min-width: 768px) 420px, 58vw" className={s.rom} data-vis={klar && i === nr} loading={i < 2 ? "eager" : "lazy"} />
+          ))}
+          <span className={s.innerskygge} aria-hidden="true" />
         </div>
 
-        <figcaption className={s.tekst}>
-          <span key={nr} className={s.bytt}>
-            {ruta[nr].tekst}
-          </span>
-          <span className="text-white/75">Fra klinikken i {klinikk.adresse.gate}</span>
-        </figcaption>
-      </motion.figure>
-      <Galleri indeks={apen} onLukk={() => setApen(null)} onBytt={setApen} />
-    </>
+        {/* the light round the pane, and a brighter line that measures out each room's time */}
+        <svg className={s.ring} viewBox="0 0 100 100" aria-hidden="true">
+          <path className={s.lys} d={LYS} pathLength={1} />
+          {går && <path key={nr} className={s.tid} d={LYS} pathLength={1} style={{ animationDuration: `${VIS}ms` }} />}
+        </svg>
+      </div>
+
+      <figcaption className={s.tekst}>
+        <span key={nr} className={s.bytt}>
+          {ruta[nr].tekst}
+        </span>
+        <span className="text-white/75">Fra klinikken i {klinikk.adresse.gate}</span>
+      </figcaption>
+    </motion.figure>
   );
 }
 
