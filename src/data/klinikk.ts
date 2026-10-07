@@ -20,46 +20,54 @@ export const ansatte = [
 
 export type Behandling = { navn: string; tekst: string };
 
-/* The old site's three groups. Typos from the old copy are corrected. */
-export const behandlinger: Record<"ordinaer" | "akutt" | "estetisk", { tittel: string; liste: Behandling[] }> = {
+/* The old site's three groups and treatments. The text is rewritten in plain
+   words, with the words people search for (tannlege, tannpine, hvite tenner),
+   but says nothing the old site didn't: no prices, no promises. */
+export const behandlinger: Record<"ordinaer" | "akutt" | "estetisk", { tittel: string; ingress: string; liste: Behandling[] }> = {
   ordinaer: {
     tittel: "Ordinære behandlinger",
+    ingress:
+      "Det meste vi gjør er vanlig tannbehandling: tannsjekk, tannrens og fyllinger, og hjelp med plager som ising, munntørrhet og tanngnissing. Går du jevnlig til tannlegen, holder tennene seg friske lenger.",
     liste: [
-      { navn: "Tannsjekk", tekst: "En tannsjekk lar tannlegen se om du har noen tannproblemer, og hjelper deg å holde munnen frisk. Det er best å håndtere problemer tidlig, eller forhindre dem helt." },
-      { navn: "Tannfylling", tekst: "En fylling behandler et lite hull i en tann. Tannlegen fjerner det ødelagte tannvevet og fyller rommet med fyllmateriale. Fyllmateriale kan også brukes estetisk, for eksempel for å endre tannform eller lukke mellomrom." },
-      { navn: "Tannbleking", tekst: "Tannlegen tar avtrykk og lager en blekeskinne du bruker hjemme med blekegel, ikke mer enn ti dager av gangen. Bør brukes sammen med fluorbehandling." },
-      { navn: "Tannrens", tekst: "En tannrens fjerner plakk og tannstein som bygger seg opp over tid. Fjernes de ikke jevnlig, kan bakteriene gi hull og tannkjøttsykdom." },
-      { navn: "Tannkjøttbehandling", tekst: "Gingivitt er det tidligste stadiet av tannkjøttsykdom: rødt, hovent eller blødende tannkjøtt. Behandlingen er jevnlig rens og bedre munnhygiene hjemme." },
-      { navn: "Tannstein", tekst: "Tannstein er forkalket plakk. Bare tannlege eller tannpleier kan fjerne den; børsting og tanntråd alene holder ikke." },
-      { navn: "Rotfylling", tekst: "Betent, infisert eller død nerve fjernes, nerverommet renses og desinfiseres, og tannen fylles og forsegles. Behandlingen kan som oftest gjøres smertefritt og fjerner ofte smerten med en gang." },
-      { navn: "Munntørrhet", tekst: "Redusert spyttstrøm kan gi ubehag, dårlig ånde og mer hull. Vanlig hos eldre, ved medisinbruk og hos kreftpasienter." },
-      { navn: "Tanngnissing", tekst: "Ufrivillig sammenbiting, oftest i søvne. Behandles med bittskinne om natten, reparasjon av skader og stressbehandling." },
-      { navn: "Ising i tenner", tekst: "Følsomme tenner skyldes oftest slitt emalje eller blottlagte tannrøtter, men kan også komme av hull, sprekk, slitt fylling eller tannkjøttsykdom." },
-      { navn: "Trekking av tenner", tekst: "Tenner som ikke kan reddes på grunn av råte, tannkjøttsykdom eller skade, særlig når de gir tannpine." },
-      { navn: "Dårlig ånde", tekst: "Svært vanlig, og som regel noe du kan gjøre noe med selv: hold tenner, tunge og munn rene." },
-      { navn: "Visdomstenner", tekst: "Visdomstenner som sitter fast og gir tilbakevendende betennelse kan fjernes når annen behandling ikke har hjulpet." },
+      { navn: "Tannsjekk", tekst: "En tannsjekk hos tannlegen er den enkleste måten å holde munnen frisk på. Vi ser etter hull, tannkjøttsykdom og slitasje, og finner problemer tidlig, mens de er små og enkle å behandle." },
+      { navn: "Tannfylling", tekst: "Har du fått hull i tannen, fjerner tannlegen det ødelagte tannvevet og fyller rommet med en tannfarget fylling. Fyllingsmateriale kan også endre formen på en tann eller lukke et lite mellomrom." },
+      { navn: "Tannbleking", tekst: "Vil du ha hvitere tenner? Vi tar avtrykk og lager en blekeskinne som passer dine tenner. Skinnen bruker du hjemme med blekegel, ikke mer enn ti dager av gangen, og gjerne sammen med fluorbehandling." },
+      { navn: "Tannrens", tekst: "En tannrens fjerner plakk og tannstein som har bygget seg opp over tid. Blir de ikke fjernet jevnlig, kan bakteriene gi hull i tennene og tannkjøttsykdom." },
+      { navn: "Tannkjøttbehandling", tekst: "Rødt, hovent eller blødende tannkjøtt er ofte gingivitt, det tidligste stadiet av tannkjøttsykdom. Behandlingen er jevnlig tannrens hos oss og god munnhygiene hjemme." },
+      { navn: "Tannstein", tekst: "Tannstein er plakk som har hardnet på tennene. Den sitter så godt fast at tannbørste og tanntråd ikke får den bort. Bare tannlege eller tannpleier kan fjerne den." },
+      { navn: "Rotfylling", tekst: "Er nerven i tannen betent, infisert eller død, kan en rotfylling redde tannen. Nerven fjernes, rotkanalene renses og desinfiseres, og tannen fylles og forsegles. Det gjøres som oftest smertefritt, og tannpinen går ofte over med en gang." },
+      { navn: "Munntørrhet", tekst: "Munntørrhet betyr at du lager for lite spytt. Det kan gi ubehag, dårlig ånde og flere hull i tennene. Det er vanlig hos eldre, ved bruk av en del medisiner og hos kreftpasienter." },
+      { navn: "Tanngnissing", tekst: "Tanngnissing er at du biter hardt sammen eller gnisser tennene uten å merke det, oftest mens du sover. Behandlingen er bittskinne om natten, reparasjon av skader på tennene og stressbehandling." },
+      { navn: "Ising i tenner", tekst: "Isner det i tennene når du drikker noe kaldt? Følsomme tenner skyldes oftest slitt emalje eller blottlagte tannrøtter, men kan også komme av hull, en sprekk, en slitt fylling eller tannkjøttsykdom." },
+      { navn: "Trekking av tenner", tekst: "Noen tenner kan ikke reddes, på grunn av råte, tannkjøttsykdom eller skade. Da trekker tannlegen tannen, særlig når den gir tannpine. Etterpå kan tannen erstattes, for eksempel med et implantat eller en bro." },
+      { navn: "Dårlig ånde", tekst: "Dårlig ånde er svært vanlig, og som regel kan du gjøre mye med det selv: hold tenner, tunge og munn rene. Går det ikke over, kan tannlegen se etter årsaken." },
+      { navn: "Visdomstenner", tekst: "En visdomstann som sitter fast og gir betennelse igjen og igjen, kan trekkes når annen behandling ikke har hjulpet. Tannlegen vurderer om tannen bør fjernes." },
     ],
   },
   akutt: {
     tittel: "Akutt tannbehandling",
+    ingress:
+      "Har du fått tannpine, slått en tann eller mistet en fylling? Ring oss så tidlig på dagen som mulig, så finner vi ut hva som haster. Vi har åpent mandag til fredag 08:30–15:30.",
     liste: [
-      { navn: "Tannsmerte", tekst: "Har du vedvarende smerter, er det på tide å oppsøke tannlege. Årsaken kan være råte, en sprukket tann eller en infeksjon." },
-      { navn: "Tannskade", tekst: "Løs, innslått, mistet eller knekt tann. Kontakt oss så snart som mulig." },
-      { navn: "Tannverk", tekst: "Mindre tannverk kan komme av irritert tannkjøtt. Mer alvorlig verk skyldes hull, infeksjon eller sykdom som ikke går over av seg selv." },
-      { navn: "Mistet fylling", tekst: "Kontakt tannlegen så snart som mulig. Hold området rent og unngå å tygge på det til du kommer inn." },
-      { navn: "Hevelse", tekst: "Hevelse rundt en tann eller i ansiktet: ta kontakt så fort det lar seg gjøre. Noen ganger trengs antibiotika." },
-      { navn: "Løsnet tannkrone", tekst: "Tanngnissing, råte, slag eller klissete mat kan løsne en krone, og sementen kan svekkes over tid." },
+      { navn: "Tannsmerte", tekst: "Har du vedvarende smerter i en tann, er det på tide å gå til tannlegen. Årsaken kan være råte, en sprukket tann eller en infeksjon." },
+      { navn: "Tannskade", tekst: "Er en tann løs, slått inn, slått ut eller knekt? Kontakt tannlegen så snart som mulig, og ta med tannen eller biten hvis du finner den." },
+      { navn: "Tannverk", tekst: "Lett tannverk kan komme av irritert tannkjøtt. Sterkere tannverk skyldes ofte hull, infeksjon eller sykdom, og går ikke over av seg selv. Da trenger du tannlege." },
+      { navn: "Mistet fylling", tekst: "Har du mistet en fylling, kontakt tannlegen så snart som mulig. Hold området rent og unngå å tygge på den siden til du kommer inn." },
+      { navn: "Hevelse", tekst: "Hevelse rundt en tann eller i ansiktet kan komme av en infeksjon. Ta kontakt så fort det lar seg gjøre; noen ganger trengs antibiotika. Har du feber, eller blir det tungt å svelge eller puste, ring legevakten på 116 117." },
+      { navn: "Løsnet tannkrone", tekst: "En tannkrone kan løsne av tanngnissing, råte, et slag eller klissete mat, og sementen kan svekkes over tid. Ta vare på kronen og ta den med til tannlegen." },
     ],
   },
   estetisk: {
     tittel: "Estetisk tannbehandling",
+    ingress:
+      "Estetisk tannbehandling gir deg et finere smil og tenner som virker som de skal: tannkroner, tannbroer, skallfasetter, tannimplantat og proteser. Vi forklarer valgene, så du kan bestemme hva som passer for deg.",
     liste: [
-      { navn: "Tannkrone", tekst: "En tannformet hette som gjenoppretter en svekket tann og kan forlenge levetiden til den." },
-      { navn: "Tannbro", tekst: "Erstatter én eller flere manglende tenner med kroner på nabotennene, og sitter fast permanent." },
-      { navn: "Skallfasetter", tekst: "Tynne skall av keramikk eller kompositt som festes på tannen for en hvitere overflate." },
-      { navn: "Tannimplantat", tekst: "En skrue i kjevebenet som vokser fast og bærer en krone. Et fast alternativ til protese og bro, når kjevebenet er godt nok." },
-      { navn: "Delprotese", tekst: "En avtakbar protese som festes på de gjenværende tennene og erstatter dem som mangler." },
-      { navn: "Helprotese", tekst: "Et avtakbart tannsett når alle tennene i en kjeve er borte, tilpasset så det sitter med vakuumsug." },
+      { navn: "Tannkrone", tekst: "En tannkrone er en hette formet som en tann, som settes over en svekket tann. Den gir tannen styrke og form igjen, og kan forlenge levetiden til tannen." },
+      { navn: "Tannbro", tekst: "En tannbro erstatter én eller flere tenner som mangler. Den festes til kroner på nabotennene og sitter fast hele tiden, så du slipper å ta den ut." },
+      { navn: "Skallfasetter", tekst: "Skallfasetter er tynne skall av keramikk eller kompositt som festes på forsiden av tennene, for en hvitere og jevnere overflate." },
+      { navn: "Tannimplantat", tekst: "Et tannimplantat er en liten skrue i kjevebenet som vokser fast og bærer en ny tann. Det er et fast alternativ til protese og bro, når kjevebenet er godt nok." },
+      { navn: "Delprotese", tekst: "En delprotese er en avtakbar protese som festes til tennene du har igjen, og erstatter de tennene som mangler." },
+      { navn: "Helprotese", tekst: "En helprotese er et avtakbart tannsett når alle tennene i en kjeve er borte. Den tilpasses munnen din, så den sitter fast med vakuumsug." },
     ],
   },
 };
