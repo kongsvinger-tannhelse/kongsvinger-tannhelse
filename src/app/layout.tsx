@@ -43,6 +43,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Dentist",
+              "@id": `${klinikk.url}/#klinikk`,
               name: klinikk.navn,
               url: klinikk.url,
               telephone: "+4762815009",
