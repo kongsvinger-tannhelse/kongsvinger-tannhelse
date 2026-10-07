@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, animate, motion, useInView, useMotionValue, useReducedMotion, useTransform, type MotionValue } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -13,13 +13,14 @@ import s from "./behandlinger.module.css";
 
 /**
  * «Dreiescenen». A revolving stage under a spotlight: the three groups of
- * treatments stand on the three sides of one turning column, on a
- * turntable, each side showing a paper pop-up of the chosen treatment.
+ * treatments stand on the three sides of one turning column, on a square
+ * stage floor, each side showing a paper pop-up of the chosen treatment.
  * Choosing a group folds the front scene flat, the column turns a third
  * of the way round, and the next scene stands up in the light. Choosing a
  * treatment in the same group folds the scene and stands up the new one
- * in its place. The sides turning away fall into shadow, and the ring of
- * the turntable turns with them.
+ * in its place. The sides turning away fall into shadow, and the marks
+ * along the front of the floor slide by as it turns. The floor lies behind
+ * the column, so it never covers any of the drawing.
  *
  * On the front page each side carries one treatment (one from each group)
  * and a button leads on to /behandlinger, where the same stage carries all
@@ -93,7 +94,6 @@ export function Behandlinger({ alle = false }: { alle?: boolean }) {
     velg(a.g, a.i);
   };
 
-  const ring = useTransform(vinkel, (v) => `rotate(${v}deg)`);
   const gruppe = grupper[valg.g];
   const Tittel = alle ? "h1" : "h2";
   const b = gruppe.liste[valg.i[valg.g]];
@@ -125,7 +125,7 @@ export function Behandlinger({ alle = false }: { alle?: boolean }) {
           <div className="relative grid gap-9 px-4 pb-10 pt-10 sm:px-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:items-center md:gap-8 md:px-12 md:py-12">
             {/* the stage */}
             <div aria-hidden="true" className={cn(s.scene, "relative flex min-w-0 flex-col items-center")}>
-              <div className="relative" style={{ perspective: 1500, width: "var(--b)", aspectRatio: "400 / 480" }}>
+              <div className="relative z-10" style={{ perspective: 1500, width: "var(--b)", aspectRatio: "400 / 480" }}>
                 <motion.div className="absolute inset-0" style={{ rotateY: vinkel, transformStyle: "preserve-3d" }}>
                   {grupper.map((g, gi) => {
                     const t = g.liste[scene.i[gi]];
@@ -143,20 +143,8 @@ export function Behandlinger({ alle = false }: { alle?: boolean }) {
                   })}
                 </motion.div>
               </div>
-              {/* the turntable */}
-              <div className="relative -mt-[6%] aspect-[1.5/0.34] w-[min(calc(var(--b)*1.5),100%)]">
-                <div className="absolute inset-0 rounded-[50%] bg-[#0E1F26]/70 blur-[2px]" />
-                <div className="absolute inset-[6%] overflow-hidden rounded-[50%]" style={{ background: "linear-gradient(to bottom, #2B4A57, #1A323C)" }}>
-                  <div className="absolute left-1/2 top-1/2 aspect-square w-full" style={{ transform: "translate(-50%, -50%) scaleY(0.24)" }}>
-                    <motion.svg viewBox="-100 -100 200 200" className="h-full w-full" style={{ transform: ring }}>
-                      {Array.from({ length: 36 }, (_, k) => (
-                        <line key={k} x1={0} y1={-96} x2={0} y2={k % 3 ? -90 : -84} stroke={FARGE.bjork} strokeWidth={k % 3 ? 0.8 : 1.6} transform={`rotate(${k * 10})`} opacity={0.7} />
-                      ))}
-                      <circle r={78} fill="none" stroke={FARGE.bjork} strokeWidth={0.6} opacity={0.4} />
-                    </motion.svg>
-                  </div>
-                </div>
-              </div>
+              {/* the stage floor it turns on */}
+              <Gulv vinkel={vinkel} />
             </div>
 
             {/* what stands in the light */}
@@ -274,6 +262,44 @@ function Side({ gi, vinkel, children }: { gi: number; vinkel: MotionValue<number
     >
       <Kasse>{children}</Kasse>
       <motion.div className="pointer-events-none absolute inset-0 bg-[#0B1A20]" style={{ opacity: skygge }} />
+    </div>
+  );
+}
+
+/**
+ * The square stage floor, seen a little from above: the top in the
+ * spotlight with its boards running away from you, and along the front edge
+ * a row of marks that slide by while the column turns.
+ */
+function Gulv({ vinkel }: { vinkel: MotionValue<number> }) {
+  const forskyv = useTransform(vinkel, (v) => (((v * 0.12) % 10) + 10) % 10 - 10);
+  const id = useId().replace(/:/g, "");
+  return (
+    <div className="relative -mt-[calc(var(--b)*0.08)] w-[min(calc(var(--b)*1.4),100%)]">
+      <div className="absolute inset-x-[4%] -bottom-[8%] h-[40%] rounded-[50%] bg-[#081419]/60 blur-[10px]" />
+      <svg viewBox="0 0 140 26" preserveAspectRatio="none" className="relative block aspect-[140/26] w-full">
+        <defs>
+          <linearGradient id={`topp-${id}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#2A4A58" />
+            <stop offset="1" stopColor="#30535F" />
+          </linearGradient>
+          <clipPath id={`front-${id}`}>
+            <rect x={0} y={16} width={140} height={7} />
+          </clipPath>
+        </defs>
+        <path d="M12,0 L128,0 L140,16 L0,16 Z" fill={`url(#topp-${id})`} />
+        <ellipse cx={70} cy={7} rx={46} ry={6} fill="#FFF1C9" opacity={0.12} />
+        <path d={Array.from({ length: 9 }, (_, k) => `M${12 + k * 14.5},0 L${k * 17.5},16`).join(" ")} stroke="#1C3540" strokeWidth={0.4} />
+        <rect x={0} y={16} width={140} height={7} fill="#132A33" />
+        <g clipPath={`url(#front-${id})`}>
+          <motion.g style={{ x: forskyv }}>
+            {Array.from({ length: 17 }, (_, k) => (
+              <line key={k} x1={k * 10} y1={17.5} x2={k * 10} y2={k % 2 ? 19.5 : 21} stroke={FARGE.bjork} strokeWidth={0.5} opacity={0.7} />
+            ))}
+          </motion.g>
+        </g>
+        <path d="M0,16 L140,16" stroke={FARGE.bjork} strokeWidth={0.5} opacity={0.45} />
+      </svg>
     </div>
   );
 }
