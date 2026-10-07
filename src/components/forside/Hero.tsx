@@ -18,8 +18,8 @@ import s from "./hero.module.css";
  */
 export function Hero() {
   return (
-    <section aria-label="Velkommen" className={`${s.glid} relative h-[100svh] min-h-[640px] overflow-hidden`}>
-      <Utsikt zoom={1.22} fx={0.62} fy={0.46} fxSmal={0.7} />
+    <section aria-label="Velkommen" className={`${s.hero} relative h-[100svh] min-h-[640px] overflow-hidden`}>
+      <Utsikt glid zoom={1.22} fx={0.62} fy={0.46} fxSmal={0.7} />
 
       {/* The wrapper spans the hero; only what is in it takes the pointer. */}
       <div className="pointer-events-none absolute inset-x-0 top-[84px] md:top-[clamp(96px,13vh,132px)]">
