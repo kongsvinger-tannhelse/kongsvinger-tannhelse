@@ -11,7 +11,10 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   images: {
     // next/image qualities used across the site (Next 16 requires them listed).
-    qualities: [75, 90],
+    qualities: [75],
+    // The defaults plus 2560 and 3200: the hero's panorama is about 1600 CSS px
+    // wide on a phone, so phones needed ~2800 px and got 3840.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560, 3200, 3840],
   },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];

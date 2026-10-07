@@ -17,9 +17,10 @@ import s from "./omoss.module.css";
  *
  * The landscape is drawn by tools/tegn_landskap.py from a photograph used as
  * a reference, and saved as two pictures: a wide one whose hill and town
- * carry on to both sides, and a narrow one for phones. Both are in the
- * photo's own coordinates (800 × 600), so the flag is drawn here, in the
- * same coordinates, over the picture.
+ * carry on to both sides, and a narrow one for phones. A <picture> picks one,
+ * so a screen only downloads its own. Both are in the photo's own
+ * coordinates (800 × 600), so the flag is drawn here, in the same
+ * coordinates, over the picture.
  */
 
 const BILDER = {
@@ -46,13 +47,31 @@ function Flagg() {
   );
 }
 
-/** One of the two pictures, with the flag over it. */
-function Landskap({ bilde, className }: { bilde: (typeof BILDER)[keyof typeof BILDER]; className: string }) {
+/** The flag over one of the two crops, in that crop's box. */
+function Flaggstang({ bilde, className }: { bilde: (typeof BILDER)[keyof typeof BILDER]; className: string }) {
   return (
-    <svg viewBox={`${bilde.x} ${bilde.y} ${bilde.b} ${bilde.h}`} className={className} aria-hidden="true">
-      <image href={bilde.src} x={bilde.x} y={bilde.y} width={bilde.b} height={bilde.h} />
+    <svg viewBox={`${bilde.x} ${bilde.y} ${bilde.b} ${bilde.h}`} className={className}>
       <Flagg />
     </svg>
+  );
+}
+
+/**
+ * The landscape: the narrow crop on phones, the wide one from md up. The box
+ * takes each crop's own shape, so the flag's drawing sits exactly on the
+ * picture. (A <picture>, not next/image: next/image can't switch crops.)
+ */
+function Landskap() {
+  const { bred, smal } = BILDER;
+  return (
+    <div aria-hidden="true" className="relative aspect-[540/482] w-full md:aspect-[1600/482]">
+      <picture>
+        <source media="(min-width: 768px)" srcSet={bred.src} />
+        <img src={smal.src} alt="" loading="lazy" decoding="async" className="absolute inset-0 size-full" />
+      </picture>
+      <Flaggstang bilde={smal} className="absolute inset-0 size-full md:hidden" />
+      <Flaggstang bilde={bred} className="absolute inset-0 hidden size-full md:block" />
+    </div>
   );
 }
 
@@ -86,8 +105,7 @@ export function OmOss() {
 
       {/* the town and the fortress, along the foot of the section */}
       <div className="relative mx-auto mt-6 w-full max-w-[1800px] md:-mt-2">
-        <Landskap bilde={BILDER.smal} className="block h-auto w-full md:hidden" />
-        <Landskap bilde={BILDER.bred} className="hidden h-auto w-full md:block" />
+        <Landskap />
       </div>
     </section>
   );
