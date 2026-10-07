@@ -1,5 +1,5 @@
-"""Draws the bridge over Glomma for the foot of the front page, under
-«Kontakt»: the old steel truss bridge on its two stone piers, the long span
+"""Draws the bridge over Glomma for the top of the footer, at the foot of
+every page: the old steel truss bridge on its two stone piers, the long span
 with its sagging top chord, the cantilever arm dropping to the deck and the
 bowstring arch beyond; the far bank's forest and fields under the blue hills,
 the river with its reflections, the green bank and the sandbar on the right,
@@ -12,7 +12,7 @@ for wide screens and phones.
 
 Writes three SVG layers to public/images/tegninger/brua/, each with its own
 box (LAG) in the same coordinates, so the page can stack them and move the
-near ones a little (src/components/forside/brua/lag.ts holds the same boxes):
+near ones a little (src/components/bunntekst/lag.ts holds the same boxes):
   scene.svg   everything behind the foreground: hills, forest, river, banks, bridge
   bjork.svg   the birch on the left
   furu.svg    the pine branches hanging from the top
