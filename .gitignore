@@ -34,3 +34,6 @@ src/components/forside/utsikt/debug-*.jpg
 
 # Playwright MCP screenshots and logs
 .playwright-mcp/
+
+# generated drawing sources (tools/tegn_landskap.py)
+/tools/tegninger/

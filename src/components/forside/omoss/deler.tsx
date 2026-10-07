@@ -6,47 +6,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import type { Person } from "./ansatte";
 
-/* The pieces the «Om oss» drawing is built from: boxes in drawing units, the
-   way HTML is laid over the drawing, the portraits and their names. */
-
-/** A box in drawing units. */
-export type Boks = { x: number; y: number; b: number; h: number };
-/** A drawing's size in its own units. */
-export type Tegning = { b: number; h: number };
-
-/**
- * Places an HTML piece over the drawings: by the narrow drawing on phones,
- * by the wide one from md up. Both drawings fill the same box, so a
- * percentage of the box is a point in the drawing.
- */
-export function plass(smal: Boks, smalT: Tegning, bred: Boks, bredT: Tegning): CSSProperties {
-  const p = (n: number, av: number) => `${((n / av) * 100).toFixed(3)}%`;
-  return {
-    ["--ls" as string]: p(smal.x, smalT.b),
-    ["--ts" as string]: p(smal.y, smalT.h),
-    ["--ws" as string]: p(smal.b, smalT.b),
-    ["--hs" as string]: p(smal.h, smalT.h),
-    ["--l" as string]: p(bred.x, bredT.b),
-    ["--t" as string]: p(bred.y, bredT.h),
-    ["--w" as string]: p(bred.b, bredT.b),
-    ["--h" as string]: p(bred.h, bredT.h),
-  } as CSSProperties;
-}
-
-export const PLASS =
-  "absolute left-[var(--ls)] top-[var(--ts)] w-[var(--ws)] h-[var(--hs)] md:left-[var(--l)] md:top-[var(--t)] md:w-[var(--w)] md:h-[var(--h)]";
-
-/** The drawing's box: as tall as the narrow drawing on phones, the wide one from md up. */
-export function Lerret({ smal, bred, children }: { smal: Tegning; bred: Tegning; children: ReactNode }) {
-  return (
-    <div
-      className="relative mx-auto aspect-[var(--as)] w-full max-w-[1800px] md:aspect-[var(--ab)]"
-      style={{ ["--as" as string]: `${smal.b} / ${smal.h}`, ["--ab" as string]: `${bred.b} / ${bred.h}` } as CSSProperties}
-    >
-      {children}
-    </div>
-  );
-}
+/* The pieces of the «Om oss» section: the portraits and their names. */
 
 /** The photo, cropped to the face and zoomed so the three heads match. */
 function Foto({ person, sizes }: { person: Person; sizes: string }) {
