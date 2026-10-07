@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils";
 
 const LENKER = [
   { href: "/behandlinger", tekst: "Behandlinger" },
-  { href: "/om-oss", tekst: "Om oss" },
-  { href: "/kontakt", tekst: "Kontakt" },
+  { href: "/#om-oss", tekst: "Om oss" },
+  { href: "/#kontakt", tekst: "Kontakt" },
 ];
 
 /**
@@ -64,7 +64,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/kontakt"
+            href="/#kontakt"
             className="hidden rounded-full bg-[var(--color-glomma)] px-5 py-2.5 text-[13px] font-semibold text-[var(--color-papir)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)] sm:inline-flex"
           >
             Bestill time
@@ -98,7 +98,7 @@ export function Navbar() {
             ))}
           </ul>
           <div className="mt-6 flex gap-2">
-            <Link href="/kontakt" className="rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[14px] font-semibold text-[var(--color-papir)]">
+            <Link href="/#kontakt" className="rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[14px] font-semibold text-[var(--color-papir)]">
               Bestill time
             </Link>
             <a href={klinikk.telefon.lenke} className="rounded-full border border-[var(--color-strek)] px-5 py-3 text-[14px] font-medium">

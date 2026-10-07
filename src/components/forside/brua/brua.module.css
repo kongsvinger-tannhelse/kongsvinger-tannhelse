@@ -1,0 +1,45 @@
+/* The bridge drawing's quiet motion. Nothing moves until the drawing has come
+   into view (.aktiv), and it all holds still while it is out of sight (.pause). */
+
+/* light catching the water: a dash that widens, glints and fades */
+.glimt {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.aktiv .glimt { animation: glimt 5s ease-in-out infinite both; }
+@keyframes glimt {
+  0%, 100% { opacity: 0; transform: scaleX(0.3); }
+  50% { opacity: 0.95; transform: scaleX(1); }
+}
+
+/* faint bands drifting across the bridge's reflection */
+.bolge { opacity: 0; }
+.aktiv .bolge { animation: bolge 11s ease-in-out infinite alternate both; }
+@keyframes bolge {
+  0% { opacity: 0; transform: translateX(-12px); }
+  50% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateX(12px); }
+}
+
+/* the birch leans a little in the wind, from its foot */
+.bjork { transform-origin: 30% 100%; }
+.aktiv .bjork { animation: bjork 7.5s ease-in-out infinite alternate; }
+@keyframes bjork {
+  from { transform: skewX(0.45deg); }
+  to { transform: skewX(-0.55deg); }
+}
+
+/* the pine branches sway from above the frame */
+.furu { transform-origin: 50% 0%; }
+.aktiv .furu { animation: furu 9s ease-in-out infinite alternate; }
+@keyframes furu {
+  from { transform: rotate(-0.22deg); }
+  to { transform: rotate(0.28deg); }
+}
+
+.pause * { animation-play-state: paused !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aktiv .glimt, .aktiv .bolge, .aktiv .bjork, .aktiv .furu { animation: none; }
+}
