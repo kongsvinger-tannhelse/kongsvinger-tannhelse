@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { ReactNode } from "react";
 import { Flate, UtenSkygge, css, loop } from "./Popup";
 import { FARGE as F, FORTANN, JEKSEL, STUBB, TONE, kurve, lauv, rng, stjerne, type Gruppe, type Pt } from "./tegning";
@@ -15,7 +15,7 @@ type Tann = { x: number; y: number; s: number; farge?: string; children?: ReactN
 export function Jeksel({ x, y, s, rot = true, farge = F.hvit, children }: Tann & { rot?: boolean }) {
   return (
     <g transform={`translate(${x} ${y}) scale(${s})`}>
-      <motion.path d={rot ? JEKSEL.tann : JEKSEL.krone} initial={false} animate={{ fill: farge }} transition={{ duration: 1.6 }} />
+      <m.path d={rot ? JEKSEL.tann : JEKSEL.krone} initial={false} animate={{ fill: farge }} transition={{ duration: 1.6 }} />
       <path d={rot ? JEKSEL.skygge : JEKSEL.kroneSkygge} fill={F.skyggeside} opacity={0.85} />
       <UtenSkygge>
         <path d={JEKSEL.fure} fill="none" stroke={F.fure} strokeWidth={3} strokeLinecap="round" />
@@ -29,7 +29,7 @@ export function Jeksel({ x, y, s, rot = true, farge = F.hvit, children }: Tann &
 export function Fortann({ x, y, s, rot = false, farge = F.hvit, children }: Tann & { rot?: boolean }) {
   return (
     <g transform={`translate(${x} ${y}) scale(${s})`}>
-      <motion.path d={rot ? FORTANN.tann : FORTANN.krone} initial={false} animate={{ fill: farge }} transition={{ duration: 1.6 }} />
+      <m.path d={rot ? FORTANN.tann : FORTANN.krone} initial={false} animate={{ fill: farge }} transition={{ duration: 1.6 }} />
       <path d={rot ? FORTANN.skygge : FORTANN.kroneSkygge} fill={F.skyggeside} opacity={0.85} />
       <UtenSkygge>
         <path d={FORTANN.glans} fill="none" stroke={F.hvit} strokeWidth={3} strokeLinecap="round" opacity={0.9} />
@@ -81,9 +81,9 @@ export function tannkjottLinje(xs: readonly number[], y: number, papille = 20, b
 export function Tannkjott({ linje, bunn = 490, farge = F.tannkjott, strek = F.tannkjottMork, tid = 1.6 }: { linje: readonly Pt[]; bunn?: number; farge?: string; strek?: string; tid?: number }) {
   return (
     <>
-      <motion.path d={`${kurve(linje)} L420,${bunn} L-20,${bunn} Z`} initial={false} animate={{ fill: farge }} transition={{ duration: tid }} />
+      <m.path d={`${kurve(linje)} L420,${bunn} L-20,${bunn} Z`} initial={false} animate={{ fill: farge }} transition={{ duration: tid }} />
       <UtenSkygge>
-        <motion.path
+        <m.path
           d={kurve(linje.map(([x, y]) => [x, y + 14] as Pt))}
           fill="none"
           strokeWidth={2}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TRE } from "../grupper";
@@ -96,7 +96,7 @@ function Brett({ n, redusert, "aria-hidden": skjult, children }: { n: number; re
 
   return (
     <div ref={ref} aria-hidden={skjult || undefined} className="relative">
-      <motion.div
+      <m.div
         className={cn(s.brett, n === 0 ? s.forste : n % 2 ? s.inn : s.ut, n === SISTE && s.siste)}
         style={{ transformOrigin: "50% 0%", transformPerspective: 1000 }}
         initial={{ rotateX: -88, opacity: 0 }}
@@ -104,7 +104,7 @@ function Brett({ n, redusert, "aria-hidden": skjult, children }: { n: number; re
         transition={redusert ? { duration: 0 } : { rotateX: { type: "spring", stiffness: 70, damping: 12 }, opacity: { duration: 0.18 } }}
       >
         {children(apen)}
-      </motion.div>
+      </m.div>
     </div>
   );
 }

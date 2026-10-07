@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import { AnimatePresence, animate, motion, useInView, useMotionValue, useReducedMotion, useTransform, type MotionValue } from "framer-motion";
+import { AnimatePresence, animate, m, useInView, useMotionValue, useReducedMotion, useTransform, type MotionValue } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ALLE, GRUPPER, UTVALGTE, UTVALGTE_REKKE } from "./grupper";
@@ -128,7 +128,7 @@ export function Behandlinger({ alle = false }: { alle?: boolean }) {
             {/* the stage */}
             <div aria-hidden="true" className={cn(s.scene, "relative flex min-w-0 flex-col items-center")}>
               <div className="relative z-10" style={{ perspective: 1500, width: "var(--b)", aspectRatio: "400 / 480" }}>
-                <motion.div className="absolute inset-0" style={{ rotateY: vinkel, transformStyle: "preserve-3d" }}>
+                <m.div className="absolute inset-0" style={{ rotateY: vinkel, transformStyle: "preserve-3d" }}>
                   {grupper.map((g, gi) => {
                     const t = g.liste[scene.i[gi]];
                     return (
@@ -143,7 +143,7 @@ export function Behandlinger({ alle = false }: { alle?: boolean }) {
                       </Side>
                     );
                   })}
-                </motion.div>
+                </m.div>
               </div>
               {/* the stage floor it turns on */}
               <Gulv vinkel={vinkel} />
@@ -197,13 +197,13 @@ export function Behandlinger({ alle = false }: { alle?: boolean }) {
 
               <div aria-live="polite" className="mt-8 w-full md:order-2 md:mt-8 md:min-h-[12.5em]">
                 <AnimatePresence mode="wait" initial={false}>
-                  <motion.div key={b.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: redusert ? 0 : 0.3 }}>
+                  <m.div key={b.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: redusert ? 0 : 0.3 }}>
                     <p className="text-[13px] font-semibold text-[var(--color-bjork)]">{gruppe.tittel}</p>
                     <Navn className="mt-2 font-bold" style={{ fontSize: "clamp(32px, 3.4vw, 48px)", lineHeight: 1, letterSpacing: "-0.045em" }}>
                       {b.navn}
                     </Navn>
                     <p className="mx-auto mt-5 max-w-[40ch] text-[16px] leading-[1.6] text-[var(--color-tekst-lys-2)] md:mx-0">{b.tekst}</p>
-                  </motion.div>
+                  </m.div>
                 </AnimatePresence>
               </div>
 
@@ -263,7 +263,7 @@ function Side({ gi, vinkel, children }: { gi: number; vinkel: MotionValue<number
       }}
     >
       <Kasse>{children}</Kasse>
-      <motion.div className="pointer-events-none absolute inset-0 bg-[#0B1A20]" style={{ opacity: skygge }} />
+      <m.div className="pointer-events-none absolute inset-0 bg-[#0B1A20]" style={{ opacity: skygge }} />
     </div>
   );
 }
@@ -294,11 +294,11 @@ function Gulv({ vinkel }: { vinkel: MotionValue<number> }) {
         <path d={Array.from({ length: 9 }, (_, k) => `M${12 + k * 14.5},0 L${k * 17.5},16`).join(" ")} stroke="#1C3540" strokeWidth={0.4} />
         <rect x={0} y={16} width={140} height={7} fill="#132A33" />
         <g clipPath={`url(#front-${id})`}>
-          <motion.g style={{ x: forskyv }}>
+          <m.g style={{ x: forskyv }}>
             {Array.from({ length: 17 }, (_, k) => (
               <line key={k} x1={k * 10} y1={17.5} x2={k * 10} y2={k % 2 ? 19.5 : 21} stroke={FARGE.bjork} strokeWidth={0.5} opacity={0.7} />
             ))}
-          </motion.g>
+          </m.g>
         </g>
         <path d="M0,16 L140,16" stroke={FARGE.bjork} strokeWidth={0.5} opacity={0.45} />
       </svg>
