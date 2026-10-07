@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
     // The defaults plus 2560 and 3200: the hero's panorama is about 1600 CSS px
     // wide on a phone, so phones needed ~2800 px and got 3840.
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560, 3200, 3840],
+    // AVIF first: smaller than WebP at the same look; browsers without it get WebP.
+    formats: ["image/avif", "image/webp"],
   },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
