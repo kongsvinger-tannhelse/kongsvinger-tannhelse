@@ -83,48 +83,13 @@
   }
 }
 
-.tekst {
-  margin-top: calc(var(--luft) + 18px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  text-align: center;
-  color: #fff;
-  font-size: 14px;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-}
-.rute[data-klar="true"] .tekst {
-  animation: inn 0.9s ease 1.2s both;
-}
-.bytt {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  animation: inn 0.8s ease both;
-}
-@keyframes inn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Phones: a smaller pane at the right, under the name, with no caption */
+/* Phones: a smaller pane at the right, under the name */
 @media (max-width: 767px) {
   .rute {
     --d: min(54vw, 32svh);
     --luft: 8px;
     align-self: flex-end;
     margin: 8px var(--luft) 0 0;
-  }
-  .tekst {
-    display: none;
   }
 }
 
@@ -137,10 +102,5 @@
   .rom[data-vis="true"] {
     transition: opacity 0.4s;
     transform: none;
-  }
-  .rute[data-klar="true"] .tekst,
-  .bytt {
-    animation: none;
-    opacity: 1;
   }
 }

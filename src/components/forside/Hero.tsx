@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { Utsikt } from "@/components/forside/utsikt/Utsikt";
 import { Klinikkbilder } from "@/components/forside/Klinikkbilder";
@@ -40,20 +40,27 @@ export function Hero() {
               Tannlegene Hafthun og Zia, {klinikk.adresse.gate}.
             </p>
 
-            <div className="hero-loft mt-7 flex flex-wrap gap-2.5" style={{ animationDelay: "3.05s" }}>
-              <Link
-                href="/#kontakt"
-                className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
-              >
-                Bestill time
-                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
-              </Link>
-              <a
-                href={klinikk.telefon.lenke}
-                className="inline-flex items-center rounded-full border border-[rgba(22,48,59,0.22)] bg-white/55 px-5 py-3.5 text-[14px] font-medium text-[var(--color-glomma-deep)] backdrop-blur-sm transition-colors duration-300 hover:bg-white/80"
-              >
-                Ring {klinikk.telefon.visning}
-              </a>
+            {/* the two buttons, and the opening hours under them as wide as both together */}
+            <div className="hero-loft mt-7 inline-flex flex-col gap-2.5" style={{ animationDelay: "3.05s" }}>
+              <div className="flex gap-2.5">
+                <Link
+                  href="/#kontakt"
+                  className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
+                >
+                  Bestill time
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+                </Link>
+                <a
+                  href={klinikk.telefon.lenke}
+                  className="inline-flex items-center rounded-full border border-[rgba(22,48,59,0.22)] bg-white/55 px-5 py-3.5 text-[14px] font-medium text-[var(--color-glomma-deep)] backdrop-blur-sm transition-colors duration-300 hover:bg-white/80"
+                >
+                  Ring {klinikk.telefon.visning}
+                </a>
+              </div>
+              <p className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(22,48,59,0.22)] bg-white/55 px-5 py-3.5 text-[14px] font-medium text-[var(--color-glomma-deep)] backdrop-blur-sm">
+                <Clock className="size-4 text-[var(--color-glomma)]" aria-hidden="true" />
+                Åpningstider: man–fre {klinikk.apningstider.fra}–{klinikk.apningstider.til}
+              </p>
             </div>
           </div>
 
