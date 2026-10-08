@@ -36,7 +36,7 @@ export const tannsjekk: Behandlingsside = {
         // Helsedirektoratet: clinical examination of teeth, mouth and jaws
         { tegning: "lupe", tekst: "Tannlegen undersøker tennene, tannkjøttet, munnen og kjeven." },
         // SML Tannrøntgen: at ordinary check-ups two bitewing images are taken
-        { tegning: "rontgen", tekst: "Trengs det, tar vi røntgenbilder. Ved en vanlig kontroll er det ofte to små bilder.", mellom: true },
+        { tegning: "rontgen", tekst: "Trengs det, tas det røntgenbilder. Ved en vanlig kontroll er det ofte to små bilder.", mellom: true },
         // Helsedirektoratet: diagnosis and a plan for follow-up
         { tegning: "plan", tekst: "Til slutt får du vite hva vi fant, og en plan for veien videre." },
       ],

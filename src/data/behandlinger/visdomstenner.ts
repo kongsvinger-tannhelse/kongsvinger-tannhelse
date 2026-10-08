@@ -50,7 +50,7 @@ export const visdomstenner: Behandlingsside = {
       tittel: "Slik fjernes en visdomstann",
       ruter: [
         // NHI Innkilt visdomstann, St. Olavs: an x-ray first
-        { tegning: "rontgen", tekst: "Først tar vi et røntgenbilde, så vi ser hvordan tanna ligger." },
+        { tegning: "rontgen", tekst: "Ofte tas det først et røntgenbilde, så tannlegen ser hvordan tanna ligger." },
         // St. Olavs: ordinary dental anaesthesia
         { tegning: "roligtann", tekst: "Tanna blir bedøvet før den tas ut." },
         // St. Olavs: the gum is folded aside, a little bone is removed, the tooth divided if needed

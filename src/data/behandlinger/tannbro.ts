@@ -48,7 +48,7 @@ export const tannbro: Behandlingsside = {
         // UiO clinic handbook: the pillar teeth are prepared
         { tegning: "stubb", tekst: "Tennene ved siden av slipes til, så broen får plass." },
         // SML Tannprotese: made outside the mouth from exact impressions
-        { tegning: "avtrykk", tekst: "Vi tar avtrykk, og broen lages etter dem." },
+        { tegning: "avtrykk", tekst: "Tannlegen tar avtrykk, og broen lages etter dem." },
         // UiO clinic handbook: a temporary is often made
         { tegning: "provisorium", tekst: "I mellomtiden får du ofte en midlertidig bro.", mellom: true },
         // UiO clinic handbook: form and colour tried

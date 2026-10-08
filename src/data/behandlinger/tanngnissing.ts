@@ -51,7 +51,7 @@ export const tanngnissing: Behandlingsside = {
         // NHI Tanngnissing: possible causes such as stress or medicines
         { tegning: "snakke", tekst: "Dere snakker om hva som kan ligge bak, for eksempel stress eller medisiner." },
         // SML Bittskinne: fitted to the person who wears it
-        { tegning: "avtrykk", tekst: "Trengs det, tar vi avtrykk og lager en bittskinne som passer deg.", mellom: true },
+        { tegning: "avtrykk", tekst: "Trengs det, tar tannlegen avtrykk, og en bittskinne lages etter dem.", mellom: true },
         // SML Bittskinne: used especially at night
         { tegning: "bittskinne", tekst: "Skinnen brukes mest om natten." },
         // SML Bruksisme: exercises to relax the jaw muscles, and less stress

@@ -50,7 +50,7 @@ export const tannbleking: Behandlingsside = {
         // Mattilsynet: a dentist must examine the teeth and enamel first
         { tegning: "lupe", tekst: "Først undersøker tannlegen tennene og emaljen." },
         // Tidende 2026: an alginate impression and a bleaching tray
-        { tegning: "avtrykk", tekst: "Vi tar avtrykk av tennene dine." },
+        { tegning: "avtrykk", tekst: "Tannlegen tar avtrykk av tennene dine." },
         // Tidende 2026; the clinic's text: a tray that fits your teeth
         { tegning: "skinne", tekst: "Ut fra avtrykket lages en tynn skinne som passer akkurat dine tenner." },
         // how, and how long, is the dentist's call

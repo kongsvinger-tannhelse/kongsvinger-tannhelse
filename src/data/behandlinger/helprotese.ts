@@ -44,7 +44,7 @@ export const helprotese: Behandlingsside = {
         // UiO clinic handbook: first consultation
         { tegning: "snakke", tekst: "Først snakker vi sammen og ser på munnen din." },
         // UiO clinic handbook: a first and a second impression
-        { tegning: "avtrykk", tekst: "Vi tar avtrykk av kjevene, ofte flere ganger, så protesen passer best mulig." },
+        { tegning: "avtrykk", tekst: "Tannlegen tar avtrykk av kjevene, ofte flere ganger, så protesen passer best mulig." },
         // UiO clinic handbook: recording how the jaws meet
         { tegning: "plan", tekst: "Vi måler hvordan kjevene møtes når du biter." },
         // UiO clinic handbook: the teeth tried in wax

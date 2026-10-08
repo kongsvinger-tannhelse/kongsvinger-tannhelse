@@ -50,7 +50,7 @@ export const skallfasetter: Behandlingsside = {
         // UiO: as little tooth as possible is removed
         { tegning: "fasett-slip", tekst: "Et tynt lag tas av forsiden av tannen, så lite som mulig." },
         // UiO: an impression
-        { tegning: "avtrykk", tekst: "Vi tar avtrykk, og fasettene lages etter dem." },
+        { tegning: "avtrykk", tekst: "Tannlegen tar avtrykk, og fasettene lages etter dem." },
         // UiO (tried and cemented), SML Laminat (bonded to the tooth)
         { tegning: "fasett", tekst: "Fasetten prøves, og limes så fast på tannen." },
       ],

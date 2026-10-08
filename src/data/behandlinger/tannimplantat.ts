@@ -54,7 +54,7 @@ export const tannimplantat: Behandlingsside = {
         // UNN: the screw needs months to grow into the bone (osseointegrasjon, SML)
         { tegning: "implantat-gror", tekst: "Så må skruen gro fast i beinet. Det tar vanligvis noen måneder." },
         // UNN: an impression, and the shape and colour decided
-        { tegning: "avtrykk", tekst: "Når skruen sitter godt, tar vi avtrykk og bestemmer form og farge på den nye tanna." },
+        { tegning: "avtrykk", tekst: "Når skruen sitter godt, tar tannlegen avtrykk, og dere finner form og farge på den nye tanna sammen." },
         // SML Oral implantologi: a crown fixed to the implant
         { tegning: "implantat-krone", tekst: "Til slutt festes den nye tanna på skruen." },
       ],

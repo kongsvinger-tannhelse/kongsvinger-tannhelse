@@ -48,7 +48,7 @@ export const tannkrone: Behandlingsside = {
         // Helsenorge: the tooth must be ground to the right shape first
         { tegning: "stubb", tekst: "Tannen slipes til riktig form, så kronen får plass." },
         // SML Tannprotese (made after exact impressions), UiO (scanning)
-        { tegning: "avtrykk", tekst: "Vi tar et avtrykk eller skanner tennene, så kronen kan lages helt nøyaktig." },
+        { tegning: "avtrykk", tekst: "Tannlegen tar avtrykk eller skanner tennene, og kronen lages etter dem." },
         // UiO clinic handbook: a temporary crown, cemented with temporary cement
         { tegning: "provisorium", tekst: "Mens kronen lages, får du en midlertidig krone.", mellom: true },
         // SML Tannprotese: fixed for good with special cements
