@@ -208,3 +208,25 @@ export const QUIZ: { tittel: string; intro: string; sporsmal: { id: string; past
     { id: "hovent", pastand: "Hovent kinn og feber betyr at du bør ringe med en gang.", sant: true, svar: "Riktig. Da er det en betennelse som må behandles fort." },
   ],
 };
+
+/* ── For G, H and I: small lessons between the sections ── */
+
+export type Smatt = { id: string; slag: "visste" | "triks" | "tips"; tekst: string };
+
+export const SMATT_NAVN = { visste: "Visste du?", triks: "Lite triks", tips: "Pers tips" } as const;
+
+export const SMATT: Record<string, Smatt> = {
+  lag: { id: "lag", slag: "visste", tekst: "En tann har tre lag. Ytterst er emaljen, det hardeste stoffet i hele kroppen. Under den er dentin, og innerst bor nerven." },
+  notat: { id: "notat", slag: "triks", tekst: "Skriv ned når det gjør vondt: når du drikker kaldt, når du biter, eller om natten. Da finner vi fortere ut hva det er." },
+  syre: { id: "syre", slag: "visste", tekst: "Etter noe søtt lager bakteriene syre i omtrent en halvtime. Derfor er det bedre å spise søtt sjelden enn litt hele tiden." },
+  traad: { id: "traad", slag: "tips", tekst: "Mat som sitter fast mellom tennene kan gjøre like vondt som et hull. Prøv tanntråd før du blir bekymret." },
+  spytt: { id: "spytt", slag: "tips", tekst: "Spytt ut tannkremen etter pussing, men ikke skyll med vann. Da blir fluoren igjen på tennene og beskytter dem lenger." },
+  myk: { id: "myk", slag: "triks", tekst: "Bruk en myk tannbørste. En hard børste kan slite på tannkjøttet og gjøre tennene ømme." },
+};
+
+/** For I's diagrams: the labels and what they say. */
+export const LAG = [
+  { navn: "Emalje", tekst: "Det harde skallet ytterst." },
+  { navn: "Dentin", tekst: "Litt mykere, under emaljen." },
+  { navn: "Nerven", tekst: "Innerst. Den kjenner alt." },
+] as const;

@@ -117,6 +117,9 @@ export function Bryter() {
         ["d", "D Sjekk selv"],
         ["e", "E Inni tanna"],
         ["f", "F Visste du?"],
+        ["g", "G Gule lapper"],
+        ["h", "H Sjekk først"],
+        ["i", "I Læreboka"],
       ].map(([k, navn]) => {
         const her = sti?.endsWith(`/${k}`);
         return (

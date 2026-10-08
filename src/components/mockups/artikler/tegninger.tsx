@@ -274,3 +274,60 @@ export function Hevelse({ strek, className, forsink }: Stil) {
 }
 
 export const TEGNING = { ...ARSAK_TEGNING, hevelse: Hevelse } as const;
+
+/* ── Textbook figures, for I ── */
+
+/** The three layers of a tooth, cut through, each with a leader line to its name. */
+export function Lagene({ className, forsink }: Omit<Stil, "strek">) {
+  const etiketter = [
+    { navn: "Emalje", fra: [146, 66], y: 52 },
+    { navn: "Nerven", fra: [112, 98], y: 110 },
+    { navn: "Dentin", fra: [130, 160], y: 168 },
+  ] as const;
+  return (
+    <Ramme className={className} forsink={forsink} boks="0 0 320 240" tittel="En tann skåret i to: emalje ytterst, dentin under, nerven innerst">
+      <g transform="translate(100 140)">
+        <path d={JEKSEL.tann} {...form(true, F.hvit, { penFill: F.papir })} />
+        <path d={JEKSEL.tann} transform="translate(0 -4) scale(0.82)" fill={F.dentin} fillOpacity={0.55} {...blekk(true)} />
+        <path d={JEKSEL.tann} transform="translate(0 -4) scale(0.82)" {...linje(true, F.dentinMork, 1.4, F.dentinMork)} strokeDasharray="1" />
+        <path d={PULPA} fill="#E79A8D" fillOpacity={0.35} stroke={AKSENT} strokeWidth={2} pathLength={1} className={s.strek} />
+      </g>
+      {etiketter.map((e, i) => (
+        <g key={e.navn}>
+          <circle cx={e.fra[0]} cy={e.fra[1]} r={3.2} fill={BLEKK} {...blekk(true)} />
+          <path d={`M${e.fra[0]},${e.fra[1]} L226,${e.y}`} {...linje(true, BLEKK, 1.4)} style={{ "--forsink": `${0.4 + i * 0.25}s` } as CSSProperties} />
+          <text x={234} y={e.y + 5} fontSize={16} fontWeight={700} fill={BLEKK} {...blekk(true)}>
+            {e.navn}
+          </text>
+        </g>
+      ))}
+    </Ramme>
+  );
+}
+
+/** The sugar clock: half an hour of acid after something sweet. */
+export function Sukkerklokka({ className, forsink }: Omit<Stil, "strek">) {
+  const streker = Array.from({ length: 12 }, (_, i) => {
+    const a = (i / 12) * Math.PI * 2;
+    const [x1, y1] = [r2(120 + Math.sin(a) * 70), r2(128 - Math.cos(a) * 70)];
+    const [x2, y2] = [r2(120 + Math.sin(a) * 78), r2(128 - Math.cos(a) * 78)];
+    return `M${x1},${y1} L${x2},${y2}`;
+  }).join(" ");
+  return (
+    <Ramme className={className} forsink={forsink} tittel="En klokke der en halvtime er farget rød: så lenge lager bakteriene syre etter noe søtt">
+      <path d="M120,128 L120,44 A84,84 0 0 1 120,212 Z" fill={F.smerte} fillOpacity={0.2} {...blekk(true)} />
+      <circle cx={120} cy={128} r={84} {...form(true, "none")} />
+      <path d={streker} {...linje(true, BLEKK, 2)} />
+      <path d="M120,128 L120,70 M120,128 L150,146" {...linje(true, BLEKK, 3)} />
+      <circle cx={120} cy={128} r={4} fill={BLEKK} {...blekk(true)} />
+      <text x={134} y={114} fontSize={16} fontWeight={700} fill={AKSENT} {...blekk(true)}>
+        30 min
+      </text>
+      {/* a wrapped sweet, top left */}
+      <g transform="translate(40 40) rotate(-20)">
+        <ellipse cx={0} cy={0} rx={16} ry={11} {...form(true, "none", { ink: AKSENT })} />
+        <path d="M-16,0 L-28,-9 L-28,9 Z M16,0 L28,-9 L28,9 Z" {...form(true, "none", { ink: AKSENT })} />
+      </g>
+    </Ramme>
+  );
+}

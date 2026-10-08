@@ -1,33 +1,56 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Phone } from "lucide-react";
+import { ArrowDown, Check, Phone } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { cn } from "@/lib/utils";
 import { Nerve, TEGNING } from "./tegninger";
-import { LYSFARGE, SJEKK, TRAFIKKLYS } from "./tekst";
+import { LYSFARGE, SJEKK, TRAFIKKLYS, type Valg } from "./tekst";
 
-/* D's self-check: tap what it feels like, and get a hint at once: what it
+/* The self-check: tap what it feels like, and get a hint at once: what it
    could be, and how soon to ring. Nothing is chosen on the server or the
-   first render, so it hydrates; the answer rises in with the hero's «loft». */
+   first render, so it hydrates; the answer rises in with the hero's «loft».
+   Dark on its own (D, H), or light and written on the note itself (G, I).
+   With `lesMer`, the hint links down to where the note explains it. */
 
-export function Sjekk() {
+/** Where in the note each hint is explained. */
+const LES_MER: Record<Valg["tegning"], string> = {
+  hull: "#arsak-hull",
+  sprekk: "#arsak-sprekk",
+  tannkjott: "#arsak-tannkjott",
+  betennelse: "#arsak-betennelse",
+  hevelse: "#lys",
+};
+
+export function Sjekk({ lys: lyst = false, lesMer = false, utenTittel = false, className }: { lys?: boolean; lesMer?: boolean; utenTittel?: boolean; className?: string }) {
   const [valgtId, setValgtId] = useState<string | null>(null);
   const valgt = SJEKK.valg.find((v) => v.id === valgtId) ?? null;
   const lys = valgt ? TRAFIKKLYS.lys.find((l) => l.farge === valgt.lys)! : null;
   const T = valgt ? TEGNING[valgt.tegning] : null;
 
   return (
-    <section aria-labelledby="sjekk-tittel" className="overflow-hidden rounded-[32px] bg-[var(--color-glomma-deep)] p-6 text-[var(--color-papir)] sm:p-10 md:p-12">
+    <section
+      aria-labelledby={utenTittel ? undefined : "sjekk-tittel"}
+      aria-label={utenTittel ? "Sjekk selv" : undefined}
+      className={cn(
+        "overflow-hidden rounded-[32px] p-6 sm:p-10 md:p-12",
+        lyst ? "bg-[var(--color-kalk)]/80 text-[var(--color-tekst)]" : "bg-[var(--color-glomma-deep)] text-[var(--color-papir)]",
+        className
+      )}
+    >
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-12">
         <div>
-          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[var(--color-bjork)]">Sjekk selv</p>
-          <h2 id="sjekk-tittel" className="mt-3 text-[30px] font-bold leading-[1.1] tracking-[-0.035em] md:text-[40px]">
-            {SJEKK.sporsmal}
-          </h2>
-          <p className="mt-2 text-[18px] text-[var(--color-tekst-lys-2)]">{SJEKK.hjelp}</p>
+          {!utenTittel && (
+            <>
+              <p className={cn("text-[13px] font-semibold uppercase tracking-[0.16em]", lyst ? "text-[var(--color-teal)]" : "text-[var(--color-bjork)]")}>Sjekk selv</p>
+              <h2 id="sjekk-tittel" className={cn("mt-3 text-[30px] font-bold leading-[1.1] tracking-[-0.035em] md:text-[40px]", lyst && "text-[var(--color-glomma-deep)]")}>
+                {SJEKK.sporsmal}
+              </h2>
+            </>
+          )}
+          <p className={cn(!utenTittel && "mt-2", "text-[18px]", lyst ? "text-[var(--color-tekst-2)]" : "text-[var(--color-tekst-lys-2)]")}>{SJEKK.hjelp}</p>
 
-          <ul className="mt-7 space-y-2.5" role="list">
+          <ul className={cn(utenTittel ? "mt-5" : "mt-7", "space-y-2.5")} role="list">
             {SJEKK.valg.map((v) => {
               const her = v.id === valgtId;
               return (
@@ -38,16 +61,26 @@ export function Sjekk() {
                     onClick={() => setValgtId(v.id)}
                     className={cn(
                       "flex w-full items-center gap-3 rounded-[18px] border px-5 py-4 text-left text-[17px] font-medium leading-[1.35] transition-[background-color,border-color,color] duration-300",
-                      her
-                        ? "border-transparent bg-[var(--color-papir)] text-[var(--color-glomma-deep)]"
-                        : "border-[var(--color-strek-lys)] bg-white/[0.04] text-[var(--color-papir)] hover:border-white/40 hover:bg-white/[0.08]"
+                      lyst
+                        ? her
+                          ? "border-transparent bg-[var(--color-glomma)] text-[var(--color-papir)]"
+                          : "border-[var(--color-strek)] bg-white text-[var(--color-tekst)] hover:border-[var(--color-glomma)]"
+                        : her
+                          ? "border-transparent bg-[var(--color-papir)] text-[var(--color-glomma-deep)]"
+                          : "border-[var(--color-strek-lys)] bg-white/[0.04] text-[var(--color-papir)] hover:border-white/40 hover:bg-white/[0.08]"
                     )}
                   >
                     <span
                       aria-hidden="true"
                       className={cn(
                         "grid size-6 shrink-0 place-items-center rounded-full border transition-colors duration-300",
-                        her ? "border-transparent bg-[var(--color-glomma)] text-[var(--color-papir)]" : "border-white/40"
+                        her
+                          ? lyst
+                            ? "border-transparent bg-[var(--color-papir)] text-[var(--color-glomma)]"
+                            : "border-transparent bg-[var(--color-glomma)] text-[var(--color-papir)]"
+                          : lyst
+                            ? "border-[var(--color-stein)]"
+                            : "border-white/40"
                       )}
                     >
                       {her && <Check className="size-3.5" strokeWidth={3} />}
@@ -63,9 +96,9 @@ export function Sjekk() {
         {/* the hint */}
         <div aria-live="polite" className="flex">
           {valgt && lys && T ? (
-            <div key={valgt.id} className="hero-loft flex w-full flex-col rounded-[24px] bg-[var(--color-papir)] p-6 text-[var(--color-tekst)] md:p-8">
+            <div key={valgt.id} className={cn("hero-loft flex w-full flex-col rounded-[24px] p-6 text-[var(--color-tekst)] md:p-8", lyst ? "bg-white shadow-[0_24px_50px_-40px_rgba(10,25,32,0.55)]" : "bg-[var(--color-papir)]")}>
               <div className="flex items-start gap-5">
-                <T className="w-28 shrink-0 md:w-36" />
+                <T strek={lyst} className={cn("shrink-0", lyst ? "w-24 md:w-28" : "w-28 md:w-36")} />
                 <div className="pt-2">
                   <p className="text-[14px] font-semibold text-[var(--color-tekst-svak)]">Det kan være</p>
                   <p className="mt-1 text-[26px] font-bold leading-[1.1] tracking-[-0.03em] text-[var(--color-glomma-deep)] md:text-[30px]">{valgt.kanVaere}</p>
@@ -88,12 +121,20 @@ export function Sjekk() {
                   </a>
                 )}
               </div>
-              <p className="mt-auto pt-5 text-[14px] text-[var(--color-tekst-svak)]">{SJEKK.forbehold}</p>
+              <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-5">
+                <p className="text-[14px] text-[var(--color-tekst-svak)]">{SJEKK.forbehold}</p>
+                {lesMer && (
+                  <a href={LES_MER[valgt.tegning]} className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-[var(--color-teal)] underline-offset-4 hover:underline">
+                    <ArrowDown className="size-4" aria-hidden="true" />
+                    Les mer om dette
+                  </a>
+                )}
+              </div>
             </div>
           ) : (
-            <div className="flex w-full flex-col items-center justify-center rounded-[24px] border border-dashed border-[var(--color-strek-lys)] p-8 text-center">
-              <Nerve strek className="w-36 opacity-80 [&_*]:!stroke-[var(--color-papir)]" />
-              <p className="mt-5 max-w-[24ch] text-[18px] leading-[1.5] text-[var(--color-tekst-lys-2)]">Velg det som passer, så får du et hint her.</p>
+            <div className={cn("flex w-full flex-col items-center justify-center rounded-[24px] border border-dashed p-8 text-center", lyst ? "border-[var(--color-stein)]/50" : "border-[var(--color-strek-lys)]")}>
+              <Nerve strek className={cn("w-36", !lyst && "opacity-80 [&_*]:!stroke-[var(--color-papir)]")} />
+              <p className={cn("mt-5 max-w-[24ch] text-[18px] leading-[1.5]", lyst ? "text-[var(--color-tekst-2)]" : "text-[var(--color-tekst-lys-2)]")}>Velg det som passer, så får du et hint her.</p>
             </div>
           )}
         </div>
