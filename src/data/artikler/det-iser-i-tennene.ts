@@ -79,7 +79,7 @@ export const detIser: Artikkel = {
         svar: "Det iser helt nede ved tannkjøttet",
         tegning: "tannhals",
         overskrift: "Bare tannhalser",
-        forklaring: "Når tannkjøttet trekker seg litt tilbake, blir roten bar. Puss mykt. Vi kan også gi deg fluor eller lakk som beskytter.",
+        forklaring: "Når tannkjøttet trekker seg litt tilbake, blir roten bar. Puss mykt, og bruk tannkrem for følsomme tenner.",
         handling: HANDLING.bestill,
       },
       {

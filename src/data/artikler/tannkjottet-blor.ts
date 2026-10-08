@@ -88,7 +88,7 @@ export const tannkjottetBlor: Artikkel = {
         svar: "Jeg ser hardt, gult belegg nede ved tannkjøttet",
         tegning: "tannstein",
         overskrift: "Tannstein",
-        forklaring: "Tannstein må fjernes hos oss. Det går fort, og tannkjøttet blir friskere etterpå.",
+        forklaring: "Tannstein kan ikke pusses bort. Den må fjernes hos tannlegen eller tannpleieren.",
         handling: HANDLING.bestill,
       },
       {
