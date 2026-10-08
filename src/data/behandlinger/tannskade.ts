@@ -74,16 +74,7 @@ export const tannskade: Behandlingsside = {
       ],
       tegning: "hevelse",
     },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hvem betaler når en tann blir skadet?",
-      tekst: "Ring oss, så får du vite hva behandlingen vil koste.",
-      // Helfo Tilstander (point 13, accident; point 12, work injury); Helsedirektoratet rundskriv; Helsenorge (report to your insurer as soon as possible)
-      helfo: "Etter en ulykke kan Helfo dekke en del av behandlingen, hvis skaden er stor nok. Tannlegen vurderer om du har rett. Skader du tannen på fritiden, bør du også melde fra til forsikringsselskapet ditt så fort som mulig.",
-      tegning: "regning",
-    },
   ],
   slutt: "Har du skadet en tann? Ring oss så snart du kan.",
-  kilder: [BKILDE.hnAkutt, BKILDE.smlTannskade, BKILDE.smlReimplantasjon, BKILDE.nhiTannskader, BKILDE.hnLegevakt, BKILDE.hdirRundskriv, BKILDE.hnTannlegeregning, BKILDE.helfoTilstander],
+  kilder: [BKILDE.hnAkutt, BKILDE.smlTannskade, BKILDE.smlReimplantasjon, BKILDE.nhiTannskader, BKILDE.hnLegevakt],
 };

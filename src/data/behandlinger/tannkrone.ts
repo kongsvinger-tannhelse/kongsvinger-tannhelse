@@ -69,16 +69,7 @@ export const tannkrone: Behandlingsside = {
     },
     // SML Tannkrone: the crown is also the part of your own tooth that shows in the mouth
     { type: "lapp", lapp: { slag: "visste", tekst: "Krone er også navnet på den delen av din egen tann som synes i munnen, den som er dekket av emalje." } },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster en tannkrone?",
-      tekst: "Ring oss, så får du vite hva en krone vil koste.",
-      // Helsenorge: adults pay as a rule; Helfo Tilstander: e.g. no. 13 accident, no. 9 attrisjon/erosjon
-      helfo: "Som hovedregel betaler voksne kroner selv. Ved noen tilstander, som en tannskade etter en ulykke eller unormalt slitte tenner, kan Helfo dekke en del.",
-      tegning: "regning",
-    },
   ],
   slutt: "Er en av tennene dine svak eller ødelagt? Bestill en time, så ser vi på hva som passer best.",
-  kilder: [BKILDE.hnHull, BKILDE.kvKrone, BKILDE.smlRotfylling, BKILDE.smlTannprotese, BKILDE.uioKrone, BKILDE.uioCad, BKILDE.smlTannkrone, BKILDE.hnTannlegeregning, BKILDE.helfoTilstander],
+  kilder: [BKILDE.hnHull, BKILDE.kvKrone, BKILDE.smlRotfylling, BKILDE.smlTannprotese, BKILDE.uioKrone, BKILDE.uioCad, BKILDE.smlTannkrone],
 };

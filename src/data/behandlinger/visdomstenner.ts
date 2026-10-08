@@ -87,16 +87,7 @@ export const visdomstenner: Behandlingsside = {
     },
     // NHI Innkilt visdomstann: healing is usually better, and the risk lower, in younger people
     { type: "lapp", lapp: { slag: "visste", tekst: "Hos unge gror det som regel bedre etter at en visdomstann er fjernet, og faren for plager er mindre." } },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster det å fjerne en visdomstann?",
-      tekst: "Ring oss, så får du vite hva det vil koste.",
-      // Helfo Tilstander: adults pay as a rule; no. 5 sykdommer og anomalier i munn og kjeve
-      helfo: "Som hovedregel betaler voksne selv. Ved noen sykdommer i munn og kjeve kan Helfo dekke en del. Det er tannlegen som vurderer om du har rett.",
-      tegning: "regning",
-    },
   ],
   slutt: "Plager visdomstanna deg? Bestill en time, så ser vi på den.",
-  kilder: [BKILDE.smlVisdom, BKILDE.nhiVisdom, BKILDE.nhiPerikoronitt, BKILDE.stoVisdom, BKILDE.hbVisdom, BKILDE.helfoTilstander],
+  kilder: [BKILDE.smlVisdom, BKILDE.nhiVisdom, BKILDE.nhiPerikoronitt, BKILDE.stoVisdom, BKILDE.hbVisdom],
 };

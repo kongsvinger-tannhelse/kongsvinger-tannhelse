@@ -3,8 +3,7 @@ import type { Behandlingsside } from "./typer";
 
 /* Grinding and clenching. Every line checked on 8 October 2026 against the
    sources at the bottom; the comments name the source behind each part.
-   SML and NHI differ on how sure the cause is, so the page says «kan».
-   Helfo: no support point for grinding itself, only for severe wear. */
+   SML and NHI differ on how sure the cause is, so the page says «kan». */
 
 export const tanngnissing: Behandlingsside = {
   slug: "tanngnissing",
@@ -63,16 +62,7 @@ export const tanngnissing: Behandlingsside = {
     },
     // NHI Tanngnissing: ready-made guards don't all fit as well
     { type: "lapp", lapp: { slag: "tips", tekst: "Det finnes skinner du kan kjøpe selv, men de passer ikke alltid like godt." } },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster en bittskinne?",
-      tekst: "Ring oss, så får du vite hva det vil koste.",
-      // Helsedirektoratet rundskriv: no point for grinding itself; point 9 only for severe wear
-      helfo: "Som hovedregel betaler voksne selv. Er tennene alvorlig slitt, kan Helfo i noen tilfeller dekke en del av behandlingen. Tannlegen vurderer om du har rett.",
-      tegning: "regning-natt",
-    },
   ],
   slutt: "Tror du at du gnisser tenner? Bestill en time, så ser vi på tennene dine.",
-  kilder: [BKILDE.smlBruksisme, BKILDE.smlBittskinne, BKILDE.nhiTanngnissing, BKILDE.smlSlitasje, BKILDE.hdirRundskriv, BKILDE.hnTannlegeregning],
+  kilder: [BKILDE.smlBruksisme, BKILDE.smlBittskinne, BKILDE.nhiTanngnissing, BKILDE.smlSlitasje],
 };

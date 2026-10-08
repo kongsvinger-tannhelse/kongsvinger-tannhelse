@@ -70,16 +70,7 @@ export const trekkingAvTenner: Behandlingsside = {
       ],
       tegning: "mangler",
     },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster det å trekke en tann?",
-      tekst: "Ring oss, så får du vite hva det vil koste.",
-      // Helfo Tilstander and Helsedirektoratet rundskriv: support only under some conditions
-      helfo: "Som hovedregel betaler voksne selv. Ved noen sykdommer og tilstander kan Helfo dekke en del. Det er tannlegen som vurderer om du har rett.",
-      tegning: "regning",
-    },
   ],
   slutt: "Har du en tann som plager deg? Bestill en time, så ser vi på den.",
-  kilder: [BKILDE.smlTanntrekking, BKILDE.hnHull, BKILDE.hnHodeHals, BKILDE.ntfBlodfortynnende, BKILDE.hbKjevekirurgi, BKILDE.smlTannskade, BKILDE.hnTannlegeregning, BKILDE.helfoTilstander],
+  kilder: [BKILDE.smlTanntrekking, BKILDE.hnHull, BKILDE.hnHodeHals, BKILDE.ntfBlodfortynnende, BKILDE.hbKjevekirurgi, BKILDE.smlTannskade],
 };

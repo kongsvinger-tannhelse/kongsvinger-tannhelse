@@ -88,9 +88,6 @@ export const BKILDE = {
   smlReimplantasjon: { utgiver: "Store medisinske leksikon", navn: "Reimplantasjon", url: "https://sml.snl.no/reimplantasjon_-_odontologi" },
   nhiTannskader: { utgiver: "NHI.no", navn: "Tannskader", url: "https://nhi.no/sykdommer/magetarm/tannhelse/tannskader" },
   hdirRundskriv: { utgiver: "Helsedirektoratet", navn: "Rundskriv: stønadsberettiget undersøkelse og behandling", url: "https://www.helsedirektoratet.no/rundskriv/folketrygdloven-kap-5/rundskriv-til-folketrygdloven--5-6--5-6-a-og--5-25--undersokelse-og-behandling-hos-tannlege-og-tannpleier-for-sykdom-og-skade/helsedirektoratets-utfyllende-bestemmelser-og-retningslinjer-til--1--stonadsberettiget-undersokelse-og-behandling" },
-  // who pays
-  hnTannlegeregning: KILDE.hnTannlegeregning,
-  helfoTilstander: { utgiver: "Helfo", navn: "Tilstander som kan gi rett til stønad til tannbehandling", url: "https://www.helfo.no/tannlege/regelverk-og-takster-for-tannlege/tilstander-som-kan-gi-rett-til-st%C3%B8nad-til-tannbehandling" },
 } as const satisfies Record<string, Kilde>;
 
 /** The day the pages were last checked against their sources. */

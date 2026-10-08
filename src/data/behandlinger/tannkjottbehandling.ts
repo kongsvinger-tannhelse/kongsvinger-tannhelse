@@ -86,16 +86,7 @@ export const tannkjottbehandling: Behandlingsside = {
       ],
       tegning: "borste",
     },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Dekker Helfo tannkjøttbehandling?",
-      tekst: "Ring oss, så får du vite hva behandlingen vil koste.",
-      // Helfo Tilstander (point 6); Helsedirektoratet rundskriv: no support for gingivitt or routine cleaning
-      helfo: "Har du periodontitt, kan Helfo dekke en del av behandlingen. Gingivitt og vanlig tannrens dekkes ikke. Det er tannlegen som vurderer om du har rett.",
-      tegning: "regning",
-    },
   ],
   slutt: "Blør tannkjøttet, eller lurer du på om du har tannkjøttsykdom? Bestill en time, så ser vi på det.",
-  kilder: [BKILDE.smlPeriodontitt, BKILDE.smlGingivitt, BKILDE.nhiTannkjott, BKILDE.uioPerio, BKILDE.hdirRundskriv, BKILDE.hnTannlegeregning, BKILDE.helfoTilstander],
+  kilder: [BKILDE.smlPeriodontitt, BKILDE.smlGingivitt, BKILDE.nhiTannkjott, BKILDE.uioPerio, BKILDE.hdirRundskriv],
 };

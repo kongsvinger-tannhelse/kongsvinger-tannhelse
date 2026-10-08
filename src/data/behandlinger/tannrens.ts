@@ -70,16 +70,7 @@ export const tannrens: Behandlingsside = {
       ],
       tegning: "snakke",
     },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster en tannrens?",
-      tekst: "Ring oss, så får du vite hva en tannrens koster.",
-      // Helfo Tilstander: adults pay as a rule; no. 6 periodontitt
-      helfo: "Som hovedregel betaler voksne tannrens selv. Har du periodontitt, kan Helfo dekke en del av behandlingen. Det er tannlegen som vurderer om du har rett.",
-      tegning: "regning",
-    },
   ],
   slutt: "Er det lenge siden forrige tannrens? Bestill en time, så tar vi den.",
-  kilder: [BKILDE.lnlPlakk, BKILDE.smlTannstein, BKILDE.smlPeriodontitt, BKILDE.smlTannpleier, BKILDE.helfoTilstander],
+  kilder: [BKILDE.lnlPlakk, BKILDE.smlTannstein, BKILDE.smlPeriodontitt, BKILDE.smlTannpleier],
 };

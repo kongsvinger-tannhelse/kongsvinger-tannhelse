@@ -59,9 +59,6 @@ export type BTegning =
   | "rontgen-to"
   | "tannkart"
   | "kalender"
-  | "regning-sjekk"
-  | "regning-bro"
-  | "regning-natt"
   | "bro-lost"
   | "valg"
   | "gips"
@@ -83,8 +80,6 @@ export type Del =
   | { type: "tegn"; id: string; tittel: string; intro?: string; punkter: { tekst: string; tegning: BTegning }[]; etter?: string }
   /** The treatment itself, as a comic strip. */
   | { type: "serie"; id: string; tittel: string; ruter: Rute[]; etter?: string }
-  /** What it costs: ring for the price, and what Helfo may cover. `sporsmal` is the question for search engines. */
-  | { type: "pris"; id: string; sporsmal: string; tekst: string; helfo: string; tegning: BTegning }
   | { type: "lapp"; lapp: Lapp };
 
 export type Behandlingsside = {
@@ -102,5 +97,3 @@ export type Behandlingsside = {
   slutt: string;
   kilder: Kilde[];
 };
-
-export const PRIS_TITTEL = "Hva koster det?";

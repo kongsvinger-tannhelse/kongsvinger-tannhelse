@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
-import { BGJENNOMGATT, PRIS_TITTEL, type Behandlingsside as Side, type Del } from "@/data/behandlinger";
+import { BGJENNOMGATT, type Behandlingsside as Side, type Del } from "@/data/behandlinger";
 import { Merke, Smuler, Vis } from "@/components/artikler/deler";
 import { Ark, Brod, Hilsen, Sporsmal } from "@/components/artikler/lapp";
 import { GulLapp } from "@/components/artikler/mellom";
@@ -15,11 +14,10 @@ import { TITTELBILDER } from "./tittelbilder";
  * notes, with pen sketches in the margin and yellow notes between the
  * parts. The treatment itself is told as a comic strip: pen drawings that
  * draw themselves one after the other, each with a line under it; a step
- * not everyone needs has a dashed frame. Then the price, a goodbye with one
- * button, and the sources.
+ * not everyone needs has a dashed frame. Then a goodbye with one button,
+ * and the sources.
  */
 
-const HELFO = "/rad-og-tips/hva-dekker-helfo";
 /** Under every comic strip: this is how it often goes, not a promise. */
 const SERIE_FORBEHOLD = "Slik går det ofte for seg, men det er forskjellig fra pasient til pasient. Tannlegen forteller deg hva som gjelder for deg.";
 const KANT = "scroll-mt-28 border-t border-dashed border-[var(--color-strek)] py-10 md:py-14";
@@ -99,22 +97,6 @@ function Visning({ del, n }: { del: Del; n: number }) {
           <p className="mt-5 text-[16px] italic leading-[1.6] text-[var(--color-tekst-2)]">{SERIE_FORBEHOLD}</p>
         </Vis>
       );
-
-    case "pris": {
-      const T = BTEGNINGER[del.tegning];
-      return (
-        <MedTegning id={del.id} tittel={PRIS_TITTEL} tegning={<T className="w-full" />}>
-          <Brod>{del.tekst}</Brod>
-          <Brod>
-            {del.helfo}{" "}
-            <Link href={HELFO} className="font-semibold text-[var(--color-glomma)] underline underline-offset-4">
-              Les hva Helfo dekker
-            </Link>
-            .
-          </Brod>
-        </MedTegning>
-      );
-    }
 
     case "lapp":
       return <GulLapp lapp={del.lapp} side={n % 2 ? "h" : "v"} vri={n % 2 ? 1.2 : -1.5} />;

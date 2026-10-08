@@ -4,7 +4,7 @@ import { AKSENT, BLEKK, Ramme, blekk, form, linje, type Stil } from "@/component
 import { Gomme } from "./ruter";
 
 /* Each page's own versions of the pictures that every page has: the talk,
-   the close look, the bill, the x-ray, the plan, and the rest of a page's
+   the close look, the x-ray, the plan, and the rest of a page's
    own steps. 120 × 120, in the same pen as ruter.tsx, so the formula stays
    the same while no two pages show the same picture. Server-safe. */
 
@@ -40,13 +40,6 @@ const HJERTE = "M60,96 C30,76 16,60 16,44 C16,32 26,24 37,24 C47,24 55,30 60,38 
 const hjerte = (strek: boolean, x: number, y: number, s: number) => (
   <g transform={`translate(${x - 60 * s} ${y - 60 * s}) scale(${s})`}>
     <path d={HJERTE} {...form(strek, "#F5C9BF", { w: 2.2 / s, ink: AKSENT, penFill: "#FBE6E0" })} />
-  </g>
-);
-
-/** The moon, with its centre near (x, y). */
-const mane = (strek: boolean, x: number, y: number, s = 1) => (
-  <g transform={`translate(${x} ${y}) scale(${s})`}>
-    <path d="M-2,-10 a11,11 0 1 0 8,19 a8,8 0 1 1 -8,-19 Z" {...form(strek, "#F1D58A", { w: 1.6 / s })} />
   </g>
 );
 
@@ -223,44 +216,6 @@ export function Kalender({ strek = true, className, forsink }: Stil) {
       <circle cx={70} cy={72} r={9} {...linje(strek, F.teal, 2.2, F.teal)} />
       <Krone strek={strek} x={70} y={77} k={0.09} fure={false} />
     </Ramme>
-  );
-}
-
-/* ── The bill ── */
-
-/** The bill, with a round stamp of this page's treatment in its corner. */
-function RegningMed({ strek = true, className, forsink, stempel }: Stil & { stempel: ReactNode }) {
-  return (
-    <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M26,14 L86,14 L86,100 L80,106 L74,100 L68,106 L62,100 L56,106 L50,100 L44,106 L38,100 L32,106 L26,100 Z" {...form(strek, F.hvit, { w: 2.2, penFill: F.papir })} />
-      <path d="M36,32 L64,32 M36,44 L70,44 M36,56 L72,56 M36,68 L62,68" {...linje(strek, F.metallMork, 2)} />
-      <ellipse cx={64} cy={86} rx={15} ry={9} {...linje(strek, F.teal, 2.4, F.teal)} />
-      <path d="M54,86 L74,86" {...linje(strek, BLEKK, 2.4)} />
-      <g transform="rotate(-12 92 28)">
-        <circle cx={92} cy={28} r={15} {...form(strek, "#EEF7F8", { w: 2, ink: F.teal, penFill: "#EEF7F8" })} />
-        <circle cx={92} cy={28} r={11.5} fill="none" stroke={F.teal} strokeWidth={1} strokeDasharray="2 2.4" opacity={0.7} {...blekk(strek)} />
-        {stempel}
-      </g>
-    </Ramme>
-  );
-}
-
-export const RegningSjekk = (p: Stil) => <RegningMed {...p} stempel={<Krone strek={p.strek ?? true} x={92} y={34} k={0.12} ink={F.teal} fure={false} />} />;
-export const RegningNatt = (p: Stil) => <RegningMed {...p} stempel={mane(p.strek ?? true, 92, 28, 0.75)} />;
-export function RegningBro(p: Stil) {
-  const strek = p.strek ?? true;
-  return (
-    <RegningMed
-      {...p}
-      stempel={
-        <>
-          <path d="M84,30 L100,30" {...linje(strek, F.teal, 2.4, F.teal)} />
-          {[83, 92, 101].map((x) => (
-            <Krone key={x} strek={strek} x={x} y={34} k={0.075} ink={F.teal} fure={false} />
-          ))}
-        </>
-      }
-    />
   );
 }
 

@@ -89,15 +89,6 @@ export const tannimplantat: Behandlingsside = {
       ],
       tegning: "traad",
     },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster et tannimplantat?",
-      tekst: "Ring oss, så får du vite hva et implantat vil koste.",
-      // Helfo Tilstander and Helsenorge: no. 15, toothless lower jaw and unable to use a loose prosthesis; Helsedirektoratet: two implants and an overdenture
-      helfo: "Som hovedregel betaler voksne implantater selv. Har du ingen egne tenner i underkjeven og ikke kan bruke en løs protese, kan Helfo dekke to implantater og en protese som festes til dem.",
-      tegning: "regning",
-    },
   ],
   slutt: "Mangler du en tann? Bestill en time, så ser vi på hva som passer for deg.",
   kilder: [
@@ -106,7 +97,5 @@ export const tannimplantat: Behandlingsside = {
     BKILDE.unnImplantat,
     BKILDE.smlTannskade,
     BKILDE.smlBroprotese,
-    BKILDE.hnTannlegeregning,
-    BKILDE.helfoTilstander,
   ],
 };

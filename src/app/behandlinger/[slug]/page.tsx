@@ -31,13 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 /** For search engines: the page, the treatment it is about, the crumbs, and its questions with their answers. */
 function strukturert(side: Side) {
   const url = `${klinikk.url}${sideSti(side.slug)}`;
-  const sporsmal = side.deler.flatMap((d) =>
-    d.type === "tekst" && d.tittel.endsWith("?")
-      ? [{ s: d.tittel, svar: d.avsnitt.join(" ") }]
-      : d.type === "pris"
-        ? [{ s: d.sporsmal, svar: `${d.tekst} ${d.helfo}` }]
-        : []
-  );
+  const sporsmal = side.deler.flatMap((d) => (d.type === "tekst" && d.tittel.endsWith("?") ? [{ s: d.tittel, svar: d.avsnitt.join(" ") }] : []));
   return {
     "@context": "https://schema.org",
     "@graph": [

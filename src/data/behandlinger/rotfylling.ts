@@ -104,15 +104,6 @@ export const rotfylling: Behandlingsside = {
     },
     // SML Tannbleking: a root-filled, discoloured tooth can be bleached from inside, by a dentist
     { type: "lapp", lapp: { slag: "visste", tekst: "Har en rotfylt tann blitt mørkere, kan den blekes innenfra hos tannlegen." } },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster en rotfylling?",
-      tekst: "Prisen kommer an på tannen og hvor mange besøk som trengs. Ring oss, så får du vite hva det vil koste.",
-      // Helfo Tilstander: adults pay as a rule; no. 13 tannskade ved ulykke
-      helfo: "Som hovedregel betaler voksne rotfyllingen selv. Helfo kan dekke en del, for eksempel ved en tannskade etter en ulykke.",
-      tegning: "regning",
-    },
   ],
   slutt: "Lurer du på om tannen din trenger en rotfylling? Bestill en time, så ser vi på den.",
   kilder: [
@@ -125,6 +116,5 @@ export const rotfylling: Behandlingsside = {
     BKILDE.nhiPulpitt,
     BKILDE.ntfKlokeValg,
     BKILDE.uioEndodonti,
-    BKILDE.helfoTilstander,
   ],
 };

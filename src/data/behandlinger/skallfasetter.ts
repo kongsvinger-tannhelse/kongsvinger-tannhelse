@@ -57,16 +57,7 @@ export const skallfasetter: Behandlingsside = {
     },
     // UiO, Hvite tenner?: teeth grow darker with the years
     { type: "lapp", lapp: { slag: "visste", tekst: "Tennene blir naturlig litt mørkere med årene." } },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster skallfasetter?",
-      tekst: "Ring oss, så får du vite hva fasetter vil koste.",
-      // Helfo Tilstander: adults pay as a rule; support only for some conditions
-      helfo: "Som hovedregel betaler voksne selv. Helfo dekker bare tannbehandling ved noen sykdommer og tilstander, og tannlegen vurderer om du har rett.",
-      tegning: "regning",
-    },
   ],
   slutt: "Lurer du på om fasetter passer for deg? Bestill en time, så ser vi på tennene dine.",
-  kilder: [BKILDE.smlLaminat, BKILDE.smlFasett, BKILDE.smlEmaljefeil, BKILDE.smlTannbleking, BKILDE.uioAdhesiv, BKILDE.uioHvite, BKILDE.hnTannlegeregning, BKILDE.helfoTilstander],
+  kilder: [BKILDE.smlLaminat, BKILDE.smlFasett, BKILDE.smlEmaljefeil, BKILDE.smlTannbleking, BKILDE.uioAdhesiv, BKILDE.uioHvite],
 };

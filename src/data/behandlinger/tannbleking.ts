@@ -91,16 +91,7 @@ export const tannbleking: Behandlingsside = {
       ],
       tegning: "plan",
     },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster tannbleking?",
-      tekst: "Ring oss, så får du vite hva bleking koster.",
-      // Helsenorge: Helfo covers treatment of disease and injury; Mattilsynet: bleaching is cosmetic
-      helfo: "Helfo dekker tannbehandling ved sykdom og skade. Bleking er en kosmetisk behandling, så den betaler du selv.",
-      tegning: "regning",
-    },
   ],
   slutt: "Vil du ha hvitere tenner? Bestill en time, så ser vi på tennene dine først.",
-  kilder: [BKILDE.smlTannbleking, BKILDE.smlTennene, BKILDE.mtBleking, BKILDE.lovKosmetikk, BKILDE.tidBleking, BKILDE.hnTannlegeregning],
+  kilder: [BKILDE.smlTannbleking, BKILDE.smlTennene, BKILDE.mtBleking, BKILDE.lovKosmetikk, BKILDE.tidBleking],
 };

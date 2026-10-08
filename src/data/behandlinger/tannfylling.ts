@@ -87,15 +87,6 @@ export const tannfylling: Behandlingsside = {
     },
     // Tannlegeforeningen Kloke valg: don't replace fillings only because they are old
     { type: "lapp", lapp: { slag: "tips", tekst: "En gammel fylling trenger ikke byttes bare fordi den er gammel. Den byttes når det er en grunn til det." } },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster en fylling?",
-      tekst: "Ring oss, så får du vite hva en fylling vil koste.",
-      // Helfo Tilstander: adults pay as a rule; no. 10 hyposalivasjon, no. 9 attrisjon/erosjon
-      helfo: "Som hovedregel betaler voksne fyllinger selv. Helfo kan dekke en del ved noen tilstander, for eksempel munntørrhet eller unormalt slitte tenner.",
-      tegning: "regning",
-    },
   ],
   slutt: "Tror du at du har et hull? Bestill en time, så ser vi på det.",
   kilder: [
@@ -109,6 +100,5 @@ export const tannfylling: Behandlingsside = {
     BKILDE.smlLysherding,
     BKILDE.fkXylocain,
     BKILDE.ntfKlokeValg,
-    BKILDE.helfoTilstander,
   ],
 };

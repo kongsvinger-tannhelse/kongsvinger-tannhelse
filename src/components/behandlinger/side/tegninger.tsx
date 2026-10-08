@@ -7,7 +7,7 @@ import s from "@/components/artikler/artikler.module.css";
 import m from "./side.module.css";
 import { Ande, Avtrykk, Bor, Farge, Flekk, Fylt, Hvit, Implantat, Kompress, KroneSatt, Lampe, Lupe, Mangler, Plan, Provisorium, Skinne, Skrape, Sting, Stubb, Trekk, Underlag, Visdom } from "./ruter";
 import { Bittskinne, Bro, Fasett, Gnissing, Melk, Protese, Tyggis } from "./ruter2";
-import { AvtrykkBitt, BroLost, BroTraad, Gips, Kalender, KjeveRo, KjeveSar, LupeGap, LupeRad, LupeSlitt, RegningBro, RegningNatt, RegningSjekk, RontgenTo, SnakkeHelse, SnakkeStress, Speil, Tannkart, Valg } from "./ruter3";
+import { AvtrykkBitt, BroLost, BroTraad, Gips, Kalender, KjeveRo, KjeveSar, LupeGap, LupeRad, LupeSlitt, RontgenTo, SnakkeHelse, SnakkeStress, Speil, Tannkart, Valg } from "./ruter3";
 
 /* The treatment pages' own drawings, in the articles' pen: a molar cut
    open to show the nerve, in every stage of the treatment, and the small
@@ -164,9 +164,6 @@ export const BTEGNINGER: Record<BTegning, (p: Stil) => React.JSX.Element> = {
   "rontgen-to": (p) => <RontgenTo {...p} />,
   "tannkart": (p) => <Tannkart {...p} />,
   "kalender": (p) => <Kalender {...p} />,
-  "regning-sjekk": (p) => <RegningSjekk {...p} />,
-  "regning-bro": (p) => <RegningBro {...p} />,
-  "regning-natt": (p) => <RegningNatt {...p} />,
   "bro-lost": (p) => <BroLost {...p} />,
   "valg": (p) => <Valg {...p} />,
   "gips": (p) => <Gips {...p} />,

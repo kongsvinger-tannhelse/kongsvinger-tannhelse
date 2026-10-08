@@ -4,8 +4,7 @@ import type { Behandlingsside } from "./typer";
 /* Dry mouth. Every line checked on 8 October 2026 against the sources at the
    bottom; the comments name the source behind each part. The self-help is
    kept general («kan hjelpe»), and the page sends the reader to the dentist
-   and the doctor for advice that fits them. NHI's «søke NAV» is out of date
-   (Helfo handles it through the dentist), so it isn't repeated. */
+   and the doctor for advice that fits them. */
 
 export const munntorrhet: Behandlingsside = {
   slug: "munntorrhet",
@@ -67,16 +66,7 @@ export const munntorrhet: Behandlingsside = {
     },
     // NHI Munntørrhet: artificial saliva helps some, but water often does as well
     { type: "lapp", lapp: { slag: "tips", tekst: "Kunstig spytt fra apoteket hjelper noen, men vann virker ofte like godt." } },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Dekker Helfo tannbehandling ved munntørrhet?",
-      tekst: "Ring oss, så får du vite hva behandlingen vil koste.",
-      // Helsedirektoratet rundskriv, stønadspunkt 10: when dryness has led to more caries and much poorer dental health; a medicine alone is not enough
-      helfo: "Har munntørrheten over tid gitt mange hull og dårligere tannhelse, kan Helfo dekke en del av tannbehandlingen. Det holder ikke at du bruker en medisin som kan gi munntørrhet. Tannlegen vurderer om du har rett.",
-      tegning: "regning",
-    },
   ],
   slutt: "Er munnen ofte tørr? Bestill en time, så ser vi på tennene dine og hva som kan hjelpe.",
-  kilder: [BKILDE.smlMunntorrhet, BKILDE.nhiMunntorrhet, BKILDE.hnHull, BKILDE.hdirRundskriv, BKILDE.hnTannlegeregning, BKILDE.helfoTilstander],
+  kilder: [BKILDE.smlMunntorrhet, BKILDE.nhiMunntorrhet, BKILDE.hnHull],
 };

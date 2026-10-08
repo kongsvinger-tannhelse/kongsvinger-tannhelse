@@ -66,16 +66,7 @@ export const helprotese: Behandlingsside = {
     },
     // SML Gebiss: better dental health means dentures are less common in Norway today
     { type: "lapp", lapp: { slag: "visste", tekst: "Fordi tannhelsen er blitt bedre, er det færre i Norge som bruker gebiss i dag enn før." } },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster en helprotese?",
-      tekst: "Ring oss, så får du vite hva en protese vil koste.",
-      // Helsedirektoratet stønadspunkt 15; Helfo Tilstander
-      helfo: "Som hovedregel betaler voksne selv. Har du ingen egne tenner i underkjeven og ikke kan bruke en løs protese, kan Helfo dekke to implantater og en protese som festes til dem. Tannlegen vurderer om du har rett.",
-      tegning: "regning",
-    },
   ],
   slutt: "Lurer du på om en protese passer for deg? Bestill en time, så snakker vi om det.",
-  kilder: [BKILDE.smlGebiss, BKILDE.smlTannprotese, BKILDE.uioHelprotese, BKILDE.hdirPunkt15, BKILDE.hnTannlegeregning, BKILDE.helfoTilstander],
+  kilder: [BKILDE.smlGebiss, BKILDE.smlTannprotese, BKILDE.uioHelprotese, BKILDE.hdirPunkt15],
 };

@@ -13,7 +13,7 @@ export const tannsjekk: Behandlingsside = {
   ingress: "En tannsjekk er den enkleste måten å holde munnen frisk på. Vi finner problemer tidlig, mens de er små og enkle å behandle.",
   tittelbilde: "stol",
   lesetid: "2 minutter å lese",
-  beskrivelse: "Tannsjekk hos tannlegen i Kongsvinger: hva som skjer på en tannsjekk, hvor ofte du bør komme, røntgen, og hva det koster.",
+  beskrivelse: "Tannsjekk hos tannlegen i Kongsvinger: hva som skjer på en tannsjekk, hvor ofte du bør komme, og røntgen.",
   deler: [
     {
       type: "tekst",
@@ -57,16 +57,7 @@ export const tannsjekk: Behandlingsside = {
     },
     // the clinic's own words (klinikk.ts); Tannlegeforeningen, Gode råd: visit the dentist regularly
     { type: "lapp", lapp: { slag: "tips", tekst: "Går du jevnlig til tannlegen, holder tennene seg friske lenger." } },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster en tannsjekk?",
-      tekst: "Ring oss, så får du vite hva en tannsjekk koster.",
-      // Helfo Tilstander: adults pay as a rule; support only for 15 conditions
-      helfo: "En vanlig tannsjekk betaler voksne selv. Helfo dekker bare undersøkelse og behandling ved noen sykdommer og tilstander.",
-      tegning: "regning-sjekk",
-    },
   ],
   slutt: "Er det lenge siden sist? Bestill en tannsjekk, så ser vi på tennene dine.",
-  kilder: [BKILDE.hdirVoksne, BKILDE.smlTannrontgen, BKILDE.ntfRad, BKILDE.helfoTilstander],
+  kilder: [BKILDE.hdirVoksne, BKILDE.smlTannrontgen, BKILDE.ntfRad],
 };

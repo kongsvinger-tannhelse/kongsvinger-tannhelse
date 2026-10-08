@@ -70,16 +70,7 @@ export const tannbro: Behandlingsside = {
       ],
       tegning: "bro-traad",
     },
-    {
-      type: "pris",
-      id: "pris",
-      sporsmal: "Hva koster en tannbro?",
-      tekst: "Ring oss, så får du vite hva en bro vil koste.",
-      // Helfo Tilstander: adults pay as a rule; support only for some conditions
-      helfo: "Som hovedregel betaler voksne selv. Ved noen tilstander kan Helfo dekke en del. Det er tannlegen som vurderer om du har rett.",
-      tegning: "regning-bro",
-    },
   ],
   slutt: "Mangler du en tann? Bestill en time, så ser vi på hva som passer for deg.",
-  kilder: [BKILDE.smlBroprotese, BKILDE.smlTannprotese, BKILDE.smlImplantat, BKILDE.smlPlateprotese, BKILDE.uioBro, BKILDE.hnTannlegeregning, BKILDE.helfoTilstander],
+  kilder: [BKILDE.smlBroprotese, BKILDE.smlTannprotese, BKILDE.smlImplantat, BKILDE.smlPlateprotese, BKILDE.uioBro],
 };
