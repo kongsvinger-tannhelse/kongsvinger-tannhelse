@@ -18,6 +18,12 @@ const nextConfig: NextConfig = {
     // AVIF first: smaller than WebP at the same look; browsers without it get WebP.
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    // Put the CSS in the HTML instead of two render-blocking stylesheet requests
+    // (~18 KiB, Tailwind keeps it small). Helps first visits on slow phones; the
+    // cost is that the CSS is not cached separately between pages.
+    inlineCss: true,
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },
