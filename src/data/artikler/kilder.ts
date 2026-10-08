@@ -25,7 +25,6 @@ export const KILDE = {
   nhiTannkjott: { utgiver: "NHI.no", navn: "Tannkjøttbetennelse og tannløsning", url: "https://nhi.no/sykdommer/magetarm/tannhelse/tannkjottbetennelse" },
   nhiBarn: { utgiver: "NHI.no", navn: "Tannhelse hos barn", url: "https://nhi.no/sykdommer/barn/ore-nese-hals/tannhelse-hos-barn/all" },
   nhiFrokost: { utgiver: "NHI.no", navn: "Pusse tenner før eller etter frokost?", url: "https://nhi.no/livsstil/egenomsorg/pusse-tenner-for-eller-etter-frokost" },
-  nhiMusikk: { utgiver: "NHI.no", navn: "Bedre med musikk", url: "https://nhi.no/psykisk-helse/psykisk-egenpleie/bedre-med-musikk" },
   smlTennene: { utgiver: "Store medisinske leksikon", navn: "Tennene", url: "https://sml.snl.no/tennene" },
   smlEmalje: { utgiver: "Store medisinske leksikon", navn: "Tannemalje", url: "https://sml.snl.no/tannemalje" },
   smlTannsmerter: { utgiver: "Store medisinske leksikon", navn: "Tannsmerter", url: "https://sml.snl.no/tannsmerter" },

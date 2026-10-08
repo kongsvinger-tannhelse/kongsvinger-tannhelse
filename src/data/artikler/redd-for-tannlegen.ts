@@ -50,10 +50,10 @@ export const reddForTannlegen: Artikkel = {
       id: "tips",
       tittel: "Små ting som hjelper",
       punkter: [
-        // NHI Bedre med musikk: music lowered anxiety and pain (review of 73 trials, after operations)
-        { tekst: "Musikk kan gjøre det lettere å slappe av. Spør om du kan ha på deg hodetelefoner.", tegning: "hodetelefoner" },
         // Helsedirektoratet: preparation and explanation
         { tekst: "Si fra at du er nervøs når du bestiller time. Da kan tannlegen forklare mer underveis.", tegning: "snakke" },
+        // Helsedirektoratet: predictability
+        { tekst: "Snakk med tannlegen om hva som skal gjøres denne gangen, så du vet hva som kommer.", tegning: "steg" },
       ],
     },
     // Helsedirektoratet: focus on mastery
@@ -87,13 +87,13 @@ export const reddForTannlegen: Artikkel = {
         handling: { tittel: "Klar for å prøve?", tekst: "Bestill en time, og si at du gruer deg.", knapp: "bestill" },
       },
       {
-        // NHI Bedre med musikk
+        // Helsedirektoratet: preparation and predictability
         id: "lyd",
         svar: "Lyden og lukten",
-        tegning: "hodetelefoner",
-        overskrift: "Ta med musikk",
-        forklaring: "Musikk du liker kan gjøre det lettere å slappe av. Spør om det er greit at du har hodetelefoner på.",
-        handling: { tittel: "Klar for å prøve?", tekst: "Bestill en time, og ta med hodetelefonene.", knapp: "bestill" },
+        tegning: "snakke",
+        overskrift: "Be om å få vite det først",
+        forklaring: "Be tannlegen si fra før det kommer lyder eller lukter, så du vet hva som skjer. Det er lettere når du er forberedt.",
+        handling: { tittel: "Klar for å prøve?", tekst: "Bestill en time, og si hva du gruer deg til.", knapp: "bestill" },
       },
       {
         // Helsedirektoratet: control and predictability
@@ -124,5 +124,5 @@ export const reddForTannlegen: Artikkel = {
     ],
   },
   slutt: "Vil du prøve? Bestill en time, og si fra at du gruer deg.",
-  kilder: [KILDE.hdirAngst, KILDE.hdirToo, KILDE.tooinfo, KILDE.smlTannlegeskrekk, KILDE.nhiMusikk, KILDE.hnPust, KILDE.lovSamtykke],
+  kilder: [KILDE.hdirAngst, KILDE.hdirToo, KILDE.tooinfo, KILDE.smlTannlegeskrekk, KILDE.hnPust, KILDE.lovSamtykke],
 };
