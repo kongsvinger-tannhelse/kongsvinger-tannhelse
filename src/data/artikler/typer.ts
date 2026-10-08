@@ -31,7 +31,9 @@ export type TegningId =
   | "haand"
   | "roligtann"
   | "steg"
-  | "hjerte";
+  | "hjerte"
+  | "regning"
+  | "frikort";
 
 /** A yellow sticky note between two sections. */
 export type Lapp = { slag: "visste" | "triks" | "tips"; tekst: string };

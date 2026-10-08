@@ -22,7 +22,7 @@ export function RadOgTips() {
             <p className="mt-3 text-[17.5px] leading-[1.6] text-[var(--color-tekst-2)]">Korte, enkle tekster om vanlige ting i munnen, skrevet så alle kan forstå dem.</p>
           </div>
           <Link href={RAD_OG_TIPS.sti} className="group inline-flex items-center gap-2 text-[16px] font-semibold text-[var(--color-glomma-deep)] underline-offset-4 hover:underline">
-            Se alle {ARTIKLER.length}
+            Se alle
             <ArrowRight className="size-4 text-[var(--color-teal)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
           </Link>
         </div>

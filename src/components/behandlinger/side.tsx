@@ -10,7 +10,7 @@ const { telefon, epost, adresse, apningstider } = klinikk;
 
 /* Questions people ask before they ring a dentist, answered from what the
    clinic's own site says. Shown on the page and given to search engines. */
-const SPORSMAL = [
+const SPORSMAL: { s: string; svar: string; lenke?: { href: string; tekst: string } }[] = [
   {
     s: "Hva gjør jeg hvis jeg får akutt tannpine?",
     svar: `Ring oss på ${telefon.visning} så tidlig på dagen som mulig. Vi gjør vårt beste for å gi deg time samme dag. Vi har åpent ${apningstider.dager.toLowerCase()} ${apningstider.fra}–${apningstider.til}. Utenom åpningstiden, eller hvis du har feber eller hevelse som gjør det tungt å svelge eller puste, ring legevakten på 116 117.`,
@@ -26,6 +26,11 @@ const SPORSMAL = [
   {
     s: "Kan jeg få hvitere tenner hos tannlegen?",
     svar: "Ja. Ved tannbleking lager vi en blekeskinne etter avtrykk av tennene dine, og du bruker den hjemme med blekegel. Skallfasetter er et annet valg, for en hvitere og jevnere overflate.",
+  },
+  {
+    s: "Dekker Helfo noe av tannbehandlingen?",
+    svar: "Som hovedregel betaler voksne tannbehandlingen selv, men Helfo dekker en del ved 15 sykdommer og tilstander, og vi har direkte oppgjør med Helfo. Barn, ungdom og unge voksne til og med året de fyller 28, får tannbehandling i Den offentlige tannhelsetjenesten.",
+    lenke: { href: "/rad-og-tips/hva-dekker-helfo", tekst: "Les om hva Helfo dekker" },
   },
   {
     s: "Hvordan bestiller jeg time hos tannlegen i Kongsvinger?",
@@ -172,7 +177,17 @@ export function Sporsmal() {
                 <h3>{q.s}</h3>
                 <ChevronDown className="size-5 shrink-0 text-[var(--color-tekst-svak)] transition-transform duration-300 group-open:rotate-180" aria-hidden="true" />
               </summary>
-              <p className="max-w-[62ch] pb-6 text-[16px] leading-[1.65] text-[var(--color-tekst-2)]">{q.svar}</p>
+              <p className="max-w-[62ch] pb-6 text-[16px] leading-[1.65] text-[var(--color-tekst-2)]">
+                {q.svar}
+                {q.lenke && (
+                  <>
+                    {" "}
+                    <Link href={q.lenke.href} className="font-semibold text-[var(--color-glomma)] underline underline-offset-4">
+                      {q.lenke.tekst}
+                    </Link>
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

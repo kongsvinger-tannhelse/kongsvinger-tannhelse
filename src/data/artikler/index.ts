@@ -1,4 +1,5 @@
 import { detIser } from "./det-iser-i-tennene";
+import { hvaDekkerHelfo } from "./hva-dekker-helfo";
 import { reddForTannlegen } from "./redd-for-tannlegen";
 import { slikPusserDu } from "./slik-pusser-du-tennene";
 import { tannkjottetBlor } from "./tannkjottet-blor";
@@ -9,7 +10,7 @@ import type { Artikkel } from "./typer";
    module (see klinikk.ts). A DRAFT: the clinic should read the texts
    before they go live. */
 
-export const ARTIKLER: Artikkel[] = [vondtITanna, detIser, tannkjottetBlor, reddForTannlegen, slikPusserDu];
+export const ARTIKLER: Artikkel[] = [vondtITanna, detIser, tannkjottetBlor, reddForTannlegen, slikPusserDu, hvaDekkerHelfo];
 
 export const finnArtikkel = (slug: string) => ARTIKLER.find((a) => a.slug === slug);
 
