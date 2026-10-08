@@ -1,0 +1,123 @@
+import { klinikk } from "@/data/klinikk";
+
+/* The toothache article, the same words in all three drafts. Written so a
+   ten-year-old can read it: short sentences, everyday words, one idea at a
+   time. A plain module, so server and client read the same values.
+   A DRAFT: a dentist at the clinic must read and approve it before it goes live. */
+
+const { telefon, apningstider } = klinikk;
+
+export const ARTIKKEL = {
+  tittel: "Det gjør vondt i tanna",
+  ingress: "Vondt i en tann er ekkelt. Men det er nesten alltid noe vi kan fikse. Her ser du hva det kan bety, og hva du kan gjøre allerede i dag.",
+  forfatter: "Per Hafthun",
+  rolle: "Tannlege",
+  lesetid: "3 minutter å lese",
+} as const;
+
+/** Why it hurts at all. */
+export const NERVEN = {
+  sporsmal: "Hvorfor gjør det vondt?",
+  tekst: [
+    "Inne i hver tann bor det en liten nerve. Den kjenner kulde, varme og trykk.",
+    "Når noe er galt med tanna, sier nerven ifra. Det er det du kjenner som vondt.",
+  ],
+} as const;
+
+export type Arsak = { id: "hull" | "sprekk" | "tannkjott" | "betennelse"; navn: string; tekst: string; kjennes: string };
+
+/** What it can be. */
+export const ARSAKER: { sporsmal: string; intro: string; liste: Arsak[] } = {
+  sporsmal: "Hva kan det være?",
+  intro: "Det er særlig fire ting som gir vondt i en tann.",
+  liste: [
+    {
+      id: "hull",
+      navn: "Et hull",
+      tekst: "Bakterier i munnen lager syre av sukker. Syren kan spise et lite hull i tanna.",
+      kjennes: "Ofte iser det når du spiser noe søtt eller kaldt.",
+    },
+    {
+      id: "sprekk",
+      navn: "En sprekk",
+      tekst: "Tanna kan få en liten sprekk, for eksempel hvis du biter på noe hardt.",
+      kjennes: "Ofte et stikk når du biter, og så slipper det.",
+    },
+    {
+      id: "tannkjott",
+      navn: "Sårt tannkjøtt",
+      tekst: "Tannkjøttet rundt tanna kan bli rødt og irritert. Noen ganger sitter det mat fast der.",
+      kjennes: "Ømt og sårt, og det kan blø litt når du pusser.",
+    },
+    {
+      id: "betennelse",
+      navn: "En syk nerve",
+      tekst: "Hvis et hull får vokse lenge, kan nerven inne i tanna bli betent.",
+      kjennes: "Det banker og verker, gjerne om natten, og går ikke over.",
+    },
+  ],
+};
+
+export type Tips = { id: "pusse" | "skylle" | "tygge" | "pute" | "tablett"; tekst: string };
+
+/** What you can do today. */
+export const TIPS: { sporsmal: string; liste: Tips[]; advarsel: string } = {
+  sporsmal: "Hva kan jeg gjøre i dag?",
+  liste: [
+    { id: "pusse", tekst: "Puss tennene forsiktig, også der det gjør vondt. Bruk tanntråd hvis det sitter mat fast." },
+    { id: "skylle", tekst: "Skyll munnen med lunkent vann." },
+    { id: "tygge", tekst: "Tygg på den andre siden. Hold deg unna det som er veldig kaldt, varmt eller søtt." },
+    { id: "pute", tekst: "Om natten kan det hjelpe å ligge med hodet litt høyt." },
+    { id: "tablett", tekst: "Smertestillende fra apoteket kan hjelpe en stund. Følg det som står på pakken." },
+  ],
+  advarsel: "Ikke legg en tablett på tannkjøttet ved tanna. Den kan lage et sår.",
+};
+
+/** Pain that stops is not the same as a healthy tooth. */
+export const BORTE = {
+  sporsmal: "Det sluttet å gjøre vondt. Er alt bra nå?",
+  tekst: [
+    "Ikke alltid. Hvis nerven er veldig syk, kan den slutte å kjenne noe. Da blir det stille, men problemet er der fortsatt.",
+    "Derfor bør en tann som har verket, alltid sjekkes. Da kan vi fikse den mens det er enkelt.",
+  ],
+} as const;
+
+export type Lys = { farge: "gronn" | "gul" | "rod"; tittel: string; nar: string[]; gjor: string };
+
+/** How soon to get in touch: green can wait, yellow today, red now. */
+export const TRAFIKKLYS: { sporsmal: string; intro: string; lys: Lys[]; etterStengetid: string } = {
+  sporsmal: "Hvor fort må jeg ringe?",
+  intro: "Se hvilken farge som passer best.",
+  lys: [
+    {
+      farge: "gronn",
+      tittel: "Kan vente litt",
+      nar: ["Det iser litt når du drikker kaldt, og går fort over.", "Det er lenge siden du var hos tannlegen."],
+      gjor: "Bestill en vanlig time.",
+    },
+    {
+      farge: "gul",
+      tittel: "Ring oss i dag",
+      nar: ["Det verker, og det går ikke over.", "Det gjør vondt når du biter.", "Det gjør vondt om natten, eller har vart i mer enn to dager."],
+      gjor: `Ring ${telefon.visning}. Vi prøver å finne en time så fort vi kan.`,
+    },
+    {
+      farge: "rod",
+      tittel: "Ring nå",
+      nar: ["Kinnet eller ansiktet er hovent.", "Du har feber.", "Det er vanskelig å svelge, puste eller åpne munnen."],
+      gjor: `Ring ${telefon.visning} med en gang.`,
+    },
+  ],
+  etterStengetid: `Vi har åpent ${apningstider.dager.toLowerCase()} ${apningstider.fra}–${apningstider.til}. Er det rødt og vi har stengt, ring legevakten på 116 117.`,
+};
+
+export const LYSFARGE = {
+  gronn: { prikk: "#3FA36B", flate: "#E4F1E8", tekst: "#1F5A3A" },
+  gul: { prikk: "#E2A93B", flate: "#FBF0D9", tekst: "#6B4A10" },
+  rod: { prikk: "#D9634C", flate: "#F8E4DB", tekst: "#7A2B1E" },
+} as const;
+
+export const METADATA = {
+  title: "Det gjør vondt i tanna: hva betyr det, og hva gjør jeg?",
+  description: "Tannverk forklart enkelt: hva det kan være, hva du kan gjøre i dag, og når du må ringe tannlegen.",
+};
