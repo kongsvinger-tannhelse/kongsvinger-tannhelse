@@ -1,4 +1,10 @@
+import { darligAnde } from "./darlig-ande";
+import { delprotese } from "./delprotese";
 import { helprotese } from "./helprotese";
+import { hevelse } from "./hevelse";
+import { isingITenner } from "./ising-i-tenner";
+import { losnetTannkrone } from "./losnet-tannkrone";
+import { mistetFylling } from "./mistet-fylling";
 import { munntorrhet } from "./munntorrhet";
 import { rotfylling } from "./rotfylling";
 import { skallfasetter } from "./skallfasetter";
@@ -12,6 +18,7 @@ import { tannkrone } from "./tannkrone";
 import { tannrens } from "./tannrens";
 import { tannsjekk } from "./tannsjekk";
 import { tannskade } from "./tannskade";
+import { tannverk } from "./tannverk";
 import { trekkingAvTenner } from "./trekking-av-tenner";
 import { visdomstenner } from "./visdomstenner";
 import { MED_SIDE } from "./sider";
@@ -29,13 +36,20 @@ export const BEHANDLINGSSIDER: Behandlingsside[] = [
   rotfylling,
   munntorrhet,
   tanngnissing,
+  isingITenner,
   trekkingAvTenner,
+  darligAnde,
   visdomstenner,
   tannskade,
+  tannverk,
+  mistetFylling,
+  hevelse,
+  losnetTannkrone,
   tannkrone,
   tannbro,
   skallfasetter,
   tannimplantat,
+  delprotese,
   helprotese,
 ];
 

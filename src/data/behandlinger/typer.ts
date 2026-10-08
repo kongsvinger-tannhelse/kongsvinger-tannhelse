@@ -137,17 +137,87 @@ export type BTegning =
   | "avtrykk-tannlos"
   | "bitt-maal"
   | "protese-smil"
-  | "spire";
+  | "spire"
+  | "verk-to-steder"
+  | "snakke-verk"
+  | "lupe-verk"
+  | "rontgen-verk"
+  | "plan-verk"
+  | "verk-fylling"
+  | "verk-rot"
+  | "verk-trekk"
+  | "verk-tannkjott"
+  | "telefon-morgen"
+  | "byll-snitt"
+  | "kul-tannkjott"
+  | "bite-vondt"
+  | "vond-smak"
+  | "kinn-vondt"
+  | "feber"
+  | "blaalys"
+  | "rontgen-byll"
+  | "byll-letter"
+  | "antibiotika"
+  | "byll-valg"
+  | "delprotese"
+  | "veiviser"
+  | "snakke-del"
+  | "avtrykk-del"
+  | "opplegg"
+  | "tegning-del"
+  | "voks-speil"
+  | "inn-ut"
+  | "lupe-klammer"
+  | "bar-rot"
+  | "ising-hull"
+  | "ising-sprekk"
+  | "ising-fylling"
+  | "ising-tannkjott"
+  | "ising-nerve"
+  | "snakke-ising"
+  | "myk-puss"
+  | "egne-midler"
+  | "tynt-lag"
+  | "ising-reparert"
+  | "munn-ande"
+  | "belegg-tunge"
+  | "mat-mellom"
+  | "hull-ande"
+  | "sove-apen"
+  | "lok"
+  | "puss-traad"
+  | "tungeskrape"
+  | "vannflaske"
+  | "snakke-ande"
+  | "lupe-ande"
+  | "rens-ande"
+  | "lege"
+  | "fylling-kant"
+  | "apen-tann"
+  | "rontgen-fylling"
+  | "fjerne-kant"
+  | "lapp-fylling"
+  | "innlegg-krone"
+  | "krone-sement"
+  | "hull-under"
+  | "sprekk-under"
+  | "klissete"
+  | "vekt"
+  | "sement-slitt"
+  | "lupe-krone"
+  | "rontgen-krone"
+  | "behandle-stump"
+  | "ny-krone";
 
 /** The larger pen scene beside a page's title. */
-export type Tittelbilde = "stol" | "bro-elv" | "natt" | "fylling" | "bleking" | "rens" | "tannkjott" | "rot" | "torr" | "tang" | "ugle" | "ball" | "krone" | "skjell" | "implantat" | "gebiss";
+export type Tittelbilde = "stol" | "bro-elv" | "natt" | "fylling" | "bleking" | "rens" | "tannkjott" | "rot" | "torr" | "tang" | "ugle" | "ball" | "krone" | "skjell" | "implantat" | "gebiss" | "klut" | "kulefisk" | "puslespill" | "lue" | "klesklype" | "skjaere" | "vind";
 
 /** One panel of the comic strip, with a line under it. `mellom`: a step not everyone needs, in a dashed frame. */
 export type Rute = { tegning: BTegning; tekst: string; mellom?: boolean };
 
 export type Del =
-  /** A part of the note with a sketch in the margin. A title ending in «?» is also a question for search engines. */
-  | { type: "tekst"; id: string; tittel: string; avsnitt: string[]; tegning: BTegning }
+  /** A part of the note with a sketch in the margin. A title ending in «?» is also a question for search engines. `lenke`: a «Råd og tips» article that says more. */
+  | { type: "tekst"; id: string; tittel: string; avsnitt: string[]; tegning: BTegning; lenke?: { tekst: string; slug: string } }
   /** Things you may notice, each with a small sketch. */
   | { type: "tegn"; id: string; tittel: string; intro?: string; punkter: { tekst: string; tegning: BTegning }[]; etter?: string }
   /** The treatment itself, as a comic strip. */

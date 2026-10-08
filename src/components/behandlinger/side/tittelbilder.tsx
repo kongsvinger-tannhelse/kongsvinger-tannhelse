@@ -2,6 +2,7 @@ import { FARGE as F, JEKSEL, r2, stjerne } from "@/components/forside/behandling
 import { AKSENT, BLEKK, Ramme, blekk, form, linje, type Stil } from "@/components/artikler/tegninger";
 import type { Tittelbilde } from "@/data/behandlinger/typer";
 import { Ball, Bleking, Fylling, Gebiss, ImplantatTittel, KroneTittel, Rens, Rot, Skjell, Tang, TannkjottTittel, Torr, Ugle } from "./tittelbilder2";
+import { Klesklype, Klut, Kulefisk, Lue, Puslespill, Skjaere, Vind } from "./tittelbilder3";
 
 /* The picture beside each treatment page's title: one larger pen scene of
    its own, 320 × 220, that draws itself when the page opens. Server-safe. */
@@ -119,4 +120,11 @@ export const TITTELBILDER: Record<Tittelbilde, (p: Stil) => React.JSX.Element> =
   skjell: (p) => <Skjell {...p} />,
   implantat: (p) => <ImplantatTittel {...p} />,
   gebiss: (p) => <Gebiss {...p} />,
+  klut: (p) => <Klut {...p} />,
+  kulefisk: (p) => <Kulefisk {...p} />,
+  puslespill: (p) => <Puslespill {...p} />,
+  lue: (p) => <Lue {...p} />,
+  klesklype: (p) => <Klesklype {...p} />,
+  skjaere: (p) => <Skjaere {...p} />,
+  vind: (p) => <Vind {...p} />,
 };

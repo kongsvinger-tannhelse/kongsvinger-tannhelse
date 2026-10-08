@@ -13,7 +13,7 @@ const { telefon, epost, adresse, apningstider } = klinikk;
 const SPORSMAL: { s: string; svar: string; lenke?: { href: string; tekst: string } }[] = [
   {
     s: "Hva gjør jeg hvis jeg får akutt tannpine?",
-    svar: `Ring oss på ${telefon.visning} så tidlig på dagen som mulig. Vi gjør vårt beste for å gi deg time samme dag. Vi har åpent ${apningstider.dager.toLowerCase()} ${apningstider.fra}–${apningstider.til}. Utenom åpningstiden, eller hvis du har feber eller hevelse som gjør det tungt å svelge eller puste, ring legevakten på 116 117.`,
+    svar: `Ring oss på ${telefon.visning} så tidlig på dagen som mulig. Vi gjør vårt beste for å gi deg time samme dag. Vi har åpent ${apningstider.dager.toLowerCase()} ${apningstider.fra}–${apningstider.til}. Utenom åpningstiden, eller hvis du har økende hevelse, problemer med å svelge eller høy feber, ring legevakten på 116 117. Har du pustevansker, ring 113.`,
   },
   {
     s: "Hvor ofte bør jeg gå til tannsjekk?",

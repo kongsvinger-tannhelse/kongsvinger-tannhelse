@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { SAMME_SIDE } from "./src/data/behandlinger/sider";
 
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
@@ -18,6 +19,10 @@ const gamleSider = [
   // where the old contact form posted
   { source: "/send_mail.php", destination: "/kontakt" },
 ];
+
+/* Treatments in the book that share another's page (tannsmerte → tannverk,
+   tannstein → tannrens): their own address leads to that page too. */
+const sammeSide = Object.entries(SAMME_SIDE).map(([fra, til]) => ({ source: `/behandlinger/${fra}`, destination: `/behandlinger/${til}` }));
 
 /* Its photos, which image search may still show: the same pictures, now WebP. */
 const gamleBilder = [
@@ -39,7 +44,7 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   async redirects() {
-    return [...gamleSider, ...gamleBilder].map((r) => ({ ...r, permanent: true }));
+    return [...gamleSider, ...gamleBilder, ...sammeSide].map((r) => ({ ...r, permanent: true }));
   },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];

@@ -51,9 +51,9 @@ export const behandlinger: Record<"ordinaer" | "akutt" | "estetisk", { tittel: s
     liste: [
       { navn: "Tannsmerte", tekst: "Har du vedvarende smerter i en tann, er det på tide å gå til tannlegen. Årsaken kan være råte, en sprukket tann eller en infeksjon." },
       { navn: "Tannskade", tekst: "Er en tann løs, slått inn, slått ut eller knekt? Kontakt tannlegen så snart som mulig, og ta med tannen eller biten hvis du finner den." },
-      { navn: "Tannverk", tekst: "Lett tannverk kan komme av irritert tannkjøtt. Sterkere tannverk skyldes ofte hull, infeksjon eller sykdom, og går ikke over av seg selv. Da trenger du tannlege." },
+      { navn: "Tannverk", tekst: "Lett tannverk kan komme av irritert tannkjøtt. Sterkere tannverk skyldes ofte hull, infeksjon eller sykdom, og går sjelden over av seg selv. Da trenger du tannlege." },
       { navn: "Mistet fylling", tekst: "Har du mistet en fylling, kontakt tannlegen så snart som mulig. Hold området rent og unngå å tygge på den siden til du kommer inn." },
-      { navn: "Hevelse", tekst: "Hevelse rundt en tann eller i ansiktet kan komme av en infeksjon. Ta kontakt så fort det lar seg gjøre; noen ganger trengs antibiotika. Har du feber, eller blir det tungt å svelge eller puste, ring legevakten på 116 117." },
+      { navn: "Hevelse", tekst: "Hevelse rundt en tann eller i ansiktet kan komme av en infeksjon. Ta kontakt så fort det lar seg gjøre; noen ganger trengs antibiotika. Har du problemer med å svelge, eller høy feber og føler deg syk, kontakt legevakten på 116 117. Har du pustevansker, ring 113." },
       { navn: "Løsnet tannkrone", tekst: "En tannkrone kan løsne av tanngnissing, råte, et slag eller klissete mat, og sementen kan svekkes over tid. Ta vare på kronen og ta den med til tannlegen." },
     ],
   },
