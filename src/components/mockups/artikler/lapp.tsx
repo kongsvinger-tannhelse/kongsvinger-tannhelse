@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { CalendarDays } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { cn } from "@/lib/utils";
 import { Ansikt, Knapper, Vis } from "./deler";
@@ -187,8 +189,38 @@ export function LysDel({ id = "lys", nr, kant = true }: Del) {
   );
 }
 
-/** Per's goodbye at the bottom of the note, with the two buttons. */
-export function Hilsen({ className }: { className?: string }) {
+/** Per's goodbye at the bottom of the note, with the two buttons (or, with `enKnapp`, only «Bestill time», and the number as words). */
+export function Hilsen({ className, enKnapp = false }: { className?: string; enKnapp?: boolean }) {
+  if (enKnapp) {
+    return (
+      <footer className={cn("mt-12 flex flex-col items-start gap-6 rounded-[22px] bg-[var(--color-kalk)]/70 p-6 md:mt-16 md:flex-row md:items-center md:justify-between md:p-8", className)}>
+        <div className="flex items-center gap-4">
+          <Ansikt className="size-12" />
+          <p className="text-[17px] leading-[1.45] text-[var(--color-tekst)]">
+            Vil du at vi ser på tanna? Bestill en time, så tar vi en titt.
+            <br />
+            <span className="font-semibold text-[var(--color-glomma-deep)]">Hilsen {FORFATTER.navn.split(" ")[0]}</span>
+            <span className="text-[var(--color-tekst-2)]"> og alle på {klinikk.navn}</span>
+          </p>
+        </div>
+        <div className="shrink-0">
+          <Link
+            href="/#kontakt"
+            className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-glomma)] px-8 py-4 text-[17px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
+          >
+            <CalendarDays className="size-5" aria-hidden="true" />
+            Bestill time
+          </Link>
+          <p className="mt-2.5 text-[14.5px] text-[var(--color-tekst-2)] md:text-center">
+            eller ring{" "}
+            <a href={klinikk.telefon.lenke} className="font-semibold text-[var(--color-glomma-deep)] underline-offset-4 hover:underline">
+              {klinikk.telefon.visning}
+            </a>
+          </p>
+        </div>
+      </footer>
+    );
+  }
   return (
     <footer className={cn("mt-12 flex flex-col gap-6 rounded-[22px] bg-[var(--color-kalk)]/70 p-6 md:mt-16 md:flex-row md:items-center md:justify-between md:p-8", className)}>
       <div className="flex items-center gap-4">

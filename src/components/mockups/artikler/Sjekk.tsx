@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowDown, Check, Phone } from "lucide-react";
+import Link from "next/link";
+import { ArrowDown, CalendarDays, Check, Phone } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { cn } from "@/lib/utils";
 import { Nerve, TEGNING } from "./tegninger";
-import { LYSFARGE, SJEKK, TRAFIKKLYS, type Valg } from "./tekst";
+import { LYSFARGE, SJEKK, STENGT, TRAFIKKLYS, type Valg } from "./tekst";
 
 /* The self-check: tap what it feels like, and get a hint at once: what it
    could be, and how soon to ring. Nothing is chosen on the server or the
@@ -22,7 +23,20 @@ const LES_MER: Record<Valg["tegning"], string> = {
   hevelse: "#lys",
 };
 
-export function Sjekk({ lys: lyst = false, lesMer = false, utenTittel = false, className }: { lys?: boolean; lesMer?: boolean; utenTittel?: boolean; className?: string }) {
+export function Sjekk({
+  lys: lyst = false,
+  lesMer = false,
+  utenTittel = false,
+  rolig = false,
+  className,
+}: {
+  lys?: boolean;
+  lesMer?: boolean;
+  utenTittel?: boolean;
+  /** No traffic-light colours in the hint: just what to do, in plain words. */
+  rolig?: boolean;
+  className?: string;
+}) {
   const [valgtId, setValgtId] = useState<string | null>(null);
   const valgt = SJEKK.valg.find((v) => v.id === valgtId) ?? null;
   const lys = valgt ? TRAFIKKLYS.lys.find((l) => l.farge === valgt.lys)! : null;
@@ -33,7 +47,8 @@ export function Sjekk({ lys: lyst = false, lesMer = false, utenTittel = false, c
       aria-labelledby={utenTittel ? undefined : "sjekk-tittel"}
       aria-label={utenTittel ? "Sjekk selv" : undefined}
       className={cn(
-        "overflow-hidden rounded-[32px] p-6 sm:p-10 md:p-12",
+        "overflow-hidden rounded-[32px]",
+        lyst ? "p-4 sm:p-8 md:p-10" : "p-6 sm:p-10 md:p-12",
         lyst ? "bg-[var(--color-kalk)]/80 text-[var(--color-tekst)]" : "bg-[var(--color-glomma-deep)] text-[var(--color-papir)]",
         className
       )}
@@ -96,31 +111,50 @@ export function Sjekk({ lys: lyst = false, lesMer = false, utenTittel = false, c
         {/* the hint */}
         <div aria-live="polite" className="flex">
           {valgt && lys && T ? (
-            <div key={valgt.id} className={cn("hero-loft flex w-full flex-col rounded-[24px] p-6 text-[var(--color-tekst)] md:p-8", lyst ? "bg-white shadow-[0_24px_50px_-40px_rgba(10,25,32,0.55)]" : "bg-[var(--color-papir)]")}>
-              <div className="flex items-start gap-5">
+            <div key={valgt.id} className={cn("hero-loft flex w-full flex-col rounded-[24px] p-5 text-[var(--color-tekst)] sm:p-6 md:p-8", lyst ? "bg-white shadow-[0_24px_50px_-40px_rgba(10,25,32,0.55)]" : "bg-[var(--color-papir)]")}>
+              <div className={cn("flex items-start", lyst ? "flex-col gap-3" : "gap-5")}>
                 <T strek={lyst} className={cn("shrink-0", lyst ? "w-24 md:w-28" : "w-28 md:w-36")} />
-                <div className="pt-2">
+                <div className={cn(!lyst && "pt-2")}>
                   <p className="text-[14px] font-semibold text-[var(--color-tekst-svak)]">Det kan være</p>
                   <p className="mt-1 text-[26px] font-bold leading-[1.1] tracking-[-0.03em] text-[var(--color-glomma-deep)] md:text-[30px]">{valgt.kanVaere}</p>
                 </div>
               </div>
               <p className="mt-5 text-[18px] leading-[1.6]">{valgt.forklaring}</p>
 
-              <div className="mt-6 rounded-[18px] p-5" style={{ background: LYSFARGE[lys.farge].flate }}>
-                <div className="flex items-center gap-3">
-                  <span aria-hidden="true" className="block size-5 rounded-full" style={{ background: LYSFARGE[lys.farge].prikk, boxShadow: `0 0 14px 2px ${LYSFARGE[lys.farge].prikk}88` }} />
-                  <p className="text-[20px] font-bold" style={{ color: LYSFARGE[lys.farge].tekst }}>
-                    {lys.tittel}
-                  </p>
+              {rolig ? (
+                <div className="mt-6 rounded-[18px] bg-[var(--color-kalk)]/70 p-5">
+                  <p className="text-[19px] font-bold text-[var(--color-glomma-deep)]">{lys.tittel}</p>
+                  <p className="mt-1.5 text-[17px] leading-[1.55] text-[var(--color-tekst)]">{lys.gjor}</p>
+                  {lys.farge === "rod" && <p className="mt-2 text-[15.5px] leading-[1.55] text-[var(--color-tekst-2)]">{STENGT}</p>}
+                  {lys.farge === "gronn" ? (
+                    <Link href="/#kontakt" className="mt-4 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[15px] font-semibold text-[var(--color-papir)]">
+                      <CalendarDays className="size-4" aria-hidden="true" />
+                      Bestill time
+                    </Link>
+                  ) : (
+                    <a href={klinikk.telefon.lenke} className="mt-4 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[15px] font-semibold text-[var(--color-papir)]">
+                      <Phone className="size-4" aria-hidden="true" />
+                      Ring {klinikk.telefon.visning}
+                    </a>
+                  )}
                 </div>
-                <p className="mt-2 text-[17px] font-semibold text-[var(--color-glomma-deep)]">{lys.gjor}</p>
-                {lys.farge !== "gronn" && (
-                  <a href={klinikk.telefon.lenke} className="mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[15px] font-semibold text-[var(--color-papir)]">
-                    <Phone className="size-4" aria-hidden="true" />
-                    Ring {klinikk.telefon.visning}
-                  </a>
-                )}
-              </div>
+              ) : (
+                <div className="mt-6 rounded-[18px] p-5" style={{ background: LYSFARGE[lys.farge].flate }}>
+                  <div className="flex items-center gap-3">
+                    <span aria-hidden="true" className="block size-5 rounded-full" style={{ background: LYSFARGE[lys.farge].prikk, boxShadow: `0 0 14px 2px ${LYSFARGE[lys.farge].prikk}88` }} />
+                    <p className="text-[20px] font-bold" style={{ color: LYSFARGE[lys.farge].tekst }}>
+                      {lys.tittel}
+                    </p>
+                  </div>
+                  <p className="mt-2 text-[17px] font-semibold text-[var(--color-glomma-deep)]">{lys.gjor}</p>
+                  {lys.farge !== "gronn" && (
+                    <a href={klinikk.telefon.lenke} className="mt-4 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[15px] font-semibold text-[var(--color-papir)]">
+                      <Phone className="size-4" aria-hidden="true" />
+                      Ring {klinikk.telefon.visning}
+                    </a>
+                  )}
+                </div>
+              )}
               <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-5">
                 <p className="text-[14px] text-[var(--color-tekst-svak)]">{SJEKK.forbehold}</p>
                 {lesMer && (

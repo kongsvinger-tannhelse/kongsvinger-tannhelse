@@ -111,6 +111,9 @@ export const TRAFIKKLYS: { sporsmal: string; intro: string; lys: Lys[]; etterSte
   etterStengetid: `Vi har åpent ${apningstider.dager.toLowerCase()} ${apningstider.fra}–${apningstider.til}. Er det rødt og vi har stengt, ring legevakten på 116 117.`,
 };
 
+/** The same, without the traffic light's colours. */
+export const STENGT = `Vi har åpent ${apningstider.dager.toLowerCase()} ${apningstider.fra}–${apningstider.til}. Har vi stengt, ring legevakten på 116 117.`;
+
 export const LYSFARGE = {
   gronn: { prikk: "#3FA36B", flate: "#E4F1E8", tekst: "#1F5A3A" },
   gul: { prikk: "#E2A93B", flate: "#FBF0D9", tekst: "#6B4A10" },
