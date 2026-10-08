@@ -12,9 +12,9 @@ const nextConfig: NextConfig = {
   images: {
     // next/image qualities used across the site (Next 16 requires them listed).
     qualities: [75],
-    // The defaults plus 2560 and 3200: the hero's panorama is about 1600 CSS px
-    // wide on a phone, so phones needed ~2800 px and got 3840.
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560, 3200, 3840],
+    // The defaults plus 1600, 2560 and 3200. Phones get the hero's two layers
+    // at 1600 (Utsikt.tsx); wider screens choose from the rest.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1600, 1920, 2048, 2560, 3200, 3840],
     // AVIF first: smaller than WebP at the same look; browsers without it get WebP.
     formats: ["image/avif", "image/webp"],
   },

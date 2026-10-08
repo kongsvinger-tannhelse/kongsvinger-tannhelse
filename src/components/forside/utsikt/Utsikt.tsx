@@ -31,23 +31,26 @@ function subscribeReduce(cb: () => void) {
 /** The photo's aspect ratio (4800 x 3200 layers) */
 const AR = 1.5;
 
+/** The one width phones get (it must be in next.config's deviceSizes). */
+const TELEFON = 1600;
+
 /**
  * One depth of the photograph. Wide screens choose from the full range of
- * widths by `sizes`; phones get a single 2048 px version, whatever their
- * pixel density: the panorama is about 1600 CSS px wide there, and 3200–3840
- * px cost twice the bytes for treetops a little sharper than anyone sees in
- * motion. Loaded eagerly at high priority, not through Next's preload, which
+ * widths by `sizes`; phones get a single 1600 px version, whatever their
+ * pixel density: the panorama is about 1600 CSS px wide there (what PageSpeed
+ * measures as displayed), and bigger files cost bytes for treetops a little
+ * sharper than anyone sees in motion. Loaded eagerly at high priority, not through Next's preload, which
  * would fetch the wide-screen size on phones as well.
  */
 function Dybdefoto({ src, onLoad }: { src: StaticImageData; onLoad: () => void }) {
   const felles = { src, alt: "", quality: 75 } as const;
   const { props: bred } = getImageProps({ ...felles, sizes: "max(130vw, 195vh)" });
-  const { props: smal } = getImageProps({ ...felles, width: 2048, height: Math.round(2048 / AR) });
-  // getImageProps gives the phone version as "…w=2048 1x, …w=3840 2x"; keep only 2048
+  const { props: smal } = getImageProps({ ...felles, width: TELEFON, height: Math.round(TELEFON / AR) });
+  // getImageProps gives the phone version as "…w=1600 1x, …w=3200 2x"; keep only the first
   const smalSrc = smal.srcSet?.split(", ")[0].split(" ")[0] ?? smal.src;
   return (
     <picture>
-      <source media="(max-width: 767px)" srcSet={`${smalSrc} 2048w`} sizes="max(130vw, 195vh)" />
+      <source media="(max-width: 767px)" srcSet={`${smalSrc} ${TELEFON}w`} sizes="max(130vw, 195vh)" />
       <img {...bred} alt="" loading="eager" fetchPriority="high" onLoad={onLoad} />
     </picture>
   );
