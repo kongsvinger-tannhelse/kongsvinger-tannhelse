@@ -186,7 +186,6 @@ export function Stille({ strek, className, forsink }: Stil) {
   );
 }
 
-
 /* ── Small drawings for the tips, 120 × 120 ── */
 
 export function Borste({ strek, className, forsink }: Stil) {
@@ -213,33 +212,6 @@ export function Glass({ strek, className, forsink }: Stil) {
   );
 }
 
-/** A jaw from above, the sore side marked, an arrow to the other side. */
-export function Tygge({ strek, className, forsink }: Stil) {
-  const tenner = Array.from({ length: 8 }, (_, i) => {
-    const a = Math.PI * (0.95 - (i / 7) * 0.9);
-    return { x: r2(60 + Math.cos(a) * 40), y: r2(78 - Math.sin(a) * 44), sar: i < 3 };
-  });
-  return (
-    <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      {tenner.map((t, i) => (
-        <circle key={i} cx={t.x} cy={t.y} r={8} {...form(strek, t.sar ? "#F5C9BF" : F.hvit, { w: 2, ink: t.sar ? AKSENT : BLEKK, penFill: F.papir })} {...(strek ? {} : { stroke: t.sar ? F.smerte : F.metallMork, strokeWidth: 1.6 })} />
-      ))}
-      <path d="M34,96 Q60,112 86,96" {...linje(strek, F.glomma, 2.4)} />
-      <path d="M78,92 L87,96 L80,103" {...linje(strek, F.glomma, 2.4)} />
-    </Ramme>
-  );
-}
-
-export function Pute({ strek, className, forsink }: Stil) {
-  return (
-    <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M12,58 Q24,64 36,56 Q62,50 88,44 Q96,36 106,40 Q100,54 104,70 Q108,84 98,88 Q90,82 80,88 Q54,94 28,100 Q20,108 12,102 Q18,90 14,78 Q8,66 12,58 Z" {...form(strek, F.hvit, { w: 2.2, penFill: F.papir })} {...(strek ? {} : { stroke: F.metallMork, strokeWidth: 1.6 })} />
-      <path d="M34,82 Q58,74 86,68" {...linje(strek, F.blek, 2)} />
-      <path d="M82,14 a12,12 0 1 0 10,20 a9,9 0 1 1 -10,-20 Z" {...form(strek, "#F1D58A", { w: 2 })} />
-    </Ramme>
-  );
-}
-
 export function Tablett({ strek, className, forsink }: Stil) {
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
@@ -250,7 +222,6 @@ export function Tablett({ strek, className, forsink }: Stil) {
     </Ramme>
   );
 }
-
 
 /** A swelling: a red bump on the gum under the tooth, and a thermometer for the fever. */
 export function Hevelse({ strek, className, forsink }: Stil) {
@@ -272,7 +243,6 @@ export function Hevelse({ strek, className, forsink }: Stil) {
     </Ramme>
   );
 }
-
 
 /* ── Sensitive teeth ── */
 
@@ -512,20 +482,6 @@ export function Steg({ strek, className, forsink }: Stil) {
   );
 }
 
-/** Headphones, and a note of music. */
-export function Hodetelefoner({ strek, className, forsink }: Stil) {
-  return (
-    <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M26,70 C26,28 94,28 94,70" {...linje(strek, BLEKK, 3)} />
-      <rect x={16} y={62} width={18} height={32} rx={8} {...form(strek, F.teal, { w: 2.2 })} />
-      <rect x={86} y={62} width={18} height={32} rx={8} {...form(strek, F.teal, { w: 2.2 })} />
-      <path d="M56,58 L56,84 M56,58 L68,54 L68,78" {...linje(strek, AKSENT, 2.2, AKSENT)} />
-      <circle cx={52} cy={86} r={5} {...form(strek, F.smerte, { w: 2, ink: AKSENT })} />
-      <circle cx={64} cy={80} r={5} {...form(strek, F.smerte, { w: 2, ink: AKSENT })} />
-    </Ramme>
-  );
-}
-
 /** A heart: someone you feel safe with, and a kind word. */
 export function Hjerte({ strek, className, forsink }: Stil) {
   return (
@@ -549,8 +505,6 @@ export const TEGNINGER: Record<TegningId, (p: Stil) => React.JSX.Element> = {
   hevelse: Hevelse,
   borste: Borste,
   glass: Glass,
-  tygge: Tygge,
-  pute: Pute,
   tablett: Tablett,
   kanaler: Kanaler,
   slitt: Slitt,
@@ -566,6 +520,5 @@ export const TEGNINGER: Record<TegningId, (p: Stil) => React.JSX.Element> = {
   haand: Haand,
   roligtann: RoligTann,
   steg: Steg,
-  hodetelefoner: Hodetelefoner,
   hjerte: Hjerte,
 };
