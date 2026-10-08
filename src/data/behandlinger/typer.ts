@@ -49,7 +49,29 @@ export type BTegning =
   | "bittskinne"
   | "gnissing"
   | "melk"
-  | "tyggis";
+  | "tyggis"
+  | "snakke-helse"
+  | "snakke-stress"
+  | "lupe-rad"
+  | "lupe-gap"
+  | "lupe-slitt"
+  | "speil"
+  | "rontgen-to"
+  | "tannkart"
+  | "kalender"
+  | "regning-sjekk"
+  | "regning-bro"
+  | "regning-natt"
+  | "bro-lost"
+  | "valg"
+  | "gips"
+  | "bro-traad"
+  | "kjeve-sar"
+  | "kjeve-ro"
+  | "avtrykk-bitt";
+
+/** The larger pen scene beside a page's title. */
+export type Tittelbilde = "stol" | "bro-elv" | "natt";
 
 /** One panel of the comic strip, with a line under it. `mellom`: a step not everyone needs, in a dashed frame. */
 export type Rute = { tegning: BTegning; tekst: string; mellom?: boolean };
@@ -70,6 +92,8 @@ export type Behandlingsside = {
   slug: string;
   navn: string;
   ingress: string;
+  /** The pen scene beside the title. */
+  tittelbilde?: Tittelbilde;
   lesetid: string;
   /** For search engines. */
   beskrivelse: string;

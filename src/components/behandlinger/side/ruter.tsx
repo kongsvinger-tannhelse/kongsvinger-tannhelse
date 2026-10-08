@@ -16,7 +16,7 @@ function Liten({ strek = true, rotter = true, y = 72, k = 0.42, ink = BLEKK, fyl
 }
 
 /** The gum along the bottom of a panel. */
-function Gomme({ strek = true, y = 92 }: { strek?: boolean; y?: number }) {
+export function Gomme({ strek = true, y = 92 }: { strek?: boolean; y?: number }) {
   return <path d={`M8,${y} Q34,${y - 10} 60,${y - 2} Q86,${y - 10} 112,${y}`} {...linje(strek, F.tannkjottMork, 2.2, F.tannkjottMork)} />;
 }
 

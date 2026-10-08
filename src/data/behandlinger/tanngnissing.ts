@@ -11,6 +11,7 @@ export const tanngnissing: Behandlingsside = {
   navn: "Tanngnissing",
   // the clinic's own words (klinikk.ts)
   ingress: "Tanngnissing er at du biter hardt sammen eller gnisser tennene uten å merke det, oftest mens du sover. Her ser du hva det kan komme av, og hva som kan hjelpe.",
+  tittelbilde: "natt",
   lesetid: "2 minutter å lese",
   beskrivelse: "Tanngnissing hos tannlegen i Kongsvinger: hva tanngnissing er, tegn du kan merke, hva det kan komme av, og hva som kan hjelpe, som bittskinne.",
   deler: [
@@ -34,7 +35,7 @@ export const tanngnissing: Behandlingsside = {
         // NHI Tanngnissing: worn edges, sensitive teeth, sore jaw
         { tekst: "Kantene på tennene er slitt.", tegning: "slitt" },
         { tekst: "Tennene er følsomme.", tegning: "kanaler" },
-        { tekst: "Kjeven er sår eller stiv.", tegning: "gnissing" },
+        { tekst: "Kjeven er sår eller stiv.", tegning: "kjeve-sar" },
       ],
       // NHI Tanngnissing: it can be silent; often the dentist finds the damage at a check-up
       etter: "Noen merker ingenting. Ofte er det tannlegen som ser slitasjen på en tannsjekk.",
@@ -47,15 +48,15 @@ export const tanngnissing: Behandlingsside = {
       tittel: "Hva kan hjelpe?",
       ruter: [
         // NHI Tanngnissing: the dentist may observe over several visits
-        { tegning: "lupe", tekst: "Tannlegen ser på tennene og kjeven, gjerne over flere besøk." },
+        { tegning: "lupe-slitt", tekst: "Tannlegen ser på tennene og kjeven, gjerne over flere besøk." },
         // NHI Tanngnissing: possible causes such as stress or medicines
-        { tegning: "snakke", tekst: "Dere snakker om hva som kan ligge bak, for eksempel stress eller medisiner." },
+        { tegning: "snakke-stress", tekst: "Dere snakker om hva som kan ligge bak, for eksempel stress eller medisiner." },
         // SML Bittskinne: fitted to the person who wears it
-        { tegning: "avtrykk", tekst: "Trengs det, tar tannlegen avtrykk, og en bittskinne lages etter dem.", mellom: true },
+        { tegning: "avtrykk-bitt", tekst: "Trengs det, tar tannlegen avtrykk, og en bittskinne lages etter dem.", mellom: true },
         // SML Bittskinne: used especially at night
         { tegning: "bittskinne", tekst: "Skinnen brukes mest om natten." },
         // SML Bruksisme: exercises to relax the jaw muscles, and less stress
-        { tegning: "roligtann", tekst: "Øvelser for å slappe av i kjeven, og mindre stress, kan også hjelpe." },
+        { tegning: "kjeve-ro", tekst: "Øvelser for å slappe av i kjeven, og mindre stress, kan også hjelpe." },
       ],
       // NHI Tanngnissing: treatment depends on the cause
       etter: "Hva som hjelper, kommer an på hva som ligger bak.",
@@ -69,7 +70,7 @@ export const tanngnissing: Behandlingsside = {
       tekst: "Ring oss, så får du vite hva det vil koste.",
       // Helsedirektoratet rundskriv: no point for grinding itself; point 9 only for severe wear
       helfo: "Som hovedregel betaler voksne selv. Er tennene alvorlig slitt, kan Helfo i noen tilfeller dekke en del av behandlingen. Tannlegen vurderer om du har rett.",
-      tegning: "regning",
+      tegning: "regning-natt",
     },
   ],
   slutt: "Tror du at du gnisser tenner? Bestill en time, så ser vi på tennene dine.",

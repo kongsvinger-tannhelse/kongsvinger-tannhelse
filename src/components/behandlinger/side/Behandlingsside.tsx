@@ -8,6 +8,7 @@ import { GulLapp } from "@/components/artikler/mellom";
 import { Bunnlinje } from "@/components/behandlinger/deler";
 import { cn } from "@/lib/utils";
 import { BTEGNINGER } from "./tegninger";
+import { TITTELBILDER } from "./tittelbilder";
 
 /**
  * A treatment's own page: a note from the clinic, like the «Råd og tips»
@@ -154,12 +155,13 @@ function Kilder({ side }: { side: Side }) {
 
 export function Behandlingsside({ side }: { side: Side }) {
   let lapper = 0;
+  const Tittelbilde = side.tittelbilde ? TITTELBILDER[side.tittelbilde] : null;
   return (
     <main className="overflow-x-clip bg-[var(--color-papir)] pb-[clamp(110px,11vw,150px)] pt-[clamp(96px,12vw,140px)]">
       <div className="mx-auto w-full max-w-[1040px] px-[var(--container-px)]">
         <Smuler sider={[{ navn: "Behandlinger", href: "/behandlinger" }, { navn: side.navn }]} />
         <Ark className="mt-8">
-          <header>
+          <Vis as="header" margin="0px">
             <div className="flex items-center gap-4">
               <Merke className="size-14 shadow-[0_6px_18px_-10px_rgba(10,25,32,0.45)] ring-1 ring-[var(--color-strek)] md:size-[72px]" />
               <div>
@@ -170,8 +172,11 @@ export function Behandlingsside({ side }: { side: Side }) {
             <h1 className="mt-8 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(46px, 7vw, 88px)", lineHeight: 0.95, letterSpacing: "-0.05em" }}>
               {side.navn}
             </h1>
-            <p className="mt-6 max-w-[38ch] text-[20px] leading-[1.55] text-[var(--color-tekst-2)] md:text-[23px]">{side.ingress}</p>
-          </header>
+            <div className="mt-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,330px)] md:items-center md:gap-10">
+              <p className="max-w-[38ch] text-[20px] leading-[1.55] text-[var(--color-tekst-2)] md:text-[23px]">{side.ingress}</p>
+              {Tittelbilde && <Tittelbilde className="mx-auto mt-8 w-full max-w-[340px] md:mt-0" />}
+            </div>
+          </Vis>
           <div className="mt-10 md:mt-14">
             {side.deler.map((del, i) => (
               <Visning key={del.type === "lapp" ? `lapp-${i}` : del.id} del={del} n={del.type === "lapp" ? lapper++ : 0} />
