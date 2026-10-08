@@ -2,10 +2,9 @@ import { BKILDE } from "./kilder";
 import type { Behandlingsside } from "./typer";
 
 /* Wisdom teeth. Every line checked on 8 October 2026 against the sources at
-   the bottom; the comments name the source behind each part. Where the
-   hospitals give different advice for the first days, this page follows St.
-   Olavs hospital throughout. «Vi fjerner visdomstenner selv» is the clinic's
-   own word (2026-10-08). */
+   the bottom; the comments name the source behind each part. No advice for
+   the first days and no word on who removes which tooth: that differs from
+   patient to patient, so the page points to the dentist. */
 
 export const visdomstenner: Behandlingsside = {
   slug: "visdomstenner",
@@ -52,45 +51,39 @@ export const visdomstenner: Behandlingsside = {
       ruter: [
         // NHI Innkilt visdomstann, St. Olavs: an x-ray first
         { tegning: "rontgen", tekst: "Først tar vi et røntgenbilde, så vi ser hvordan tanna ligger." },
-        // St. Olavs: ordinary dental anaesthesia; you feel pressure, not pain
-        { tegning: "roligtann", tekst: "Du får vanlig tannlegebedøvelse. Du kjenner trykk, men ikke smerte." },
+        // St. Olavs: ordinary dental anaesthesia
+        { tegning: "roligtann", tekst: "Tanna blir bedøvet før den tas ut." },
         // St. Olavs: the gum is folded aside, a little bone is removed, the tooth divided if needed
         { tegning: "trekk", tekst: "Tannkjøttet brettes til side, og tanna tas ut, noen ganger i flere biter." },
         // St. Olavs: usually a couple of stitches
         { tegning: "sting", tekst: "Ofte syr vi et par sting.", mellom: true },
-        // St. Olavs: if it bleeds, bite on gauze for 30 minutes
-        { tegning: "kompress", tekst: "Blør det, biter du på en kompress i en halvtime." },
+        // St. Olavs: the patient gets advice for afterwards
+        { tegning: "snakke", tekst: "Til slutt forteller tannlegen deg hva du bør tenke på de første dagene." },
       ],
-      // the clinic's own word (2026-10-08)
-      etter: "Hos oss fjerner vi visdomstennene selv.",
+      // St. Olavs: ordinary wisdom teeth are removed by the patient's own dentist; others are referred
+      etter: "Vanlige visdomstenner fjernes hos tannlegen. Ligger tanna vanskelig til, kan det være aktuelt å bli henvist til en spesialist.",
     },
     {
       type: "tekst",
       id: "vondt",
       tittel: "Gjør det vondt?",
       avsnitt: [
-        // St. Olavs (local anaesthesia), NHI Innkilt visdomstann (almost always pain and swelling after)
-        "Mens tanna tas ut, er den bedøvet. Etterpå blir det nesten alltid litt vondt og hovent.",
-        // Helse Bergen: swelling peaks after 2–3 days and is usually gone after about a week
-        "Hevelsen er som regel størst etter to til tre dager, og går vanligvis over etter omtrent en uke.",
+        // St. Olavs (local anaesthesia), NHI Innkilt visdomstann (pain and swelling after are usual)
+        "Mens tanna tas ut, er den bedøvet. Etterpå er det vanlig å bli litt øm og hoven en stund.",
+        "Hvor mye, og hvor lenge, er forskjellig fra person til person.",
       ],
       tegning: "hevelse",
     },
     {
       type: "tekst",
       id: "etterpa",
-      tittel: "Hva gjør jeg de første dagene?",
+      tittel: "Hva skjer etterpå?",
       avsnitt: [
-        // St. Olavs
-        "Ikke spis, drikk eller skyll munnen de første to til tre timene.",
-        // St. Olavs: an ice pack on the skin; painkillers as the leaflet says
-        "Legg gjerne en ispose mot kinnet, og ta smertestillende slik det står i pakningsvedlegget.",
-        // St. Olavs: soft food, not too wide open, no smoking the first days, brush but avoid the wound
-        "Spis myk mat, ikke gap for mye, og ikke røyk de første dagene. Puss tennene som vanlig, men la såret være i fred.",
-        // St. Olavs: the wound heals in one to two weeks; great pain towards the ear, get in touch
-        "Såret gror vanligvis på én til to uker. Får du sterke smerter som stråler opp mot øret, ring oss.",
+        // St. Olavs: advice for the first days (food, brushing, smoking)
+        "Tannlegen gir deg råd om hva du bør tenke på de første dagene, for eksempel om mat, tannpuss og røyking. Rådene kan være litt forskjellige fra person til person.",
+        "Lurer du på noe, eller blir det verre i stedet for bedre, ring oss.",
       ],
-      tegning: "tablett",
+      tegning: "kompress",
     },
     // NHI Innkilt visdomstann: healing is usually better, and the risk lower, in younger people
     { type: "lapp", lapp: { slag: "visste", tekst: "Hos unge gror det som regel bedre etter at en visdomstann er fjernet, og faren for plager er mindre." } },

@@ -3,10 +3,8 @@ import type { Behandlingsside } from "./typer";
 
 /* Root canal treatment. Every line checked on 8 October 2026 against the
    sources at the bottom; the comments name the source behind each part.
-   «Som oftest smertefritt» and «tannpinen går ofte over med en gang» are
-   the clinic's own words (klinikk.ts, from the old site). Nothing about how
-   long it is tender afterwards, eating afterwards, or how often it works:
-   no source of the kind we use says it. */
+   General, and no promises: how it feels and what to do afterwards differs
+   from patient to patient, so the page says so and points to the dentist. */
 
 export const rotfylling: Behandlingsside = {
   slug: "rotfylling",
@@ -79,8 +77,8 @@ export const rotfylling: Behandlingsside = {
       id: "vondt",
       tittel: "Gjør det vondt?",
       avsnitt: [
-        // UiO and Helsedirektoratet (anaesthesia); the clinic's own words
-        "Tannlegen kan bedøve tannen før behandlingen. Hos oss gjøres rotfylling som oftest smertefritt, og tannpinen går ofte over med en gang.",
+        // UiO and Helsedirektoratet (anaesthesia)
+        "Tannlegen kan bedøve tannen før behandlingen. Hvordan det kjennes, under og etter, er forskjellig fra person til person.",
         // SML Tannbyll: draining an abscess relieves the pressure pain
         "Har du en byll, kan det lette med en gang trykket slipper ut.",
         // UiO: the patient is told what to expect afterwards
@@ -97,8 +95,8 @@ export const rotfylling: Behandlingsside = {
         "Som regel virker tannen helt som før etter en rotfylling.",
         // Tannlegeforeningen Kloke valg: a crown only when a filling can't give good form, function and look
         "Ofte holder det med en vanlig fylling. En krone lages bare når en fylling ikke kan gi tannen god form og funksjon.",
-        // UiO: the final result can only be judged at the check after a year
-        "Om rotfyllingen har lykkes, kan man først se sikkert ved en kontroll etter omtrent et år.",
+        // UiO: the final result can only be judged at a later check
+        "Om rotfyllingen har lykkes, kan man først se sikkert etter en tid. Tannlegen forteller deg når du bør komme til kontroll.",
         // NHI Pulpitt (extraction is the alternative; the inflammation can spread)
         "Det andre valget er å trekke tannen. Venter du for lenge, kan betennelsen spre seg til tannkjøttet og beinet rundt tannen.",
       ],

@@ -3,9 +3,8 @@ import type { Behandlingsside } from "./typer";
 
 /* A dental implant. Every line checked on 8 October 2026 against the
    sources at the bottom; the comments name the source behind each part. The
-   steps and times are the university hospital's (UNN); the clinic's own
-   timing may differ, so the page says «noen måneder», not a number. «Vi gjør
-   hele behandlingen selv» is the clinic's own word (2026-10-08). */
+   steps are the university hospital's (UNN), told in general: how it is
+   planned, and how long it takes, differs from patient to patient. */
 
 export const tannimplantat: Behandlingsside = {
   slug: "tannimplantat",
@@ -59,8 +58,8 @@ export const tannimplantat: Behandlingsside = {
         // SML Oral implantologi: a crown fixed to the implant
         { tegning: "implantat-krone", tekst: "Til slutt festes den nye tanna på skruen." },
       ],
-      // the clinic's own word (2026-10-08)
-      etter: "Hos oss gjør tannlegene hele behandlingen selv, både skruen og den nye tanna.",
+      // UNN: the times vary
+      etter: "Hvordan behandlingen legges opp, og hvor lang tid den tar, er forskjellig fra pasient til pasient.",
     },
     // UNN: titanium is readily accepted by the body
     { type: "lapp", lapp: { slag: "visste", tekst: "Titan, som implantatet er laget av, blir lett godtatt av kroppen." } },
@@ -71,8 +70,8 @@ export const tannimplantat: Behandlingsside = {
       avsnitt: [
         // UNN: local anaesthesia
         "Skruen settes inn i lokalbedøvelse.",
-        // UNN: swelling and pain the first day; take painkillers as the anaesthetic wears off
-        "Det første døgnet kan det bli litt hovent og vondt. Ta gjerne smertestillende med en gang bedøvelsen begynner å gå ut.",
+        // UNN: swelling and pain can follow
+        "Etterpå kan det bli litt hovent og vondt. Hvor mye, er forskjellig fra person til person, og tannlegen forteller deg hva du bør tenke på.",
       ],
       tegning: "snakke",
     },
@@ -81,8 +80,8 @@ export const tannimplantat: Behandlingsside = {
       id: "stell",
       tittel: "Hvordan tar jeg vare på et implantat?",
       avsnitt: [
-        // UNN: more effort and time every day than ordinary teeth; floss and interdental brushes
-        "Et implantat krever litt mer tid hver dag enn vanlige tenner. Bruk tanntråd og mellomromsbørster, så du kommer til rundt hele tanna.",
+        // UNN: more effort and time every day than ordinary teeth
+        "Et implantat må holdes like rent som dine egne tenner, og det kan ta litt mer tid. Tannlegen gir deg råd om hvordan du best gjør det.",
         // UNN: smoking slows healing and raises the risk of bone loss
         "Røyking gjør at det gror dårligere, og øker faren for at beinet rundt skruen forsvinner.",
         // UNN: implants can get the same problem as teeth: periimplantitt

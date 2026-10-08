@@ -67,8 +67,6 @@ export const tannrens: Behandlingsside = {
       avsnitt: [
         // SML Tannstein; SML Tannpleier: a protected title, authorised under helsepersonelloven
         "Tannstein bør fjernes av en tannlege eller en tannpleier. Tannpleier er en beskyttet tittel for helsepersonell med egen autorisasjon.",
-        // klinikk.ts: two dentists and a dental hygienist
-        "Hos oss har vi både tannleger og en tannpleier.",
       ],
       tegning: "snakke",
     },

@@ -48,10 +48,9 @@ export const tannsjekk: Behandlingsside = {
       id: "hvor-ofte",
       tittel: "Hvor ofte bør jeg gå til tannsjekk?",
       avsnitt: [
-        // Helsedirektoratet: the interval is set after an individual risk assessment
-        "Det er forskjellig fra person til person. Tannlegen vurderer hvor ofte du bør komme, ut fra tennene og tannkjøttet ditt.",
-        // Helsedirektoratet: between 12 and 24 months for adults
-        "For voksne bør det gå mellom ett og to år mellom hver gang.",
+        // Helsedirektoratet: between 12 and 24 months for adults, set after an individual risk assessment
+        "Det er forskjellig fra person til person. For voksne går det ofte ett til to år mellom hver gang.",
+        "Tannlegen vurderer hvor ofte du bør komme, ut fra tennene og tannkjøttet ditt.",
       ],
       tegning: "klokke",
     },

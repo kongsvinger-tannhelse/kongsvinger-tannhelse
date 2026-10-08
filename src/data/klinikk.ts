@@ -31,7 +31,7 @@ export const behandlinger: Record<"ordinaer" | "akutt" | "estetisk", { tittel: s
     liste: [
       { navn: "Tannsjekk", tekst: "En tannsjekk hos tannlegen er den enkleste måten å holde munnen frisk på. Vi ser etter hull, tannkjøttsykdom og slitasje, og finner problemer tidlig, mens de er små og enkle å behandle." },
       { navn: "Tannfylling", tekst: "Har du fått hull i tannen, fjerner tannlegen det ødelagte tannvevet og fyller rommet med en tannfarget fylling. Fyllingsmateriale kan også endre formen på en tann eller lukke et lite mellomrom." },
-      { navn: "Tannbleking", tekst: "Vil du ha hvitere tenner? Vi tar avtrykk og lager en blekeskinne som passer dine tenner. Første gang bleker vi tennene her hos oss; resten gjør du hjemme med blekegel i skinnen, ikke mer enn ti dager av gangen, og gjerne sammen med fluorbehandling." },
+      { navn: "Tannbleking", tekst: "Vil du ha hvitere tenner? Vi tar avtrykk og lager en blekeskinne som passer dine tenner. Skinnen bruker du hjemme med blekegel, ikke mer enn ti dager av gangen, og gjerne sammen med fluorbehandling." },
       { navn: "Tannrens", tekst: "En tannrens fjerner plakk og tannstein som har bygget seg opp over tid. Blir de ikke fjernet jevnlig, kan bakteriene gi hull i tennene og tannkjøttsykdom." },
       { navn: "Tannkjøttbehandling", tekst: "Rødt, hovent eller blødende tannkjøtt er ofte gingivitt, det tidligste stadiet av tannkjøttsykdom. Behandlingen er jevnlig tannrens hos oss og god munnhygiene hjemme." },
       { navn: "Tannstein", tekst: "Tannstein er plakk som har hardnet på tennene. Den sitter så godt fast at tannbørste og tanntråd ikke får den bort. Bare tannlege eller tannpleier kan fjerne den." },

@@ -2,12 +2,9 @@ import { BKILDE } from "./kilder";
 import type { Behandlingsside } from "./typer";
 
 /* Whitening. Every line checked on 8 October 2026 against the sources at the
-   bottom; the comments name the source behind each part. The clinic bleaches
-   both at the clinic and at home (2026-10-08): by law the first time in each
-   round is done by the dentist, and the rest can be finished at home, so
-   that is how the page tells it. No «stronger gel at the clinic»: every
-   product is capped at 6 % hydrogen peroxide. «Ikke mer enn ti dager av
-   gangen» is the clinic's own text (klinikk.ts). */
+   bottom; the comments name the source behind each part. How the bleaching
+   is done, and for how long, is left to the dentist: it differs from
+   patient to patient. */
 
 export const tannbleking: Behandlingsside = {
   slug: "tannbleking",
@@ -56,12 +53,10 @@ export const tannbleking: Behandlingsside = {
         { tegning: "avtrykk", tekst: "Vi tar avtrykk av tennene dine." },
         // Tidende 2026; the clinic's text: a tray that fits your teeth
         { tegning: "skinne", tekst: "Ut fra avtrykket lages en tynn skinne som passer akkurat dine tenner." },
-        // Kosmetikkforskriften: the first time in each round, only by a dentist
-        { tegning: "tube", tekst: "Første gang legger tannlegen blekegelen i skinnen, her hos oss." },
-        // Kosmetikkforskriften (finished by the consumer); the clinic's text: no more than ten days at a time
-        { tegning: "klokke", tekst: "Resten av blekingen gjør du hjemme, ikke mer enn ti dager av gangen." },
+        // how, and how long, is the dentist's call
+        { tegning: "tube", tekst: "Blekegelen legges i skinnen. Tannlegen forteller deg hvordan og hvor lenge den skal brukes." },
         // SML Tannbleking
-        { tegning: "hvit", tekst: "Tennene blir lysere." },
+        { tegning: "hvit", tekst: "Tennene blir lysere. Hvor mye, er forskjellig fra person til person." },
       ],
     },
     {
@@ -80,7 +75,7 @@ export const tannbleking: Behandlingsside = {
       tittel: "Hvor lenge varer det?",
       avsnitt: [
         // Tidende 2026: one to four years, perhaps longer, with a gradual return in most cases
-        "Resultatet kan holde fra ett til fire år, kanskje lenger. Men de fleste merker at tennene sakte blir litt mørkere igjen.",
+        "Det er forskjellig fra person til person. Resultatet kan holde fra ett til fire år, kanskje lenger, men hos de fleste blir tennene sakte litt mørkere igjen.",
       ],
       tegning: "hvit",
     },
@@ -89,10 +84,8 @@ export const tannbleking: Behandlingsside = {
       id: "regler",
       tittel: "Hvem kan bleke tennene?",
       avsnitt: [
-        // Kosmetikkforskriften and Mattilsynet: over 0.1 % only sold to dentists, never over 6 %
-        "Blekemidler med mer enn 0,1 prosent hydrogenperoksid får bare selges til tannleger, og ingen blekemidler kan ha mer enn 6 prosent.",
-        // Kosmetikkforskriften: not on anyone under 18
-        "Bleking skal ikke brukes på personer under 18 år.",
+        // Kosmetikkforskriften and Mattilsynet: strong products only sold to dentists; not under 18
+        "Sterke blekemidler får bare selges til tannleger, og bleking skal ikke brukes på personer under 18 år.",
         // Mattilsynet: not at a beauty salon
         "Bleking hører hjemme hos tannlegen, ikke på en skjønnhetssalong.",
       ],

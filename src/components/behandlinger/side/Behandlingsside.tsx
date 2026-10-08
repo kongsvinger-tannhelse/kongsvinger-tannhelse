@@ -19,6 +19,8 @@ import { BTEGNINGER } from "./tegninger";
  */
 
 const HELFO = "/rad-og-tips/hva-dekker-helfo";
+/** Under every comic strip: this is how it often goes, not a promise. */
+const SERIE_FORBEHOLD = "Slik går det ofte for seg, men det er forskjellig fra pasient til pasient. Tannlegen forteller deg hva som gjelder for deg.";
 const KANT = "scroll-mt-28 border-t border-dashed border-[var(--color-strek)] py-10 md:py-14";
 const DATO = new Date(`${BGJENNOMGATT}T12:00:00Z`).toLocaleDateString("nb-NO", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Oslo" });
 
@@ -93,6 +95,7 @@ function Visning({ del, n }: { del: Del; n: number }) {
             })}
           </ol>
           {del.etter && <Brod className="mt-8">{del.etter}</Brod>}
+          <p className="mt-5 text-[16px] italic leading-[1.6] text-[var(--color-tekst-2)]">{SERIE_FORBEHOLD}</p>
         </Vis>
       );
 

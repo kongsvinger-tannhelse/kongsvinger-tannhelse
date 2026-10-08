@@ -2,9 +2,9 @@ import { BKILDE } from "./kilder";
 import type { Behandlingsside } from "./typer";
 
 /* A filling. Every line checked on 8 October 2026 against the sources at
-   the bottom; the comments name the source behind each part. Nothing about
-   shaping and polishing, how long the lip stays numb, or being a little
-   sore afterwards: no source of the kind we use says it. */
+   the bottom; the comments name the source behind each part. No rules for
+   afterwards: that differs from patient to patient, so the page says so and
+   points to the dentist. */
 
 export const tannfylling: Behandlingsside = {
   slug: "tannfylling",
@@ -79,10 +79,9 @@ export const tannfylling: Behandlingsside = {
       id: "etterpa",
       tittel: "Hva skjer etterpå?",
       avsnitt: [
-        // Felleskatalogen: don't eat before the anaesthetic wears off, risk of biting mouth, lips and tongue
-        "Ikke spis før bedøvelsen har gått ut. Ellers kan du bite deg i leppa, kinnet eller tunga uten å merke det.",
-        // SML Pulpitt: deep fillings near the nerve can pass on cold and heat; lingering ising can be pulpitt
-        "Er fyllingen dyp, kan tannen bli mer følsom for kulde og varme. Slutter ikke isingen når kulden er borte, bør du ringe oss.",
+        // SML Pulpitt: deep fillings near the nerve can pass on cold and heat
+        "Hvordan tannen kjennes etterpå, er forskjellig fra person til person. Er fyllingen dyp, kan tannen for eksempel bli mer følsom for kulde og varme.",
+        "Tannlegen forteller deg hva du bør tenke på. Merker du noe som ikke går over, ring oss gjerne.",
       ],
       tegning: "klokke",
     },

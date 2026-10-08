@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 export const KORT: Record<string, string> = {
   tannsjekk: "Finner problemer mens de er små",
   tannfylling: "Reparerer et hull i tanna",
-  tannbleking: "Hvitere tenner, hos oss og hjemme",
+  tannbleking: "Hvitere tenner med en skinne hjemme",
   tannrens: "Fjerner plakk og tannstein",
   tannkjottbehandling: "For rødt, hovent eller blødende tannkjøtt",
   tannstein: "Hardt belegg som må fjernes hos oss",
