@@ -291,7 +291,7 @@ function Innhold({ p, tittelId = `${p.id}-tittel` }: { p: Punkt; tittelId?: stri
           <span className="md:hidden">Ring oss</span>
           <span className="hidden md:inline">Ring {klinikk.telefon.visning}</span>
         </a>
-        <Link href="/#kontakt" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-strek)] bg-white px-6 text-[15px] font-semibold text-[var(--color-glomma-deep)]">
+        <Link href="/kontakt" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-strek)] bg-white px-6 text-[15px] font-semibold text-[var(--color-glomma-deep)]">
           <CalendarDays className="size-4" aria-hidden="true" />
           Bestill time
         </Link>

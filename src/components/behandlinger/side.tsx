@@ -13,7 +13,7 @@ const { telefon, epost, adresse, apningstider } = klinikk;
 const SPORSMAL = [
   {
     s: "Hva gjør jeg hvis jeg får akutt tannpine?",
-    svar: `Ring oss på ${telefon.visning} så tidlig på dagen som mulig. Vi har åpent ${apningstider.dager.toLowerCase()} ${apningstider.fra}–${apningstider.til}. Utenom åpningstiden, eller hvis du har feber eller hevelse som gjør det tungt å svelge eller puste, ring legevakten på 116 117.`,
+    svar: `Ring oss på ${telefon.visning} så tidlig på dagen som mulig. Vi gjør vårt beste for å gi deg time samme dag. Vi har åpent ${apningstider.dager.toLowerCase()} ${apningstider.fra}–${apningstider.til}. Utenom åpningstiden, eller hvis du har feber eller hevelse som gjør det tungt å svelge eller puste, ring legevakten på 116 117.`,
   },
   {
     s: "Hvor ofte bør jeg gå til tannsjekk?",
@@ -29,7 +29,7 @@ const SPORSMAL = [
   },
   {
     s: "Hvordan bestiller jeg time hos tannlegen i Kongsvinger?",
-    svar: `Ring ${telefon.visning}, send e-post til ${epost}, eller skriv til oss i skjemaet nederst på forsiden. Du finner oss i ${adresse.gate}, ${adresse.postnummer} ${adresse.sted}.`,
+    svar: `Ring ${telefon.visning}, send e-post til ${epost}, eller skriv til oss i skjemaet på kontaktsiden. Du finner oss i ${adresse.gate}, ${adresse.postnummer} ${adresse.sted}.`,
   },
 ];
 
@@ -117,7 +117,7 @@ export function Topp({ veiledning }: { veiledning: string }) {
           Ring {telefon.visning}
         </a>
         <Link
-          href="/#kontakt"
+          href="/kontakt"
           className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-strek)] bg-white/60 px-6 py-3.5 text-[15px] font-semibold text-[var(--color-glomma-deep)] transition-colors duration-300 hover:border-[var(--color-glomma)]"
         >
           Bestill time
@@ -205,7 +205,7 @@ export function Bestill() {
               {telefon.visning}
             </a>
             <Link
-              href="/#kontakt"
+              href="/kontakt"
               className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-strek-lys)] px-6 py-3.5 text-[15px] font-semibold text-[var(--color-papir)] transition-colors duration-300 hover:border-[var(--color-papir)]"
             >
               Skriv til oss

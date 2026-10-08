@@ -47,7 +47,7 @@ export const behandlinger: Record<"ordinaer" | "akutt" | "estetisk", { tittel: s
   akutt: {
     tittel: "Akutt tannbehandling",
     ingress:
-      "Har du fått tannpine, slått en tann eller mistet en fylling? Ring oss så tidlig på dagen som mulig, så finner vi ut hva som haster. Vi har åpent mandag til fredag 08:30–15:30.",
+      "Har du fått tannpine, slått en tann eller mistet en fylling? Ring oss så tidlig på dagen som mulig. Vi gjør vårt beste for å gi deg time samme dag. Vi har åpent mandag til fredag 08:30–15:30.",
     liste: [
       { navn: "Tannsmerte", tekst: "Har du vedvarende smerter i en tann, er det på tide å gå til tannlegen. Årsaken kan være råte, en sprukket tann eller en infeksjon." },
       { navn: "Tannskade", tekst: "Er en tann løs, slått inn, slått ut eller knekt? Kontakt tannlegen så snart som mulig, og ta med tannen eller biten hvis du finner den." },

@@ -73,7 +73,7 @@ export function KontaktSide() {
               Akutt tannpine?
             </h2>
             <p className="mt-3 text-[16px] leading-[1.6] text-[var(--color-tekst-lys-2)]">
-              Ring oss så tidlig på dagen som mulig, så finner vi en time. Vi har åpent {tid.dager.toLowerCase()} {tid.fra}–{tid.til}.
+              Ring oss så tidlig på dagen som mulig. Vi gjør vårt beste for å gi deg time samme dag. Vi har åpent {tid.dager.toLowerCase()} {tid.fra}–{tid.til}.
             </p>
             <p className="mt-3 text-[16px] leading-[1.6] text-[var(--color-tekst-lys-2)]">
               Utenom åpningstiden, eller hvis du har feber eller hevelse som gjør det tungt å svelge eller puste, ring legevakten på 116 117.

@@ -5,7 +5,7 @@ import { klinikk } from "@/data/klinikk";
 
 const { telefon, adresse, apningstider: tid } = klinikk;
 
-const description = `Kontakt Kongsvinger Tannhelse, tannlegen i ${adresse.gate} i Kongsvinger. Ring ${telefon.visning}, send e-post eller skriv til oss. Åpent ${tid.dager.toLowerCase()} ${tid.fra}–${tid.til}. Akutt tannpine? Ring tidlig på dagen.`;
+const description = `Kontakt Kongsvinger Tannhelse, tannlegen i ${adresse.gate} i Kongsvinger. Ring ${telefon.visning}, send e-post eller skriv til oss. Åpent ${tid.dager.toLowerCase()} ${tid.fra}–${tid.til}. Akutt tannpine? Ring tidlig, vi gjør vårt beste for å gi deg time samme dag.`;
 
 export const metadata: Metadata = {
   title: "Kontakt tannlegen i Kongsvinger",

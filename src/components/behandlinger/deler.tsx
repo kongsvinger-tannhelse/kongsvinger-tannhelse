@@ -81,7 +81,7 @@ export function Bunnlinje() {
           <Phone className="size-4" aria-hidden="true" />
           Ring oss
         </a>
-        <Link href="/#kontakt" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-strek)] bg-white text-[15px] font-semibold text-[var(--color-glomma-deep)]">
+        <Link href="/kontakt" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-strek)] bg-white text-[15px] font-semibold text-[var(--color-glomma-deep)]">
           <CalendarDays className="size-4" aria-hidden="true" />
           Bestill time
         </Link>
