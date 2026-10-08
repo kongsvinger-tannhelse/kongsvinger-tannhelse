@@ -11,6 +11,7 @@ export const rotfylling: Behandlingsside = {
   navn: "Rotfylling",
   // SML Rotfylling
   ingress: "Er nerven inne i tannen betent eller død, kan en rotfylling redde tannen. Her ser du hva som skjer, steg for steg.",
+  tittelbilde: "rot",
   lesetid: "3 minutter å lese",
   beskrivelse: "Rotfylling hos tannlegen i Kongsvinger: hva det er, tegn på at nerven er syk, hvordan det foregår steg for steg, om det gjør vondt, og hva som skjer etterpå.",
   deler: [
@@ -55,9 +56,9 @@ export const rotfylling: Behandlingsside = {
       tittel: "Slik går det for seg",
       ruter: [
         // SML Tannrotbetennelse: history, examination, x-ray
-        { tegning: "rontgen", tekst: "Først ser tannlegen på tannen og tar et røntgenbilde." },
+        { tegning: "rontgen-rot", tekst: "Først ser tannlegen på tannen og tar et røntgenbilde." },
         // UiO and Helsedirektoratet: anaesthesia
-        { tegning: "roligtann", tekst: "Tannen kan bedøves før vi begynner." },
+        { tegning: "rolig-nerve", tekst: "Tannen kan bedøves før vi begynner." },
         // SML Rotfylling: a disinfected rubber dam, sterile instruments
         { tegning: "gummiduk", tekst: "En tynn gummiduk holder tannen ren og tørr." },
         // SML Rotfylling and Tannrotbetennelse: remove the infection, rinse with a bacteria-killing liquid
@@ -84,7 +85,7 @@ export const rotfylling: Behandlingsside = {
         // UiO: the patient is told what to expect afterwards
         "Tannlegen forteller deg hva du kan vente deg de første dagene etterpå.",
       ],
-      tegning: "snakke",
+      tegning: "snakke-rot",
     },
     {
       type: "tekst",

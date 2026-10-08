@@ -11,6 +11,7 @@ export const trekkingAvTenner: Behandlingsside = {
   slug: "trekking-av-tenner",
   navn: "Trekking av tenner",
   ingress: "Noen tenner kan ikke reddes. Da kan det være best å trekke dem. Her ser du hvorfor en tann kan måtte trekkes, og hvordan det går for seg.",
+  tittelbilde: "tang",
   lesetid: "2 minutter å lese",
   beskrivelse: "Trekking av tenner hos tannlegen i Kongsvinger: når en tann må trekkes, hvordan det går for seg, bedøvelse, og hva som kan gjøres med tannluka etterpå.",
   deler: [
@@ -34,14 +35,14 @@ export const trekkingAvTenner: Behandlingsside = {
       tittel: "Slik går det for seg",
       ruter: [
         // Helsenorge: the dentist judges whether it can be treated
-        { tegning: "lupe", tekst: "Først undersøker tannlegen tannen og vurderer om den kan reddes." },
+        { tegning: "lupe-rot", tekst: "Først undersøker tannlegen tannen og vurderer om den kan reddes." },
         // SML Tanntrekking: usually local anaesthesia
-        { tegning: "roligtann", tekst: "Tannen bedøves, vanligvis med lokalbedøvelse." },
+        { tegning: "rolig-trekk", tekst: "Tannen bedøves, vanligvis med lokalbedøvelse." },
         // SML Tanntrekking; Helsedirektoratet takst 401 (roots may be split)
         { tegning: "trekk", tekst: "Tannen tas ut. Noen ganger deles den først, så det blir enklere." },
         // SML Tanntrekking: the gum may be stitched
         { tegning: "sting", tekst: "Noen ganger trengs et par sting i tannkjøttet.", mellom: true },
-        { tegning: "snakke", tekst: "Til slutt forteller tannlegen deg hva du bør tenke på de første dagene." },
+        { tegning: "snakke-luke", tekst: "Til slutt forteller tannlegen deg hva du bør tenke på de første dagene." },
       ],
       // Helse Bergen: tooth surgery is normally done by the dentist; the hospital takes referred patients
       etter: "De fleste tenner trekkes hos tannlegen. Er det vanskelig å få ut tannen, kan det være aktuelt å bli henvist videre.",
@@ -68,7 +69,7 @@ export const trekkingAvTenner: Behandlingsside = {
         // the clinic's text (klinikk.ts); SML Tannskade: replaced with a prosthesis, bridge or implant
         "Etterpå kan tannen ofte erstattes, for eksempel med et implantat, en bro eller en protese. Tannlegen går gjennom valgene med deg.",
       ],
-      tegning: "mangler",
+      tegning: "luke-sporsmal",
     },
   ],
   slutt: "Har du en tann som plager deg? Bestill en time, så ser vi på den.",

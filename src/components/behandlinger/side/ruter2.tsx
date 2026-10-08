@@ -22,7 +22,7 @@ const mane = (strek?: boolean) => <path d="M98,10 a11,11 0 1 0 8,19 a8,8 0 1 1 -
 export function Bro({ strek = true, className, forsink }: Stil) {
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M4,84 Q60,74 116,84 L116,116 L4,116 Z" fill={F.tannkjott} opacity={0.45} {...blekk(strek)} />
+      <path d="M4,84 Q60,74 116,84 L116,116 L4,116 Z" fill={F.tannkjott} fillOpacity={0.45} {...blekk(strek)} />
       <path d="M30,72 L90,72" {...linje(strek, F.teal, 6, F.teal)} />
       <Krone strek={strek} x={26} y={86} k={0.28} ink={F.teal} fyll="#F4FAFB" />
       <Krone strek={strek} x={60} y={82} k={0.26} ink={F.teal} fyll="#F4FAFB" />
@@ -39,7 +39,7 @@ export function Fasett({ skall = true, strek = true, className, forsink }: Stil 
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
       <path d={FORTANN_SIDE} {...form(strek, F.hvit, { w: 2.4, penFill: F.papir })} />
-      <path d="M4,86 Q60,78 116,86 L116,116 L4,116 Z" fill={F.tannkjott} opacity={0.45} {...blekk(strek)} />
+      <path d="M4,86 Q60,78 116,86 L116,116 L4,116 Z" fill={F.tannkjott} fillOpacity={0.45} {...blekk(strek)} />
       {skall ? (
         <path d="M45,88 C39,62 41,34 52,10 C54,7 59,7 61,11 L59,15 C49,36 47,62 51,86 Z" {...form(strek, "#F4FAFB", { w: 2.4, ink: F.teal, penFill: "#E3F2F5" })} />
       ) : (
@@ -105,8 +105,8 @@ export function Gnissing({ strek = true, className, forsink }: Stil) {
 export function Melk({ strek = true, className, forsink }: Stil) {
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M32,18 L88,18 L82,44 L38,44 Z" fill="#E4EFF2" opacity={0.7} {...blekk(strek)} />
-      <path d="M38,44 L82,44 L78,100 Q77,106 71,106 L49,106 Q43,106 42,100 Z" fill="#FFFFFF" opacity={0.95} {...blekk(strek)} />
+      <path d="M32,18 L88,18 L82,44 L38,44 Z" fill="#E4EFF2" fillOpacity={0.7} {...blekk(strek)} />
+      <path d="M38,44 L82,44 L78,100 Q77,106 71,106 L49,106 Q43,106 42,100 Z" fill="#FFFFFF" fillOpacity={0.95} {...blekk(strek)} />
       <path d="M32,18 L88,18 L78,100 Q77,106 71,106 L49,106 Q43,106 42,100 Z" {...form(strek, "none", { w: 2.2 })} />
       <path d="M38,44 L82,44" {...linje(strek, F.metallMork, 1.6)} />
       <g transform="translate(60 80) rotate(-18) scale(0.22)">

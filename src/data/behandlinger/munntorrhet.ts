@@ -11,6 +11,7 @@ export const munntorrhet: Behandlingsside = {
   navn: "Munntørrhet",
   // the clinic's own words (klinikk.ts)
   ingress: "Munntørrhet betyr at du lager for lite spytt. Det kan gi ubehag, dårlig ånde og flere hull i tennene. Her ser du hva det kan komme av, og hva som kan hjelpe.",
+  tittelbilde: "torr",
   lesetid: "2 minutter å lese",
   beskrivelse: "Munntørrhet hos tannlegen i Kongsvinger: hva munntørrhet er, hva det kan komme av, hva det gjør med tennene, og hva som kan hjelpe.",
   deler: [
@@ -24,7 +25,7 @@ export const munntorrhet: Behandlingsside = {
         // Helsenorge (saliva neutralises the acid), SML Munntørrhet (caries in the roots is a real problem)
         "Spyttet beskytter tennene. Lager du lite spytt, får du lettere hull, særlig i tannrøttene.",
       ],
-      tegning: "glass",
+      tegning: "spytt-skjold",
     },
     {
       type: "tegn",
@@ -32,13 +33,13 @@ export const munntorrhet: Behandlingsside = {
       tittel: "Hva kan det komme av?",
       punkter: [
         // NHI Munntørrhet: medicines are the most common cause; many can give it
-        { tekst: "Medisiner. Mange vanlige medisiner kan gi munntørrhet.", tegning: "tablett" },
+        { tekst: "Medisiner. Mange vanlige medisiner kan gi munntørrhet.", tegning: "pilleglass" },
         // NHI Munntørrhet: the glands make less saliva as we age
-        { tekst: "Alderen. Spyttkjertlene lager mindre spytt når vi blir eldre.", tegning: "klokke" },
+        { tekst: "Alderen. Spyttkjertlene lager mindre spytt når vi blir eldre.", tegning: "kake" },
         // SML Munntørrhet: Sjögren's syndrome, diabetes
         { tekst: "Sykdommer, for eksempel Sjögrens syndrom eller diabetes.", tegning: "hjerte" },
         // SML Munntørrhet: radiotherapy for cancer in the mouth and throat
-        { tekst: "Strålebehandling mot munn og hals.", tegning: "rontgen" },
+        { tekst: "Strålebehandling mot munn og hals.", tegning: "straaling" },
       ],
       // SML Munntørrhet: fear and anxiety dry the mouth
       etter: "Også nervøsitet kan gjøre munnen tørr en stund.",
@@ -57,9 +58,9 @@ export const munntorrhet: Behandlingsside = {
         // SML Munntørrhet: good oral hygiene with fluoride is important
         { tegning: "tube", tekst: "God munnhygiene med fluor er ekstra viktig." },
         // NHI Munntørrhet: the doctor considers whether the medicines can be changed
-        { tegning: "snakke", tekst: "Bruker du medisiner, kan legen vurdere om de kan endres.", mellom: true },
+        { tegning: "snakke-medisin", tekst: "Bruker du medisiner, kan legen vurdere om de kan endres.", mellom: true },
         // NHI Munntørrhet: see the dentist for individual guidance
-        { tegning: "lupe", tekst: "Tannlegen gir deg råd som passer for deg." },
+        { tegning: "rad-torr", tekst: "Tannlegen gir deg råd som passer for deg." },
       ],
       // SML Munntørrhet: the dryness itself can't be treated, only eased
       etter: "Munntørrhet kan ikke alltid fjernes, men plagene kan ofte bli mindre.",

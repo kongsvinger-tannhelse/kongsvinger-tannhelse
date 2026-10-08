@@ -10,6 +10,7 @@ export const helprotese: Behandlingsside = {
   navn: "Helprotese",
   // the clinic's own words (klinikk.ts)
   ingress: "En helprotese er et avtakbart tannsett når alle tennene i en kjeve er borte. Her ser du hvordan den lages, og hvordan det er å begynne å bruke den.",
+  tittelbilde: "gebiss",
   lesetid: "2 minutter å lese",
   beskrivelse: "Helprotese hos tannlegen i Kongsvinger: hva en helprotese er, hvordan den lages steg for steg, og hvordan det er å venne seg til den.",
   deler: [
@@ -34,7 +35,7 @@ export const helprotese: Behandlingsside = {
         "I underkjeven kan en protese også festes til implantater, så den sitter bedre.",
         "Hva som passer, er forskjellig fra person til person. Tannlegen går gjennom valgene med deg.",
       ],
-      tegning: "implantat-skrue",
+      tegning: "protese-implantat",
     },
     {
       type: "serie",
@@ -42,15 +43,15 @@ export const helprotese: Behandlingsside = {
       tittel: "Slik lages en helprotese",
       ruter: [
         // UiO clinic handbook: first consultation
-        { tegning: "snakke", tekst: "Først snakker vi sammen og ser på munnen din." },
+        { tegning: "snakke-protese", tekst: "Først snakker vi sammen og ser på munnen din." },
         // UiO clinic handbook: a first and a second impression
-        { tegning: "avtrykk", tekst: "Tannlegen tar avtrykk av kjevene, ofte flere ganger, så protesen passer best mulig." },
+        { tegning: "avtrykk-tannlos", tekst: "Tannlegen tar avtrykk av kjevene, ofte flere ganger, så protesen passer best mulig." },
         // UiO clinic handbook: recording how the jaws meet
-        { tegning: "plan", tekst: "Vi måler hvordan kjevene møtes når du biter." },
+        { tegning: "bitt-maal", tekst: "Vi måler hvordan kjevene møtes når du biter." },
         // UiO clinic handbook: the teeth tried in wax
-        { tegning: "protese", tekst: "Tennene prøves først i voks, så du kan se hvordan de blir.", mellom: true },
+        { tegning: "protese-voks", tekst: "Tennene prøves først i voks, så du kan se hvordan de blir.", mellom: true },
         // UiO clinic handbook: handing over
-        { tegning: "hvit", tekst: "Til slutt får du protesen, og vi ser hvordan den sitter." },
+        { tegning: "protese-smil", tekst: "Til slutt får du protesen, og vi ser hvordan den sitter." },
       ],
     },
     {
@@ -62,7 +63,7 @@ export const helprotese: Behandlingsside = {
         "Det tar tid å venne seg til en ny protese, fordi musklene i munnen må lære seg å bruke den.",
         "Hvor lang tid det tar, er forskjellig fra person til person. Tannlegen gir deg råd underveis.",
       ],
-      tegning: "klokke",
+      tegning: "spire",
     },
     // SML Gebiss: better dental health means dentures are less common in Norway today
     { type: "lapp", lapp: { slag: "visste", tekst: "Fordi tannhelsen er blitt bedre, er det færre i Norge som bruker gebiss i dag enn før." } },

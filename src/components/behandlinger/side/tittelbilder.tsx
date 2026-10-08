@@ -1,6 +1,7 @@
 import { FARGE as F, JEKSEL, r2, stjerne } from "@/components/forside/behandlinger/popup/tegning";
 import { AKSENT, BLEKK, Ramme, blekk, form, linje, type Stil } from "@/components/artikler/tegninger";
 import type { Tittelbilde } from "@/data/behandlinger/typer";
+import { Ball, Bleking, Fylling, Gebiss, ImplantatTittel, KroneTittel, Rens, Rot, Skjell, Tang, TannkjottTittel, Torr, Ugle } from "./tittelbilder2";
 
 /* The picture beside each treatment page's title: one larger pen scene of
    its own, 320 × 220, that draws itself when the page opens. Server-safe. */
@@ -18,7 +19,7 @@ const bolge = (x0: number, x1: number, y: number) => {
 export function Stol({ strek = true, className, forsink }: Stil) {
   return (
     <Ramme className={className} forsink={forsink} boks={BOKS}>
-      <path d="M210,46 L236,50 L110,96 L90,66 Z" fill={F.lys} opacity={0.8} {...blekk(strek)} />
+      <path d="M210,46 L236,50 L110,96 L90,66 Z" fill={F.lys} fillOpacity={0.8} {...blekk(strek)} />
       <path d="M24,204 L296,204" {...linje(strek, F.metallMork, 2)} />
       <rect x={112} y={196} width={92} height={8} rx={4} {...form(strek, F.metall, { w: 2, penFill: "#EEF1F1" })} />
       <path d="M146,196 L150,163 L172,163 L176,196 Z" {...form(strek, F.metall, { w: 2.2, penFill: "#EEF1F1" })} />
@@ -105,4 +106,17 @@ export const TITTELBILDER: Record<Tittelbilde, (p: Stil) => React.JSX.Element> =
   stol: (p) => <Stol {...p} />,
   "bro-elv": (p) => <BroElv {...p} />,
   natt: (p) => <Natt {...p} />,
+  fylling: (p) => <Fylling {...p} />,
+  bleking: (p) => <Bleking {...p} />,
+  rens: (p) => <Rens {...p} />,
+  tannkjott: (p) => <TannkjottTittel {...p} />,
+  rot: (p) => <Rot {...p} />,
+  torr: (p) => <Torr {...p} />,
+  tang: (p) => <Tang {...p} />,
+  ugle: (p) => <Ugle {...p} />,
+  ball: (p) => <Ball {...p} />,
+  krone: (p) => <KroneTittel {...p} />,
+  skjell: (p) => <Skjell {...p} />,
+  implantat: (p) => <ImplantatTittel {...p} />,
+  gebiss: (p) => <Gebiss {...p} />,
 };

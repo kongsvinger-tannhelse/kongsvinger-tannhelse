@@ -11,6 +11,7 @@ export const tannkrone: Behandlingsside = {
   navn: "Tannkrone",
   // the clinic's own words (klinikk.ts)
   ingress: "En tannkrone er en hette formet som en tann, som settes over en svekket tann. Den gir tannen styrke og form igjen.",
+  tittelbilde: "krone",
   lesetid: "2 minutter å lese",
   beskrivelse: "Tannkrone hos tannlegen i Kongsvinger: hva en krone er, når du trenger en, hvordan den lages steg for steg, og hvordan du tar vare på den.",
   deler: [
@@ -24,7 +25,7 @@ export const tannkrone: Behandlingsside = {
         // Helsenorge: most often metal, porcelain or both
         "Kronen lages oftest av metall, porselen, eller begge deler.",
       ],
-      tegning: "krone-satt",
+      tegning: "krone-kappe",
     },
     {
       type: "tekst",
@@ -36,7 +37,7 @@ export const tannkrone: Behandlingsside = {
         // SML Rotfylling: after a root filling, a filling or a crown
         "Etter en rotfylling får tannen enten en fylling eller en krone. Ofte holder det med en fylling.",
       ],
-      tegning: "sprekk",
+      tegning: "lite-igjen",
     },
     {
       type: "serie",
@@ -44,11 +45,11 @@ export const tannkrone: Behandlingsside = {
       tittel: "Slik går det for seg",
       ruter: [
         // UiO clinic handbook: take the shade before treatment starts
-        { tegning: "farge", tekst: "Først finner vi fargen, så den nye tanna passer med de andre." },
+        { tegning: "farge-krone", tekst: "Først finner vi fargen, så den nye tanna passer med de andre." },
         // Helsenorge: the tooth must be ground to the right shape first
         { tegning: "stubb", tekst: "Tannen slipes til riktig form, så kronen får plass." },
         // SML Tannprotese (made after exact impressions), UiO (scanning)
-        { tegning: "avtrykk", tekst: "Tannlegen tar avtrykk eller skanner tennene, og kronen lages etter dem." },
+        { tegning: "skanner", tekst: "Tannlegen tar avtrykk eller skanner tennene, og kronen lages etter dem." },
         // UiO clinic handbook: a temporary crown, cemented with temporary cement
         { tegning: "provisorium", tekst: "Mens kronen lages, får du en midlertidig krone.", mellom: true },
         // SML Tannprotese: fixed for good with special cements
@@ -65,7 +66,7 @@ export const tannkrone: Behandlingsside = {
         // UiO clinic handbook: brushes, toothpicks, floss and interdental brushes adapted to the new crown
         "Rundt en krone må du holde like rent som rundt dine egne tenner, med tannbørste, tanntråd eller mellomromsbørster.",
       ],
-      tegning: "traad",
+      tegning: "krone-traad",
     },
     // SML Tannkrone: the crown is also the part of your own tooth that shows in the mouth
     { type: "lapp", lapp: { slag: "visste", tekst: "Krone er også navnet på den delen av din egen tann som synes i munnen, den som er dekket av emalje." } },

@@ -11,6 +11,7 @@ export const tannfylling: Behandlingsside = {
   navn: "Tannfylling",
   // the clinic's own words (klinikk.ts)
   ingress: "Har du fått hull i tannen, fjerner tannlegen det ødelagte tannvevet og fyller rommet med en tannfarget fylling. Her ser du hvordan det går for seg.",
+  tittelbilde: "fylling",
   lesetid: "2 minutter å lese",
   beskrivelse: "Tannfylling hos tannlegen i Kongsvinger: tegn på hull i tennene, hvordan en fylling lages steg for steg, bedøvelse, og hva du bør tenke på etterpå.",
   deler: [
@@ -24,7 +25,7 @@ export const tannfylling: Behandlingsside = {
         // Helsenorge: recreates the tooth's form and function, and stops the hole growing
         "Den gir tannen form og funksjon igjen, og hindrer at hullet blir større.",
       ],
-      tegning: "fylt",
+      tegning: "fylling-snitt",
     },
     {
       type: "tegn",
@@ -51,7 +52,7 @@ export const tannfylling: Behandlingsside = {
       tittel: "Slik går det for seg",
       ruter: [
         // SML Lidokain: dentists numb single teeth
-        { tegning: "roligtann", tekst: "Først bedøver tannlegen tannen." },
+        { tegning: "rolig-hull", tekst: "Først bedøver tannlegen tannen." },
         // Helsenorge: the dentist drills away the damaged tooth
         { tegning: "bor", tekst: "Så borer tannlegen bort det ødelagte tannvevet." },
         // SML Pulpitt: with deep fillings a protective material is laid underneath
@@ -72,7 +73,7 @@ export const tannfylling: Behandlingsside = {
         // SML Lidokain (local anaesthesia), Felleskatalogen (it works quickly)
         "Tannen bedøves før vi begynner, og bedøvelsen virker raskt.",
       ],
-      tegning: "snakke",
+      tegning: "tann-sover",
     },
     {
       type: "tekst",
@@ -83,7 +84,7 @@ export const tannfylling: Behandlingsside = {
         "Hvordan tannen kjennes etterpå, er forskjellig fra person til person. Er fyllingen dyp, kan tannen for eksempel bli mer følsom for kulde og varme.",
         "Tannlegen forteller deg hva du bør tenke på. Merker du noe som ikke går over, ring oss gjerne.",
       ],
-      tegning: "klokke",
+      tegning: "kald-varm",
     },
     // Tannlegeforeningen Kloke valg: don't replace fillings only because they are old
     { type: "lapp", lapp: { slag: "tips", tekst: "En gammel fylling trenger ikke byttes bare fordi den er gammel. Den byttes når det er en grunn til det." } },

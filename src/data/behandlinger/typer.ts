@@ -65,10 +65,82 @@ export type BTegning =
   | "bro-traad"
   | "kjeve-sar"
   | "kjeve-ro"
-  | "avtrykk-bitt";
+  | "avtrykk-bitt"
+  | "fylling-snitt"
+  | "rolig-hull"
+  | "tann-sover"
+  | "kald-varm"
+  | "peroksid"
+  | "timeglass"
+  | "lupe-emalje"
+  | "avtrykk-smil"
+  | "bleke-sart"
+  | "hvit-falmer"
+  | "bleke-18"
+  | "lupe-plakk"
+  | "misfarget"
+  | "mellomrom"
+  | "autorisert"
+  | "to-stadier"
+  | "blor"
+  | "los-tann"
+  | "sonde"
+  | "hjem-utstyr"
+  | "skrape-under"
+  | "for-etter"
+  | "gjentak"
+  | "tapt-vev"
+  | "rontgen-rot"
+  | "rolig-nerve"
+  | "snakke-rot"
+  | "spytt-skjold"
+  | "kake"
+  | "straaling"
+  | "pilleglass"
+  | "snakke-medisin"
+  | "rad-torr"
+  | "lupe-rot"
+  | "rolig-trekk"
+  | "snakke-luke"
+  | "luke-sporsmal"
+  | "atte"
+  | "rontgen-visdom"
+  | "rolig-visdom"
+  | "trekk-deler"
+  | "snakke-dager"
+  | "hoven-kinn"
+  | "fortann-knekt"
+  | "rontgen-fortann"
+  | "fylt-fortann"
+  | "krone-fortann"
+  | "kontroller"
+  | "fortann-endring"
+  | "krone-kappe"
+  | "lite-igjen"
+  | "farge-krone"
+  | "skanner"
+  | "krone-traad"
+  | "fortenner-fasett"
+  | "valg-fasett"
+  | "farge-fortann"
+  | "gips-fortenner"
+  | "implantat-deler"
+  | "bein-nok"
+  | "rontgen-luke"
+  | "rolig-luke"
+  | "implantat-farge"
+  | "plaster-kinn"
+  | "implantat-borste"
+  | "protese-voks"
+  | "protese-implantat"
+  | "snakke-protese"
+  | "avtrykk-tannlos"
+  | "bitt-maal"
+  | "protese-smil"
+  | "spire";
 
 /** The larger pen scene beside a page's title. */
-export type Tittelbilde = "stol" | "bro-elv" | "natt";
+export type Tittelbilde = "stol" | "bro-elv" | "natt" | "fylling" | "bleking" | "rens" | "tannkjott" | "rot" | "torr" | "tang" | "ugle" | "ball" | "krone" | "skjell" | "implantat" | "gebiss";
 
 /** One panel of the comic strip, with a line under it. `mellom`: a step not everyone needs, in a dashed frame. */
 export type Rute = { tegning: BTegning; tekst: string; mellom?: boolean };
@@ -88,7 +160,7 @@ export type Behandlingsside = {
   navn: string;
   ingress: string;
   /** The pen scene beside the title. */
-  tittelbilde?: Tittelbilde;
+  tittelbilde: Tittelbilde;
   lesetid: string;
   /** For search engines. */
   beskrivelse: string;

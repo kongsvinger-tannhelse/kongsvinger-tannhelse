@@ -11,6 +11,7 @@ export const tannrens: Behandlingsside = {
   navn: "Tannrens",
   // the clinic's own words (klinikk.ts)
   ingress: "En tannrens fjerner plakk og tannstein som har bygget seg opp over tid. Her ser du hvorfor det er viktig, og hvordan det foregår.",
+  tittelbilde: "rens",
   lesetid: "2 minutter å lese",
   beskrivelse: "Tannrens hos tannlegen i Kongsvinger: hva plakk og tannstein er, hva det kan gjøre med tennene og tannkjøttet, og hvordan tannsteinen fjernes.",
   deler: [
@@ -24,7 +25,7 @@ export const tannrens: Behandlingsside = {
         // SML Tannstein: plaque that mineralises; should be removed by a dentist or hygienist; the clinic's text
         "Blir plakket liggende, herder det og blir til tannstein. Den sitter så godt fast at du ikke får den bort selv. Den må fjernes av en tannlege eller tannpleier.",
       ],
-      tegning: "tannstein",
+      tegning: "lupe-plakk",
     },
     {
       type: "tegn",
@@ -32,7 +33,7 @@ export const tannrens: Behandlingsside = {
       tittel: "Hva kan tannstein gjøre?",
       punkter: [
         // SML Tannstein: discoloured teeth, a rough surface
-        { tekst: "Tennene kan bli misfarget og ru.", tegning: "plakk" },
+        { tekst: "Tennene kan bli misfarget og ru.", tegning: "misfarget" },
         // SML Tannstein: in the longer run, bad breath
         { tekst: "Du kan få dårlig ånde.", tegning: "ande" },
         // SML Tannstein and Periodontitt: bleeding gums; red or swollen gum that bleeds when you brush
@@ -55,7 +56,7 @@ export const tannrens: Behandlingsside = {
         // SML Periodontitt: curettes and/or an ultrasonic instrument remove it mechanically
         { tegning: "skrape", tekst: "Tannlegen eller tannpleieren fjerner tannsteinen med små håndinstrumenter, eller med et instrument som bruker ultralyd." },
         // SML Tannstein: the most important thing is good, regular cleaning yourself, with brush and floss or interdental brushes
-        { tegning: "traad", tekst: "Hjemme pusser du godt, og renser mellom tennene med tanntråd eller mellomromsbørster." },
+        { tegning: "mellomrom", tekst: "Hjemme pusser du godt, og renser mellom tennene med tanntråd eller mellomromsbørster." },
       ],
     },
     // SML Tannstein: most behind the lower front teeth and on the upper molars, by the large salivary glands
@@ -68,7 +69,7 @@ export const tannrens: Behandlingsside = {
         // SML Tannstein; SML Tannpleier: a protected title, authorised under helsepersonelloven
         "Tannstein bør fjernes av en tannlege eller en tannpleier. Tannpleier er en beskyttet tittel for helsepersonell med egen autorisasjon.",
       ],
-      tegning: "snakke",
+      tegning: "autorisert",
     },
   ],
   slutt: "Er det lenge siden forrige tannrens? Bestill en time, så tar vi den.",

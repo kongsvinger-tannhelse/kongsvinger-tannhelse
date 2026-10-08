@@ -8,6 +8,9 @@ import m from "./side.module.css";
 import { Ande, Avtrykk, Bor, Farge, Flekk, Fylt, Hvit, Implantat, Kompress, KroneSatt, Lampe, Lupe, Mangler, Plan, Provisorium, Skinne, Skrape, Sting, Stubb, Trekk, Underlag, Visdom } from "./ruter";
 import { Bittskinne, Bro, Fasett, Gnissing, Melk, Protese, Tyggis } from "./ruter2";
 import { AvtrykkBitt, BroLost, BroTraad, Gips, Kalender, KjeveRo, KjeveSar, LupeGap, LupeRad, LupeSlitt, RontgenTo, SnakkeHelse, SnakkeStress, Speil, Tannkart, Valg } from "./ruter3";
+import { Autorisert, AvtrykkSmil, Bleke18, BlekeSart, Blor, ForEtter, FyllingSnitt, Gjentak, HjemUtstyr, HvitFalmer, KaldVarm, LosTann, LupeEmalje, LupePlakk, Mellomrom, Misfarget, Peroksid, RoligHull, SkrapeUnder, Sonde, TannSover, TaptVev, Timeglass, ToStadier } from "./ruter4";
+import { Atte, FortannEndring, FortannKnekt, FyltFortann, HovenKinn, Kake, Kontroller, KroneFortann, LukeSporsmal, LupeRot, Pilleglass, RadTorr, RoligNerve, RoligTrekk, RoligVisdom, RontgenFortann, RontgenRot, RontgenVisdom, SnakkeDager, SnakkeLuke, SnakkeMedisin, SnakkeRot, SpyttSkjold, Straaling, TrekkDeler } from "./ruter5";
+import { AvtrykkTannlos, BeinNok, BittMaal, FargeFortann, FargeKrone, FortennerFasett, GipsFortenner, ImplantatBorste, ImplantatDeler, ImplantatFarge, KroneKappe, KroneTraad, LiteIgjen, PlasterKinn, ProteseImplantat, ProteseSmil, ProteseVoks, RoligLuke, RontgenLuke, Skanner, SnakkeProtese, Spire, ValgFasett } from "./ruter6";
 
 /* The treatment pages' own drawings, in the articles' pen: a molar cut
    open to show the nerve, in every stage of the treatment, and the small
@@ -34,7 +37,7 @@ export function RotTann({ tilstand, strek = true, className, forsink, tittel }: 
     <Ramme className={className} forsink={forsink} boks="0 0 240 300" tittel={tittel}>
       <g transform="translate(120 188)">
         {/* the jaw round the roots, and the gum along it */}
-        <path d="M-96,-2 Q-60,-16 -46,-14 Q0,8 46,-14 Q60,-16 96,-2 L96,104 L-96,104 Z" fill={F.ben} opacity={0.55} {...blekk(strek)} />
+        <path d="M-96,-2 Q-60,-16 -46,-14 Q0,8 46,-14 Q60,-16 96,-2 L96,104 L-96,104 Z" fill={F.ben} fillOpacity={0.55} {...blekk(strek)} />
         <path d="M-96,-2 Q-60,-16 -46,-14 Q0,8 46,-14 Q60,-16 96,-2" {...linje(strek, F.tannkjottMork, 2.2, F.tannkjottMork)} />
 
         <Jeksel strek={strek} />
@@ -171,4 +174,76 @@ export const BTEGNINGER: Record<BTegning, (p: Stil) => React.JSX.Element> = {
   "kjeve-sar": (p) => <KjeveSar {...p} />,
   "kjeve-ro": (p) => <KjeveRo {...p} />,
   "avtrykk-bitt": (p) => <AvtrykkBitt {...p} />,
+  "fylling-snitt": (p) => <FyllingSnitt {...p} />,
+  "rolig-hull": (p) => <RoligHull {...p} />,
+  "tann-sover": (p) => <TannSover {...p} />,
+  "kald-varm": (p) => <KaldVarm {...p} />,
+  "peroksid": (p) => <Peroksid {...p} />,
+  "timeglass": (p) => <Timeglass {...p} />,
+  "lupe-emalje": (p) => <LupeEmalje {...p} />,
+  "avtrykk-smil": (p) => <AvtrykkSmil {...p} />,
+  "bleke-sart": (p) => <BlekeSart {...p} />,
+  "hvit-falmer": (p) => <HvitFalmer {...p} />,
+  "bleke-18": (p) => <Bleke18 {...p} />,
+  "lupe-plakk": (p) => <LupePlakk {...p} />,
+  "misfarget": (p) => <Misfarget {...p} />,
+  "mellomrom": (p) => <Mellomrom {...p} />,
+  "autorisert": (p) => <Autorisert {...p} />,
+  "to-stadier": (p) => <ToStadier {...p} />,
+  "blor": (p) => <Blor {...p} />,
+  "los-tann": (p) => <LosTann {...p} />,
+  "sonde": (p) => <Sonde {...p} />,
+  "hjem-utstyr": (p) => <HjemUtstyr {...p} />,
+  "skrape-under": (p) => <SkrapeUnder {...p} />,
+  "for-etter": (p) => <ForEtter {...p} />,
+  "gjentak": (p) => <Gjentak {...p} />,
+  "tapt-vev": (p) => <TaptVev {...p} />,
+  "rontgen-rot": (p) => <RontgenRot {...p} />,
+  "rolig-nerve": (p) => <RoligNerve {...p} />,
+  "snakke-rot": (p) => <SnakkeRot {...p} />,
+  "spytt-skjold": (p) => <SpyttSkjold {...p} />,
+  "kake": (p) => <Kake {...p} />,
+  "straaling": (p) => <Straaling {...p} />,
+  "pilleglass": (p) => <Pilleglass {...p} />,
+  "snakke-medisin": (p) => <SnakkeMedisin {...p} />,
+  "rad-torr": (p) => <RadTorr {...p} />,
+  "lupe-rot": (p) => <LupeRot {...p} />,
+  "rolig-trekk": (p) => <RoligTrekk {...p} />,
+  "snakke-luke": (p) => <SnakkeLuke {...p} />,
+  "luke-sporsmal": (p) => <LukeSporsmal {...p} />,
+  "atte": (p) => <Atte {...p} />,
+  "rontgen-visdom": (p) => <RontgenVisdom {...p} />,
+  "rolig-visdom": (p) => <RoligVisdom {...p} />,
+  "trekk-deler": (p) => <TrekkDeler {...p} />,
+  "snakke-dager": (p) => <SnakkeDager {...p} />,
+  "hoven-kinn": (p) => <HovenKinn {...p} />,
+  "fortann-knekt": (p) => <FortannKnekt {...p} />,
+  "rontgen-fortann": (p) => <RontgenFortann {...p} />,
+  "fylt-fortann": (p) => <FyltFortann {...p} />,
+  "krone-fortann": (p) => <KroneFortann {...p} />,
+  "kontroller": (p) => <Kontroller {...p} />,
+  "fortann-endring": (p) => <FortannEndring {...p} />,
+  "krone-kappe": (p) => <KroneKappe {...p} />,
+  "lite-igjen": (p) => <LiteIgjen {...p} />,
+  "farge-krone": (p) => <FargeKrone {...p} />,
+  "skanner": (p) => <Skanner {...p} />,
+  "krone-traad": (p) => <KroneTraad {...p} />,
+  "fortenner-fasett": (p) => <FortennerFasett {...p} />,
+  "valg-fasett": (p) => <ValgFasett {...p} />,
+  "farge-fortann": (p) => <FargeFortann {...p} />,
+  "gips-fortenner": (p) => <GipsFortenner {...p} />,
+  "implantat-deler": (p) => <ImplantatDeler {...p} />,
+  "bein-nok": (p) => <BeinNok {...p} />,
+  "rontgen-luke": (p) => <RontgenLuke {...p} />,
+  "rolig-luke": (p) => <RoligLuke {...p} />,
+  "implantat-farge": (p) => <ImplantatFarge {...p} />,
+  "plaster-kinn": (p) => <PlasterKinn {...p} />,
+  "implantat-borste": (p) => <ImplantatBorste {...p} />,
+  "protese-voks": (p) => <ProteseVoks {...p} />,
+  "protese-implantat": (p) => <ProteseImplantat {...p} />,
+  "snakke-protese": (p) => <SnakkeProtese {...p} />,
+  "avtrykk-tannlos": (p) => <AvtrykkTannlos {...p} />,
+  "bitt-maal": (p) => <BittMaal {...p} />,
+  "protese-smil": (p) => <ProteseSmil {...p} />,
+  "spire": (p) => <Spire {...p} />,
 };

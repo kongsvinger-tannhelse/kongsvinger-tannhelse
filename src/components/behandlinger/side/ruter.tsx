@@ -111,7 +111,7 @@ export function Underlag({ strek = true, className, forsink }: Stil) {
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
       <Liten strek={strek} />
       <g transform="translate(60 72) scale(0.42)">
-        <path d={PULPA} fill="#F1B9AE" opacity={0.8} {...blekk(strek)} />
+        <path d={PULPA} fill="#F1B9AE" fillOpacity={0.8} {...blekk(strek)} />
         <path d="M-22,-96 C-12,-102 12,-102 22,-96 L16,-52 L-16,-52 Z" fill={F.papir} stroke={BLEKK} strokeWidth={4} {...blekk(strek)} />
         <path d="M-16,-52 L16,-52" stroke={F.teal} strokeWidth={9} strokeLinecap="round" {...blekk(strek)} />
       </g>
@@ -137,7 +137,7 @@ export function Lampe({ strek = true, className, forsink }: Stil) {
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
       <Liten strek={strek} rotter={false} y={98} />
       <Gomme strek={strek} y={108} />
-      <path d="M58,42 L40,68 L80,68 Z" fill="#7FB8E8" opacity={0.4} {...blekk(strek)} />
+      <path d="M58,42 L40,68 L80,68 Z" fill="#7FB8E8" fillOpacity={0.4} {...blekk(strek)} />
       <path d="M58,42 L40,68 M62,42 L80,68" {...linje(strek, "#4A90D0", 1.6, "#4A90D0")} />
       <path d="M104,12 L66,32 Q58,36 58,42 L66,44 Q70,38 108,20 Z" {...form(strek, F.hvit, { w: 2.2, penFill: F.papir })} />
     </Ramme>
@@ -150,7 +150,7 @@ export function Lampe({ strek = true, className, forsink }: Stil) {
 export function Visdom({ strek = true, className, forsink }: Stil) {
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M4,72 Q60,60 116,72 L116,116 L4,116 Z" fill={F.ben} opacity={0.6} {...blekk(strek)} />
+      <path d="M4,72 Q60,60 116,72 L116,116 L4,116 Z" fill={F.ben} fillOpacity={0.6} {...blekk(strek)} />
       <g transform="translate(-14 0)">
         <Liten strek={strek} y={78} k={0.32} />
       </g>
@@ -166,7 +166,7 @@ export function Visdom({ strek = true, className, forsink }: Stil) {
 export function Trekk({ strek = true, className, forsink }: Stil) {
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M8,94 Q34,84 60,92 Q86,84 112,94 L112,116 L8,116 Z" fill={F.tannkjott} opacity={0.5} {...blekk(strek)} />
+      <path d="M8,94 Q34,84 60,92 Q86,84 112,94 L112,116 L8,116 Z" fill={F.tannkjott} fillOpacity={0.5} {...blekk(strek)} />
       <Gomme strek={strek} y={94} />
       <Liten strek={strek} y={50} k={0.34} />
       <path d="M100,74 L100,34 M92,42 L100,34 L108,42" {...linje(strek, F.teal, 2.4, F.teal)} />
@@ -203,7 +203,7 @@ export function Kompress({ strek = true, className, forsink }: Stil) {
 export function Implantat({ trinn, strek = true, className, forsink }: Stil & { trinn: "skrue" | "gror" | "krone" }) {
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M4,58 Q60,48 116,58 L116,118 L4,118 Z" fill={F.ben} opacity={0.65} {...blekk(strek)} />
+      <path d="M4,58 Q60,48 116,58 L116,118 L4,118 Z" fill={F.ben} fillOpacity={0.65} {...blekk(strek)} />
       <path d="M4,58 Q60,48 116,58" {...linje(strek, F.tannkjottMork, 2.2, F.tannkjottMork)} />
       <path d="M52,56 L68,56 L66,100 Q60,108 54,100 Z" {...form(strek, F.metall, { w: 2.2 })} />
       <path d="M52,66 L68,62 M52,76 L68,72 M53,86 L67,82 M54,96 L66,92" {...linje(strek, F.metallMork, 1.6)} />
@@ -231,7 +231,7 @@ export function Implantat({ trinn, strek = true, className, forsink }: Stil & { 
 export function Mangler({ strek = true, className, forsink }: Stil) {
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M4,80 Q60,70 116,80 L116,116 L4,116 Z" fill={F.tannkjott} opacity={0.45} {...blekk(strek)} />
+      <path d="M4,80 Q60,70 116,80 L116,116 L4,116 Z" fill={F.tannkjott} fillOpacity={0.45} {...blekk(strek)} />
       <g transform="translate(-38 0)">
         <Liten strek={strek} rotter={false} y={82} k={0.3} />
       </g>
@@ -314,7 +314,7 @@ export function Farge({ strek = true, className, forsink }: Stil) {
 export function Skinne({ strek = true, className, forsink }: Stil) {
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M18,30 Q18,96 60,96 Q102,96 102,30" fill="none" stroke="#9FD3DD" strokeWidth={16} strokeLinecap="round" opacity={0.5} {...blekk(strek)} />
+      <path d="M18,30 Q18,96 60,96 Q102,96 102,30" fill="none" stroke="#9FD3DD" strokeWidth={16} strokeLinecap="round" fillOpacity={0.5} {...blekk(strek)} />
       <path d="M10,30 Q10,104 60,104 Q110,104 110,30 M26,30 Q26,88 60,88 Q94,88 94,30" {...linje(strek, F.teal, 2, F.teal)} />
       {[0.15, 0.32, 0.5, 0.68, 0.85].map((t) => {
         const a = Math.PI * (1 - t);

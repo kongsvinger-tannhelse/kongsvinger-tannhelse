@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { FARGE as F, JEKSEL, STUBB, lauv } from "@/components/forside/behandlinger/popup/tegning";
+import { FARGE as F, JEKSEL, STUBB, lauv, stjerne } from "@/components/forside/behandlinger/popup/tegning";
 import { AKSENT, BLEKK, Ramme, blekk, form, linje, type Stil } from "@/components/artikler/tegninger";
 import { Gomme } from "./ruter";
 
@@ -9,7 +9,7 @@ import { Gomme } from "./ruter";
    the same while no two pages show the same picture. Server-safe. */
 
 /** A molar crown (no roots), its biting edge up, its foot at `y`. */
-function Krone({ strek = true, x, y, k, ink = BLEKK, fyll = F.papir, fure = true }: { strek?: boolean; x: number; y: number; k: number; ink?: string; fyll?: string; fure?: boolean }) {
+export function Krone({ strek = true, x, y, k, ink = BLEKK, fyll = F.papir, fure = true }: { strek?: boolean; x: number; y: number; k: number; ink?: string; fyll?: string; fure?: boolean }) {
   return (
     <g transform={`translate(${x} ${y}) scale(${k})`}>
       <path d={JEKSEL.krone} {...form(strek, F.hvit, { w: 2.2 / k, ink, penFill: fyll })} />
@@ -19,7 +19,7 @@ function Krone({ strek = true, x, y, k, ink = BLEKK, fyll = F.papir, fure = true
 }
 
 /** The same crown upside down, its biting edge at `y`: an upper tooth. */
-function OverKrone({ strek = true, x, y, k, ink = BLEKK, fyll = F.papir }: { strek?: boolean; x: number; y: number; k: number; ink?: string; fyll?: string }) {
+export function OverKrone({ strek = true, x, y, k, ink = BLEKK, fyll = F.papir }: { strek?: boolean; x: number; y: number; k: number; ink?: string; fyll?: string }) {
   return (
     <g transform={`translate(${x} ${y - 104 * k}) rotate(180) scale(${k})`}>
       <path d={JEKSEL.krone} {...form(strek, F.hvit, { w: 2.2 / k, ink, penFill: fyll })} />
@@ -28,7 +28,7 @@ function OverKrone({ strek = true, x, y, k, ink = BLEKK, fyll = F.papir }: { str
 }
 
 /** The gum as a soft band along the bottom. */
-const gommeband = (strek: boolean, y = 86) => (
+export const gommeband = (strek: boolean, y = 86) => (
   <path d={`M4,${y} Q60,${y - 8} 116,${y} L116,116 L4,116 Z`} {...form(strek, F.tannkjott, { w: 1.8, ink: F.tannkjottMork, penFill: "#F6DCD7" })} />
 );
 
@@ -37,7 +37,7 @@ const gommeband = (strek: boolean, y = 86) => (
 const HJERTE = "M60,96 C30,76 16,60 16,44 C16,32 26,24 37,24 C47,24 55,30 60,38 C65,30 73,24 83,24 C94,24 104,32 104,44 C104,60 90,76 60,96 Z";
 
 /** A heart, `s` times its full size, centred on (x, y). */
-const hjerte = (strek: boolean, x: number, y: number, s: number) => (
+export const hjerte = (strek: boolean, x: number, y: number, s: number) => (
   <g transform={`translate(${x - 60 * s} ${y - 60 * s}) scale(${s})`}>
     <path d={HJERTE} {...form(strek, "#F5C9BF", { w: 2.2 / s, ink: AKSENT, penFill: "#FBE6E0" })} />
   </g>
@@ -46,7 +46,7 @@ const hjerte = (strek: boolean, x: number, y: number, s: number) => (
 /* ── Talking ── */
 
 /** Two speech bubbles, the first with what you talk about inside it, the reply with `svar`. */
-function SnakkeOm({ strek = true, className, forsink, om, svar }: Stil & { om: ReactNode; svar?: ReactNode }) {
+export function SnakkeOm({ strek = true, className, forsink, om, svar }: Stil & { om: ReactNode; svar?: ReactNode }) {
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
       <path d="M22,16 L78,16 Q88,16 88,26 L88,56 Q88,66 78,66 L40,66 L26,78 L28,66 L22,66 Q12,66 12,56 L12,26 Q12,16 22,16 Z" {...form(strek, F.hvit, { w: 2.2, penFill: F.papir })} />
@@ -85,7 +85,7 @@ export function SnakkeStress(p: Stil) {
 /* ── Looking closely ── */
 
 /** A magnifier held over `children`: the lens clear enough to see through. */
-function LupePaa({ strek = true, className, forsink, children, x = 60, y = 62 }: Stil & { children: ReactNode; x?: number; y?: number }) {
+export function LupePaa({ strek = true, className, forsink, children, x = 60, y = 62 }: Stil & { children: ReactNode; x?: number; y?: number }) {
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
       {children}
@@ -297,20 +297,26 @@ export function BroTraad({ strek = true, className, forsink }: Stil) {
 
 /* ── The jaw ── */
 
-/** A face, the jaw sore or at rest. */
-function Fjes({ strek = true, className, forsink, ro }: Stil & { ro: boolean }) {
+/** A face: the jaw sore, at rest, one cheek swollen, a small plaster on the cheek, or a wide smile with teeth. */
+export type Uttrykk = "sar" | "ro" | "hoven" | "plaster" | "smil";
+export function Fjes({ strek = true, className, forsink, uttrykk }: Stil & { uttrykk: Uttrykk }) {
+  const hode =
+    uttrykk === "hoven"
+      ? "M60,24 C40,24 26,40 26,58 C26,78 42,92 60,92 C74,92 96,96 106,80 C112,66 100,52 92,46 C86,32 74,24 60,24 Z"
+      : "M60,24 C41,24 26,39 26,58 C26,77 41,92 60,92 C79,92 94,77 94,58 C94,39 79,24 60,24 Z";
   return (
     <Ramme className={className} forsink={forsink} boks="0 0 120 120">
-      <path d="M26,50 q-7,7 0,14 M94,50 q7,7 0,14" {...linje(strek, BLEKK, 2.2)} />
-      <circle cx={60} cy={58} r={34} {...form(strek, F.hvit, { w: 2.4, penFill: F.papir })} />
+      <path d={uttrykk === "hoven" ? "M26,50 q-7,7 0,14" : "M26,50 q-7,7 0,14 M94,50 q7,7 0,14"} {...linje(strek, BLEKK, 2.2)} />
+      <path d={hode} {...form(strek, F.hvit, { w: 2.4, penFill: F.papir })} />
       <path d="M27,52 Q26,24 60,23 Q94,24 93,52 Q86,36 60,35 Q38,35 27,52 Z" {...form(strek, F.metall, { w: 2, penFill: "#E3E8E8" })} />
-      {ro ? (
+      {uttrykk === "ro" && (
         <>
           <path d="M42,58 q5,5 10,0 M68,58 q5,5 10,0" {...linje(strek, BLEKK, 2.2)} />
           <path d="M50,74 q10,7 20,0" {...linje(strek, BLEKK, 2.2)} />
           <path d="M31,70 a6,6 0 1 1 6,6 M34,73 L37,76 L34,79 M89,70 a6,6 0 1 0 -6,6 M86,73 L83,76 L86,79" {...linje(strek, F.teal, 1.8, F.teal)} />
         </>
-      ) : (
+      )}
+      {uttrykk === "sar" && (
         <>
           <path d="M42,58 L52,58 M68,58 L78,58 M42,50 l10,2 M78,50 l-10,2" {...linje(strek, BLEKK, 2.2)} />
           <path d="M48,76 q3,-3 6,0 q3,3 6,0 q3,-3 6,0 q3,3 6,0" {...linje(strek, BLEKK, 2)} />
@@ -319,12 +325,37 @@ function Fjes({ strek = true, className, forsink, ro }: Stil & { ro: boolean }) 
           <path d="M16,70 l-7,-2 M17,78 l-6,4 M104,70 l7,-2 M103,78 l6,4" {...linje(strek, AKSENT, 2, AKSENT)} />
         </>
       )}
+      {uttrykk === "hoven" && (
+        <>
+          <path d="M40,58 L50,58 M64,58 L74,58" {...linje(strek, BLEKK, 2.2)} />
+          <path d="M48,78 q8,-3 16,0" {...linje(strek, BLEKK, 2)} />
+          <circle cx={92} cy={74} r={9} fill="#F5C9BF" fillOpacity={0.7} {...blekk(strek)} />
+        </>
+      )}
+      {uttrykk === "plaster" && (
+        <>
+          <path d="M42,58 q5,5 10,0 M68,58 q5,5 10,0" {...linje(strek, BLEKK, 2.2)} />
+          <path d="M52,76 q8,4 16,0" {...linje(strek, BLEKK, 2)} />
+          <g transform="rotate(-24 84 72)">
+            <rect x={74} y={67} width={20} height={10} rx={3} {...form(strek, "#F3DCC4", { w: 1.6, penFill: "#F8EADB" })} />
+            <path d="M81,70 l0,4 M84,70 l0,4 M87,70 l0,4" {...linje(strek, "#C9A27E", 1.2, "#C9A27E")} />
+          </g>
+        </>
+      )}
+      {uttrykk === "smil" && (
+        <>
+          <path d="M42,56 q5,-5 10,0 M68,56 q5,-5 10,0" {...linje(strek, BLEKK, 2.2)} />
+          <path d="M44,70 Q60,90 76,70 Z" {...form(strek, F.hvit, { w: 2, penFill: "#FFFFFF" })} />
+          <path d="M47,72 L73,72 M52,72 L52,78 M60,72 L60,80 M68,72 L68,78" {...linje(strek, F.fure, 1.2, F.metallMork)} />
+          <path d={`${stjerne(100, 30, 6)} ${stjerne(18, 36, 4)}`} {...form(strek, "#F1D58A", { w: 1.4, ink: F.teal })} />
+        </>
+      )}
     </Ramme>
   );
 }
 
-export const KjeveSar = (p: Stil) => <Fjes {...p} ro={false} />;
-export const KjeveRo = (p: Stil) => <Fjes {...p} ro />;
+export const KjeveSar = (p: Stil) => <Fjes {...p} uttrykk="sar" />;
+export const KjeveRo = (p: Stil) => <Fjes {...p} uttrykk="ro" />;
 
 /** An impression tray with the marks of the teeth pressed into it. */
 export function AvtrykkBitt({ strek = true, className, forsink }: Stil) {

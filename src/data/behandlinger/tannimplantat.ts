@@ -11,6 +11,7 @@ export const tannimplantat: Behandlingsside = {
   navn: "Tannimplantat",
   // the clinic's own words (klinikk.ts)
   ingress: "Et tannimplantat er en liten skrue i kjevebenet som vokser fast og bærer en ny tann. Her ser du hvordan det går for seg, steg for steg.",
+  tittelbilde: "implantat",
   lesetid: "3 minutter å lese",
   beskrivelse: "Tannimplantat hos tannlegen i Kongsvinger: hva et implantat er, hvem det passer for, hvordan det settes inn steg for steg, og hvordan du tar vare på det.",
   deler: [
@@ -24,7 +25,7 @@ export const tannimplantat: Behandlingsside = {
         // UNN: fixture, abutment and crown; SML Oral implantologi: a crown fixed to the implant
         "Oppå skruen festes en ny tann, en krone.",
       ],
-      tegning: "implantat-krone",
+      tegning: "implantat-deler",
     },
     {
       type: "tekst",
@@ -38,7 +39,7 @@ export const tannimplantat: Behandlingsside = {
         // SML Tannskade (a prosthesis, bridge or implant), SML Broprotese (anchored to the teeth beside)
         "Andre måter å erstatte en tann på er en bro, som festes til tennene ved siden av, eller en protese.",
       ],
-      tegning: "mangler",
+      tegning: "bein-nok",
     },
     {
       type: "serie",
@@ -46,15 +47,15 @@ export const tannimplantat: Behandlingsside = {
       tittel: "Slik går det for seg",
       ruter: [
         // UNN: the bone is examined first
-        { tegning: "rontgen", tekst: "Først undersøker tannlegen beinet i kjeven." },
+        { tegning: "rontgen-luke", tekst: "Først undersøker tannlegen beinet i kjeven." },
         // UNN: usually under local anaesthesia
-        { tegning: "roligtann", tekst: "Inngrepet gjøres som regel i lokalbedøvelse." },
+        { tegning: "rolig-luke", tekst: "Inngrepet gjøres som regel i lokalbedøvelse." },
         // UNN: the surgeon drills away a little bone to make room for the screw
         { tegning: "implantat-skrue", tekst: "Tannlegen lager plass i beinet og setter inn skruen." },
         // UNN: the screw needs months to grow into the bone (osseointegrasjon, SML)
         { tegning: "implantat-gror", tekst: "Så må skruen gro fast i beinet. Det tar vanligvis noen måneder." },
         // UNN: an impression, and the shape and colour decided
-        { tegning: "avtrykk", tekst: "Når skruen sitter godt, tar tannlegen avtrykk, og dere finner form og farge på den nye tanna sammen." },
+        { tegning: "implantat-farge", tekst: "Når skruen sitter godt, tar tannlegen avtrykk, og dere finner form og farge på den nye tanna sammen." },
         // SML Oral implantologi: a crown fixed to the implant
         { tegning: "implantat-krone", tekst: "Til slutt festes den nye tanna på skruen." },
       ],
@@ -73,7 +74,7 @@ export const tannimplantat: Behandlingsside = {
         // UNN: swelling and pain can follow
         "Etterpå kan det bli litt hovent og vondt. Hvor mye, er forskjellig fra person til person, og tannlegen forteller deg hva du bør tenke på.",
       ],
-      tegning: "snakke",
+      tegning: "plaster-kinn",
     },
     {
       type: "tekst",
@@ -87,7 +88,7 @@ export const tannimplantat: Behandlingsside = {
         // UNN: implants can get the same problem as teeth: periimplantitt
         "Også et implantat kan få betennelse i tannkjøttet rundt seg. Det kalles periimplantitt.",
       ],
-      tegning: "traad",
+      tegning: "implantat-borste",
     },
   ],
   slutt: "Mangler du en tann? Bestill en time, så ser vi på hva som passer for deg.",

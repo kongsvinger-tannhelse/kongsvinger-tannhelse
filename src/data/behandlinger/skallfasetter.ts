@@ -11,6 +11,7 @@ export const skallfasetter: Behandlingsside = {
   navn: "Skallfasetter",
   // the clinic's own words (klinikk.ts)
   ingress: "Skallfasetter er tynne skall av keramikk eller kompositt som festes på forsiden av tennene, for en jevnere og lysere overflate.",
+  tittelbilde: "skjell",
   lesetid: "2 minutter å lese",
   beskrivelse: "Skallfasetter hos tannlegen i Kongsvinger: hva en fasett er, hvilke andre valg som finnes, og hvordan fasetter lages steg for steg.",
   deler: [
@@ -24,7 +25,7 @@ export const skallfasetter: Behandlingsside = {
         // SML Laminat: often used to improve the tooth's appearance
         "Fasetter brukes ofte for å gjøre tennene finere, for eksempel jevnere i farge eller form.",
       ],
-      tegning: "fasett",
+      tegning: "fortenner-fasett",
     },
     {
       type: "tekst",
@@ -36,7 +37,7 @@ export const skallfasetter: Behandlingsside = {
         // SML Emaljefeil (fillings, veneers or crowns), SML Tannbleking
         "Andre valg kan være tannbleking, en fylling eller en krone. Hva som passer, er forskjellig fra person til person, og tannlegen går gjennom valgene med deg.",
       ],
-      tegning: "hvit",
+      tegning: "valg-fasett",
     },
     // SML Fasett: a small, bounded surface
     { type: "lapp", lapp: { slag: "visste", tekst: "Ordet fasett betyr en liten, avgrenset flate." } },
@@ -46,11 +47,11 @@ export const skallfasetter: Behandlingsside = {
       tittel: "Slik går det for seg",
       ruter: [
         // UiO: colour and shape
-        { tegning: "farge", tekst: "Først ser tannlegen på tennene, og dere snakker om farge og form." },
+        { tegning: "farge-fortann", tekst: "Først ser tannlegen på tennene, og dere snakker om farge og form." },
         // UiO: as little tooth as possible is removed
         { tegning: "fasett-slip", tekst: "Et tynt lag tas av forsiden av tannen, så lite som mulig." },
         // UiO: an impression
-        { tegning: "avtrykk", tekst: "Tannlegen tar avtrykk, og fasettene lages etter dem." },
+        { tegning: "gips-fortenner", tekst: "Tannlegen tar avtrykk, og fasettene lages etter dem." },
         // UiO (tried and cemented), SML Laminat (bonded to the tooth)
         { tegning: "fasett", tekst: "Fasetten prøves, og limes så fast på tannen." },
       ],

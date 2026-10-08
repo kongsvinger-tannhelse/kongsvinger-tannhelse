@@ -10,6 +10,7 @@ export const tannkjottbehandling: Behandlingsside = {
   navn: "Tannkjøttbehandling",
   // the clinic's own words (klinikk.ts)
   ingress: "Rødt, hovent eller blødende tannkjøtt er ofte gingivitt, det tidligste stadiet av tannkjøttsykdom. Her ser du hvordan tannkjøttsykdom behandles, og hva du selv kan gjøre.",
+  tittelbilde: "tannkjott",
   lesetid: "3 minutter å lese",
   beskrivelse: "Tannkjøttbehandling hos tannlegen i Kongsvinger: gingivitt og periodontitt, tegn på tannkjøttsykdom, hvordan det behandles, og hva du selv kan gjøre.",
   deler: [
@@ -23,7 +24,7 @@ export const tannkjottbehandling: Behandlingsside = {
         // SML Gingivitt (the attachment is intact) and Periodontitt (the tissue round the teeth breaks down)
         "Den milde formen heter gingivitt. Da sitter tennene fortsatt godt fast, og betennelsen kan gå over. Blir det periodontitt, brytes vevet som holder tennene, sakte ned.",
       ],
-      tegning: "tannkjott",
+      tegning: "to-stadier",
     },
     {
       type: "tegn",
@@ -32,11 +33,11 @@ export const tannkjottbehandling: Behandlingsside = {
       punkter: [
         // SML Periodontitt: red and/or swollen gums that bleed when brushing or flossing
         { tekst: "Tannkjøttet er rødt eller hovent.", tegning: "tannkjott" },
-        { tekst: "Det blør når du pusser eller bruker tanntråd.", tegning: "traad" },
+        { tekst: "Det blør når du pusser eller bruker tanntråd.", tegning: "blor" },
         // NHI Tannkjøttbetennelse: bad breath among the first signs
         { tekst: "Du har dårlig ånde.", tegning: "ande" },
         // SML Periodontitt: teeth that have moved or loosened
-        { tekst: "Tenner har flyttet seg eller løsnet.", tegning: "mangler" },
+        { tekst: "Tenner har flyttet seg eller løsnet.", tegning: "los-tann" },
       ],
       // SML Periodontitt: often not noticed until teeth have moved or loosened
       etter: "Mange merker lite i starten.",
@@ -49,15 +50,15 @@ export const tannkjottbehandling: Behandlingsside = {
       tittel: "Slik behandles det",
       ruter: [
         // SML Gingivitt and Periodontitt: dentists or hygienists diagnose it; the pocket depth is measured
-        { tegning: "lupe", tekst: "Tannlegen eller tannpleieren undersøker tannkjøttet og måler hvor dypt det går ned langs tennene." },
+        { tegning: "sonde", tekst: "Tannlegen eller tannpleieren undersøker tannkjøttet og måler hvor dypt det går ned langs tennene." },
         // UiO, Behandling av periodontitt: the patient learns an effective way to keep the teeth clean
-        { tegning: "traad", tekst: "Du får råd om hvordan du best holder tennene rene hjemme." },
+        { tegning: "hjem-utstyr", tekst: "Du får råd om hvordan du best holder tennene rene hjemme." },
         // SML Periodontitt (remove plaque and tartar), UiO (scraped away under the gum margin)
-        { tegning: "skrape", tekst: "Bakteriebelegg og tannstein, også under tannkjøttkanten, skrapes bort." },
+        { tegning: "skrape-under", tekst: "Bakteriebelegg og tannstein, også under tannkjøttkanten, skrapes bort." },
         // SML Periodontitt: in some severe cases surgery may be needed
-        { tegning: "plan", tekst: "Etterpå ser vi hvordan det har gått. Noen ganger trengs mer behandling.", mellom: true },
+        { tegning: "for-etter", tekst: "Etterpå ser vi hvordan det har gått. Noen ganger trengs mer behandling.", mellom: true },
         // UiO: regular follow-up with checks and new cleaning is very important
-        { tegning: "klokke", tekst: "Faste kontroller og ny rens hjelper med å holde sykdommen i sjakk." },
+        { tegning: "gjentak", tekst: "Faste kontroller og ny rens hjelper med å holde sykdommen i sjakk." },
       ],
       // Helsedirektoratet rundskriv: referral from a general dentist or hygienist to a specialist in periodontics
       etter: "Ved alvorlig periodontitt kan det være aktuelt å bli henvist til en spesialist.",
@@ -72,7 +73,7 @@ export const tannkjottbehandling: Behandlingsside = {
         // SML Periodontitt: the outcome depends on how much is already lost; regrowth is unpredictable and limited
         "Ved periodontitt kan behandlingen stoppe sykdommen, men vev som er borte, kommer sjelden helt tilbake. Hvordan det går, er forskjellig fra person til person, blant annet etter hvor langt sykdommen har kommet.",
       ],
-      tegning: "roligtann",
+      tegning: "tapt-vev",
     },
     {
       type: "tekst",

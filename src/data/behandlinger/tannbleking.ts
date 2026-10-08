@@ -10,6 +10,7 @@ export const tannbleking: Behandlingsside = {
   slug: "tannbleking",
   navn: "Tannbleking",
   ingress: "Vil du ha hvitere tenner? Bleking hos tannlegen gjør tennene lysere. Her ser du hvordan det går for seg, og hva som er lurt å vite først.",
+  tittelbilde: "bleking",
   lesetid: "3 minutter å lese",
   beskrivelse: "Tannbleking hos tannlegen i Kongsvinger: hvordan bleking virker, hvorfor tennene blir mørkere, hvordan det foregår hos oss og hjemme, og hvem som kan bleke.",
   deler: [
@@ -23,7 +24,7 @@ export const tannbleking: Behandlingsside = {
         // Mattilsynet: it doesn't remove the cause, it hides it
         "Bleking gjør bare overflaten lysere. Det fjerner ikke årsaken til at tennene ble mørke.",
       ],
-      tegning: "hvit",
+      tegning: "peroksid",
     },
     {
       type: "tegn",
@@ -35,7 +36,7 @@ export const tannbleking: Behandlingsside = {
         { tekst: "Tobakk.", tegning: "ande" },
         { tekst: "Hull og tannstein.", tegning: "tannstein" },
         // SML Tennene: they get yellower with the years
-        { tekst: "Alderen. Tennene blir gulere med årene.", tegning: "klokke" },
+        { tekst: "Alderen. Tennene blir gulere med årene.", tegning: "timeglass" },
       ],
       // SML Tennene (injury, bleeding inside the tooth), SML Tannbleking (a root-filled tooth can be bleached from inside, by a dentist)
       etter: "En tann kan også bli mørk etter en skade eller en rotfylling. Da kan den blekes innenfra hos tannlegen.",
@@ -48,9 +49,9 @@ export const tannbleking: Behandlingsside = {
       tittel: "Slik går det for seg",
       ruter: [
         // Mattilsynet: a dentist must examine the teeth and enamel first
-        { tegning: "lupe", tekst: "Først undersøker tannlegen tennene og emaljen." },
+        { tegning: "lupe-emalje", tekst: "Først undersøker tannlegen tennene og emaljen." },
         // Tidende 2026: an alginate impression and a bleaching tray
-        { tegning: "avtrykk", tekst: "Tannlegen tar avtrykk av tennene dine." },
+        { tegning: "avtrykk-smil", tekst: "Tannlegen tar avtrykk av tennene dine." },
         // Tidende 2026; the clinic's text: a tray that fits your teeth
         { tegning: "skinne", tekst: "Ut fra avtrykket lages en tynn skinne som passer akkurat dine tenner." },
         // how, and how long, is the dentist's call
@@ -67,7 +68,7 @@ export const tannbleking: Behandlingsside = {
         // Tidende 2026: ising and irritated gums, which mostly pass quickly after the treatment
         "Noen får litt ising i tennene eller sårt tannkjøtt mens de bleker. Det går som regel raskt over når blekingen er ferdig.",
       ],
-      tegning: "kanaler",
+      tegning: "bleke-sart",
     },
     {
       type: "tekst",
@@ -77,7 +78,7 @@ export const tannbleking: Behandlingsside = {
         // Tidende 2026: one to four years, perhaps longer, with a gradual return in most cases
         "Det er forskjellig fra person til person. Resultatet kan holde fra ett til fire år, kanskje lenger, men hos de fleste blir tennene sakte litt mørkere igjen.",
       ],
-      tegning: "hvit",
+      tegning: "hvit-falmer",
     },
     {
       type: "tekst",
@@ -89,7 +90,7 @@ export const tannbleking: Behandlingsside = {
         // Mattilsynet: not at a beauty salon
         "Bleking hører hjemme hos tannlegen, ikke på en skjønnhetssalong.",
       ],
-      tegning: "plan",
+      tegning: "bleke-18",
     },
   ],
   slutt: "Vil du ha hvitere tenner? Bestill en time, så ser vi på tennene dine først.",

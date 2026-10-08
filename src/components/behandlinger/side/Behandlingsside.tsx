@@ -137,7 +137,7 @@ function Kilder({ side }: { side: Side }) {
 
 export function Behandlingsside({ side }: { side: Side }) {
   let lapper = 0;
-  const Tittelbilde = side.tittelbilde ? TITTELBILDER[side.tittelbilde] : null;
+  const Tittelbilde = TITTELBILDER[side.tittelbilde];
   return (
     <main className="overflow-x-clip bg-[var(--color-papir)] pb-[clamp(110px,11vw,150px)] pt-[clamp(96px,12vw,140px)]">
       <div className="mx-auto w-full max-w-[1040px] px-[var(--container-px)]">
@@ -156,7 +156,7 @@ export function Behandlingsside({ side }: { side: Side }) {
             </h1>
             <div className="mt-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,330px)] md:items-center md:gap-10">
               <p className="max-w-[38ch] text-[20px] leading-[1.55] text-[var(--color-tekst-2)] md:text-[23px]">{side.ingress}</p>
-              {Tittelbilde && <Tittelbilde className="mx-auto mt-8 w-full max-w-[340px] md:mt-0" />}
+              <Tittelbilde className="mx-auto mt-8 w-full max-w-[340px] md:mt-0" />
             </div>
           </Vis>
           <div className="mt-10 md:mt-14">
