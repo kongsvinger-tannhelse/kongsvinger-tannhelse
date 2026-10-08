@@ -35,7 +35,7 @@ export function Leporello() {
     <section id="behandlinger" aria-labelledby="behandlinger-tittel" className="overflow-hidden bg-[var(--color-papir)] py-[clamp(88px,11vw,152px)]">
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
         <div className="lg:flex lg:items-end lg:justify-between lg:gap-12">
-          <h2 id="behandlinger-tittel" className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.05em" }}>
+          <h2 id="behandlinger-tittel" className="seksjonstittel font-bold text-[var(--color-glomma-deep)]">
             Behandlinger
           </h2>
           <p className="mt-4 max-w-[40ch] text-[17px] leading-[1.6] text-[var(--color-tekst-2)] lg:mt-0">{INNLEDNING}</p>

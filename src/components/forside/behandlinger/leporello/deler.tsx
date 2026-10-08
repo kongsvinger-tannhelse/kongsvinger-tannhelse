@@ -3,7 +3,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
-import { ALLE, GRUPPER } from "../grupper";
+import { GRUPPER } from "../grupper";
 import { Kasse } from "../popup/Popup";
 import { FARGE } from "../popup/tegning";
 import { SCENER } from "../scener";
@@ -16,13 +16,6 @@ export const INNLEDNING = "Vi tilbyr alt fra tannsjekk og tannrens til estetisk 
 
 /** The small spaced capitals the Kontakt section uses for its labels. */
 export const MERKE = "text-[12px] font-medium uppercase tracking-[0.12em] text-[var(--color-tekst-svak)]";
-
-/** "13 ordinære, 6 akutte og 6 estetiske." */
-export const OPPSUMMERING = `${GRUPPER.map((g) => `${g.liste.length} ${g.kort.toLowerCase()}e`)
-  .join(", ")
-  .replace(/, ([^,]*)$/, " og $1")}.`;
-
-export const ANTALL = ALLE.length;
 
 /** One treatment's pop-up, standing on the scenes' own paper, anchored at its foot. */
 export function Scene({ id, oppe, spiller, redusert }: { id: string; oppe: boolean; spiller: boolean; redusert: boolean }) {
@@ -59,9 +52,8 @@ export function Omslag() {
       <span className="mt-[3%] text-[var(--color-tekst-lys-2)]" style={{ fontSize: "calc(var(--w) * 0.042)" }}>
         Kongsvinger Tannhelse
       </span>
-      <span className="absolute inset-x-[9%] bottom-[7%] flex justify-between font-medium uppercase text-[var(--color-tekst-lys-2)]" style={{ fontSize: "calc(var(--w) * 0.032)", letterSpacing: "0.14em" }}>
-        <span>Fjellgata 4</span>
-        <span>{ANTALL} behandlinger</span>
+      <span className="absolute inset-x-[9%] bottom-[7%] font-medium uppercase text-[var(--color-tekst-lys-2)]" style={{ fontSize: "calc(var(--w) * 0.032)", letterSpacing: "0.14em" }}>
+        Fjellgata 4
       </span>
     </div>
   );

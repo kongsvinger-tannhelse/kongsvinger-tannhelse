@@ -83,7 +83,7 @@ export function OmOss() {
   return (
     <section id="om-oss" aria-labelledby="om-oss-tittel" className="overflow-hidden bg-[var(--color-papir)] pt-[clamp(88px,11vw,152px)]">
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
-        <h2 id="om-oss-tittel" className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.05em" }}>
+        <h2 id="om-oss-tittel" className="seksjonstittel font-bold text-[var(--color-glomma-deep)]">
           Om oss
         </h2>
         <p className="mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-[var(--color-tekst-2)]">{TEKST}</p>

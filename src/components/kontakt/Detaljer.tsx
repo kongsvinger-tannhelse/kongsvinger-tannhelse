@@ -15,11 +15,7 @@ const { apningstider: tid } = klinikk;
 
 export function Tittel({ id, className }: { id: string; className?: string }) {
   return (
-    <h2
-      id={id}
-      className={cn("font-bold text-[var(--color-glomma-deep)]", className)}
-      style={{ fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.05em" }}
-    >
+    <h2 id={id} className={cn("seksjonstittel font-bold text-[var(--color-glomma-deep)]", className)}>
       Kontakt oss
     </h2>
   );

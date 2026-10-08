@@ -7,7 +7,7 @@ import { klinikkbilder } from "@/data/klinikk";
 import { useHeroKlar } from "@/components/forside/useHeroKlar";
 import s from "./klinikkbilder.module.css";
 
-const VIS = 3700; // ms each room is shown
+const VIS = 2600; // ms each room is shown
 
 /** The rooms that take turns in the pane, in this order. */
 const ruta = ["bilde8", "bilde5", "bilde9", "bilde6"].map((navn) => klinikkbilder.find((b) => b.src.endsWith(`/${navn}.webp`))!);
@@ -15,7 +15,7 @@ const ruta = ["bilde8", "bilde5", "bilde9", "bilde6"].map((navn) => klinikkbilde
 /**
  * «Speilet», square. The treatment room at Fjellgata 4 has a mirror with a
  * ring of warm light round it; here it hangs in the sky over Glomma as a
- * square pane. When the camera has stopped, the pane stands up like a page
+ * square pane. As the camera settles, the pane stands up like a page
  * in a pop-up book and its light draws itself round. Then the clinic's rooms
  * come and go in the glass, each drifting slowly closer, while a brighter
  * line runs round the light like a clock hand, measuring out each room's
@@ -25,7 +25,7 @@ const ruta = ["bilde8", "bilde5", "bilde9", "bilde6"].map((navn) => klinikkbilde
  * mockups/klinikkbilder.)
  */
 export function Klinikkbilder() {
-  const klar = useHeroKlar(3700);
+  const klar = useHeroKlar(900);
   const redusert = useReducedMotion() ?? false;
   const [nr, setNr] = useState(0);
   const [pause, setPause] = useState(false);
