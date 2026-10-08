@@ -78,7 +78,7 @@ export function Sjekk({ sjekk, className }: { sjekk: SjekkData; className?: stri
                   <p className="mt-1.5 text-[17px] leading-[1.55] text-[var(--color-tekst)]">{valgt.handling.tekst}</p>
                   {valgt.handling.stengt && <p className="mt-2 text-[15.5px] leading-[1.55] text-[var(--color-tekst-2)]">{STENGT}</p>}
                   {valgt.handling.knapp === "bestill" && (
-                    <Link href="/#kontakt" className="mt-4 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[15px] font-semibold text-[var(--color-papir)]">
+                    <Link href="/kontakt" className="mt-4 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[15px] font-semibold text-[var(--color-papir)]">
                       <CalendarDays className="size-4" aria-hidden="true" />
                       Bestill time
                     </Link>

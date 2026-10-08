@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRef, type ReactNode } from "react";
 import { useInView, useReducedMotion, type UseInViewOptions } from "framer-motion";
 import { Buebilde, Navn, Opp } from "@/components/forside/omoss/deler";
@@ -19,24 +18,6 @@ export function Skog({ className, children, margin = "0px 0px -12% 0px" }: { cla
     <div ref={ref} data-vis={vist ? "ja" : "nei"} className={className}>
       {children}
     </div>
-  );
-}
-
-export function Smuler() {
-  return (
-    <nav aria-label="Brødsmuler" className="text-[13px] text-[var(--color-tekst-svak)]">
-      <ol className="flex items-center gap-2">
-        <li>
-          <Link href="/" className="underline-offset-4 hover:text-[var(--color-tekst)] hover:underline">
-            Forside
-          </Link>
-        </li>
-        <li aria-hidden="true">/</li>
-        <li aria-current="page" className="text-[var(--color-tekst-2)]">
-          Om oss
-        </li>
-      </ol>
-    </nav>
   );
 }
 

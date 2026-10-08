@@ -13,7 +13,7 @@ const SIDER = [
   { href: "/behandlinger", tekst: "Behandlinger" },
   { href: "/om-oss", tekst: "Om oss" },
   { href: "/rad-og-tips", tekst: "Råd og tips" },
-  { href: "/#kontakt", tekst: "Kontakt" },
+  { href: "/kontakt", tekst: "Kontakt" },
 ];
 
 /** A plain link out to the map; nothing is embedded. */

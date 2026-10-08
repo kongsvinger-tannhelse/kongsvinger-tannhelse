@@ -146,7 +146,7 @@ export function Hilsen({ tekst, className }: { tekst: string; className?: string
       </div>
       <div className="shrink-0">
         <Link
-          href="/#kontakt"
+          href="/kontakt"
           className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-8 py-4 text-[17px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
         >
           <CalendarDays className="size-5" aria-hidden="true" />
