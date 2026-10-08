@@ -3,7 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { OPPDATERT, PersonvernSide } from "@/components/personvern/PersonvernSide";
 import { klinikk } from "@/data/klinikk";
 
-const description = `Hva nettsiden til ${klinikk.navn} samler inn om deg, og hvorfor: kontaktskjemaet, hvem som får opplysningene, rettighetene dine og hvordan du klager. Ingen informasjonskapsler.`;
+const description = `Hva nettsiden til ${klinikk.navn} samler inn om deg, og hvorfor: kontaktskjemaet, hvem som får opplysningene, rettighetene dine og hvordan du klager.`;
 
 export const metadata: Metadata = {
   title: "Personvern",
