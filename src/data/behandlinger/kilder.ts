@@ -31,7 +31,6 @@ export const BKILDE = {
   smlPulpitt: { utgiver: "Store medisinske leksikon", navn: "Pulpitt", url: "https://sml.snl.no/pulpitt" },
   smlKompositt: { utgiver: "Store medisinske leksikon", navn: "Kompositt", url: "https://sml.snl.no/kompositt" },
   smlLysherding: { utgiver: "Store medisinske leksikon", navn: "Lysherding", url: "https://sml.snl.no/lysherding" },
-  fkXylocain: { utgiver: "Felleskatalogen", navn: "Pakningsvedlegg for Xylocain Dental adrenalin", url: "https://www.felleskatalogen.no/medisin/pasienter/pil-xylocain-dental-adrenalin-dentsply-565545" },
   ntfKlokeValg: { utgiver: "Tannlegeforeningen", navn: "Gjør kloke valg", url: "https://www.tannlegeforeningen.no/klokevalg/" },
   // wisdom teeth
   smlVisdom: { utgiver: "Store medisinske leksikon", navn: "Visdomstennene", url: "https://sml.snl.no/visdomstennene" },

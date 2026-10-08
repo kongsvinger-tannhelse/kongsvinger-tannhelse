@@ -65,8 +65,8 @@ export const tannbleking: Behandlingsside = {
       id: "vondt",
       tittel: "Gjør det vondt?",
       avsnitt: [
-        // Tidende 2026: ising and irritated gums, which mostly pass quickly after the treatment
-        "Noen får litt ising i tennene eller sårt tannkjøtt mens de bleker. Det går som regel raskt over når blekingen er ferdig.",
+        // Tidende 2026: ising and irritated gums during the treatment
+        "Noen får litt ising i tennene eller sårt tannkjøtt mens de bleker. Hvor mye, og hvor lenge, er forskjellig fra person til person.",
       ],
       tegning: "bleke-sart",
     },
@@ -75,8 +75,8 @@ export const tannbleking: Behandlingsside = {
       id: "varer",
       tittel: "Hvor lenge varer det?",
       avsnitt: [
-        // Tidende 2026: one to four years, perhaps longer, with a gradual return in most cases
-        "Det er forskjellig fra person til person. Resultatet kan holde fra ett til fire år, kanskje lenger, men hos de fleste blir tennene sakte litt mørkere igjen.",
+        // Tidende 2026: a gradual return in most cases
+        "Det er forskjellig fra person til person. Hos de fleste blir tennene sakte litt mørkere igjen med tiden.",
       ],
       tegning: "hvit-falmer",
     },

@@ -70,8 +70,8 @@ export const tannfylling: Behandlingsside = {
       id: "vondt",
       tittel: "Gjør det vondt?",
       avsnitt: [
-        // SML Lidokain (local anaesthesia), Felleskatalogen (it works quickly)
-        "Tannen bedøves før vi begynner, og bedøvelsen virker raskt.",
+        // SML Lidokain (local anaesthesia)
+        "Tannen bedøves før vi begynner. Hvordan det kjennes, er forskjellig fra person til person.",
       ],
       tegning: "tann-sover",
     },
@@ -99,7 +99,6 @@ export const tannfylling: Behandlingsside = {
     BKILDE.smlPulpitt,
     BKILDE.smlKompositt,
     BKILDE.smlLysherding,
-    BKILDE.fkXylocain,
     BKILDE.ntfKlokeValg,
   ],
 };
