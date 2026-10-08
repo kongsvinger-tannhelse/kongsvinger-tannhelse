@@ -1,5 +1,6 @@
 import { Bestill } from "@/components/behandlinger/side";
-import { Avsnitt, Ingress, Laget, Skog, Smuler, Tittel } from "./deler";
+import { Smuler } from "@/components/Smuler";
+import { Avsnitt, Ingress, Laget, Skog, Tittel } from "./deler";
 import { Galleri } from "./Galleri";
 import { Bunn, Skogsbilde } from "./Skogbunn";
 import { GALLERI, LAGET } from "./tekst";
@@ -34,7 +35,7 @@ export function OmOssSide() {
     <main className="overflow-hidden bg-[var(--color-papir)]">
       <section aria-labelledby="om-tittel" className="mx-auto grid w-full max-w-[var(--container-max)] gap-10 px-[var(--container-px)] pt-[clamp(104px,12vw,150px)] pb-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center lg:gap-16">
         <div>
-          <Smuler />
+          <Smuler side="Om oss" />
           <div id="om-tittel" className="mt-6">
             <Tittel />
           </div>

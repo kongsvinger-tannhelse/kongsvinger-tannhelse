@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const LENKER = [
   { href: "/behandlinger", tekst: "Behandlinger" },
   { href: "/om-oss", tekst: "Om oss" },
-  { href: "/#kontakt", tekst: "Kontakt" },
+  { href: "/kontakt", tekst: "Kontakt" },
 ];
 
 /**

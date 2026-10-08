@@ -12,7 +12,7 @@ const { adresse, telefon, epost, apningstider: tid } = klinikk;
 const SIDER = [
   { href: "/behandlinger", tekst: "Behandlinger" },
   { href: "/om-oss", tekst: "Om oss" },
-  { href: "/#kontakt", tekst: "Kontakt" },
+  { href: "/kontakt", tekst: "Kontakt" },
 ];
 
 /** A plain link out to the map; nothing is embedded. */
