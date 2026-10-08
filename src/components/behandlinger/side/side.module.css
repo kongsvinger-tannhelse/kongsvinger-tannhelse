@@ -1,0 +1,6 @@
+/* The drafts' own motion: a stage of the tooth fading into the next. */
+.lag { transition: opacity 0.7s var(--ease-rolig); }
+
+@media (prefers-reduced-motion: reduce) {
+  .lag { transition: none !important; }
+}

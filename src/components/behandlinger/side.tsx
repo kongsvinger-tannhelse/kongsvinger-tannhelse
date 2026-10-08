@@ -25,7 +25,8 @@ const SPORSMAL: { s: string; svar: string; lenke?: { href: string; tekst: string
   },
   {
     s: "Kan jeg få hvitere tenner hos tannlegen?",
-    svar: "Ja. Ved tannbleking lager vi en blekeskinne etter avtrykk av tennene dine, og du bruker den hjemme med blekegel. Skallfasetter er et annet valg, for en hvitere og jevnere overflate.",
+    svar: "Ja. Ved tannbleking lager vi en blekeskinne etter avtrykk av tennene dine. Første gang bleker vi tennene her hos oss, og resten gjør du hjemme med blekegel i skinnen. Skallfasetter er et annet valg, for en hvitere og jevnere overflate.",
+    lenke: { href: "/behandlinger/tannbleking", tekst: "Les om tannbleking" },
   },
   {
     s: "Dekker Helfo noe av tannbehandlingen?",

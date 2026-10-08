@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { animate, m, useInView, useMotionTemplate, useMotionValue, useReducedMotion, useTransform, type MotionValue } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { harSide, sideSti } from "@/data/behandlinger/sider";
 import { cn } from "@/lib/utils";
 import { TRE } from "../grupper";
 import { FARGE } from "../popup/tegning";
@@ -128,6 +129,12 @@ export function Bred() {
               {t.navn}
             </h3>
             <p className="mt-3 text-[15px] leading-[1.6] text-[var(--color-tekst-2)]">{t.tekst}</p>
+            {harSide(t.id) && (
+              <Link href={sideSti(t.id)} className="group mt-3 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
+                Les mer om {t.navn.toLowerCase()}
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+              </Link>
+            )}
           </li>
         ))}
         <li className={cn(s.bredTekst, "hero-loft")} style={{ animationPlayState: staar > 3 ? "running" : "paused", animationDelay: "0.25s" }}>

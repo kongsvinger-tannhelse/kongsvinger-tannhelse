@@ -6,6 +6,7 @@ import { useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, CalendarDays, ChevronRight, Phone, Search, X } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { GRUPPER } from "@/components/forside/behandlinger/grupper";
+import { harSide, sideSti } from "@/data/behandlinger/sider";
 import { cn } from "@/lib/utils";
 import { Bunnlinje, KORT, Merke, Vindu } from "./deler";
 import { PINFARGE, PUNKTER, type Punkt } from "./punkter";
@@ -285,6 +286,12 @@ function Innhold({ p, tittelId = `${p.id}-tittel` }: { p: Punkt; tittelId?: stri
       </h2>
       <p className="mt-2 text-[16px] font-medium text-[var(--color-tekst-svak)] md:text-[18px]">{KORT[p.id]}</p>
       <p className="mt-3 max-w-[60ch] text-[17.5px] leading-[1.6] text-[var(--color-tekst)] md:mt-4 md:text-[18.5px] md:leading-[1.65]">{p.tekst}</p>
+      {harSide(p.id) && (
+        <Link href={sideSti(p.id)} className="group mt-4 inline-flex items-center gap-1.5 text-[16px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
+          Les mer om {p.navn.toLowerCase()}
+          <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+        </Link>
+      )}
       <div className="mt-6 grid grid-cols-2 gap-2.5 pb-6 md:mt-7 md:flex md:flex-wrap md:pb-8">
         <a href={klinikk.telefon.lenke} className={cn("inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[15px] font-semibold text-white", p.gruppe === "akutt" ? "bg-[#B4472F]" : "bg-[var(--color-glomma)]")}>
           <Phone className="size-4" aria-hidden="true" />
