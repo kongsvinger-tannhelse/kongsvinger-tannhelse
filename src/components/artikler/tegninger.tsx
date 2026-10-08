@@ -7,24 +7,25 @@ import s from "./artikler.module.css";
    can be drawn in coloured paper, or as a pen sketch in one ink with one
    warm accent («strek»), whose lines draw themselves when the sheet is
    seen. The notes use the pen. Server-safe: no hooks, so the check on the
-   client can use the same ones. */
+   client can use the same ones. The kit (form, linje, Ramme, Jeksel …) is
+   exported for the treatment drafts' own drawings. */
 
-type Stil = { strek?: boolean; className?: string; forsink?: number };
+export type Stil = { strek?: boolean; className?: string; forsink?: number };
 
-const BLEKK: string = F.dyp;
-const AKSENT: string = F.smerte;
+export const BLEKK: string = F.dyp;
+export const AKSENT: string = F.smerte;
 /** The fortress stone, for what has gone quiet. */
-const STEIN = "#8A8B84";
+export const STEIN = "#8A8B84";
 
 /** Props for a shape: a filled paper piece, or an inked outline. */
-function form(strek: boolean | undefined, fill: string, { w = 2.4, ink = BLEKK, penFill = "none" }: { w?: number; ink?: string; penFill?: string } = {}) {
+export function form(strek: boolean | undefined, fill: string, { w = 2.4, ink = BLEKK, penFill = "none" }: { w?: number; ink?: string; penFill?: string } = {}) {
   return strek
     ? { fill: penFill, stroke: ink, strokeWidth: w, strokeLinejoin: "round" as const, strokeLinecap: "round" as const, pathLength: 1, className: s.strek }
     : { fill };
 }
 
 /** Props for a line that is a line in both styles. */
-function linje(strek: boolean | undefined, farge: string, w: number, pen = BLEKK) {
+export function linje(strek: boolean | undefined, farge: string, w: number, pen = BLEKK) {
   return {
     fill: "none",
     stroke: strek ? pen : farge,
@@ -36,9 +37,9 @@ function linje(strek: boolean | undefined, farge: string, w: number, pen = BLEKK
 }
 
 /** A coloured piece that only fades in once the pen has drawn round it. */
-const blekk = (strek?: boolean) => (strek ? { className: s.blekk } : {});
+export const blekk = (strek?: boolean) => (strek ? { className: s.blekk } : {});
 
-function Ramme({ children, className, forsink = 0, boks = "0 0 240 240", tittel }: { children: ReactNode; className?: string; forsink?: number; boks?: string; tittel?: string }) {
+export function Ramme({ children, className, forsink = 0, boks = "0 0 240 240", tittel }: { children: ReactNode; className?: string; forsink?: number; boks?: string; tittel?: string }) {
   return (
     <svg viewBox={boks} className={className} style={{ "--forsink": `${forsink}s` } as CSSProperties} role={tittel ? "img" : undefined} aria-hidden={tittel ? undefined : true} aria-label={tittel}>
       {children}
@@ -50,7 +51,7 @@ function Ramme({ children, className, forsink = 0, boks = "0 0 240 240", tittel 
 
 const TANNKJOTT = "M-88,12 Q-70,-6 -50,-12 Q0,10 50,-12 Q70,-6 88,12 L88,28 Q88,66 0,66 Q-88,66 -88,28 Z";
 
-function Jeksel({ strek, pulpa, rotter = true }: { strek?: boolean; pulpa?: { fyll: string; pen: string; opacity?: number }; rotter?: boolean }) {
+export function Jeksel({ strek, pulpa, rotter = true }: { strek?: boolean; pulpa?: { fyll: string; pen: string; opacity?: number }; rotter?: boolean }) {
   return (
     <>
       <path d={rotter ? JEKSEL.tann : JEKSEL.krone} {...form(strek, F.hvit, { penFill: F.papir })} />
@@ -70,7 +71,7 @@ function Jeksel({ strek, pulpa, rotter = true }: { strek?: boolean; pulpa?: { fy
   );
 }
 
-function Tannkjott({ strek, sar = false }: { strek?: boolean; sar?: boolean }) {
+export function Tannkjott({ strek, sar = false }: { strek?: boolean; sar?: boolean }) {
   return (
     <>
       <path d={TANNKJOTT} {...form(strek, sar ? F.sart : F.tannkjott, { penFill: F.papir, ink: sar && strek ? AKSENT : BLEKK })} />
