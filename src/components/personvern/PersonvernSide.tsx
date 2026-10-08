@@ -19,15 +19,6 @@ export const OPPDATERT = "2026-10-08";
 
 const STERK = "font-semibold text-[var(--color-glomma-deep)]";
 
-/** Not yet confirmed by the clinic: shown plainly until it is. */
-function Ubekreftet({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="mt-2 block rounded-[12px] border border-dashed border-[#B98A2E] bg-[#FBF3E1] px-3.5 py-2 text-[14.5px] leading-[1.55] text-[#5E4A1F]">
-      <span className="font-semibold">Ikke bekreftet av klinikken ennå:</span> {children}
-    </span>
-  );
-}
-
 const RADER: { tittel: string; tekst: React.ReactNode }[] = [
   {
     tittel: "Hvem er ansvarlig",
@@ -80,7 +71,6 @@ const RADER: { tittel: string; tekst: React.ReactNode }[] = [
     tekst: (
       <>
         Vi sletter meldingen når vi ikke lenger trenger den for å svare deg. Vercel lagrer de tekniske opplysningene bare en begrenset tid.
-        <Ubekreftet>klinikkens egen rutine for når e-poster fra skjemaet slettes.</Ubekreftet>
       </>
     ),
   },
