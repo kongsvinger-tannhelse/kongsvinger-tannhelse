@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
+import { ArrowRight } from "lucide-react";
 import { useInView, useReducedMotion } from "framer-motion";
 import { Opp } from "@/components/forside/omoss/deler";
 import { INNLEDNING, Kartkreditt, Kontaktlinje, Tittel } from "@/components/kontakt/Detaljer";
@@ -16,7 +18,8 @@ import { Frimerke, Poststempel } from "./deler";
  * Google Maps, with the pin dropping onto Fjellgata 4); its writing side is
  * the form, on writing lines, with the clinic's address printed where the
  * address goes, a stamp with the clinic's tooth, and the opening hours as
- * the postmark, pressed on once the card stands.
+ * the postmark, pressed on once the card stands. Under the card, a link to
+ * the Kontakt page for the way here and what to do with toothache.
  */
 
 /** The map on the card, in map units (see kartdata.ts): taller beside the form, wider on phones. */
@@ -72,7 +75,17 @@ export function Kontakt() {
               </div>
             </div>
           </Opp>
-          <Kartkreditt className="mt-3" />
+          <div className="mt-3 flex flex-col-reverse gap-x-6 gap-y-4 sm:flex-row sm:items-start sm:justify-between">
+            <Kartkreditt />
+            {/* the rest is on the Kontakt page */}
+            <Link
+              href="/kontakt"
+              className="group inline-flex items-center gap-2 self-start text-[16px] font-semibold text-[var(--color-glomma)] underline decoration-[rgba(34,64,77,0.3)] underline-offset-[5px] transition-colors hover:text-[var(--color-glomma-deep)] hover:decoration-current"
+            >
+              Alt om å finne oss, og akutt tannpine
+              <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
