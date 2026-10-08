@@ -99,7 +99,7 @@ export function Topp({ veiledning }: { veiledning: string }) {
       </nav>
 
       <h1 className="mt-6 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(42px, 6vw, 80px)", lineHeight: 0.95, letterSpacing: "-0.055em" }}>
-        Tannbehandling
+        Tannbehandling{" "}
         <br />i Kongsvinger
       </h1>
       <p className="mt-4 max-w-[54ch] text-[17.5px] md:mt-6 leading-[1.65] text-[var(--color-tekst-2)]">
@@ -153,7 +153,7 @@ export function Sporsmal() {
       <div className="mx-auto grid w-full max-w-[var(--container-max)] gap-10 px-[var(--container-px)] py-[clamp(72px,9vw,120px)] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
         <div>
           <h2 id="sporsmal-tittel" className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 0.98, letterSpacing: "-0.05em" }}>
-            Spørsmål
+            Spørsmål{" "}
             <br />
             og svar
           </h2>
@@ -188,7 +188,7 @@ export function Bestill() {
         <div className="flex flex-col gap-8 rounded-[32px] bg-[var(--color-glomma)] px-7 py-10 text-[var(--color-papir)] sm:px-12 sm:py-14 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <h2 id="bestill-tittel" className="font-bold" style={{ fontSize: "clamp(32px, 3.6vw, 52px)", lineHeight: 1, letterSpacing: "-0.05em" }}>
-              Trenger du tannlege
+              Trenger du tannlege{" "}
               <br />i Kongsvinger?
             </h2>
             <p className="mt-4 max-w-[48ch] text-[16.5px] leading-[1.6] text-[var(--color-tekst-lys-2)]">
