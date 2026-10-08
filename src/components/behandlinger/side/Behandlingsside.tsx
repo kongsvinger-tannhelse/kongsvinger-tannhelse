@@ -1,4 +1,6 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { RAD_OG_TIPS } from "@/data/artikler/typer";
 import { klinikk } from "@/data/klinikk";
 import { BGJENNOMGATT, type Behandlingsside as Side, type Del } from "@/data/behandlinger";
 import { Merke, Smuler, Vis } from "@/components/artikler/deler";
@@ -45,6 +47,14 @@ function Visning({ del, n }: { del: Del; n: number }) {
           {del.avsnitt.map((a) => (
             <Brod key={a}>{a}</Brod>
           ))}
+          {del.lenke && (
+            <p>
+              <Link href={`${RAD_OG_TIPS.sti}/${del.lenke.slug}`} className="group text-[17px] font-semibold leading-[1.5] text-[var(--color-glomma)] underline underline-offset-4">
+                {del.lenke.tekst}
+                <ArrowRight className="ml-1.5 inline size-4 align-[-0.15em] transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+              </Link>
+            </p>
+          )}
         </MedTegning>
       );
     }

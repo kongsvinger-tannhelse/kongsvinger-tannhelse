@@ -86,7 +86,21 @@ export const BKILDE = {
   hnAkutt: { utgiver: "Helsenorge", navn: "Akutte tannskader", url: "https://www.helsenorge.no/tannhelse/akutte-tannskader/" },
   smlReimplantasjon: { utgiver: "Store medisinske leksikon", navn: "Reimplantasjon", url: "https://sml.snl.no/reimplantasjon_-_odontologi" },
   nhiTannskader: { utgiver: "NHI.no", navn: "Tannskader", url: "https://nhi.no/sykdommer/magetarm/tannhelse/tannskader" },
-  hdirRundskriv: { utgiver: "Helsedirektoratet", navn: "Rundskriv: stønadsberettiget undersøkelse og behandling", url: "https://www.helsedirektoratet.no/rundskriv/folketrygdloven-kap-5/rundskriv-til-folketrygdloven--5-6--5-6-a-og--5-25--undersokelse-og-behandling-hos-tannlege-og-tannpleier-for-sykdom-og-skade/helsedirektoratets-utfyllende-bestemmelser-og-retningslinjer-til--1--stonadsberettiget-undersokelse-og-behandling" },
+  // toothache and swelling
+  nhiTannpine: KILDE.nhiTannpine,
+  nhiTannbyll: KILDE.nhiTannbyll,
+  hnTannbyll: { utgiver: "Helsenorge", navn: "Tannbyll", url: "https://www.helsenorge.no/sykdom/munn-tenner-kjeve/tannbyll/" },
+  // sensitive teeth and bad breath
+  tidIsing: { utgiver: "Den norske tannlegeforenings Tidende", navn: "Dentin hypersensitivitet – fint navn på banal lidelse?", url: "https://www.tannlegetidende.no/asset/2012/P12-10-816.pdf" },
+  smlDarligAnde: { utgiver: "Store medisinske leksikon", navn: "Dårlig ånde", url: "https://sml.snl.no/d%C3%A5rlig_%C3%A5nde" },
+  nhiDarligAnde: { utgiver: "NHI.no", navn: "Dårlig ånde", url: "https://nhi.no/sykdommer/magetarm/munnhule/darlig-ande" },
+  // lost fillings and loose crowns
+  tidKroneFeste: { utgiver: "Den norske tannlegeforenings Tidende", navn: "Kroneprepareringer og retensjonselementer", url: "https://www.tannlegetidende.no/journal/2010/11/dntt-394637/Kroneprepareringer_og_retensjonselementer" },
+  tidSement: { utgiver: "Den norske tannlegeforenings Tidende", navn: "Retensjon av sementerte protetiske erstatninger", url: "https://www.tannlegetidende.no/journal/2021/6/m-372/Retensjon_av_sementerte_protetiske_erstatninger" },
+  // partial dentures
+  uioDelprotese: { utgiver: "Det odontologiske fakultet, UiO", navn: "Klinikkhåndbok: avtagbar partiell plateprotese", url: "https://www.odont.uio.no/studier/ressurser/protetikk/Avtagbar%20protetikk/Avtagbar-partiell-plateprotese/" },
+  tidDelprotese: { utgiver: "Den norske tannlegeforenings Tidende", navn: "Partialproteser – fortsatt aktuell og forsvarlig behandling", url: "https://www.tannlegetidende.no/asset/2004/P04-15-837.pdf" },
+  hdirRundskriv:{ utgiver: "Helsedirektoratet", navn: "Rundskriv: stønadsberettiget undersøkelse og behandling", url: "https://www.helsedirektoratet.no/rundskriv/folketrygdloven-kap-5/rundskriv-til-folketrygdloven--5-6--5-6-a-og--5-25--undersokelse-og-behandling-hos-tannlege-og-tannpleier-for-sykdom-og-skade/helsedirektoratets-utfyllende-bestemmelser-og-retningslinjer-til--1--stonadsberettiget-undersokelse-og-behandling" },
 } as const satisfies Record<string, Kilde>;
 
 /** The day the pages were last checked against their sources. */
