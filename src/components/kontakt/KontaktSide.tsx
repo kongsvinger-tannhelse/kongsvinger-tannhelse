@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -227,7 +228,11 @@ export function KontaktSide() {
                 />
                 {melding("melding")}
                 <p id={`${id}merk`} className="mt-1.5 text-[12.5px] text-[var(--color-tekst-svak)]">
-                  Ikke skriv personnummer eller helseopplysninger her.
+                  Ikke skriv personnummer eller helseopplysninger her.{" "}
+                  <Link href="/personvern" className="underline decoration-1 underline-offset-2 hover:text-[var(--color-tekst)]">
+                    Slik behandler vi opplysningene dine
+                  </Link>
+                  .
                 </p>
 
                 <div className="mt-7 grid gap-x-6 gap-y-4 sm:grid-cols-2">

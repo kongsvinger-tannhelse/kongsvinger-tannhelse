@@ -100,11 +100,16 @@ export function Sider({ aksent }: { aksent?: string }) {
   );
 }
 
-/** The bottom line: copyright, the credits for the pictures the site is built on, back to the top. */
+/** The bottom line: copyright and the privacy page, the credits for the pictures the site is built on, back to the top. */
 export function Bunnlinje({ className }: { className?: string }) {
   return (
     <div className={cn("flex flex-col gap-3 border-t border-white/12 pt-6 text-[12.5px] leading-[1.6] text-white/55 md:flex-row md:items-start md:justify-between md:gap-10", className)}>
-      <p className="shrink-0">© {new Date().getFullYear()} {klinikk.navn}</p>
+      <p className="shrink-0">
+        © {new Date().getFullYear()} {klinikk.navn} ·{" "}
+        <Link href="/personvern" className="underline decoration-1 underline-offset-2 hover:text-white">
+          Personvern
+        </Link>
+      </p>
       <p className="max-w-[70ch] md:text-center">
         Bildet i toppen: {utsiktKreditt.sted},{" "}
         <a href={utsiktKreditt.href} target="_blank" rel="noopener noreferrer" className="underline decoration-1 underline-offset-2 hover:opacity-80">

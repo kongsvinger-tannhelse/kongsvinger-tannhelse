@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useEffect, useId, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
@@ -123,7 +124,11 @@ export function Skjema({
           {feil("melding")}
         </label>
         <p id={`${id}merk`} className="mt-1.5 text-[13px] leading-[1.5] text-[var(--color-tekst-svak)]">
-          Ikke skriv personnummer eller helseopplysninger her.
+          Ikke skriv personnummer eller helseopplysninger her.{" "}
+          <Link href="/personvern" className="underline decoration-1 underline-offset-2 hover:text-[var(--color-tekst)]">
+            Slik behandler vi opplysningene dine
+          </Link>
+          .
         </p>
 
         {/* Hidden from people; a bot that fills it in is quietly turned away */}

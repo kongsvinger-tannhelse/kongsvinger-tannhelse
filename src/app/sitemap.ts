@@ -15,5 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${klinikk.url}/kontakt`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${klinikk.url}${RAD_OG_TIPS.sti}`, changeFrequency: "monthly", priority: 0.7 },
     ...ARTIKLER.map((a) => ({ url: `${klinikk.url}${RAD_OG_TIPS.sti}/${a.slug}`, changeFrequency: "yearly" as const, priority: 0.6 })),
+    { url: `${klinikk.url}/personvern`, changeFrequency: "yearly", priority: 0.3 },
   ];
 }
