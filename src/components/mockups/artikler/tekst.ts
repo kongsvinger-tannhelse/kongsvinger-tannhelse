@@ -121,3 +121,90 @@ export const METADATA = {
   title: "Det gjør vondt i tanna: hva betyr det, og hva gjør jeg?",
   description: "Tannverk forklart enkelt: hva det kan være, hva du kan gjøre i dag, og når du må ringe tannlegen.",
 };
+
+/* ── For D «Sjekk selv»: tap what it feels like, get a hint ── */
+
+export type Valg = {
+  id: string;
+  kjennes: string;
+  /** Which drawing to show. */
+  tegning: Arsak["id"] | "hevelse";
+  kanVaere: string;
+  forklaring: string;
+  lys: Lys["farge"];
+};
+
+export const SJEKK: { sporsmal: string; hjelp: string; valg: Valg[]; forbehold: string } = {
+  sporsmal: "Hvordan kjennes det?",
+  hjelp: "Trykk på det som passer best.",
+  valg: [
+    {
+      id: "iser",
+      kjennes: "Det iser litt når jeg drikker kaldt eller spiser søtt",
+      tegning: "hull",
+      kanVaere: "Et lite hull, eller tynn emalje",
+      forklaring: "Når det iser kort og går fort over, er det sjelden farlig. Men et hull blir ikke borte av seg selv, så vi bør se på det.",
+      lys: "gronn",
+    },
+    {
+      id: "biter",
+      kjennes: "Det stikker når jeg biter",
+      tegning: "sprekk",
+      kanVaere: "En sprekk i tanna",
+      forklaring: "En liten sprekk kan bli større når du tygger. Jo før vi ser på den, jo lettere er den å fikse.",
+      lys: "gul",
+    },
+    {
+      id: "tannkjott",
+      kjennes: "Tannkjøttet er sårt, eller blør når jeg pusser",
+      tegning: "tannkjott",
+      kanVaere: "Sårt tannkjøtt",
+      forklaring: "Ofte hjelper det å pusse godt og bruke tanntråd hver dag i en uke eller to. Går det ikke over, vil vi gjerne se på det.",
+      lys: "gronn",
+    },
+    {
+      id: "banker",
+      kjennes: "Det banker og verker, også om natten",
+      tegning: "betennelse",
+      kanVaere: "En syk nerve",
+      forklaring: "Når det banker og ikke går over, kan nerven inne i tanna være betent. Det går ikke over av seg selv, men vi kan hjelpe.",
+      lys: "gul",
+    },
+    {
+      id: "hovent",
+      kjennes: "Kinnet er hovent, eller jeg har feber",
+      tegning: "hevelse",
+      kanVaere: "En betennelse som sprer seg",
+      forklaring: "Hevelse og feber betyr at kroppen kjemper mot en betennelse. Da skal du ikke vente.",
+      lys: "rod",
+    },
+  ],
+  forbehold: "Dette er bare et hint. Det er tannlegen som finner ut hva det er.",
+};
+
+/* ── For F «Visste du?»: the short version, facts and a quiz ── */
+
+export const KORT = {
+  tittel: "Det viktigste, på 10 sekunder",
+  punkter: [
+    "Vondt i tanna betyr at nerven inne i tanna sier ifra.",
+    "Verker det, og det går ikke over? Ring oss i dag.",
+    "Er kinnet hovent, eller har du feber? Ring med en gang.",
+  ],
+} as const;
+
+export const FAKTA = [
+  { id: "hard", tekst: "Det ytterste laget på tanna heter emalje. Det er det hardeste stoffet i hele kroppen, hardere enn bein." },
+  { id: "syre", tekst: "Når du har spist noe søtt, lager bakteriene i munnen syre i omtrent en halvtime etterpå. Derfor er det bedre å spise søtt sjelden enn litt hele tiden." },
+] as const;
+
+export const QUIZ: { tittel: string; intro: string; sporsmal: { id: string; pastand: string; sant: boolean; svar: string }[] } = {
+  tittel: "Sant eller usant?",
+  intro: "Test deg selv. Trykk på det du tror.",
+  sporsmal: [
+    { id: "borte", pastand: "Hvis det slutter å gjøre vondt, er tanna frisk igjen.", sant: false, svar: "Nerven kan ha sluttet å kjenne noe. Problemet kan fortsatt være der." },
+    { id: "tablett", pastand: "Det er lurt å legge en smertetablett rett på tannkjøttet.", sant: false, svar: "Tabletten kan lage et sår. Svelg den, og følg det som står på pakken." },
+    { id: "pusse", pastand: "Du bør pusse forsiktig, også der det gjør vondt.", sant: true, svar: "Ja! Rene tenner og rent tannkjøtt blir fortere bedre." },
+    { id: "hovent", pastand: "Hovent kinn og feber betyr at du bør ringe med en gang.", sant: true, svar: "Riktig. Da er det en betennelse som må behandles fort." },
+  ],
+};

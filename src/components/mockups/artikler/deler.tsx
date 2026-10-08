@@ -109,15 +109,18 @@ export function Knapper({ className, lys = false }: { className?: string; lys?: 
 export function Bryter() {
   const sti = usePathname();
   return (
-    <nav aria-label="Utkast" className="fixed bottom-4 left-4 z-[60] flex gap-1 rounded-full bg-[var(--color-glomma-deep)] p-1 text-[13px] font-semibold shadow-lg">
+    <nav aria-label="Utkast" className="fixed bottom-4 left-4 right-4 z-[60] flex w-max max-w-[calc(100vw-32px)] gap-1 overflow-x-auto rounded-full bg-[var(--color-glomma-deep)] p-1 text-[13px] font-semibold shadow-lg">
       {[
         ["a", "A Lappen"],
         ["b", "B Bildeboka"],
         ["c", "C Du spør"],
+        ["d", "D Sjekk selv"],
+        ["e", "E Inni tanna"],
+        ["f", "F Visste du?"],
       ].map(([k, navn]) => {
         const her = sti?.endsWith(`/${k}`);
         return (
-          <Link key={k} href={`/mockups/artikler/${k}`} className={cn("rounded-full px-3 py-1.5 transition-colors", her ? "bg-[var(--color-papir)] text-[var(--color-glomma-deep)]" : "text-[var(--color-papir)] hover:bg-white/10")}>
+          <Link key={k} href={`/mockups/artikler/${k}`} className={cn("shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 transition-colors", her ? "bg-[var(--color-papir)] text-[var(--color-glomma-deep)]" : "text-[var(--color-papir)] hover:bg-white/10")}>
             {navn}
           </Link>
         );

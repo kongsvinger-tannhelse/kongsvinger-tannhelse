@@ -251,3 +251,26 @@ export function Tablett({ strek, className, forsink }: Stil) {
 }
 
 export const TIPS_TEGNING = { pusse: Borste, skylle: Glass, tygge: Tygge, pute: Pute, tablett: Tablett } as const;
+
+/** A swelling: a red bump on the gum under the tooth, and a thermometer for the fever. */
+export function Hevelse({ strek, className, forsink }: Stil) {
+  return (
+    <Ramme className={className} forsink={forsink} tittel="En tann med en hevelse i tannkjøttet, og et termometer">
+      {!strek && <circle cx={120} cy={120} r={104} fill="#F8E4DB" opacity={0.75} />}
+      <g transform="translate(108 146)">
+        <Jeksel strek={strek} rotter={false} />
+        <Tannkjott strek={strek} sar />
+        <path d={lauv(-6, 30, 26, 20, 17, 9)} {...form(strek, "#C9675A", { w: 2.2, ink: AKSENT, penFill: "#F5C9BF" })} />
+        <path d="M-16,22 Q-8,16 2,20" {...linje(strek, "#E8988C", 3, AKSENT)} />
+      </g>
+      {/* the thermometer */}
+      <g transform="translate(196 50) rotate(18)">
+        <rect x={-7} y={-6} width={14} height={62} rx={7} {...form(strek, F.hvit, { w: 2, penFill: F.papir })} {...(strek ? {} : { stroke: F.metallMork, strokeWidth: 1.6 })} />
+        <rect x={-2.5} y={14} width={5} height={44} rx={2.5} fill={F.smerte} {...blekk(strek)} />
+        <circle cx={0} cy={62} r={11} {...form(strek, F.smerte, { w: 2, ink: AKSENT })} />
+      </g>
+    </Ramme>
+  );
+}
+
+export const TEGNING = { ...ARSAK_TEGNING, hevelse: Hevelse } as const;
