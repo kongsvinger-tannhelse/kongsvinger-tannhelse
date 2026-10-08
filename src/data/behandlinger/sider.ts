@@ -30,7 +30,7 @@ export const MED_SIDE = [
 ] as const;
 
 /** Treatments in the book that share another's page: tannsmerte and tannverk are one thing, and the tannrens page tells what tannstein is. */
-const SAMME_SIDE: Record<string, (typeof MED_SIDE)[number]> = {
+export const SAMME_SIDE: Record<string, (typeof MED_SIDE)[number]> = {
   tannsmerte: "tannverk",
   tannstein: "tannrens",
 };
