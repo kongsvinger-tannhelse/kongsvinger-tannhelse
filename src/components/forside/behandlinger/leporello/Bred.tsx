@@ -8,7 +8,7 @@ import { harSide, sideSti } from "@/data/behandlinger/sider";
 import { cn } from "@/lib/utils";
 import { TRE } from "../grupper";
 import { FARGE } from "../popup/tegning";
-import { Alle, ANTALL, MERKE, Omslag, OPPSUMMERING, Scene } from "./deler";
+import { Alle, MERKE, Omslag, Scene } from "./deler";
 import s from "./leporello.module.css";
 
 /**
@@ -139,12 +139,11 @@ export function Bred() {
         ))}
         <li className={cn(s.bredTekst, "hero-loft")} style={{ animationPlayState: staar > 3 ? "running" : "paused", animationDelay: "0.25s" }}>
           <p className={MERKE}>Alle behandlingene</p>
-          <p className="mt-2.5 text-[15px] leading-[1.6] text-[var(--color-tekst-2)]">{OPPSUMMERING}</p>
           <Link
             href="/behandlinger"
-            className="group mt-5 inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
+            className="group mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
           >
-            Se alle {ANTALL} behandlingene
+            Se alle behandlingene
             <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
           </Link>
         </li>
@@ -177,18 +176,12 @@ function Panel({ forste = false, ledd, vinkel, forside, bakside, children }: { f
   );
 }
 
-/** The last panel: every treatment, set close like the back of a book. A link to them all (the button under it is the one in the tab order). */
+/** The last panel: every treatment, set large enough to fill the page, like the back of a book. A link to them all (the button under it is the one in the tab order). */
 function Register() {
   return (
-    <Link href="/behandlinger" tabIndex={-1} className="absolute inset-0 flex flex-col px-[9%] pb-[8%] pt-[10%] text-[var(--color-glomma-deep)]" style={{ background: FARGE.papir }}>
-      <span className="font-semibold uppercase text-[var(--color-tekst-svak)]" style={{ fontSize: "calc(var(--w) * 0.036)", letterSpacing: "0.14em" }}>
-        Alle behandlingene
-      </span>
-      <span className="mt-[3%] font-bold tabular-nums" style={{ fontSize: "calc(var(--w) * 0.27)", lineHeight: 0.82, letterSpacing: "-0.06em" }}>
-        {ANTALL}
-      </span>
-      <Alle className="mt-auto border-t border-[var(--color-strek)] pt-[5%]" style={{ fontSize: "calc(var(--w) * 0.0345)", lineHeight: 1.5 }} />
-      <span className="mt-[4%] inline-flex items-center gap-1.5 font-semibold" style={{ fontSize: "calc(var(--w) * 0.044)" }}>
+    <Link href="/behandlinger" tabIndex={-1} className="absolute inset-0 flex flex-col px-[9%] pb-[8%] pt-[9%] text-[var(--color-glomma-deep)]" style={{ background: FARGE.papir }}>
+      <Alle className="flex flex-1 flex-col justify-between" style={{ fontSize: "calc(var(--w) * 0.046)", lineHeight: 1.45 }} />
+      <span className="mt-[5%] inline-flex items-center gap-1.5 border-t border-[var(--color-strek)] pt-[5%] font-semibold" style={{ fontSize: "calc(var(--w) * 0.046)" }}>
         Se alle <ArrowRight style={{ width: "1em", height: "1em" }} aria-hidden="true" />
       </span>
     </Link>

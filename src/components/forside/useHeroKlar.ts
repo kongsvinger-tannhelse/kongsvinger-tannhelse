@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 
 /**
  * True once the hero's view has its photographs in (the `.utsikt` element
- * gets data-klar) and `etter` ms have passed — i.e. when the camera move
- * that starts at that moment has come to rest. Lets JS-driven pieces join
- * the same timeline as the CSS ones. With reduced motion, true at once.
+ * gets data-klar) and `etter` ms have passed since, counted from the moment
+ * it noted in data-klar-ved, which can be before this page's scripts woke.
+ * Lets JS-driven pieces join the same timeline as the CSS ones. With reduced
+ * motion, true at once.
  */
-export function useHeroKlar(etter = 4000) {
+export function useHeroKlar(etter = 1000) {
   const [klar, setKlar] = useState(false);
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -18,7 +19,9 @@ export function useHeroKlar(etter = 4000) {
     const el = document.querySelector<HTMLElement>(".utsikt");
     let timer = 0;
     const start = () => {
-      timer = window.setTimeout(() => setKlar(true), etter);
+      const ved = Number(el?.dataset.klarVed);
+      const gatt = ved ? performance.now() - ved : 0;
+      timer = window.setTimeout(() => setKlar(true), Math.max(0, etter - gatt));
     };
     if (!el || el.dataset.klar === "true") {
       start();

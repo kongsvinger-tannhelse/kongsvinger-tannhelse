@@ -10,6 +10,8 @@ export const klinikk = {
   // From the Google Maps embed on the old site
   geo: { lat: 60.1915, lng: 11.9955 },
   apningstider: { dager: "Mandag–fredag", fra: "08:30", til: "15:30", stengt: "Lørdag–søndag" },
+  // Tannlege Per Hafthun AS, Fjellgata 4 (Brønnøysundregistrene, 2026-10-09). Not on the old site: to be confirmed.
+  orgnr: "918 313 931",
 } as const;
 
 export const ansatte = [
@@ -85,11 +87,3 @@ export const klinikkbilder = [
   { src: "/images/klinikk/bilde1.webp", tekst: "En detalj fra venterommet", bredde: 2400, hoyde: 1920 },
 ] as const;
 
-/* The hero photograph. Kept here, not in the client component that shows it:
-   a server component importing a constant from a "use client" module gets a
-   reference, not the value. */
-export const utsiktKreditt = {
-  sted: "Utsikten fra Kongsvinger festning",
-  fotograf: "SiljeAO / Pexels",
-  href: "https://www.pexels.com/photo/view-from-the-kongsvinger-fortress-hedmark-norway-14777353/",
-} as const;

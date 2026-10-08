@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { harSide, sideSti } from "@/data/behandlinger/sider";
 import { cn } from "@/lib/utils";
 import { TRE } from "../grupper";
-import { Alle, ANTALL, MERKE, Scene } from "./deler";
+import { Alle, MERKE, Scene } from "./deler";
 import s from "./leporello.module.css";
 
 /**
@@ -47,7 +47,7 @@ export function Smal() {
                   0{k + 1}
                 </span>
                 <p className={MERKE}>{t.gruppe.tittel}</p>
-                <h3 className="mt-2.5 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(28px, 8vw, 34px)", lineHeight: 1, letterSpacing: "-0.04em" }}>
+                <h3 className="mt-2.5 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(22px, 6vw, 26px)", lineHeight: 1, letterSpacing: "-0.04em" }}>
                   {t.navn}
                 </h3>
                 <p className="mt-3 text-[15.5px] leading-[1.6] text-[var(--color-tekst-2)]">{t.tekst}</p>
@@ -66,16 +66,12 @@ export function Smal() {
       <Brett n={SISTE} redusert={redusert}>
         {() => (
           <div className="px-6 pb-7 pt-7">
-            <p className={MERKE}>Alle behandlingene</p>
-            <p className="mt-1 font-bold tabular-nums text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(72px, 22vw, 96px)", lineHeight: 0.85, letterSpacing: "-0.06em" }}>
-              {ANTALL}
-            </p>
-            <Alle className="mt-5 border-t border-[var(--color-strek)] pt-4 text-[13px] leading-[1.55]" />
+            <Alle className="text-[16px] leading-[1.55]" />
             <Link
               href="/behandlinger"
               className="group mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
             >
-              Se alle {ANTALL} behandlingene
+              Se alle behandlingene
               <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
           </div>

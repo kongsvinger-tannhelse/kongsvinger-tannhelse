@@ -77,16 +77,17 @@
    curve and a fixed centre, so every point on screen travels straight and
    eases the same; nothing turns a corner on the way. --mx / --my are the
    frame's resting offset (the same clamp as .ramme), so the start shows the
-   picture's own corner and never an edge. ── */
+   picture's own corner and never an edge. It starts the moment the photos
+   are in and is over in under two seconds. ── */
 .glid .inngang {
   --mx: calc(-1 * clamp(calc(100cqw - var(--w)), calc(50cqw - var(--fx, 0.6) * var(--w)), 0px));
   --my: calc(-1 * clamp(calc(100cqh - var(--h)), calc(50cqh - var(--fy, 0.5) * var(--h)), 0px));
   transform-origin: 50% 50%;
-  animation: glid 3.8s cubic-bezier(0.45, 0, 0.15, 1) 0.2s both;
+  animation: glid 1.8s cubic-bezier(0.3, 0.1, 0.2, 1) both;
 }
 /* the treetops pull back a touch further, so the valley seems to turn behind them */
 .glid .inngangNaer { animation-name: glidNaer; }
-.glid .pust { animation-delay: 4s; }
+.glid .pust { animation-delay: 1.8s; }
 @keyframes glid     { from { transform: translate3d(var(--mx), var(--my), 0) scale(1.1); }  to { transform: translate3d(0, 0, 0) scale(1); } }
 @keyframes glidNaer { from { transform: translate3d(var(--mx), var(--my), 0) scale(1.15); } to { transform: translate3d(0, 0, 0) scale(1); } }
 

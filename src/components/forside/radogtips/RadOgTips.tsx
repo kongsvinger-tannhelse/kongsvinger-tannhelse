@@ -16,7 +16,7 @@ export function RadOgTips() {
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
           <div className="max-w-[560px]">
-            <h2 id="rad-og-tips-tittel" className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.045em" }}>
+            <h2 id="rad-og-tips-tittel" className="seksjonstittel font-bold text-[var(--color-glomma-deep)]">
               {RAD_OG_TIPS.navn}
             </h2>
             <p className="mt-3 text-[17.5px] leading-[1.6] text-[var(--color-tekst-2)]">Korte, enkle tekster om vanlige ting i munnen, skrevet så alle kan forstå dem.</p>

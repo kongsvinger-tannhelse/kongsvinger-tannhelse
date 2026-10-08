@@ -42,7 +42,7 @@ const TELEFON = 1600;
  * sharper than anyone sees in motion. Loaded eagerly at high priority, not through Next's preload, which
  * would fetch the wide-screen size on phones as well.
  */
-function Dybdefoto({ src, onLoad }: { src: StaticImageData; onLoad: () => void }) {
+function Dybdefoto({ src }: { src: StaticImageData }) {
   const felles = { src, alt: "", quality: 75 } as const;
   const { props: bred } = getImageProps({ ...felles, sizes: "max(130vw, 195vh)" });
   const { props: smal } = getImageProps({ ...felles, width: TELEFON, height: Math.round(TELEFON / AR) });
@@ -51,10 +51,28 @@ function Dybdefoto({ src, onLoad }: { src: StaticImageData; onLoad: () => void }
   return (
     <picture>
       <source media="(max-width: 767px)" srcSet={`${smalSrc} ${TELEFON}w`} sizes="max(130vw, 195vh)" />
-      <img {...bred} alt="" loading="eager" fetchPriority="high" onLoad={onLoad} />
+      <img {...bred} alt="" loading="eager" fetchPriority="high" />
     </picture>
   );
 }
+
+/**
+ * The view is ready (data-klar) once both photos are in, and the entrance
+ * starts; data-klar-ved notes when, so useHeroKlar can keep time from it.
+ * VAKT does this in the page's own HTML, before React wakes: a photo that is
+ * cached, or just quicker than the page's scripts, has loaded before React
+ * could listen for it (on 2026-10-09 the view stood still for 2.7–3.9 s
+ * waiting on the fallback). The effect does the same for a visit by a link.
+ */
+const VAKT = `(function(s){var b=s.querySelectorAll("img"),n=0;function k(){if(++n<b.length||s.dataset.klar)return;s.dataset.klar="true";s.dataset.klarVed=String(Math.round(performance.now()))}b.forEach(function(i){if(i.complete)k();else{i.addEventListener("load",k);i.addEventListener("error",k)}})})(document.currentScript.parentElement)`;
+
+function merkKlar(el: HTMLElement) {
+  if (el.dataset.klar) return;
+  el.dataset.klar = "true";
+  el.dataset.klarVed = String(Math.round(performance.now()));
+}
+
+const ingen = () => () => {};
 
 type Props = {
   /** horizontal spot (0–1 across the panorama) kept in view; phones can use another */
@@ -127,30 +145,49 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
     };
   }, [px, py, reduced]);
 
-  // Hold the entrance until both depths are decoded, so the slit never opens
-  // onto an empty wall. If the photos are slow, open anyway after a moment.
-  const lastet = useRef(0);
-  const klar = () => {
-    lastet.current += 1;
-    if (lastet.current >= 2 && ref.current) ref.current.dataset.klar = "true";
-  };
+  // Hold the entrance until both depths are in, so it never moves over an
+  // empty wall. If the photos are slow, start anyway after a moment.
+  // True only while React takes over the server's HTML, where VAKT has run;
+  // a page rendered in the browser leaves it out (a script there never runs).
+  const fraTjener = useSyncExternalStore(ingen, () => false, () => true);
   useEffect(() => {
-    const t = window.setTimeout(() => {
-      if (ref.current) ref.current.dataset.klar = "true";
-    }, 2500);
-    return () => window.clearTimeout(t);
+    const el = ref.current;
+    if (!el || el.dataset.klar) return;
+    const venter = [...el.querySelectorAll("img")].filter((b) => !b.complete);
+    let igjen = venter.length;
+    if (!igjen) {
+      merkKlar(el);
+      return;
+    }
+    const ferdig = () => {
+      igjen -= 1;
+      if (igjen === 0) merkKlar(el);
+    };
+    venter.forEach((b) => {
+      b.addEventListener("load", ferdig, { once: true });
+      b.addEventListener("error", ferdig, { once: true });
+    });
+    const t = window.setTimeout(() => merkKlar(el), 1500);
+    return () => {
+      window.clearTimeout(t);
+      venter.forEach((b) => {
+        b.removeEventListener("load", ferdig);
+        b.removeEventListener("error", ferdig);
+      });
+    };
   }, []);
 
   const vars = { "--fx": fx, "--fy": fy, "--fx-smal": fxSmal, "--zoom": zoom, "--ar": AR } as CSSProperties;
 
   return (
-    <div ref={ref} data-on="false" className={cn(s.scene, skar && s.skar, glid && s.glid, "utsikt", className)} style={vars}>
+    // suppressHydrationWarning: VAKT may already have added data-klar
+    <div ref={ref} data-on="false" className={cn(s.scene, skar && s.skar, glid && s.glid, "utsikt", className)} style={vars} suppressHydrationWarning>
       {/* the two depths are pure picture; anything placed between them (mellom) stays reachable */}
       <m.div aria-hidden="true" className={s.dybde} style={{ y: slep }}>
         <div className={s.inngang}>
           <div className={s.pust}>
             <m.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: farX, y: farY }}>
-              <Dybdefoto src={far} onLoad={klar} />
+              <Dybdefoto src={far} />
             </m.div>
           </div>
         </div>
@@ -162,11 +199,13 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
         <div className={cn(s.inngang, s.inngangNaer)}>
           <div className={cn(s.pust, s.pustNaer)}>
             <m.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: naerX, y: naerY }}>
-              <Dybdefoto src={near} onLoad={klar} />
+              <Dybdefoto src={near} />
             </m.div>
           </div>
         </div>
       </div>
+
+      {fraTjener && <script dangerouslySetInnerHTML={{ __html: VAKT }} />}
     </div>
   );
 }
