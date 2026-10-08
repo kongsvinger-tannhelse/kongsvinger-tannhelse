@@ -13,7 +13,7 @@ const SIDER = [
   { href: "/behandlinger", tekst: "Behandlinger" },
   { href: "/om-oss", tekst: "Om oss" },
   { href: "/rad-og-tips", tekst: "Råd og tips" },
-  { href: "/helfo", tekst: "Helfo" },
+  { href: "/rad-og-tips/hva-dekker-helfo", tekst: "Helfo" },
   { href: "/kontakt", tekst: "Kontakt" },
 ];
 

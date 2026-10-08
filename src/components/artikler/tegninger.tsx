@@ -494,6 +494,36 @@ export function Hjerte({ strek, className, forsink }: Stil) {
   );
 }
 
+/* ── Who pays ── */
+
+/** A bill from the dentist: a torn-off slip with lines, and the sum circled. */
+export function Regning({ strek, className, forsink }: Stil) {
+  return (
+    <Ramme className={className} forsink={forsink} boks="0 0 120 120">
+      <path
+        d="M30,14 L90,14 L90,100 L84,106 L78,100 L72,106 L66,100 L60,106 L54,100 L48,106 L42,100 L36,106 L30,100 Z"
+        {...form(strek, F.hvit, { w: 2.2, penFill: F.papir })}
+        {...(strek ? {} : { stroke: F.metallMork, strokeWidth: 1.6 })}
+      />
+      <path d="M40,30 L80,30 M40,42 L72,42 M40,54 L76,54 M40,66 L66,66" {...linje(strek, F.metallMork, 2)} />
+      <ellipse cx={68} cy={84} rx={15} ry={9} {...linje(strek, F.teal, 2.4, F.teal)} />
+      <path d="M58,84 L78,84" {...linje(strek, BLEKK, 2.4)} />
+    </Ramme>
+  );
+}
+
+/** A card with a tick: the frikort, once you have paid enough. */
+export function Frikort({ strek, className, forsink }: Stil) {
+  return (
+    <Ramme className={className} forsink={forsink} boks="0 0 120 120">
+      <rect x={14} y={30} width={92} height={60} rx={9} {...form(strek, "#E1EFF1", { w: 2.2, ink: BLEKK, penFill: "#EEF7F8" })} />
+      <path d="M26,46 L62,46 M26,58 L52,58" {...linje(strek, F.metallMork, 2.2)} />
+      <circle cx={84} cy={66} r={13} {...form(strek, F.teal, { w: 2.2, ink: F.teal })} />
+      <path d="M78,66 L83,71 L91,61" {...linje(strek, F.hvit, 2.6, F.teal)} />
+    </Ramme>
+  );
+}
+
 /** Every drawing by its id in the article data. */
 export const TEGNINGER: Record<TegningId, (p: Stil) => React.JSX.Element> = {
   nerve: Nerve,
@@ -521,4 +551,6 @@ export const TEGNINGER: Record<TegningId, (p: Stil) => React.JSX.Element> = {
   roligtann: RoligTann,
   steg: Steg,
   hjerte: Hjerte,
+  regning: Regning,
+  frikort: Frikort,
 };

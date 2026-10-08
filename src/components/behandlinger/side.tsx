@@ -30,7 +30,7 @@ const SPORSMAL: { s: string; svar: string; lenke?: { href: string; tekst: string
   {
     s: "Dekker Helfo noe av tannbehandlingen?",
     svar: "Som hovedregel betaler voksne tannbehandlingen selv, men Helfo dekker en del ved 15 sykdommer og tilstander, og vi har direkte oppgjør med Helfo. Barn, ungdom og unge voksne til og med året de fyller 28, får tannbehandling i Den offentlige tannhelsetjenesten.",
-    lenke: { href: "/helfo", tekst: "Les om hva Helfo dekker" },
+    lenke: { href: "/rad-og-tips/hva-dekker-helfo", tekst: "Les om hva Helfo dekker" },
   },
   {
     s: "Hvordan bestiller jeg time hos tannlegen i Kongsvinger?",

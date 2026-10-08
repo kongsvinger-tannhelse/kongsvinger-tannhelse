@@ -16,7 +16,7 @@ const SIDER = [
   { href: "/kontakt", tekst: "Kontakt", om: "Ring, skriv eller finn veien" },
   { href: "/om-oss", tekst: "Om oss", om: "Hvem vi er" },
   { href: "/rad-og-tips", tekst: "Råd og tips", om: "Når det gjør vondt, iser eller blør" },
-  { href: "/helfo", tekst: "Helfo", om: "Hva staten dekker hos tannlegen" },
+  { href: "/rad-og-tips/hva-dekker-helfo", tekst: "Helfo", om: "Hva staten dekker hos tannlegen" },
 ];
 
 /** A gate in the fortress wall, drawn in one thin line, with the road running through it. */

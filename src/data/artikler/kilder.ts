@@ -1,9 +1,10 @@
 /* The sources the articles were checked against, on 8 October 2026: the
    national health portal (Helsenorge), the Norwegian Directorate of Health
-   (Helsedirektoratet), the Norwegian Dental Association (Tannlegeforeningen),
-   the medical encyclopedia written by university dentists (Store medisinske
-   leksikon) and Norsk Helseinformatikk (NHI.no), which doctors write. Each
-   article lists the ones its words rest on. */
+   (Helsedirektoratet), Helfo and Lovdata (for who pays), the Norwegian
+   Dental Association (Tannlegeforeningen), the medical encyclopedia written
+   by university dentists (Store medisinske leksikon) and Norsk
+   Helseinformatikk (NHI.no), which doctors write. Each article lists the
+   ones its words rest on. */
 
 export type Kilde = { navn: string; utgiver: string; url: string };
 
@@ -34,6 +35,13 @@ export const KILDE = {
   smlRemineralisering: { utgiver: "Store medisinske leksikon", navn: "Remineralisering", url: "https://sml.snl.no/remineralisering" },
   smlTannlegeskrekk: { utgiver: "Store medisinske leksikon", navn: "Tannlegeskrekk", url: "https://sml.snl.no/tannlegeskrekk" },
   lovSamtykke: { utgiver: "Lovdata", navn: "Pasient- og brukerrettighetsloven § 4-1 (samtykke)", url: "https://lovdata.no/lov/1999-07-02-63/§4-1" },
+  hnTannlegeregning: { utgiver: "Helsenorge", navn: "Hvem betaler tannlegeregningen din?", url: "https://www.helsenorge.no/betaling-for-helsetjenester/hvem-betaler-tannlegeregningen-din/" },
+  hnFrikort: { utgiver: "Helsenorge", navn: "Frikort for helsetjenester", url: "https://www.helsenorge.no/betaling-for-helsetjenester/frikort-for-helsetjenester/" },
+  helfoTilstander: { utgiver: "Helfo", navn: "Tilstander som kan gi rett til stønad til tannbehandling", url: "https://www.helfo.no/tannlege/regelverk-og-takster-for-tannlege/tilstander-som-kan-gi-rett-til-st%C3%B8nad-til-tannbehandling" },
+  helfoUngeVoksne: { utgiver: "Helfo", navn: "Fylkeskommunene har ansvaret for tannbehandlingen av unge voksne 19–28 år", url: "https://www.helfo.no/nyheter/fylkeskommunene-har-ansvaret-for-tannbehandlingen-av-unge-voksne-19-28-ar" },
+  lovTannhelse: { utgiver: "Lovdata", navn: "Tannhelsetjenesteloven § 1-3 (hvem som har rett)", url: "https://lovdata.no/lov/1983-06-03-54/§1-3" },
+  lovVederlag: { utgiver: "Lovdata", navn: "Forskrift om vederlag i den offentlige tannhelsetjenesten", url: "https://lovdata.no/forskrift/1984-05-24-1268" },
+  lovPristilbud: { utgiver: "Lovdata", navn: "Prisopplysningsforskriften § 18 (skriftlig pristilbud)", url: "https://lovdata.no/forskrift/2012-11-14-1066/§18" },
 } as const satisfies Record<string, Kilde>;
 
 /** The day the articles were last checked against their sources. */

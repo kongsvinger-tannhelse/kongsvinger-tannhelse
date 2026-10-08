@@ -7,9 +7,11 @@ import { Lenke, Topp, Ut } from "@/components/tekstside";
    complain. Nothing more, by the clinic's wish: no promises, nothing the
    law doesn't require. It describes what the site really does: the form
    mails the message to the clinic (components/kontakt/melding.ts), and the
-   server sees the visitor's IP address. Change it before the site does
-   anything new with visitors' data; cookies or analytics need their own
-   line here (and consent, under ekomloven § 3-15, if they store anything). */
+   server sees the visitor's IP address. The site's functions run in
+   Vercel's Stockholm region (arn1, set in the Vercel dashboard on
+   2026-10-08). Change this page before the site does anything new with
+   visitors' data; cookies or analytics need their own line here (and
+   consent, under ekomloven § 3-15, if they store anything). */
 
 const { adresse, telefon, epost } = klinikk;
 
@@ -68,7 +70,7 @@ const RADER: { tittel: string; tekst: React.ReactNode }[] = [
     tekst: (
       <>
         Leverandørene som drifter nettsiden (<span className={STERK}>Vercel Inc.</span>) og e-posten vår (<span className={STERK}>one.com</span>).
-        Vercel er et amerikansk selskap, så opplysningene overføres til USA. Overføringen bygger på EU-U.S. Data Privacy Framework, som Vercel er
+        Nettsiden kjører på Vercels servere i Stockholm, men Vercel er et amerikansk selskap, så opplysningene kan bli overført til USA. Det bygger på EU-U.S. Data Privacy Framework, som Vercel er
         sertifisert under.
       </>
     ),
