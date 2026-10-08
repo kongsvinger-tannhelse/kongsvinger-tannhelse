@@ -1,0 +1,140 @@
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { klinikk } from "@/data/klinikk";
+import { ARTIKLER, GJENNOMGATT, RAD_OG_TIPS, type Artikkel } from "@/data/artikler";
+import { Smuler, Vis } from "./deler";
+import { Ark, Avsender, Brod, DelVisning, Hilsen, Sporsmal } from "./lapp";
+import { Sjekk } from "./Sjekk";
+import { TEGNINGER } from "./tegninger";
+
+/* One «Råd og tips» article: a note from the clinic on a sheet of paper,
+   with pen sketches in the margin and yellow sticky notes between the
+   sections. Once you have read it, you can tap what fits you and get a
+   hint; the note ends with one button, to book. Under the sheet, the
+   other articles. */
+
+function strukturert(a: Artikkel) {
+  const url = `${klinikk.url}${RAD_OG_TIPS.sti}/${a.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MedicalWebPage",
+        "@id": `${url}#side`,
+        url,
+        name: a.tittel,
+        headline: a.tittel,
+        description: a.beskrivelse,
+        inLanguage: "nb-NO",
+        audience: { "@type": "PeopleAudience", audienceType: "Pasienter" },
+        lastReviewed: GJENNOMGATT,
+        citation: a.kilder.map((k) => ({ "@type": "CreativeWork", name: k.navn, url: k.url, publisher: { "@type": "Organization", name: k.utgiver } })),
+        publisher: { "@type": "Dentist", "@id": `${klinikk.url}/#klinikk`, name: klinikk.navn },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Forside", item: `${klinikk.url}/` },
+          { "@type": "ListItem", position: 2, name: RAD_OG_TIPS.navn, item: `${klinikk.url}${RAD_OG_TIPS.sti}` },
+          { "@type": "ListItem", position: 3, name: a.kort, item: url },
+        ],
+      },
+    ],
+  };
+}
+
+const DATO = new Date(`${GJENNOMGATT}T12:00:00Z`).toLocaleDateString("nb-NO", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Oslo" });
+
+/** What the note rests on: the official pages it was checked against, and when. */
+function Kilder({ artikkel }: { artikkel: Artikkel }) {
+  return (
+    <section aria-labelledby="kilder" className="mt-10 border-t border-dashed border-[var(--color-strek)] pt-8 md:mt-12">
+      <h2 id="kilder" className="text-[15px] font-bold uppercase tracking-[0.12em] text-[var(--color-tekst-2)]">
+        Kilder
+      </h2>
+      <p className="mt-2 max-w-[60ch] text-[15px] leading-[1.6] text-[var(--color-tekst-2)]">
+        Teksten er sjekket mot disse sidene fra helsemyndighetene og fagfolk, sist {DATO}. Den erstatter ikke en undersøkelse hos tannlegen.
+      </p>
+      <ul className="mt-4 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+        {artikkel.kilder.map((k) => (
+          <li key={k.url}>
+            <a
+              href={k.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-baseline gap-1.5 text-[14.5px] leading-[1.45] text-[var(--color-tekst)] underline decoration-[var(--color-strek)] decoration-1 underline-offset-4 hover:decoration-[var(--color-glomma)]"
+            >
+              <span>
+                <span className="font-semibold text-[var(--color-glomma-deep)]">{k.utgiver}:</span> {k.navn}
+              </span>
+              <ArrowUpRight className="size-3.5 shrink-0 translate-y-0.5 text-[var(--color-tekst-svak)]" aria-hidden="true" />
+              <span className="sr-only">(åpnes i ny fane)</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function Artikkelside({ artikkel }: { artikkel: Artikkel }) {
+  let lapper = 0;
+  const andre = ARTIKLER.filter((a) => a.slug !== artikkel.slug);
+  return (
+    <main className="overflow-x-clip bg-[var(--color-papir)] pb-[clamp(56px,10vw,140px)] pt-[clamp(96px,12vw,140px)]">
+      <script
+        type="application/ld+json"
+        // Safe: built from the site's own static data, not user input
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(strukturert(artikkel)) }}
+      />
+      <div className="mx-auto w-full max-w-[1040px] px-[var(--container-px)]">
+        <Smuler sider={[{ navn: RAD_OG_TIPS.navn, href: RAD_OG_TIPS.sti }, { navn: artikkel.kort }]} />
+
+        <Ark className="mt-8">
+          <Avsender artikkel={artikkel} />
+          <div className="mt-10 md:mt-14">
+            {artikkel.deler.map((del, i) => (
+              <DelVisning key={del.type === "lapp" ? `lapp-${i}` : del.id} del={del} n={del.type === "lapp" ? lapper++ : 0} />
+            ))}
+
+            {/* after reading: what fits you? */}
+            <Vis as="section" id="hos-deg" className="scroll-mt-28 border-t border-dashed border-[var(--color-strek)] pt-10 md:pt-14">
+              <Sporsmal>{artikkel.sjekk.tittel}</Sporsmal>
+              <Brod className="mt-3">{artikkel.sjekk.intro}</Brod>
+              <Sjekk sjekk={artikkel.sjekk} className="mt-7" />
+            </Vis>
+          </div>
+          <Hilsen tekst={artikkel.slutt} />
+          <Kilder artikkel={artikkel} />
+        </Ark>
+
+        {/* the other notes */}
+        <section aria-labelledby="flere" className="mt-16 md:mt-20">
+          <h2 id="flere" className="text-[22px] font-bold tracking-[-0.02em] text-[var(--color-glomma-deep)] md:text-[26px]">
+            Flere {RAD_OG_TIPS.navn.toLowerCase()}
+          </h2>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+            {andre.map((a) => {
+              const T = TEGNINGER[a.tegning];
+              return (
+                <li key={a.slug}>
+                  <Link
+                    href={`${RAD_OG_TIPS.sti}/${a.slug}`}
+                    className="group flex items-center gap-4 rounded-[22px] bg-[#FBF8F1] p-4 pr-5 ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_40px_-30px_rgba(10,25,32,0.5)]"
+                  >
+                    <T strek className="w-16 shrink-0" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[17.5px] font-bold leading-[1.25] text-[var(--color-glomma-deep)]">{a.tittel}</span>
+                      <span className="mt-1 block text-[14px] text-[var(--color-tekst-svak)]">{a.lesetid}</span>
+                    </span>
+                    <ArrowRight className="size-5 shrink-0 text-[var(--color-teal)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      </div>
+    </main>
+  );
+}
