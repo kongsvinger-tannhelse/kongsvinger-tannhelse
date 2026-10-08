@@ -16,8 +16,6 @@ export type TegningId =
   | "hevelse"
   | "borste"
   | "glass"
-  | "tygge"
-  | "pute"
   | "tablett"
   | "kanaler"
   | "slitt"
@@ -33,7 +31,6 @@ export type TegningId =
   | "haand"
   | "roligtann"
   | "steg"
-  | "hodetelefoner"
   | "hjerte";
 
 /** A yellow sticky note between two sections. */
