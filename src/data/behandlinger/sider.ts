@@ -3,7 +3,24 @@
    words. Keep it in step with BEHANDLINGSSIDER in index.ts (the build
    checks it). A plain module. */
 
-export const MED_SIDE = ["tannsjekk", "tannfylling", "tannbleking", "tannrens", "rotfylling", "visdomstenner", "tannkrone", "tannimplantat"] as const;
+export const MED_SIDE = [
+  "tannsjekk",
+  "tannfylling",
+  "tannbleking",
+  "tannrens",
+  "tannkjottbehandling",
+  "rotfylling",
+  "munntorrhet",
+  "tanngnissing",
+  "trekking-av-tenner",
+  "visdomstenner",
+  "tannskade",
+  "tannkrone",
+  "tannbro",
+  "skallfasetter",
+  "tannimplantat",
+  "helprotese",
+] as const;
 
 export const harSide = (id: string) => (MED_SIDE as readonly string[]).includes(id);
 

@@ -6,6 +6,7 @@ import type { BTegning } from "@/data/behandlinger/typer";
 import s from "@/components/artikler/artikler.module.css";
 import m from "./side.module.css";
 import { Ande, Avtrykk, Bor, Farge, Flekk, Fylt, Hvit, Implantat, Kompress, KroneSatt, Lampe, Lupe, Mangler, Plan, Provisorium, Skinne, Skrape, Sting, Stubb, Trekk, Underlag, Visdom } from "./ruter";
+import { Bittskinne, Bro, Fasett, Gnissing, Melk, Protese, Tyggis } from "./ruter2";
 
 /* The treatment pages' own drawings, in the articles' pen: a molar cut
    open to show the nerve, in every stage of the treatment, and the small
@@ -145,4 +146,12 @@ export const BTEGNINGER: Record<BTegning, (p: Stil) => React.JSX.Element> = {
   farge: (p) => <Farge {...p} />,
   skinne: (p) => <Skinne {...p} />,
   hvit: (p) => <Hvit {...p} />,
+  bro: (p) => <Bro {...p} />,
+  fasett: (p) => <Fasett {...p} />,
+  "fasett-slip": (p) => <Fasett skall={false} {...p} />,
+  protese: (p) => <Protese {...p} />,
+  bittskinne: (p) => <Bittskinne {...p} />,
+  gnissing: (p) => <Gnissing {...p} />,
+  melk: (p) => <Melk {...p} />,
+  tyggis: (p) => <Tyggis {...p} />,
 };

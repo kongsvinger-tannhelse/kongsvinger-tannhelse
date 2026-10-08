@@ -41,7 +41,15 @@ export type BTegning =
   | "provisorium"
   | "farge"
   | "skinne"
-  | "hvit";
+  | "hvit"
+  | "bro"
+  | "fasett"
+  | "fasett-slip"
+  | "protese"
+  | "bittskinne"
+  | "gnissing"
+  | "melk"
+  | "tyggis";
 
 /** One panel of the comic strip, with a line under it. `mellom`: a step not everyone needs, in a dashed frame. */
 export type Rute = { tegning: BTegning; tekst: string; mellom?: boolean };

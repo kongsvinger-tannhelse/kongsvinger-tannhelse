@@ -1,10 +1,18 @@
+import { helprotese } from "./helprotese";
+import { munntorrhet } from "./munntorrhet";
 import { rotfylling } from "./rotfylling";
+import { skallfasetter } from "./skallfasetter";
 import { tannbleking } from "./tannbleking";
+import { tannbro } from "./tannbro";
 import { tannfylling } from "./tannfylling";
+import { tanngnissing } from "./tanngnissing";
 import { tannimplantat } from "./tannimplantat";
+import { tannkjottbehandling } from "./tannkjottbehandling";
 import { tannkrone } from "./tannkrone";
 import { tannrens } from "./tannrens";
 import { tannsjekk } from "./tannsjekk";
+import { tannskade } from "./tannskade";
+import { trekkingAvTenner } from "./trekking-av-tenner";
 import { visdomstenner } from "./visdomstenner";
 import { MED_SIDE } from "./sider";
 import type { Behandlingsside } from "./typer";
@@ -12,7 +20,24 @@ import type { Behandlingsside } from "./typer";
 /* Every treatment that has a page of its own, in the book's order. A plain
    module (see klinikk.ts). The rest are only in the /behandlinger book. */
 
-export const BEHANDLINGSSIDER: Behandlingsside[] = [tannsjekk, tannfylling, tannbleking, tannrens, rotfylling, visdomstenner, tannkrone, tannimplantat];
+export const BEHANDLINGSSIDER: Behandlingsside[] = [
+  tannsjekk,
+  tannfylling,
+  tannbleking,
+  tannrens,
+  tannkjottbehandling,
+  rotfylling,
+  munntorrhet,
+  tanngnissing,
+  trekkingAvTenner,
+  visdomstenner,
+  tannskade,
+  tannkrone,
+  tannbro,
+  skallfasetter,
+  tannimplantat,
+  helprotese,
+];
 
 export const finnBehandlingsside = (slug: string) => BEHANDLINGSSIDER.find((b) => b.slug === slug);
 
