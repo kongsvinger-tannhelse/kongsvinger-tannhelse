@@ -1,64 +1,79 @@
+import { KILDE } from "./kilder";
 import type { Artikkel } from "./typer";
 
-/* Brushing: twice a day for two minutes, how, between the teeth, and
-   children. The check at the end asks what you find hardest. */
+/* Brushing. Every line checked on 8 October 2026 against the sources at
+   the bottom; the comments name the source behind each part. */
 
 export const slikPusserDu: Artikkel = {
   slug: "slik-pusser-du-tennene",
   tittel: "Slik pusser du tennene",
   kort: "Slik pusser du",
-  ingress: "Å pusse tennene er det beste du kan gjøre for munnen din. Det tar bare fire minutter om dagen. Her ser du hvordan du gjør det riktig.",
+  ingress: "Å pusse tennene er noe av det viktigste du kan gjøre for munnen din. Her ser du hvordan du gjør det riktig, og hvordan du hjelper barna.",
   lesetid: "3 minutter å lese",
-  beskrivelse: "Slik pusser du tennene riktig: hvor lenge, hvordan, hva du gjør mellom tennene, og hvordan du hjelper barna.",
+  beskrivelse: "Slik pusser du tennene riktig: hvor ofte, hvordan, hva du gjør mellom tennene, og hvordan du hjelper barna.",
   tegning: "skraa",
   deler: [
     {
       type: "tekst",
       id: "to-ganger",
-      tittel: "To ganger, to minutter",
+      tittel: "To ganger om dagen",
       avsnitt: [
-        "Puss tennene om morgenen og om kvelden, i to minutter hver gang.",
-        "Kveldspussen er den viktigste. Om natten lager munnen mindre spytt, så da trenger tennene fluoren ekstra godt.",
+        // Helsenorge: twice a day with fluoride toothpaste, about two minutes
+        "Puss tennene om morgenen og om kvelden, i omtrent to minutter hver gang. Bruk tannkrem med fluor.",
+        // NHI Tannhelse hos barn (the brushing just before bed matters most), NHI (less saliva at night), SML (saliva neutralises acid)
+        "Pussen rett før du legger deg er ekstra viktig. Om natten lager munnen mindre spytt, og spyttet er med på å beskytte tennene.",
       ],
       tegning: "klokke",
     },
+    // SML Remineralisering: fluoride helps an early, beginning hole remineralise
     { type: "lapp", lapp: { slag: "visste", tekst: "Fluor gjør emaljen sterkere, og kan hjelpe et lite, begynnende hull å bli friskt igjen." } },
     {
       type: "liste",
       id: "slik",
       tittel: "Slik gjør du",
-      intro: "Gjør det i denne rekkefølgen, så glemmer du ingen tenner.",
+      intro: "Fire ting å huske hver gang.",
       punkter: [
-        { id: "ert", navn: "1. En ert med tannkrem", tekst: "Bruk tannkrem med fluor. En klatt like stor som en ert er nok.", tegning: "tube" },
-        { id: "skraa", navn: "2. Børsten på skrå", tekst: "Hold børsten litt på skrå mot tannkjøttet. Puss med små, rolige bevegelser.", tegning: "skraa" },
-        { id: "sider", navn: "3. Alle sider", tekst: "Puss utsiden, innsiden og toppen av hver tann. Innsiden blir ofte glemt.", tegning: "allesider" },
-        { id: "mykt", navn: "4. Mykt, ikke hardt", tekst: "Du trenger ikke trykke. Mykt og grundig er bedre enn hardt og fort.", tegning: "borste" },
+        // Helsenorge: at least 1450 ppm fluoride for older children and adults; a pea-sized amount for children from 3
+        { id: "fluor", navn: "1. Tannkrem med fluor", tekst: "Voksne og større barn bør bruke tannkrem med 1450 ppm fluor. Det står på tuben.", tegning: "tube" },
+        // Helsedirektoratet: soft or extra soft brush, light pressure
+        { id: "myk", navn: "2. Myk børste, lett trykk", tekst: "Bruk en myk tannbørste. Du trenger ikke trykke hardt for å få tennene rene.", tegning: "borste" },
+        // NHI Tannhelse hos barn (the edge between gum and tooth), SML Gingivitt
+        { id: "kanten", navn: "3. Langs tannkjøttet", tekst: "Pass godt på kanten der tann og tannkjøtt møtes. Der samler bakteriene seg.", tegning: "skraa" },
+        // Tannlegeforeningen, Helsedirektoratet: do not rinse after brushing
+        { id: "skyll", navn: "4. Spytt, ikke skyll", tekst: "Spytt ut tannkremen, men ikke skyll med vann. Da virker fluoren lenger.", tegning: "glass" },
       ],
     },
-    { type: "lapp", lapp: { slag: "tips", tekst: "Spytt ut tannkremen etter pussing, men ikke skyll med vann. Da blir fluoren igjen på tennene og beskytter dem lenger." } },
+    // NHI Tannhelse hos barn: sugary food or drink after the evening brushing is especially discouraged
+    { type: "lapp", lapp: { slag: "tips", tekst: "Ikke spis eller drikk noe søtt etter kveldspussen. Vann er fint." } },
     {
       type: "tekst",
       id: "mellom",
       tittel: "Mellom tennene",
       avsnitt: [
-        "Tannbørsten når ikke inn mellom tennene. Der gjemmer det seg mat og bakterier.",
-        "Bruk tanntråd eller mellomromsbørster én gang om dagen, gjerne om kvelden.",
+        // Helsenorge (some need floss for the plaque between the teeth), Tannlegeforeningen (toothpicks, floss, interdental brushes)
+        "Tannbørsten når ikke helt inn mellom tennene. Der kan det sitte bakteriebelegg.",
+        // Helsedirektoratet: chosen by individual need
+        "Mange trenger å rengjøre mellom tennene med tanntråd, tannstikker eller mellomromsbørster. Spør tannlegen eller tannpleieren hva som passer for deg.",
       ],
       tegning: "traad",
     },
-    { type: "lapp", lapp: { slag: "triks", tekst: "Del munnen i fire deler. Puss hver del i omtrent et halvt minutt, så er du ferdig på to minutter." } },
+    // Helsenorge: about two minutes
+    { type: "lapp", lapp: { slag: "triks", tekst: "Ta tiden med klokka på mobilen. To minutter er lenger enn mange tror." } },
     {
       type: "tips",
       id: "barn",
       tittel: "Barn og pussing",
       punkter: [
-        { tekst: "Bruk tannkrem med fluor fra den første tanna kommer.", tegning: "tube" },
-        { tekst: "Hjelp barnet å pusse til det er rundt ti år. Før det klarer de ikke alt selv.", tegning: "haand" },
-        { tekst: "Gjør det til en vane: alltid etter frokost, og rett før leggetid.", tegning: "klokke" },
-        { tekst: "Etter kveldspussen er det bare vann som gjelder.", tegning: "glass" },
+        // Helsenorge Tannstell hos barn
+        { tekst: "Puss barnets tenner med fluortannkrem morgen og kveld, fra den første tanna kommer.", tegning: "tube" },
+        { tekst: "Under tre år holder det med en knapt synlig mengde tannkrem. Fra tre år: en klatt like stor som en ert.", tegning: "tube" },
+        { tekst: "Hjelp barnet å pusse til det er rundt ti år.", tegning: "haand" },
+        // Helsenorge (water as the everyday drink), NHI (nothing sweet after the evening brushing)
+        { tekst: "Etter kveldspussen: ikke noe søtt. Vann er det beste å drikke.", tegning: "glass" },
       ],
     },
-    { type: "lapp", lapp: { slag: "visste", tekst: "Melketennene er viktige. De holder plass til de voksne tennene som kommer etter." } },
+    // NHI Tannhelse hos barn: teeth let the child chew and form words, and affect how the jaws grow
+    { type: "lapp", lapp: { slag: "visste", tekst: "Melketennene er viktige. Barnet trenger dem for å tygge og snakke, og de påvirker hvordan kjevene vokser." } },
   ],
   sjekk: {
     tittel: "Hva synes du er vanskeligst?",
@@ -71,8 +86,8 @@ export const slikPusserDu: Artikkel = {
         id: "huske",
         svar: "Å huske å pusse to ganger",
         tegning: "klokke",
-        overskrift: "Knytt det til noe du alltid gjør",
-        forklaring: "Legg tannbørsten der du ser den. Puss alltid rett etter frokost, og rett før du legger deg.",
+        overskrift: "Gjør det til en vane",
+        forklaring: "Legg tannbørsten der du ser den. Puss alltid på samme tid, om morgenen og rett før du legger deg.",
       },
       {
         id: "lenge",
@@ -82,28 +97,32 @@ export const slikPusserDu: Artikkel = {
         forklaring: "Bruk klokka på mobilen, eller en sang som varer i omtrent to minutter.",
       },
       {
+        // Tannlegeforeningen, Helsedirektoratet
         id: "traad",
-        svar: "Å bruke tanntråd",
+        svar: "Å rengjøre mellom tennene",
         tegning: "traad",
-        overskrift: "Prøv mellomromsbørster",
-        forklaring: "Mange synes de er lettere enn tanntråd. Spør oss hvilken størrelse som passer deg.",
+        overskrift: "Finn det som passer deg",
+        forklaring: "Det finnes flere måter: tanntråd, tannstikker og mellomromsbørster. Spør tannlegen eller tannpleieren hva som passer mellom dine tenner.",
       },
       {
+        // Helsenorge: parents help until about ten
         id: "barn",
         svar: "Å få barna til å pusse",
         tegning: "hjerte",
         overskrift: "Gjør det sammen",
-        forklaring: "Puss dine egne tenner samtidig, og la barnet pusse først. Så tar du en runde etterpå.",
+        forklaring: "Puss dine egne tenner samtidig. La barnet pusse først, og ta en runde etterpå. Barn trenger hjelp til de er rundt ti år.",
       },
       {
+        // SML Gingivitt
         id: "blor",
         svar: "Tannkjøttet blør når jeg pusser",
         tegning: "plakk",
         overskrift: "Fortsett å pusse",
-        forklaring: "Det betyr ofte at tannkjøttet er irritert. Puss forsiktig der det blør, så blir det som regel bedre på en uke eller to.",
+        forklaring: "Det betyr ofte at tannkjøttet er betent. Puss forsiktig der det blør. Når bakteriene blir borte, går betennelsen over.",
         lenke: { tekst: "Les om blødende tannkjøtt", slug: "tannkjottet-blor" },
       },
     ],
   },
   slutt: "Vil du ha en sjekk av tennene og tannkjøttet? Bestill en time, så tar vi en titt.",
+  kilder: [KILDE.hnKaries, KILDE.hnBarn, KILDE.hdirVoksne, KILDE.ntfRad, KILDE.nhiBarn, KILDE.nhiFrokost, KILDE.smlRemineralisering, KILDE.smlGingivitt],
 };

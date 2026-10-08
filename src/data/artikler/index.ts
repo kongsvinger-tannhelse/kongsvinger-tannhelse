@@ -14,3 +14,4 @@ export const ARTIKLER: Artikkel[] = [vondtITanna, detIser, tannkjottetBlor, redd
 export const finnArtikkel = (slug: string) => ARTIKLER.find((a) => a.slug === slug);
 
 export * from "./typer";
+export { GJENNOMGATT, KILDE, type Kilde } from "./kilder";

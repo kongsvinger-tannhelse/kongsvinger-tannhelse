@@ -1,4 +1,5 @@
 import { klinikk } from "@/data/klinikk";
+import type { Kilde } from "./kilder";
 
 /* The shape of a «Råd og tips» article. Plain data: strings and ids only,
    so the same objects can be read by server components and handed to the
@@ -88,6 +89,8 @@ export type Artikkel = {
   sjekk: Sjekk;
   /** The last words of the note, above the button. */
   slutt: string;
+  /** What the words rest on, listed at the bottom of the note. */
+  kilder: Kilde[];
 };
 
 const { telefon, apningstider } = klinikk;

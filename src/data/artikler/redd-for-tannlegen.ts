@@ -1,15 +1,18 @@
+import { KILDE } from "./kilder";
 import type { Artikkel } from "./typer";
 
-/* Dental fear: that it is normal, what we do to make it easier, and small
-   things that help. The check at the end asks what you dread most. */
+/* Dental fear. Every line checked on 8 October 2026 against the sources at
+   the bottom; the comments name the source behind each part. What helps is
+   taken from Helsedirektoratet's guideline (preparation, predictability,
+   control, mastery); it promises nothing the clinic has not said it offers. */
 
 export const reddForTannlegen: Artikkel = {
   slug: "redd-for-tannlegen",
   tittel: "Redd for tannlegen?",
   kort: "Redd for tannlegen",
-  ingress: "Mange gruer seg til å gå til tannlegen. Du er ikke alene, og du trenger ikke å skamme deg. Her kan du lese hvordan vi gjør det litt lettere.",
+  ingress: "Mange gruer seg til å gå til tannlegen. Du er ikke alene, og du trenger ikke å skamme deg. Her kan du lese hva som gjør det lettere.",
   lesetid: "3 minutter å lese",
-  beskrivelse: "Redd for tannlegen? Les hvordan vi gjør besøket tryggere, og små ting du selv kan gjøre for å grue deg mindre.",
+  beskrivelse: "Redd for tannlegen? Les hva som hjelper mot tannlegeskrekk, hva du selv kan gjøre, og hvor du får hjelp hvis angsten er sterk.",
   tegning: "haand",
   deler: [
     {
@@ -17,96 +20,109 @@ export const reddForTannlegen: Artikkel = {
       id: "vanlig",
       tittel: "Det er helt vanlig",
       avsnitt: [
-        "Noen er redde fordi noe gjorde vondt en gang. Andre liker ikke lyden, lukten, eller å ligge stille i stolen.",
-        "Mange har ikke vært hos tannlegen på lenge, og gruer seg til hva vi skal si. Vi kjefter aldri. Vi er bare glade for at du kom.",
+        "Noen gruer seg litt. Andre gruer seg så mye at de nesten ikke klarer å gå. Begge deler er vanlig.",
+        "Mange har ikke vært hos tannlegen på lenge, og gruer seg til å komme tilbake. Det er bra at du tenker på det nå.",
       ],
       tegning: "snakke",
     },
-    { type: "lapp", lapp: { slag: "visste", tekst: "Å grue seg er kroppens måte å passe på deg. Det blir ofte mindre for hver gang du har vært her og det gikk fint." } },
+    // SML Tannlegeskrekk: may affect 5 to 10 percent of the adult population
+    { type: "lapp", lapp: { slag: "visste", tekst: "Mellom 5 og 10 av 100 voksne har så sterk tannlegeskrekk at det er vanskelig å gå til tannlegen." } },
     {
       type: "liste",
-      id: "lettere",
-      tittel: "Slik gjør vi det lettere",
-      intro: "Dette kan du alltid be om hos oss.",
+      id: "hjelper",
+      tittel: "Dette hjelper",
+      intro: "Dette er det helsemyndighetene sier hjelper mot angst for tannbehandling.",
       punkter: [
-        { id: "prat", navn: "Vi prater først", tekst: "Fortell oss hva du er redd for før vi begynner. Vi forklarer hva vi skal gjøre, og hvorfor.", tegning: "snakke" },
-        { id: "pause", navn: "Du bestemmer tempoet", tekst: "Løft hånden når du vil ha en pause. Da stopper vi med en gang.", tegning: "haand" },
-        { id: "bedovelse", navn: "Vi bedøver godt", tekst: "Vi venter til bedøvelsen virker før vi begynner, og spør deg underveis.", tegning: "roligtann" },
-        { id: "steg", navn: "Én ting av gangen", tekst: "Du trenger ikke fikse alt på én gang. Vi tar det i den rekkefølgen som passer for deg.", tegning: "steg" },
+        // Helsedirektoratet: preparation, verbal explanation, tell-show-do, predictability
+        { id: "vite", navn: "Å vite hva som skal skje", tekst: "Det blir lettere når du får vite hva som skal skje før det skjer. Be gjerne tannlegen forklare.", tegning: "snakke" },
+        // Helsedirektoratet: control
+        { id: "kontroll", navn: "Å ha kontroll", tekst: "Det hjelper å vite at du kan si stopp. Avtal et tegn, for eksempel at du løfter hånden når du trenger en pause.", tegning: "haand" },
+        // Helsedirektoratet (gradual habituation and mastery), TOO (exposure therapy)
+        { id: "steg", navn: "Litt og litt", tekst: "Angsten blir ofte mindre når du øver litt og litt, og kjenner at det går fint.", tegning: "steg" },
+        // Helsedirektoratet TOO, tooinfo.no (in the public dental service in every county; you can get in touch yourself)
+        { id: "too", navn: "Hjelp ved sterk angst", tekst: "Har du så sterk angst at du ikke klarer å gå til tannlegen, finnes det et eget tilbud i den offentlige tannhelsetjenesten. Det heter TOO, og du kan ta kontakt selv.", tegning: "roligtann" },
       ],
     },
-    { type: "lapp", lapp: { slag: "triks", tekst: "Pust rolig: inn gjennom nesen mens du teller til fire, og ut gjennom munnen mens du teller til seks. Det roer kroppen." } },
+    // Helsenorge Mestring av langvarige smerter: breathe deep down into the stomach
+    { type: "lapp", lapp: { slag: "triks", tekst: "Pust rolig, helt ned i magen. Kjenn at brystet utvider seg, og la kroppen finne en god rytme." } },
     {
       type: "tips",
       id: "tips",
       tittel: "Små ting som hjelper",
       punkter: [
-        { tekst: "Ta med hodetelefoner, og hør på musikk eller en lydbok.", tegning: "hodetelefoner" },
-        { tekst: "Bestill time tidlig på dagen. Da rekker du ikke å gå og grue deg så lenge.", tegning: "klokke" },
-        { tekst: "Si fra at du er nervøs når du bestiller time. Det er helt vanlig å si det.", tegning: "snakke" },
-        { tekst: "Ta med noen du er trygg på.", tegning: "hjerte" },
+        // NHI Bedre med musikk: music lowered anxiety and pain (review of 73 trials, after operations)
+        { tekst: "Musikk kan gjøre det lettere å slappe av. Spør om du kan ha på deg hodetelefoner.", tegning: "hodetelefoner" },
+        // Helsedirektoratet: preparation and explanation
+        { tekst: "Si fra at du er nervøs når du bestiller time. Da kan tannlegen forklare mer underveis.", tegning: "snakke" },
       ],
     },
-    { type: "lapp", lapp: { slag: "tips", tekst: "Det kan hjelpe å holde noe i hendene, for eksempel en liten ball eller jakken din." } },
+    // Helsedirektoratet: focus on mastery
+    { type: "lapp", lapp: { slag: "visste", tekst: "Hver gang det går fint hos tannlegen, blir det ofte litt lettere neste gang. Det kalles mestring." } },
     {
       type: "tekst",
       id: "lenge",
       tittel: "Hva om det er lenge siden?",
       avsnitt: [
-        "Mange har ikke vært hos tannlegen på mange år. Det er ikke for sent.",
-        "Vi tar det steg for steg, og lager en plan sammen med deg. Ingenting skjer uten at du sier ja.",
+        "Det er aldri for sent å komme tilbake. Tannlegen undersøker først og forteller hva som bør gjøres.",
+        // Pasient- og brukerrettighetsloven § 4-1: health care can only be given with the patient's consent
+        "Du bestemmer selv. Etter loven kan tannlegen bare behandle deg når du har sagt ja.",
       ],
       tegning: "steg",
     },
   ],
   sjekk: {
     tittel: "Hva gruer du deg mest til?",
-    intro: "Trykk på det som passer best, så ser du hva vi gjør for at det skal bli lettere.",
+    intro: "Trykk på det som passer best, så ser du hva som kan gjøre det lettere.",
     hjelp: "Trykk på det som passer best.",
-    merke: "Slik hjelper vi",
-    forbehold: "Du kan alltid si fra underveis. Vi stopper når du vil.",
+    merke: "Dette kan hjelpe",
+    forbehold: "Har du veldig sterk angst, kan TOO-tilbudet i den offentlige tannhelsetjenesten hjelpe. Les mer på tooinfo.no.",
     valg: [
       {
+        // Helsedirektoratet: explanation and predictability
         id: "vondt",
         svar: "At det skal gjøre vondt",
         tegning: "roligtann",
-        overskrift: "Vi bedøver godt",
-        forklaring: "Vi venter til bedøvelsen virker før vi begynner, og spør deg underveis. Kjenner du noe, sier du fra.",
+        overskrift: "Snakk om det først",
+        forklaring: "Fortell tannlegen at du er redd for at det skal gjøre vondt. Da kan dere snakke om bedøvelse og hva som skal skje, før dere begynner.",
         handling: { tittel: "Klar for å prøve?", tekst: "Bestill en time, og si at du gruer deg.", knapp: "bestill" },
       },
       {
+        // NHI Bedre med musikk
         id: "lyd",
         svar: "Lyden og lukten",
         tegning: "hodetelefoner",
         overskrift: "Ta med musikk",
-        forklaring: "Hodetelefoner med musikk du liker hjelper mange. Vi sier også fra før vi bruker noe som lager lyd.",
+        forklaring: "Musikk du liker kan gjøre det lettere å slappe av. Spør om det er greit at du har hodetelefoner på.",
         handling: { tittel: "Klar for å prøve?", tekst: "Bestill en time, og ta med hodetelefonene.", knapp: "bestill" },
       },
       {
+        // Helsedirektoratet: control and predictability
         id: "kontroll",
         svar: "Å ikke ha kontroll",
         tegning: "haand",
-        overskrift: "Du bestemmer",
-        forklaring: "Løft hånden, så stopper vi. Vi forklarer hvert steg, så du vet hva som skjer.",
-        handling: { tittel: "Klar for å prøve?", tekst: "Bestill en time. Du bestemmer tempoet.", knapp: "bestill" },
+        overskrift: "Avtal et tegn",
+        forklaring: "Avtal at du kan løfte hånden når du trenger en pause. Når du vet hva som skjer, og at du kan si stopp, føles det tryggere.",
+        handling: { tittel: "Klar for å prøve?", tekst: "Bestill en time, og si hva du trenger.", knapp: "bestill" },
       },
       {
-        id: "si",
-        svar: "Hva tannlegen skal si",
-        tegning: "hjerte",
-        overskrift: "Vi kjefter aldri",
-        forklaring: "Vi er her for å hjelpe, ikke for å dømme. Mange har vært borte lenge. Det viktigste er at du kom.",
+        // Pasient- og brukerrettighetsloven § 4-1
+        id: "lenge",
+        svar: "Det er lenge siden sist",
+        tegning: "steg",
+        overskrift: "Det er aldri for sent",
+        forklaring: "Mange har vært borte fra tannlegen lenge. Det viktigste er at du kommer nå. Tannlegen undersøker først, og du bestemmer hva som skal gjøres.",
         handling: { tittel: "Klar for å prøve?", tekst: "Bestill en time, så tar vi det derfra.", knapp: "bestill" },
       },
       {
         id: "vet-ikke",
         svar: "Jeg vet ikke helt, jeg bare gruer meg",
         tegning: "snakke",
-        overskrift: "Start med en prat",
-        forklaring: "Det er helt greit. Ofte hjelper det bare å si det høyt. Ring oss og fortell at du gruer deg.",
+        overskrift: "Si det høyt",
+        forklaring: "Det er helt greit. Ofte hjelper det å fortelle noen at du gruer deg. Ring oss og si det.",
         handling: { tittel: "Ring oss gjerne", tekst: "Fortell at du gruer deg.", knapp: "ring" },
       },
     ],
   },
   slutt: "Vil du prøve? Bestill en time, og si fra at du gruer deg.",
+  kilder: [KILDE.hdirAngst, KILDE.hdirToo, KILDE.tooinfo, KILDE.smlTannlegeskrekk, KILDE.nhiMusikk, KILDE.hnPust, KILDE.lovSamtykke],
 };

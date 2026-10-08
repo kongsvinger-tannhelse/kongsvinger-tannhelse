@@ -1,16 +1,20 @@
+import { KILDE } from "./kilder";
 import { HANDLING, type Artikkel } from "./typer";
 
-/* Sensitive teeth: why cold stings, what causes it, and what helps. */
+/* Sensitive teeth. Every line checked on 8 October 2026 against the
+   sources at the bottom; the comments name the source behind each part. */
 
 export const detIser: Artikkel = {
   slug: "det-iser-i-tennene",
   tittel: "Det iser når jeg drikker kaldt",
   kort: "Ising i tennene",
-  ingress: "Et kort stikk når du drikker kaldt eller spiser is? Det heter ising, og det er veldig vanlig. Her ser du hvorfor det skjer, og hva som hjelper.",
+  // SML Tennene: many are bothered by ising when they eat or drink something cold
+  ingress: "Et kort stikk når du drikker kaldt eller spiser is? Det heter ising, og mange har det. Her ser du hvorfor det skjer, og hva som hjelper.",
   lesetid: "3 minutter å lese",
   beskrivelse: "Ising i tennene forklart enkelt: hvorfor det iser når du drikker kaldt, hva det kan være, og hva som hjelper.",
   tegning: "kanaler",
   deler: [
+    // SML Tannsmerter: cold reaches the nerve through small canals (dentin tubules); ising where enamel is missing or the root is bare
     {
       type: "tekst",
       id: "hvorfor",
@@ -21,6 +25,7 @@ export const detIser: Artikkel = {
       ],
       tegning: "kanaler",
     },
+    // SML Tannemalje: damage to enamel cannot be repaired by the body
     { type: "lapp", lapp: { slag: "visste", tekst: "Emaljen kan ikke vokse ut igjen når den først er borte. Derfor er det lurt å ta godt vare på den du har." } },
     {
       type: "liste",
@@ -29,33 +34,43 @@ export const detIser: Artikkel = {
       intro: "Det er særlig fire ting som kan gi ising.",
       ekstraNavn: "Slik kjennes det:",
       punkter: [
-        { id: "slitt", navn: "Slitt emalje", tekst: "Sur drikke som brus, juice og sportsdrikk løser opp litt av emaljen hver gang.", ekstra: "Det iser på flere tenner, av kaldt og av surt.", tegning: "slitt" },
-        { id: "tannhals", navn: "Bare tannhalser", tekst: "Når tannkjøttet trekker seg litt tilbake, blir den nederste delen av tanna bar. Den har ingen emalje.", ekstra: "Det iser helt nede ved tannkjøttet.", tegning: "tannhals" },
-        { id: "hull", navn: "Et hull", tekst: "Et hull går gjennom emaljen og inn mot nerven.", ekstra: "Det iser på én tann, ofte av søtt også.", tegning: "hull" },
-        { id: "sprekk", navn: "En sprekk eller en gammel fylling", tekst: "Kulden kan smette inn gjennom en sprekk, eller langs kanten av en fylling.", ekstra: "Det iser på én tann, og kanskje når du biter.", tegning: "sprekk" },
+        // SML Tannslitasje (erosion from acid), Tannlegeforeningen (juice and sugar-free drinks contain acid)
+        { id: "slitt", navn: "Slitt emalje", tekst: "Sur drikke, som brus og juice, kan løse opp litt av emaljen hver gang.", ekstra: "Det kan ise der emaljen er blitt tynn.", tegning: "slitt" },
+        // SML Tennene and Tannsmerter (receding gum bares the dentin), Helsenorge Snus (long tooth necks give ising)
+        { id: "tannhals", navn: "Bare tannhalser", tekst: "Når tannkjøttet trekker seg litt tilbake, blir den nederste delen av tanna bar. Der er det ingen emalje.", ekstra: "Det iser nede ved tannkjøttet.", tegning: "tannhals" },
+        // Helsenorge Hull i tennene, SML Tannsmerter
+        { id: "hull", navn: "Et hull", tekst: "Et hull går gjennom emaljen og inn mot nerven.", ekstra: "Det kan ise eller verke i én tann.", tegning: "hull" },
+        // SML Tannslitasje: hard brushing wears the tooth and makes the gum recede
+        { id: "hard", navn: "For hard tannpuss", tekst: "En hard børste og mye trykk kan slite på tanna og få tannkjøttet til å trekke seg tilbake.", ekstra: "Ofte iser det nede ved tannkjøttet.", tegning: "borste" },
       ],
     },
-    { type: "lapp", lapp: { slag: "triks", tekst: "Drikker du brus eller juice? Drikk den til maten, gjerne med sugerør. Da treffer syren tennene mindre." } },
+    // Helsedirektoratet Råd for voksne: drink acidic drinks through a straw and rinse with water afterwards
+    { type: "lapp", lapp: { slag: "triks", tekst: "Drikker du brus eller juice? Drikk med sugerør, og skyll munnen med vann etterpå." } },
     {
       type: "tips",
       id: "tips",
       tittel: "Hva kan jeg gjøre selv?",
       punkter: [
-        { tekst: "Bruk en myk tannbørste, og puss rolig. Ikke skrubb.", tegning: "borste" },
-        { tekst: "Prøv en tannkrem for følsomme tenner. Det tar ofte et par uker før den virker.", tegning: "tube" },
-        { tekst: "Smør litt av den samme tannkremen på tanna som iser før du legger deg, og ikke skyll.", tegning: "tube" },
-        { tekst: "Drikk vann når du er tørst. Brus, juice og sportsdrikk er sure.", tegning: "glass" },
+        // Helsedirektoratet (soft brush, light pressure), SML Tannslitasje
+        { tekst: "Bruk en myk tannbørste, og puss med lett trykk.", tegning: "borste" },
+        // SML Tennene: toothpastes against ising help in many cases
+        { tekst: "Prøv en tannkrem for følsomme tenner. Den hjelper mange.", tegning: "tube" },
+        // Tannlegeforeningen: water is the best drink; juice and sugar-free drinks contain acid
+        { tekst: "Drikk vann når du er tørst. Brus og juice er sure.", tegning: "glass" },
       ],
+      // SML Tannsmerter: ising that lasts after the cold may be pulpitis
       obs: "Iser det lenge etter at kulden er borte, eller begynner det å verke? Da bør vi se på det.",
     },
-    { type: "lapp", lapp: { slag: "tips", tekst: "Spytt ut tannkremen etter pussing, men ikke skyll med vann. Da blir fluoren igjen på tennene og gjør emaljen sterkere." } },
+    // Tannlegeforeningen (do not rinse, the fluoride works longer), SML Remineralisering (fluoride strengthens enamel)
+    { type: "lapp", lapp: { slag: "tips", tekst: "Spytt ut tannkremen etter pussing, men ikke skyll med vann. Da virker fluoren lenger, og den gjør emaljen sterkere." } },
+    // SML Tannsmerter
     {
       type: "tekst",
       id: "komme",
       tittel: "Når bør jeg komme?",
       avsnitt: [
-        "Hvis det bare iser litt og går fort over, kan det vente til neste tannsjekk.",
-        "Kom heller før hvis det iser på én bestemt tann, hvis det varer lenge, eller hvis det begynner å verke.",
+        "Hvis det bare iser litt og går over med en gang, kan du ta det opp neste gang du er hos tannlegen.",
+        "Kom heller før hvis det iser lenge etter at kulden er borte, eller hvis det begynner å verke.",
       ],
       tegning: "hull",
     },
@@ -67,39 +82,44 @@ export const detIser: Artikkel = {
     merke: "Det kan være",
     valg: [
       {
+        // SML Tennene
         id: "mange",
-        svar: "Det iser litt på mange tenner, og går fort over",
+        svar: "Det iser litt på flere tenner, og går fort over",
         tegning: "slitt",
-        overskrift: "Slitt emalje",
-        forklaring: "Det er vanlig og sjelden farlig. Tannkrem for følsomme tenner hjelper ofte. Vi kan se på det neste gang du er her.",
+        overskrift: "Tynn emalje",
+        forklaring: "Mange har det slik. Tannkrem for følsomme tenner hjelper ofte. Ta det opp neste gang du er hos tannlegen.",
         handling: HANDLING.bestill,
       },
       {
+        // SML Tennene, SML Tannslitasje
         id: "nede",
-        svar: "Det iser helt nede ved tannkjøttet",
+        svar: "Det iser nede ved tannkjøttet",
         tegning: "tannhals",
         overskrift: "Bare tannhalser",
-        forklaring: "Når tannkjøttet trekker seg litt tilbake, blir roten bar. Puss mykt, og bruk tannkrem for følsomme tenner.",
+        forklaring: "Når tannkjøttet trekker seg litt tilbake, blir roten bar. Puss mykt, og prøv tannkrem for følsomme tenner.",
         handling: HANDLING.bestill,
       },
       {
+        // Helsenorge Hull i tennene
         id: "en",
-        svar: "Det iser på én tann, også av søtt",
+        svar: "Det iser eller verker i én tann",
         tegning: "hull",
         overskrift: "Et hull",
         forklaring: "Et hull blir ikke borte av seg selv. Jo før vi fikser det, jo mindre blir det.",
         handling: HANDLING.bestill,
       },
       {
+        // SML Tannsmerter
         id: "verker",
-        svar: "Det iser lenge etterpå, eller det verker",
+        svar: "Det iser lenge etter at kulden er borte",
         tegning: "betennelse",
         overskrift: "En irritert nerve",
-        forklaring: "Når ising blir til verk, er nerven ofte påvirket. Det bør vi se på snart.",
+        forklaring: "Når isingen henger igjen, kan nerven være betent. Det bør vi se på snart.",
         handling: HANDLING.iDag,
         lenke: { tekst: "Les om tannverk", slug: "vondt-i-tanna" },
       },
     ],
   },
   slutt: "Vil du at vi ser på det? Bestill en time, så finner vi ut av det sammen.",
+  kilder: [KILDE.smlTannsmerter, KILDE.smlTennene, KILDE.smlEmalje, KILDE.smlSlitasje, KILDE.smlRemineralisering, KILDE.hnKaries, KILDE.hnSnus, KILDE.hdirVoksne, KILDE.ntfRad],
 };
