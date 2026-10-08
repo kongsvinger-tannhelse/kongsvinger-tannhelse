@@ -1,0 +1,116 @@
+import { HANDLING, type Artikkel } from "./typer";
+
+/* Toothache. The words from the drafts, unchanged. */
+
+export const vondtITanna: Artikkel = {
+  slug: "vondt-i-tanna",
+  tittel: "Det gjør vondt i tanna",
+  kort: "Tannverk",
+  ingress: "Vondt i en tann er ekkelt. Men det er nesten alltid noe vi kan fikse. Her ser du hva det kan bety, og hva du kan gjøre allerede i dag.",
+  lesetid: "3 minutter å lese",
+  beskrivelse: "Tannverk forklart enkelt: hva det kan være, hva du kan gjøre i dag, og når du bør komme til tannlegen.",
+  tegning: "betennelse",
+  deler: [
+    {
+      type: "tekst",
+      id: "nerven",
+      tittel: "Hvorfor gjør det vondt?",
+      avsnitt: [
+        "Inne i hver tann bor det en liten nerve. Den kjenner kulde, varme og trykk.",
+        "Når noe er galt med tanna, sier nerven ifra. Det er det du kjenner som vondt.",
+      ],
+      tegning: "nerve",
+    },
+    { type: "lapp", lapp: { slag: "visste", tekst: "En tann har tre lag. Ytterst er emaljen, det hardeste stoffet i hele kroppen. Under den er dentin, og innerst bor nerven." } },
+    {
+      type: "liste",
+      id: "arsaker",
+      tittel: "Hva kan det være?",
+      intro: "Det er særlig fire ting som gir vondt i en tann.",
+      ekstraNavn: "Slik kjennes det:",
+      punkter: [
+        { id: "hull", navn: "Et hull", tekst: "Bakterier i munnen lager syre av sukker. Syren kan spise et lite hull i tanna.", ekstra: "Ofte iser det når du spiser noe søtt eller kaldt.", tegning: "hull" },
+        { id: "sprekk", navn: "En sprekk", tekst: "Tanna kan få en liten sprekk, for eksempel hvis du biter på noe hardt.", ekstra: "Ofte et stikk når du biter, og så slipper det.", tegning: "sprekk" },
+        { id: "tannkjott", navn: "Sårt tannkjøtt", tekst: "Tannkjøttet rundt tanna kan bli rødt og irritert. Noen ganger sitter det mat fast der.", ekstra: "Ømt og sårt, og det kan blø litt når du pusser.", tegning: "tannkjott" },
+        { id: "betennelse", navn: "En syk nerve", tekst: "Hvis et hull får vokse lenge, kan nerven inne i tanna bli betent.", ekstra: "Det banker og verker, gjerne om natten, og går ikke over.", tegning: "betennelse" },
+      ],
+    },
+    { type: "lapp", lapp: { slag: "triks", tekst: "Skriv ned når det gjør vondt: når du drikker kaldt, når du biter, eller om natten. Da finner vi fortere ut hva det er." } },
+    {
+      type: "tips",
+      id: "tips",
+      tittel: "Hva kan jeg gjøre i dag?",
+      punkter: [
+        { tekst: "Puss tennene forsiktig, også der det gjør vondt. Bruk tanntråd hvis det sitter mat fast.", tegning: "borste" },
+        { tekst: "Skyll munnen med lunkent vann.", tegning: "glass" },
+        { tekst: "Tygg på den andre siden. Hold deg unna det som er veldig kaldt, varmt eller søtt.", tegning: "tygge" },
+        { tekst: "Om natten kan det hjelpe å ligge med hodet litt høyt.", tegning: "pute" },
+        { tekst: "Smertestillende fra apoteket kan hjelpe en stund. Følg det som står på pakken.", tegning: "tablett" },
+      ],
+      obs: "Ikke legg en tablett på tannkjøttet ved tanna. Den kan lage et sår.",
+    },
+    { type: "lapp", lapp: { slag: "tips", tekst: "Spytt ut tannkremen etter pussing, men ikke skyll med vann. Da blir fluoren igjen på tennene og beskytter dem lenger." } },
+    {
+      type: "tekst",
+      id: "stille",
+      tittel: "Det sluttet å gjøre vondt. Er alt bra nå?",
+      avsnitt: [
+        "Ikke alltid. Hvis nerven er veldig syk, kan den slutte å kjenne noe. Da blir det stille, men problemet er der fortsatt.",
+        "Derfor bør en tann som har verket, alltid sjekkes. Da kan vi fikse den mens det er enkelt.",
+      ],
+      tegning: "stille",
+    },
+    { type: "lapp", lapp: { slag: "tips", tekst: "Mat som sitter fast mellom tennene kan gjøre like vondt som et hull. Prøv tanntråd før du blir bekymret." } },
+  ],
+  sjekk: {
+    tittel: "Hvordan kjennes det hos deg?",
+    intro: "Nå som du har lest, kan du trykke på det som ligner mest. Da får du et lite hint om hva det kan være.",
+    hjelp: "Trykk på det som passer best.",
+    merke: "Det kan være",
+    valg: [
+      {
+        id: "iser",
+        svar: "Det iser litt når jeg drikker kaldt eller spiser søtt",
+        tegning: "hull",
+        overskrift: "Et lite hull, eller tynn emalje",
+        forklaring: "Når det iser kort og går fort over, er det sjelden farlig. Men et hull blir ikke borte av seg selv, så vi bør se på det.",
+        handling: HANDLING.bestill,
+        lenke: { tekst: "Les om ising", slug: "det-iser-i-tennene" },
+      },
+      {
+        id: "biter",
+        svar: "Det stikker når jeg biter",
+        tegning: "sprekk",
+        overskrift: "En sprekk i tanna",
+        forklaring: "En liten sprekk kan bli større når du tygger. Jo før vi ser på den, jo lettere er den å fikse.",
+        handling: HANDLING.iDag,
+      },
+      {
+        id: "tannkjott",
+        svar: "Tannkjøttet er sårt, eller blør når jeg pusser",
+        tegning: "tannkjott",
+        overskrift: "Sårt tannkjøtt",
+        forklaring: "Ofte hjelper det å pusse godt og bruke tanntråd hver dag i en uke eller to. Går det ikke over, vil vi gjerne se på det.",
+        handling: HANDLING.bestill,
+        lenke: { tekst: "Les om blødende tannkjøtt", slug: "tannkjottet-blor" },
+      },
+      {
+        id: "banker",
+        svar: "Det banker og verker, også om natten",
+        tegning: "betennelse",
+        overskrift: "En syk nerve",
+        forklaring: "Når det banker og ikke går over, kan nerven inne i tanna være betent. Det går ikke over av seg selv, men vi kan hjelpe.",
+        handling: HANDLING.iDag,
+      },
+      {
+        id: "hovent",
+        svar: "Kinnet er hovent, eller jeg har feber",
+        tegning: "hevelse",
+        overskrift: "En betennelse som sprer seg",
+        forklaring: "Hevelse og feber betyr at kroppen kjemper mot en betennelse. Da skal du ikke vente.",
+        handling: HANDLING.naa,
+      },
+    ],
+  },
+  slutt: "Vil du at vi ser på tanna? Bestill en time, så tar vi en titt.",
+};
