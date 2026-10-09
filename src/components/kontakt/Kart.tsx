@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { m } from "framer-motion";
-import { useId } from "react";
+import { useId, type ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { cn } from "@/lib/utils";
-import { FJELLGATA, GOOGLE_MAPS, KLINIKKHUS, NAVN, TEGNING, type Utsnitt } from "./kartdata";
+import { FJELLGATA, GOOGLE_MAPS, KLINIKKHUS, NAVN, TEGNING, type Kartnavn, type Utsnitt } from "./kartdata";
 
 /**
  * The drawn map of the clinic's part of town, cut to `utsnitt`. The drawing
@@ -33,7 +33,6 @@ export function Kart({
   papir?: string;
   className?: string;
 }) {
-  const id = `fjellgata-${useId().replace(/:/g, "")}`;
   const { x, y, b, h } = utsnitt;
 
   return (
@@ -45,34 +44,7 @@ export function Kart({
       className={cn("group relative block overflow-hidden", className)}
       style={{ aspectRatio: `${b} / ${h}`, background: papir }}
     >
-      <svg viewBox={`${x} ${y} ${b} ${h}`} className="absolute inset-0 h-full w-full" aria-hidden="true">
-        <image href={TEGNING.src} x={TEGNING.x} y={TEGNING.y} width={TEGNING.b} height={TEGNING.h} />
-        <path d={KLINIKKHUS} fill="var(--color-teal)" stroke="var(--color-glomma-deep)" strokeWidth={1} />
-        <path id={id} d={FJELLGATA} fill="none" />
-        <text fontSize={skrift * 0.82} fill="#7C766A" letterSpacing={skrift * 0.06} fontWeight={500}>
-          <textPath href={`#${id}`} startOffset="18%">
-            Fjellgata
-          </textPath>
-        </text>
-        {NAVN.map((n) => (
-          <text
-            key={n.tekst}
-            x={n.x}
-            y={n.y}
-            textAnchor="middle"
-            fontSize={n.slag === "vann" ? skrift * 1.25 : n.slag === "stor" ? skrift : skrift * 0.82}
-            fontStyle={n.slag === "vann" ? "italic" : undefined}
-            fontWeight={n.slag === "stor" ? 600 : 500}
-            letterSpacing={n.slag === "strok" ? skrift * 0.22 : n.slag === "vann" ? skrift * 0.3 : 0}
-            fill={n.slag === "vann" ? "#56777D" : n.slag === "stor" ? "#3E4A4F" : "#8E8778"}
-            stroke={papir}
-            strokeWidth={n.slag === "vann" ? 0 : skrift * 0.28}
-            paintOrder="stroke"
-          >
-            {n.slag === "strok" ? n.tekst.toUpperCase() : n.tekst}
-          </text>
-        ))}
-      </svg>
+      <Karttegning utsnitt={utsnitt} skrift={skrift} papir={papir} />
 
       {/* the pin, standing on the clinic */}
       <span className="pointer-events-none absolute" style={{ left: `${(-x / b) * 100}%`, top: `${(-y / h) * 100}%` }}>
@@ -110,5 +82,61 @@ export function Kart({
         <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-px group-hover:translate-x-px" aria-hidden="true" />
       </span>
     </a>
+  );
+}
+
+/**
+ * The drawing itself, cut to `utsnitt`: the map, the clinic's house coloured
+ * in, and the names. `navn` can move a name out of the way of what is drawn
+ * on top (`children`, in map units); `fjellgata` is where along the street its
+ * name stands.
+ */
+export function Karttegning({
+  utsnitt,
+  skrift = 11,
+  papir = "#F6F3EB",
+  navn = NAVN,
+  fjellgata = "18%",
+  children,
+}: {
+  utsnitt: Utsnitt;
+  skrift?: number;
+  papir?: string;
+  navn?: readonly Kartnavn[];
+  fjellgata?: string;
+  children?: ReactNode;
+}) {
+  const id = `fjellgata-${useId().replace(/:/g, "")}`;
+  const { x, y, b, h } = utsnitt;
+  return (
+    <svg viewBox={`${x} ${y} ${b} ${h}`} className="absolute inset-0 h-full w-full" aria-hidden="true">
+      <image href={TEGNING.src} x={TEGNING.x} y={TEGNING.y} width={TEGNING.b} height={TEGNING.h} />
+      <path d={KLINIKKHUS} fill="var(--color-teal)" stroke="var(--color-glomma-deep)" strokeWidth={1} />
+      <path id={id} d={FJELLGATA} fill="none" />
+      <text fontSize={skrift * 0.82} fill="#7C766A" letterSpacing={skrift * 0.06} fontWeight={500}>
+        <textPath href={`#${id}`} startOffset={fjellgata}>
+          Fjellgata
+        </textPath>
+      </text>
+      {navn.map((n) => (
+        <text
+          key={n.tekst}
+          x={n.x}
+          y={n.y}
+          textAnchor="middle"
+          fontSize={n.slag === "vann" ? skrift * 1.25 : n.slag === "stor" ? skrift : skrift * 0.82}
+          fontStyle={n.slag === "vann" ? "italic" : undefined}
+          fontWeight={n.slag === "stor" ? 600 : 500}
+          letterSpacing={n.slag === "strok" ? skrift * 0.22 : n.slag === "vann" ? skrift * 0.3 : 0}
+          fill={n.slag === "vann" ? "#56777D" : n.slag === "stor" ? "#3E4A4F" : "#8E8778"}
+          stroke={papir}
+          strokeWidth={n.slag === "vann" ? 0 : skrift * 0.28}
+          paintOrder="stroke"
+        >
+          {n.slag === "strok" ? n.tekst.toUpperCase() : n.tekst}
+        </text>
+      ))}
+      {children}
+    </svg>
   );
 }
