@@ -1,12 +1,13 @@
 /* «Leporelloen». */
 
 /* ───── Wide: the strip stands across the page ─────
-   --w is one panel's width; four panels at 16° to the page fill the
-   container. */
+   --w is one panel's width; the four panels open (the outer two at 16° to
+   the page, the middle two at 6°, as Bred.tsx sets them) fill the
+   container, at most its 1200 px. */
 
 .bred {
-  --w: min(312px, calc((100vw - 2 * var(--container-px)) / 3.85));
-  --bred: calc(var(--w) * 4 * cos(16deg));
+  --w: min(306px, calc((100vw - 2 * var(--container-px)) / 3.92));
+  --bred: calc(var(--w) * (2 * cos(16deg) + 2 * cos(6deg)));
 }
 
 .bredBoks {

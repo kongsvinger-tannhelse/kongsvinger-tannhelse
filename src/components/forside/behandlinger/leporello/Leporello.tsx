@@ -32,7 +32,7 @@ export function Leporello() {
   );
 
   return (
-    <section id="behandlinger" aria-labelledby="behandlinger-tittel" className="overflow-hidden bg-[var(--color-papir)] py-[clamp(88px,11vw,152px)]">
+    <section id="behandlinger" aria-labelledby="behandlinger-tittel" className="overflow-hidden bg-[var(--color-papir)] pb-[clamp(52px,5.5vw,80px)] pt-[clamp(88px,11vw,152px)]">
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
         <div className="lg:flex lg:items-end lg:justify-between lg:gap-12">
           <h2 id="behandlinger-tittel" className="seksjonstittel font-bold text-[var(--color-glomma-deep)]">

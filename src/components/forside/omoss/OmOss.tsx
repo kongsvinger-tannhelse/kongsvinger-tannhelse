@@ -10,8 +10,7 @@ import s from "./omoss.module.css";
 /**
  * «Om oss». The three at the clinic stand in a row in arches with a paper
  * border, as on Ringebu, and stand up one after another as they come into
- * view. Under them, what the clinic stands for, in three lines with pen
- * sketches. Then, along the foot of the section, the town as it is seen
+ * view. Under them, what the clinic stands for, in three short lines. Then, along the foot of the section, the town as it is seen
  * from across the valley: Kongsvinger festning on its hill (the stone wall
  * and bastion, the brick gable, the rust roofs, the yellow block, the flag
  * lifting in the wind), the autumn trees on the slope and the old town's
@@ -83,7 +82,7 @@ export function OmOss() {
   const vist = useInView(ref, { once: true, margin: "0px 0px -15% 0px" });
 
   return (
-    <section id="om-oss" aria-labelledby="om-oss-tittel" className="overflow-hidden bg-[var(--color-papir)] pt-[clamp(88px,11vw,152px)]">
+    <section id="om-oss" aria-labelledby="om-oss-tittel" className="overflow-hidden bg-[var(--color-papir)] pt-[clamp(32px,3.5vw,48px)]">
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
         <h2 id="om-oss-tittel" className="seksjonstittel font-bold text-[var(--color-glomma-deep)]">
           Om oss
@@ -95,7 +94,7 @@ export function OmOss() {
           {PERSONER.map((p, i) => (
             <li key={p.navn} className="flex flex-col items-center text-center">
               <Opp vis={vist} n={i} redusert={redusert} className="relative aspect-[19/28] w-full">
-                <Buebilde person={p} sizes="(min-width: 768px) 220px, 30vw" />
+                <Buebilde person={p} kolonne={{ px: 230, vw: 30 }} />
               </Opp>
               <div className="mt-3 md:mt-4">
                 <Navn person={p} />
@@ -105,7 +104,7 @@ export function OmOss() {
         </ul>
 
         {/* what the clinic stands for */}
-        <Punkter className="mx-auto mt-14 grid max-w-[860px] grid-cols-3 gap-4 sm:gap-8 md:mt-20" />
+        <Punkter className="mx-auto mt-14 grid max-w-[960px] gap-8 sm:grid-cols-3 sm:gap-8 md:mt-20 md:gap-12" />
       </div>
 
       {/* the town and the fortress, along the foot of the section */}
