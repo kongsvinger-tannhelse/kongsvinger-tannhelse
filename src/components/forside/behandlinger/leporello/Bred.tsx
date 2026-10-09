@@ -8,7 +8,7 @@ import { harSide, sideSti } from "@/data/behandlinger/sider";
 import { cn } from "@/lib/utils";
 import { TRE } from "../grupper";
 import { FARGE } from "../popup/tegning";
-import { Alle, MERKE, Omslag, Scene } from "./deler";
+import { Alle, Omslag, Scene } from "./deler";
 import s from "./leporello.module.css";
 
 /**
@@ -165,8 +165,9 @@ function Side({ bilde, children }: { bilde: ReactNode; children: ReactNode }) {
 }
 
 /**
- * What a panel says: the group, the treatment, a few words and the way to
- * its page; on the last panel, the way to them all. `skjult` is the unseen
+ * What a panel says: the treatment, a few words and the way to its page; on
+ * the last panel, the way to them all. (No small capitals over the names:
+ * the scene and the words say which kind of treatment it is.) `skjult` is the unseen
  * copy that sizes the box, with no heading or link of its own.
  */
 function Ord({ k, skjult = false }: { k: number; skjult?: boolean }) {
@@ -174,11 +175,10 @@ function Ord({ k, skjult = false }: { k: number; skjult?: boolean }) {
   if (k === TRE.length) {
     return (
       <>
-        <p className={MERKE}>Alle behandlingene</p>
         <Lenke
           skjult={skjult}
           href="/behandlinger"
-          className="group mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
+          className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
         >
           Se alle behandlingene
           <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
@@ -189,13 +189,12 @@ function Ord({ k, skjult = false }: { k: number; skjult?: boolean }) {
   const t = TRE[k];
   return (
     <>
-      <p className={MERKE}>{t.gruppe.tittel}</p>
-      <Tittel className="mt-2.5 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(26px, 2.3vw, 32px)", lineHeight: 1, letterSpacing: "-0.04em" }}>
+      <Tittel className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(26px, 2.3vw, 32px)", lineHeight: 1, letterSpacing: "-0.03em" }}>
         {t.navn}
       </Tittel>
-      <p className="mt-3 text-[15px] leading-[1.6] text-[var(--color-tekst-2)]">{t.tekst}</p>
+      <p className="mt-3 text-[16px] leading-[1.6] text-[var(--color-tekst-2)]">{t.tekst}</p>
       {harSide(t.id) && (
-        <Lenke skjult={skjult} href={sideSti(t.id)} className="group mt-3 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
+        <Lenke skjult={skjult} href={sideSti(t.id)} className="group mt-3 inline-flex items-center gap-1.5 text-[16px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
           Les mer om {t.navn.toLowerCase()}
           <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
         </Lenke>

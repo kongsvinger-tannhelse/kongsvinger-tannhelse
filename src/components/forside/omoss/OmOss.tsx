@@ -108,8 +108,10 @@ export function OmOss() {
       </div>
 
       {/* the town and the fortress, along the foot of the section */}
-      <div className="relative mx-auto mt-6 w-full max-w-[1800px] md:-mt-2">
+      <div className="relative mx-auto mt-6 w-full md:-mt-2">
         <Landskap />
+        {/* the foot of the trees goes into shadow, into the dark band below */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-[9%] bg-linear-to-b from-transparent to-[var(--color-glomma-deep)]" />
       </div>
     </section>
   );

@@ -17,8 +17,11 @@ const LENKER = [
 /**
  * Floats over the hero with no background of its own; once the page has
  * moved, it settles onto a sheet of paper with a hairline under it.
+ * On the front page (`forside`) the hero's own big name sits right below, so
+ * while the bar floats over it only the tooth shows; the name comes in once
+ * the page moves. Screen readers get the name all along.
  */
-export function Navbar() {
+export function Navbar({ forside = false }: { forside?: boolean }) {
   const [flyttet, setFlyttet] = useState(false);
   const [apen, setApen] = useState(false);
 
@@ -44,8 +47,13 @@ export function Navbar() {
       >
         <Link href="/" className="flex items-center gap-3 text-[var(--color-tekst)]" onClick={() => setApen(false)}>
           <Image src="/images/merke.png" alt="" width={36} height={36} className="size-9 rounded-[9px]" priority />
-          <span className="leading-[1.05]">
-            <span className="block whitespace-nowrap text-[15px] font-semibold tracking-[-0.02em]">{klinikk.navn}</span>
+          <span
+            className={cn(
+              "leading-[1.05] transition-[opacity,transform] duration-500",
+              forside && !flyttet && !apen && "-translate-x-1 opacity-0"
+            )}
+          >
+            <span className="block whitespace-nowrap text-[16px] font-semibold tracking-[-0.02em]">{klinikk.navn}</span>
             <span className="block text-[12px] text-[var(--color-tekst-2)]">{klinikk.undertittel}</span>
           </span>
         </Link>
@@ -66,7 +74,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Link
             href="/kontakt"
-            className="hidden whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-2.5 text-[13px] font-semibold text-[var(--color-papir)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)] sm:inline-flex"
+            className="hidden whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-2.5 text-[14px] font-semibold text-[var(--color-papir)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)] sm:inline-flex"
           >
             Be om time
           </Link>

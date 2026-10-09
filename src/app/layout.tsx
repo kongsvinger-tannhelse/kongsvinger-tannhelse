@@ -1,13 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import { Schibsted_Grotesk } from "next/font/google";
 import { klinikk } from "@/data/klinikk";
 import { Bunntekst } from "@/components/bunntekst/Bunntekst";
 import { Bevegelse } from "@/components/Bevegelse";
 import "./globals.css";
 
-const geist = Geist({
+// Schibsted Grotesk: a warm, sturdy Nordic grotesk, drawn for the Norwegian
+// media group Schibsted. (Geist until 2026-10-09.)
+const grotesk = Schibsted_Grotesk({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-grotesk",
   display: "swap",
 });
 
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="nb" className={geist.variable}>
+    <html lang="nb" className={grotesk.variable}>
       <head>
         <script
           type="application/ld+json"

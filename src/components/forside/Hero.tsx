@@ -27,7 +27,7 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-x-0 top-[84px] md:top-[clamp(96px,13vh,132px)]">
         <div className="mx-auto flex w-full max-w-[var(--container-max)] flex-col gap-6 px-[var(--container-px)] md:flex-row md:items-start md:justify-between md:gap-10 [&>*]:pointer-events-auto">
           <div className="pt-1">
-            <h1 className="text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(44px, 6.4vw, 104px)", lineHeight: 0.9, letterSpacing: "-0.055em" }}>
+            <h1 className="text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(44px, 6.4vw, 104px)", lineHeight: 0.92, letterSpacing: "-0.035em" }}>
               <span className="sr-only">{klinikk.navn}</span>
               {["Kongsvinger", "Tannhelse"].map((tekst, i) => (
                 <span key={tekst} aria-hidden="true" className="block overflow-hidden pb-[0.07em]">

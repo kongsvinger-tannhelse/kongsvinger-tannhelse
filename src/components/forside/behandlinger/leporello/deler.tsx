@@ -14,9 +14,6 @@ import { SCENER } from "../scener";
 /** The old site's own description of what the clinic does (its meta description). */
 export const INNLEDNING = "Vi tilbyr alt fra tannsjekk og tannrens til estetisk tannbehandling.";
 
-/** The small spaced capitals the Kontakt section uses for its labels. */
-export const MERKE = "text-[12px] font-medium uppercase tracking-[0.12em] text-[var(--color-tekst-svak)]";
-
 /** One treatment's pop-up, standing on the scenes' own paper, anchored at its foot. */
 export function Scene({ id, oppe, spiller, redusert }: { id: string; oppe: boolean; spiller: boolean; redusert: boolean }) {
   const S = SCENER[id];
@@ -27,14 +24,23 @@ export function Scene({ id, oppe, spiller, redusert }: { id: string; oppe: boole
   );
 }
 
-/** Every treatment by its group, as running lines: «Ordinære Tannsjekk · Tannfylling · …». */
+/** Every treatment by its group, as running lines: «Ordinære Tannsjekk · Tannfylling · …».
+    Each name keeps its dot, so a line never starts with one. */
 export function Alle({ className, style }: { className?: string; style?: CSSProperties }) {
   return (
     <span className={cn("block text-[var(--color-tekst-2)]", className)} style={style}>
       {GRUPPER.map((g) => (
         <span key={g.id} className="mb-[0.7em] block last:mb-0">
           <b className="font-semibold text-[var(--color-glomma-deep)]">{g.kort}e </b>
-          {g.liste.map((b) => b.navn).join(" · ")}
+          {g.liste.map((b, i) => (
+            <span key={b.navn}>
+              <span className="whitespace-nowrap">
+                {b.navn}
+                {i < g.liste.length - 1 ? "\u00a0·" : ""}
+              </span>
+              {i < g.liste.length - 1 ? " " : ""}
+            </span>
+          ))}
         </span>
       ))}
     </span>
