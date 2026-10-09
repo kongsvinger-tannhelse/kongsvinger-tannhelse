@@ -1,4 +1,3 @@
-import { Bestill } from "@/components/behandlinger/side";
 import { Smuler } from "@/components/Smuler";
 import { Avsnitt, Ingress, Laget, Skog, Tittel } from "./deler";
 import { Galleri } from "./Galleri";
@@ -62,7 +61,7 @@ export function OmOssSide() {
         <Stripe seed={17} fri className="relative -mt-2 h-[90px] w-full md:h-[130px]" />
       </section>
 
-      <section aria-labelledby="galleri-tittel" className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] py-[clamp(56px,7vw,104px)]">
+      <section aria-labelledby="galleri-tittel" className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pb-[clamp(96px,11vw,160px)] pt-[clamp(56px,7vw,104px)]">
         <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-end">
           <h2 id="galleri-tittel" className="font-bold text-[var(--color-glomma-deep)]" style={h2}>
             {GALLERI.tittel}
@@ -73,9 +72,7 @@ export function OmOssSide() {
           <Galleri />
         </div>
       </section>
-
-      <Stripe seed={29} />
-      <Bestill />
+      {/* the page ends in the footer's own landscape, the bridge at dusk */}
     </main>
   );
 }

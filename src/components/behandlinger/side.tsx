@@ -4,7 +4,7 @@ import { PUNKTER } from "./punkter";
 import { klinikk } from "@/data/klinikk";
 
 /* The parts of /behandlinger around the treatments themselves: the top,
-   the questions, the call to book, and the data for search engines. */
+   the questions, and the data for search engines. */
 
 const { telefon, epost, adresse, apningstider } = klinikk;
 
@@ -191,43 +191,6 @@ export function Sporsmal() {
               </p>
             </details>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Bestill() {
-  return (
-    <section aria-labelledby="bestill-tittel" className="bg-[var(--color-papir)]">
-      <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] py-[clamp(72px,9vw,120px)]">
-        <div className="flex flex-col gap-8 rounded-[32px] bg-[var(--color-glomma)] px-7 py-10 text-[var(--color-papir)] sm:px-12 sm:py-14 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <h2 id="bestill-tittel" className="font-bold" style={{ fontSize: "clamp(32px, 3.6vw, 52px)", lineHeight: 1, letterSpacing: "-0.05em" }}>
-              Trenger du tannlege{" "}
-              <br />i Kongsvinger?
-            </h2>
-            <p className="mt-4 max-w-[48ch] text-[16.5px] leading-[1.6] text-[var(--color-tekst-lys-2)]">
-              Ring oss, så finner vi en time som passer. {adresse.gate}, {adresse.postnummer} {adresse.sted}. {apningstider.dager}{" "}
-              {apningstider.fra}–{apningstider.til}.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={telefon.lenke}
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-papir)] px-6 py-3.5 text-[15px] font-semibold text-[var(--color-glomma-deep)] transition-colors duration-300 hover:bg-white"
-            >
-              <Phone className="size-4" aria-hidden="true" />
-              {telefon.visning}
-            </a>
-            <Link
-              href="/kontakt"
-              className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-strek-lys)] px-6 py-3.5 text-[15px] font-semibold text-[var(--color-papir)] transition-colors duration-300 hover:border-[var(--color-papir)]"
-            >
-              Skriv til oss
-              <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
-            </Link>
-          </div>
         </div>
       </div>
     </section>

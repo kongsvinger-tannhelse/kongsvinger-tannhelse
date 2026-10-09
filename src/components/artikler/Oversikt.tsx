@@ -65,7 +65,7 @@ export function Oversikt() {
                   <p className="mt-2.5 text-[16.5px] leading-[1.6] text-[var(--color-tekst-2)]">{a.ingress}</p>
                   <span className="mt-auto flex items-center justify-between gap-3 pt-6 text-[15px]">
                     <span className="text-[var(--color-tekst-svak)]">{a.lesetid}</span>
-                    <span className="inline-flex items-center gap-1.5 font-semibold text-[var(--color-teal)]">
+                    <span className="inline-flex items-center gap-1.5 font-semibold text-[var(--color-teal-tekst)]">
                       Les
                       <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                     </span>
