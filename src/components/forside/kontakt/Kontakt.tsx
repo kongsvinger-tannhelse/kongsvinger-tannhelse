@@ -45,7 +45,7 @@ export function Kontakt() {
 
         <div ref={ref} className="mt-12 md:mt-16">
           <Opp vis={vist} n={0} redusert={redusert}>
-            <div className="grid grid-cols-1 gap-x-8 rounded-[6px] bg-[#FBF8F1] p-3 shadow-[0_34px_70px_-34px_rgba(10,25,32,0.6),0_2px_0_rgba(10,25,32,0.04)] sm:p-4 md:grid-cols-2 md:p-5">
+            <div className="grid grid-cols-1 gap-x-8 rounded-[6px] bg-[#FFFDF8] p-3 shadow-[0_34px_70px_-34px_rgba(10,25,32,0.6),0_2px_0_rgba(10,25,32,0.04)] sm:p-4 md:grid-cols-2 md:p-5">
               {/* the picture side */}
               <div className="relative">
                 <Kart utsnitt={BILDE_SMAL} vis={vist} redusert={redusert} skrift={13} className="rounded-[3px] md:hidden" />

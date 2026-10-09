@@ -58,7 +58,7 @@ export function Oversikt() {
               <Vis as="li" key={a.slug}>
                 <Link
                   href={`${RAD_OG_TIPS.sti}/${a.slug}`}
-                  className="group flex h-full flex-col rounded-[26px] bg-[#FBF8F1] p-6 shadow-[0_30px_50px_-46px_rgba(10,25,32,0.55)] ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-[0_36px_60px_-40px_rgba(10,25,32,0.55)] md:p-7"
+                  className="group flex h-full flex-col rounded-[26px] bg-[#FFFDF8] p-6 shadow-[0_30px_50px_-46px_rgba(10,25,32,0.55)] ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-[0_36px_60px_-40px_rgba(10,25,32,0.55)] md:p-7"
                 >
                   <T strek className="w-28 md:w-32" forsink={(i % 3) * 0.2} />
                   <h2 className="mt-4 text-[24px] font-bold leading-[1.15] tracking-[-0.03em] text-[var(--color-glomma-deep)]">{a.tittel}</h2>

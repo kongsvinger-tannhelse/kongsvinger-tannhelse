@@ -120,7 +120,7 @@ export function Artikkelside({ artikkel }: { artikkel: Artikkel }) {
                 <li key={a.slug}>
                   <Link
                     href={`${RAD_OG_TIPS.sti}/${a.slug}`}
-                    className="group flex items-center gap-4 rounded-[22px] bg-[#FBF8F1] p-4 pr-5 ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_40px_-30px_rgba(10,25,32,0.5)]"
+                    className="group flex items-center gap-4 rounded-[22px] bg-[#FFFDF8] p-4 pr-5 ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_40px_-30px_rgba(10,25,32,0.5)]"
                   >
                     <T strek className="w-16 shrink-0" />
                     <span className="min-w-0 flex-1">

@@ -86,7 +86,7 @@ export function Kart({
               : { y: { type: "spring", stiffness: 85, damping: 13, delay: 0.55 }, opacity: { duration: 0.2, delay: 0.55 } }
           }
         >
-          <span className="block rounded-t-full bg-[#FBF8F1] p-[3px] shadow-[0_10px_18px_-8px_rgba(10,25,32,0.65)]">
+          <span className="block rounded-t-full bg-[#FFFDF8] p-[3px] shadow-[0_10px_18px_-8px_rgba(10,25,32,0.65)]">
             <span className="relative block h-[38px] w-[30px] overflow-hidden rounded-t-full bg-[#5B9BA8]">
               <Image src="/images/merke.png" alt="" fill sizes="40px" className="scale-[1.25] object-cover" />
             </span>
@@ -95,7 +95,7 @@ export function Kart({
           <span className="block size-[6px] -translate-y-[1px] rounded-full bg-[var(--color-glomma-deep)]" />
         </m.span>
         <m.span
-          className="absolute bottom-[26px] left-[24px] whitespace-nowrap rounded-[8px] bg-[#FBF8F1] px-2.5 py-1.5 shadow-[0_8px_18px_-10px_rgba(10,25,32,0.55)]"
+          className="absolute bottom-[26px] left-[24px] whitespace-nowrap rounded-[8px] bg-[#FFFDF8] px-2.5 py-1.5 shadow-[0_8px_18px_-10px_rgba(10,25,32,0.55)]"
           initial={{ opacity: 0, x: -6 }}
           animate={vis ? { opacity: 1, x: 0 } : { opacity: 0, x: -6 }}
           transition={redusert ? { duration: 0 } : { duration: 0.5, delay: 1.05, ease: [0.25, 0.1, 0.25, 1] }}
@@ -105,7 +105,7 @@ export function Kart({
         </m.span>
       </span>
 
-      <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-[#FBF8F1]/95 px-3.5 py-2 text-[12.5px] font-semibold text-[var(--color-glomma-deep)] shadow-[0_6px_16px_-8px_rgba(10,25,32,0.5)] transition-colors group-hover:bg-white">
+      <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-[#FFFDF8]/95 px-3.5 py-2 text-[12.5px] font-semibold text-[var(--color-glomma-deep)] shadow-[0_6px_16px_-8px_rgba(10,25,32,0.5)] transition-colors group-hover:bg-white">
         Vis i Google Maps
         <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-px group-hover:translate-x-px" aria-hidden="true" />
       </span>

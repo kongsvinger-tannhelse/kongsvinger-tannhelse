@@ -294,7 +294,7 @@ export function KontaktSide() {
             <Konvolutt fase={fase} innRef={inni} />
           </div>
 
-          <aside aria-labelledby="kort-i" className={cn(s.inn, "relative rotate-[-1.5deg] bg-[#FBF8F1] p-6 shadow-[0_22px_40px_-26px_rgba(10,25,32,0.55)]")} style={{ backgroundImage: PAPIR, animationDelay: "0.3s" }}>
+          <aside aria-labelledby="kort-i" className={cn(s.inn, "relative rotate-[-1.5deg] bg-[#FFFDF8] p-6 shadow-[0_22px_40px_-26px_rgba(10,25,32,0.55)]")} style={{ backgroundImage: PAPIR, animationDelay: "0.3s" }}>
             <h2 id="kort-i" className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[var(--color-tekst-svak)]">
               Heller ringe?
             </h2>

@@ -44,7 +44,7 @@ export function Opp({ vis, n, redusert, className, style, children }: { vis: boo
 /** A portrait under a round head, in a thin paper border, as Ringebu's arches. */
 export function Buebilde({ person, sizes }: { person: Person; sizes: string }) {
   return (
-    <span className="absolute inset-0 block rounded-t-full bg-[#FBF8F1] p-[4%] shadow-[0_22px_40px_-22px_rgba(10,25,32,0.65)]">
+    <span className="absolute inset-0 block rounded-t-full bg-[#FFFDF8] p-[4%] shadow-[0_22px_40px_-22px_rgba(10,25,32,0.65)]">
       <span className="relative block h-full w-full overflow-hidden rounded-t-full">
         <Foto person={person} sizes={sizes} />
       </span>

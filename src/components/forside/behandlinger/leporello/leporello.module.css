@@ -12,8 +12,20 @@
 .bredBoks {
   position: relative;
   width: var(--bred);
-  height: calc(var(--w) * 1.2);
   margin-inline: auto;
+}
+
+/* The unseen measure that gives the box its height: the scene's height,
+   then the four panels' words in one grid cell, so the tallest one counts. */
+.maal {
+  display: grid;
+  width: var(--w);
+  padding-top: calc(var(--w) * 1.2);
+  visibility: hidden;
+  pointer-events: none;
+}
+.maal > * {
+  grid-area: 1 / 1;
 }
 
 /* the strip's shadow on the page, under its feet */
@@ -45,16 +57,6 @@
   box-shadow: inset 0 0 0 1px rgba(22, 48, 59, 0.1);
 }
 
-.bredTekster {
-  display: grid;
-  grid-template-columns: repeat(4, calc(var(--w) * cos(16deg)));
-  width: var(--bred);
-  margin: clamp(36px, 4vw, 52px) auto 0;
-}
-.bredTekst {
-  padding-right: clamp(20px, 2.4vw, 36px);
-}
-
 /* ───── Narrow: the strip hangs down the page ───── */
 
 .heng {
@@ -65,7 +67,7 @@
 /* a panel: the paper, its cut edges at the sides, and its shadow on the page */
 .brett {
   position: relative;
-  background: #fbf8f1;
+  background: #FFFDF8;
   box-shadow: inset 1px 0 0 rgba(22, 48, 59, 0.09), inset -1px 0 0 rgba(22, 48, 59, 0.09), 0 26px 40px -34px rgba(10, 25, 32, 0.55);
 }
 /* the strip's top and bottom ends are cut edges too */
@@ -78,7 +80,7 @@
 
 /* a crease folding in: the paper below it lies a shade deeper, in the fold's shadow */
 .inn {
-  background: #f6f2e8;
+  background: #F9F4EA;
 }
 .inn::before {
   content: "";

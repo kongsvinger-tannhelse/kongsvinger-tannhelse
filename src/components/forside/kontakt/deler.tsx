@@ -16,7 +16,7 @@ export function Frimerke() {
     <span
       // the perforation: dots in the card's own colour on a grid centred on the edges; the picture covers the inner ones
       className="relative block h-[92px] w-[77px] bg-white p-[7px] shadow-[0_1px_3px_rgba(10,25,32,0.12)]"
-      style={{ backgroundImage: "radial-gradient(circle, #FBF8F1 2.6px, transparent 3px)", backgroundSize: "9.5px 9.5px", backgroundPosition: "-4.75px -4.75px" }}
+      style={{ backgroundImage: "radial-gradient(circle, #FFFDF8 2.6px, transparent 3px)", backgroundSize: "9.5px 9.5px", backgroundPosition: "-4.75px -4.75px" }}
       aria-hidden="true"
     >
       <span className="relative flex h-full w-full flex-col items-center justify-end overflow-hidden bg-[#5B9BA8] pb-1">

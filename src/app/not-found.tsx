@@ -78,7 +78,7 @@ export default function NotFound() {
                 <li key={s.href}>
                   <Link
                     href={s.href}
-                    className="group flex items-center gap-4 rounded-[20px] bg-[#FBF8F1] px-5 py-4 ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_40px_-30px_rgba(10,25,32,0.5)]"
+                    className="group flex items-center gap-4 rounded-[20px] bg-[#FFFDF8] px-5 py-4 ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_40px_-30px_rgba(10,25,32,0.5)]"
                   >
                     <span className="min-w-0 flex-1">
                       <span className="block text-[17px] font-semibold tracking-[-0.015em] text-[var(--color-glomma-deep)]">{s.tekst}</span>
