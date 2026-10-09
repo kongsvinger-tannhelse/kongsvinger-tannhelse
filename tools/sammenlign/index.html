@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Før og etter</title>
+<style>
+  :root { --papir:#E2F1F1; --ark:#FFFDF8; --glomma:#22404D; --dyp:#16303B; --strek:rgba(23,34,40,.14); --svak:#5E6569; --lapp:#FCEFB0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--papir); color: var(--dyp); font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  body { display: flex; flex-direction: column; }
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 12px 18px; background: var(--ark); border-bottom: 1px solid var(--strek); }
+  h1 { margin: 0 8px 0 0; font-size: 17px; letter-spacing: -.01em; }
+  .gruppe { display: flex; gap: 4px; padding: 3px; border-radius: 999px; background: var(--papir); }
+  button { font: inherit; border: 0; border-radius: 999px; padding: 7px 13px; background: transparent; color: var(--dyp); cursor: pointer; font-weight: 600; }
+  button[aria-pressed="true"] { background: var(--glomma); color: #fff; }
+  button:focus-visible { outline: 2px solid #1D7380; outline-offset: 2px; }
+  label { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+  main { flex: 1; min-height: 0; display: grid; gap: 14px; padding: 14px 18px 18px; }
+  main.side { grid-template-columns: 1fr 1fr; }
+  main.bytt { grid-template-columns: 1fr; }
+  .kol { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+  .merke { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .merke b { font-size: 16px; }
+  .merke b span { display: inline-block; margin-left: 6px; padding: 1px 9px; border-radius: 6px; background: var(--lapp); font-size: 13px; }
+  .merke a { color: #1D7380; font-size: 13px; }
+  .vindu { position: relative; flex: 1; min-height: 0; overflow: hidden; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px var(--strek), 0 20px 40px -30px rgba(10,25,32,.6); }
+  .vindu.tlf { margin: 0 auto; }
+  iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #fff; }
+  main.bytt .kol.skjult { display: none; }
+  .hint { color: var(--svak); font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Før og etter</h1>
+  <div class="gruppe" role="group" aria-label="Side" id="sider"></div>
+  <div class="gruppe" role="group" aria-label="Skjerm">
+    <button data-skjerm="pc" aria-pressed="true">Datamaskin</button>
+    <button data-skjerm="tlf" aria-pressed="false">Telefon</button>
+  </div>
+  <div class="gruppe" role="group" aria-label="Visning">
+    <button data-vis="side" aria-pressed="true">Side om side</button>
+    <button data-vis="bytt" aria-pressed="false">Bytt (mellomrom)</button>
+  </div>
+  <label><input type="checkbox" id="synk" checked> Rull samtidig</label>
+  <span class="hint" id="hint"></span>
+</header>
+<main class="side" id="flate">
+  <section class="kol" id="kol-for">
+    <div class="merke"><b>Før <span>live nå</span></b><a id="lenke-for" target="_blank" rel="noopener">Åpne i egen fane ↗</a></div>
+    <div class="vindu" id="vindu-for"><iframe id="for" title="Før"></iframe></div>
+  </section>
+  <section class="kol" id="kol-etter">
+    <div class="merke"><b>Etter <span>nytt</span></b><a id="lenke-etter" target="_blank" rel="noopener">Åpne i egen fane ↗</a></div>
+    <div class="vindu" id="vindu-etter"><iframe id="etter" title="Etter"></iframe></div>
+  </section>
+</main>
+<script>
+  const SIDER = [
+    ["Behandlinger", "/behandlinger"],
+    ["Om oss", "/om-oss"],
+    ["Kontakt", "/kontakt"],
+    ["Råd og tips", "/rad-og-tips"],
+    ["En artikkel", "/rad-og-tips/vondt-i-tanna"],
+  ];
+  const KILDE = { for: "http://localhost:3284", etter: "http://localhost:3285" };
+  const STR = { pc: [1440, 900], tlf: [390, 844] };
+  const tilstand = { sti: SIDER[0][1], skjerm: "pc", vis: "side", viser: "etter" };
+  const $ = (id) => document.getElementById(id);
+
+  const sider = $("sider");
+  for (const [navn, sti] of SIDER) {
+    const b = document.createElement("button");
+    b.textContent = navn; b.dataset.sti = sti; b.setAttribute("aria-pressed", String(sti === tilstand.sti));
+    b.onclick = () => { tilstand.sti = sti; last(); trykk(sider, b); };
+    sider.append(b);
+  }
+  function trykk(gruppe, valgt) { for (const b of gruppe.querySelectorAll("button")) b.setAttribute("aria-pressed", String(b === valgt)); }
+  document.querySelectorAll("[data-skjerm]").forEach((b) => (b.onclick = () => { tilstand.skjerm = b.dataset.skjerm; trykk(b.parentElement, b); last(); }));
+  document.querySelectorAll("[data-vis]").forEach((b) => (b.onclick = () => { tilstand.vis = b.dataset.vis; trykk(b.parentElement, b); vis(); }));
+
+  function last() {
+    for (const k of ["for", "etter"]) {
+      const url = KILDE[k] + tilstand.sti;
+      $(k).src = url;
+      $("lenke-" + k).href = url;
+    }
+    passInn();
+  }
+  function passInn() {
+    const [w, h] = STR[tilstand.skjerm];
+    for (const k of ["for", "etter"]) {
+      const vindu = $("vindu-" + k), f = $(k);
+      vindu.classList.toggle("tlf", tilstand.skjerm === "tlf");
+      f.style.width = w + "px"; f.style.height = h + "px";
+      const kol = vindu.parentElement.getBoundingClientRect();
+      const plass = vindu.parentElement.clientHeight - 30;
+      // a computer screen is 1440 wide and as tall as the space allows; a phone is a real 390×844
+      const skala = tilstand.skjerm === "pc" ? Math.min(1, kol.width / w) : Math.min(1, kol.width / w, plass / h);
+      const hoyde = tilstand.skjerm === "pc" ? Math.max(600, plass / skala) : h;
+      f.style.height = hoyde + "px";
+      f.style.transform = `scale(${skala})`;
+      vindu.style.width = tilstand.skjerm === "tlf" ? w * skala + "px" : "";
+      vindu.style.flex = "none";
+      vindu.style.height = hoyde * skala + "px";
+    }
+  }
+  function vis() {
+    const flate = $("flate");
+    flate.className = tilstand.vis;
+    $("kol-for").classList.toggle("skjult", tilstand.vis === "bytt" && tilstand.viser !== "for");
+    $("kol-etter").classList.toggle("skjult", tilstand.vis === "bytt" && tilstand.viser !== "etter");
+    $("hint").textContent = tilstand.vis === "bytt" ? "Trykk mellomrom for å bytte mellom før og etter." : "";
+    passInn();
+  }
+  addEventListener("keydown", (e) => {
+    if (e.code === "Space" && tilstand.vis === "bytt") { e.preventDefault(); tilstand.viser = tilstand.viser === "etter" ? "for" : "etter"; vis(); }
+  });
+  addEventListener("message", (e) => {
+    if (!e.data || e.data.kt !== "rull" || !$("synk").checked) return;
+    const fra = e.source === $("for").contentWindow ? "for" : e.source === $("etter").contentWindow ? "etter" : null;
+    if (!fra) return;
+    const til = fra === "for" ? "etter" : "for";
+    $(til).contentWindow.postMessage({ kt: "ga", y: e.data.y }, "*");
+  });
+  addEventListener("resize", passInn);
+  last(); vis();
+</script>
+</body>
+</html>
