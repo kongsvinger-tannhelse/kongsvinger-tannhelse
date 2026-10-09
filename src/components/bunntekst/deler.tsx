@@ -35,7 +35,7 @@ export function Merke() {
           <span className="block text-[14px] text-[var(--color-tekst-lys-2)]">{klinikk.undertittel}</span>
         </span>
       </Link>
-      <p className="mt-4 text-[14px] tabular-nums text-[var(--color-tekst-lys-2)]">Org.nr. {klinikk.orgnr}</p>
+      <p className="mt-4 text-[14px] text-[var(--color-tekst-lys-2)]">Org.nr. {klinikk.orgnr}</p>
     </div>
   );
 }
@@ -46,7 +46,7 @@ export function Kontakt() {
     <div className="col-span-2 md:col-span-1">
       <h3 className={etikett}>Kontakt</h3>
       <p className="text-[16px] leading-[1.7]">
-        <a href={telefon.lenke} className={cn("tabular-nums", lenke)}>
+        <a href={telefon.lenke} className={lenke}>
           {telefon.visning}
         </a>
         <br />
@@ -79,7 +79,7 @@ export function Tider() {
   return (
     <div>
       <h3 className={etikett}>Åpningstider</h3>
-      <p className={cn(tekst, "tabular-nums")}>
+      <p className={tekst}>
         {tid.dager} <span className="whitespace-nowrap">{tid.fra}–{tid.til}</span>
         <br />
         {tid.stengt} stengt

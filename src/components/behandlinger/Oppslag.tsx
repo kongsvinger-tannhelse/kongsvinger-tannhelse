@@ -256,7 +256,7 @@ export function Oppslag() {
               <ArrowLeft className="size-4 shrink-0" aria-hidden="true" />
               <span className="truncate">{forrige?.navn ?? "Forrige"}</span>
             </button>
-            <span className="text-[13px] tabular-nums text-[var(--color-tekst-svak)]">
+            <span className="text-[13px] text-[var(--color-tekst-svak)]">
               {i + 1} av {PUNKTER.length}
             </span>
             <button type="button" disabled={!neste} onClick={() => neste && velg(neste.id)} className="inline-flex min-w-0 items-center gap-2 rounded-full px-3 py-2 text-[14px] font-semibold text-[var(--color-glomma)] hover:bg-black/[0.04] disabled:opacity-30">
@@ -279,7 +279,7 @@ function Innhold({ p, tittelId = `${p.id}-tittel` }: { p: Punkt; tittelId?: stri
     <>
       <div className="flex items-center gap-3 pt-6 md:pt-6">
         <Merke p={p} />
-        <span className="text-[13px] tabular-nums text-[var(--color-tekst-svak)]">Nr. {p.nr}</span>
+        <span className="text-[13px] text-[var(--color-tekst-svak)]">Nr. {p.nr}</span>
       </div>
       <h2 id={tittelId} className="mt-3 text-[30px] font-bold leading-[1.02] tracking-[-0.04em] text-[var(--color-glomma-deep)] md:text-[clamp(34px,3.4vw,46px)] md:tracking-[-0.045em]">
         {p.navn}

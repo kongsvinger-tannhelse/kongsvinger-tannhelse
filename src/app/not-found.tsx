@@ -96,7 +96,7 @@ export default function NotFound() {
             <br />
             <a
               href={telefon.lenke}
-              className="mt-3 inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[15px] font-semibold tabular-nums text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
+              className="mt-3 inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[15px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
             >
               <Phone className="size-4" aria-hidden="true" />
               {telefon.visning}
