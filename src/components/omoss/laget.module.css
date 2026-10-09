@@ -1,0 +1,143 @@
+/* The three on the «Om oss» page. On a phone, one under another, the
+   portrait and the words side by side, every other one mirrored. From md
+   up, three in a row, each yellow note taped over the foot of its portrait,
+   the name under it. */
+
+.person {
+  display: grid;
+  grid-template-columns: minmax(0, 46%) minmax(0, 1fr);
+  /* the name beside the face, the note low down, so its tape lands on a
+     shoulder and never on a face */
+  grid-template-rows: 1fr auto auto 14px;
+  grid-template-areas:
+    "bilde ."
+    "bilde navn"
+    "bilde lapp"
+    "bilde .";
+  column-gap: 18px;
+}
+.speil {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 46%);
+  grid-template-areas:
+    ". bilde"
+    "navn bilde"
+    "lapp bilde"
+    ". bilde";
+}
+/* without a note, the name sits in the middle of the portrait's height */
+.utenLapp {
+  grid-template-rows: 1fr auto auto 1fr;
+}
+.bilde { grid-area: bilde; }
+.navn { grid-area: navn; }
+
+/* The note: square yellow paper, a strip of tape, a little askew. It
+   reaches back over the edge of the portrait it belongs to. */
+.lapp {
+  grid-area: lapp;
+  position: relative;
+  z-index: 1;
+  max-width: 250px;
+  margin: 14px 0 0 -30px;
+  padding: 15px 16px 16px 18px;
+  border-radius: 2px;
+  background: var(--color-lapp);
+  color: var(--color-lapp-tekst);
+  font-size: clamp(15px, 4.1vw, 16px);
+  line-height: 1.42;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+  box-shadow:
+    0 16px 26px -16px rgba(107, 74, 16, 0.55),
+    0 2px 0 rgba(107, 74, 16, 0.08);
+  rotate: var(--vri, 0deg);
+}
+.speil .lapp {
+  justify-self: end;
+  margin: 14px -30px 0 0;
+}
+/* the tape, across the corner that lies on the photo, pointing up into the
+   photo (away from the name) */
+.lapp::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: -25px;
+  width: 46px;
+  height: 18px;
+  rotate: 30deg;
+  background: rgba(246, 241, 222, 0.82);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+.speil .lapp::before {
+  left: auto;
+  right: -25px;
+  rotate: -30deg;
+}
+
+@media (min-width: 768px) {
+  .person,
+  .speil,
+  .utenLapp {
+    height: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "bilde"
+      "lapp"
+      "navn";
+    text-align: center;
+  }
+  /* a little off centre, one way and then the other, as if put up by hand */
+  .lapp {
+    max-width: none;
+    margin: -46px 11% 0 3%;
+    text-align: left;
+    font-size: 15.5px;
+  }
+  .speil .lapp {
+    justify-self: stretch;
+    margin: -46px 3% 0 11%;
+  }
+  .lapp::before,
+  .speil .lapp::before {
+    top: -11px;
+    left: 50%;
+    right: auto;
+    width: 76px;
+    height: 22px;
+    translate: -50% 0;
+    rotate: -3deg;
+  }
+  .navn {
+    align-self: end;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lapp {
+    font-size: 16.5px;
+  }
+}
+
+/* The note is stuck on when its portrait has stood up. */
+.lapp {
+  transition:
+    opacity 0.35s ease var(--forsink, 0s),
+    translate 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--forsink, 0s);
+}
+[data-vis="nei"] .lapp {
+  opacity: 0;
+  translate: 0 -10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lapp {
+    transition: none;
+  }
+  [data-vis] .lapp {
+    opacity: 1;
+    translate: none;
+  }
+}
