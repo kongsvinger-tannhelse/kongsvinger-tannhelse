@@ -7,6 +7,7 @@ import { Merke } from "@/components/artikler/deler";
 import { Frimerke } from "@/components/forside/kontakt/deler";
 import { Smuler } from "@/components/Smuler";
 import { klinikk } from "@/data/klinikk";
+import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";
 import { sendMelding, type MeldingState } from "./melding";
 import { MAX, PAKREVD, type Felt, type Verdier } from "./sjekk";
@@ -59,10 +60,11 @@ function Stempel({ midt, under, className }: { midt: string; under: string; clas
       <text fontSize={8.6} fontWeight={600} letterSpacing={1.2} fill={blekk}>
         <textPath href={`#${id}`} textLength={RAND - 1} lengthAdjust="spacing">{`${klinikk.navn.toUpperCase()} · ${adresse.gate.toUpperCase()} · `}</textPath>
       </text>
-      <text y={-3} textAnchor="middle" fontSize={midt.length > 7 ? 10 : 11.5} fontWeight={700} letterSpacing={0.8} fill={blekk}>
+      {/* sized to sit inside the inner ring */}
+      <text y={-3} textAnchor="middle" fontSize={10} fontWeight={700} letterSpacing={0.8} fill={blekk}>
         {midt}
       </text>
-      <text y={12} textAnchor="middle" fontSize={10.5} fontWeight={700} fill={blekk}>
+      <text y={11} textAnchor="middle" fontSize={under.length > 6 ? 9 : 10.5} fontWeight={700} fill={blekk}>
         {under}
       </text>
     </svg>
@@ -262,7 +264,7 @@ export function KontaktSide() {
     <main className="overflow-x-clip bg-[var(--color-papir)]">
       <header className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pt-[clamp(104px,12vw,150px)]">
         <Smuler side="Kontakt" />
-        <h1 className="mt-6 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(42px, 6vw, 80px)", lineHeight: 0.95, letterSpacing: "-0.055em" }}>
+        <h1 className="mt-6 font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
           Kontakt tannlegen
         </h1>
 

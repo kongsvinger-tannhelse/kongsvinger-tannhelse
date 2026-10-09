@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
+import { KART_KREDITT } from "@/components/kontakt/kartdata";
 import { cn } from "@/lib/utils";
 
 /* What the footer says, in pieces: light text on the river at night, the
@@ -107,9 +108,10 @@ export function Sider() {
 }
 
 /**
- * The bottom line: copyright and the privacy page, a credit, back to the top.
- * The hero is our own drawing and needs no credit. The fortress drawing in
- * «Om oss» is drawn over a CC BY 2.0 photo, whose licence asks for one.
+ * The bottom line: copyright and the privacy page, the credits, back to the
+ * top. The hero is our own drawing and needs no credit. The fortress drawing
+ * in «Om oss» is drawn over a CC BY 2.0 photo, and the fortress on the
+ * Behandlinger book is traced from OpenStreetMap; both licences ask for one.
  */
 export function Bunnlinje({ className }: { className?: string }) {
   return (
@@ -120,7 +122,13 @@ export function Bunnlinje({ className }: { className?: string }) {
           Personvern
         </Link>
       </p>
-      <p className="max-w-[70ch] md:text-center">Festningen er tegnet etter et bilde fra Kongsvinger kommune (CC BY 2.0).</p>
+      <p className="max-w-[70ch] md:text-center">
+        Festningen er tegnet etter et bilde fra Kongsvinger kommune (CC BY 2.0).{" "}
+        <br />
+        <a href={KART_KREDITT.href} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap underline decoration-1 underline-offset-2 hover:text-white">
+          {KART_KREDITT.tekst}
+        </a>
+      </p>
       <a href="#" className="inline-flex shrink-0 items-center gap-1.5 font-medium text-white/75 transition-colors hover:text-white">
         Til toppen <ArrowUp className="size-3.5" aria-hidden="true" />
       </a>

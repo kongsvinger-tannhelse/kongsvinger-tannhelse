@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Smuler } from "@/components/Smuler";
+import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";
 
 /* The parts of the site's plain text pages (Personvern): the top, and links
@@ -10,7 +11,7 @@ export function Topp({ side, tittel, children }: { side: string; tittel: React.R
   return (
     <header>
       <Smuler side={side} />
-      <h1 className="mt-6 max-w-[16ch] font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(42px, 6vw, 80px)", lineHeight: 0.95, letterSpacing: "-0.055em" }}>
+      <h1 className="mt-6 max-w-[16ch] font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
         {tittel}
       </h1>
       <div className="mt-5 max-w-[58ch] text-[18px] leading-[1.6] text-[var(--color-tekst-2)] md:mt-6">{children}</div>

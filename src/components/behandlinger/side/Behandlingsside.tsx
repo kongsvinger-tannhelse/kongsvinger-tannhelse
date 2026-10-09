@@ -153,7 +153,7 @@ export function Behandlingsside({ side }: { side: Side }) {
         <Smuler sider={[{ navn: "Behandlinger", href: "/behandlinger" }, { navn: side.navn }]} />
         <Ark className="mt-8">
           <Vis as="header" margin="0px">
-            <h1 className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(46px, 7vw, 88px)", lineHeight: 0.95, letterSpacing: "-0.05em" }}>
+            <h1 className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(34px, 4.2vw, 50px)", lineHeight: 1.05, letterSpacing: "-0.04em" }}>
               {side.navn}
             </h1>
             <div className="mt-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,330px)] md:items-center md:gap-10">

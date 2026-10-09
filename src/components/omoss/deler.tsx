@@ -6,6 +6,7 @@ import { useInView, useReducedMotion, type UseInViewOptions } from "framer-motio
 import { Opp } from "@/components/forside/omoss/deler";
 import { PERSONER, type Person } from "@/components/forside/omoss/ansatte";
 import pen from "@/components/artikler/artikler.module.css";
+import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";
 import { kortskrift } from "./skrift";
 import { BIOER, INGRESS, TITTEL } from "./tekst";
@@ -27,7 +28,7 @@ export function Skog({ className, children, margin = "0px 0px -12% 0px" }: { cla
 
 export function Tittel({ className }: { className?: string }) {
   return (
-    <h1 className={cn("font-bold text-[var(--color-glomma-deep)]", className)} style={{ fontSize: "clamp(40px, 5.6vw, 76px)", lineHeight: 0.98, letterSpacing: "-0.05em" }}>
+    <h1 className={cn("font-bold text-[var(--color-glomma-deep)]", className)} style={SIDETITTEL}>
       {TITTEL}
     </h1>
   );

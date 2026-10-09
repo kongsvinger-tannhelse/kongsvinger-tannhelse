@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown, Phone } from "lucide-react";
 import { PUNKTER } from "./punkter";
 import { klinikk } from "@/data/klinikk";
+import { SIDETITTEL } from "@/lib/sidetittel";
 
 /* The parts of /behandlinger around the treatments themselves: the top,
    the questions, and the data for search engines. */
@@ -104,7 +105,7 @@ export function Topp({ veiledning }: { veiledning: string }) {
         </ol>
       </nav>
 
-      <h1 className="mt-6 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(38px, 5vw, 66px)", lineHeight: 0.96, letterSpacing: "-0.05em" }}>
+      <h1 className="mt-6 font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
         Tannbehandling{" "}
         <br />i Kongsvinger
       </h1>
