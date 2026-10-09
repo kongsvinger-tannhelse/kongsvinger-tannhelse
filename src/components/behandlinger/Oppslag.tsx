@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type KeyboardEvent } from "react";
 import { useReducedMotion } from "framer-motion";
-import { ArrowLeft, ArrowRight, CalendarDays, ChevronRight, Phone, Search, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, ChevronRight, Search, X } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { GRUPPER } from "@/components/forside/behandlinger/grupper";
 import { harSide, sideSti } from "@/data/behandlinger/sider";
@@ -286,18 +286,14 @@ function Innhold({ p, tittelId = `${p.id}-tittel` }: { p: Punkt; tittelId?: stri
       </h2>
       <p className="mt-2 text-[16px] font-medium text-[var(--color-tekst-svak)] md:text-[18px]">{KORT[p.id]}</p>
       <p className="mt-3 max-w-[60ch] text-[17.5px] leading-[1.6] text-[var(--color-tekst)] md:mt-4 md:text-[18.5px] md:leading-[1.65]">{p.tekst}</p>
-      {harSide(p.id) && (
-        <Link href={sideSti(p.id)} className="group mt-4 inline-flex items-center gap-1.5 text-[16px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
-          Les mer om {p.navn.toLowerCase()}
-          <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
-        </Link>
-      )}
-      <div className="mt-6 grid grid-cols-2 gap-2.5 pb-6 md:mt-7 md:flex md:flex-wrap md:pb-8">
-        <a href={klinikk.telefon.lenke} className={cn("inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[15px] font-semibold text-white", p.gruppe === "akutt" ? "bg-[#B4472F]" : "bg-[var(--color-glomma)]")}>
-          <Phone className="size-4" aria-hidden="true" />
-          <span className="md:hidden">Ring oss</span>
-          <span className="hidden md:inline">Ring {klinikk.telefon.visning}</span>
-        </a>
+      {/* on the book's right page the buttons stay in sight while a long text scrolls under them */}
+      <div className="mt-6 grid grid-cols-2 gap-2.5 pb-6 md:sticky md:bottom-0 md:z-10 md:-mx-10 md:mt-3 md:flex md:flex-wrap md:bg-[#FFFDF8] md:px-10 md:pb-6 md:pt-4 md:shadow-[0_-18px_18px_-6px_#FFFDF8]">
+        {harSide(p.id) && (
+          <Link href={sideSti(p.id)} className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 text-[15px] font-semibold text-white transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]">
+            Les mer<span className="sr-only"> om {p.navn.toLowerCase()}</span>
+            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+          </Link>
+        )}
         <Link href="/kontakt" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-strek)] bg-white px-6 text-[15px] font-semibold text-[var(--color-glomma-deep)]">
           <CalendarDays className="size-4" aria-hidden="true" />
           Be om time
