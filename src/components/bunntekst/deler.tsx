@@ -107,7 +107,7 @@ export function Sider() {
 
 /**
  * The bottom line: copyright and the privacy page, a credit, back to the top.
- * The hero photo needs no credit (Pexels licence). The fortress drawing in
+ * The hero is our own drawing and needs no credit. The fortress drawing in
  * «Om oss» is drawn over a CC BY 2.0 photo, whose licence asks for one.
  */
 export function Bunnlinje({ className }: { className?: string }) {
