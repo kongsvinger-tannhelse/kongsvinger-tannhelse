@@ -11,13 +11,13 @@ export const TITTEL = "Velkommen til Kongsvinger Tannhelse";
 
 export const INGRESS = `Vi er en tannklinikk midt i Kongsvinger, i ${adresse.gate}. Hos oss er alle velkomne.`;
 
-export const LAGET = { tittel: "Dette er oss", tekst: "Tannlegene og tannpleieren du møter når du kommer til oss." };
+/** The three's heading, for screen readers only: the page just shows them. */
+export const LAGET = { tittel: "Dette er oss" };
 
 type Navn = (typeof ansatte)[number]["navn"];
 
 /**
- * A few words about each of the three, written in the white border under
- * their photo.
+ * A few words about each of the three, on the card under their photo.
  *
  * PLACEHOLDERS. The old site says nothing about them but their names, so
  * these must come from the clinic, written or approved by each person,

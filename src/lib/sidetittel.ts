@@ -1,2 +1,2 @@
-/** The size of a page's own title (Behandlinger, Om oss, Kontakt, Personvern): one size, so the pages match. */
-export const SIDETITTEL = { fontSize: "clamp(38px, 5vw, 66px)", lineHeight: 0.96, letterSpacing: "-0.05em" } as const;
+/** The size of every page's own title except the front page's: one size for all, and not big. */
+export const SIDETITTEL = { fontSize: "clamp(34px, 4.2vw, 50px)", lineHeight: 1.05, letterSpacing: "-0.04em" } as const;

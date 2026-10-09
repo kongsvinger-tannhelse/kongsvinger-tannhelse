@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { klinikk } from "@/data/klinikk";
+import { SIDETITTEL } from "@/lib/sidetittel";
 
 export const metadata: Metadata = {
   title: "Fant ikke siden",
@@ -62,7 +63,7 @@ export default function NotFound() {
             </div>
             <h1
               className="hero-loft mt-8 font-bold text-[var(--color-glomma-deep)]"
-              style={{ fontSize: "clamp(40px, 5.6vw, 72px)", lineHeight: 0.98, letterSpacing: "-0.05em", animationDelay: "0.08s" }}
+              style={{ ...SIDETITTEL, animationDelay: "0.08s" }}
             >
               Fant ikke siden
             </h1>

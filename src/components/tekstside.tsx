@@ -6,15 +6,15 @@ import { cn } from "@/lib/utils";
 /* The parts of the site's plain text pages (Personvern): the top, and links
    in the text. */
 
-/** Crumbs, the title and the short intro. */
+/** Crumbs, the title and the short intro, centred; the text under them starts from the left. */
 export function Topp({ side, tittel, children }: { side: string; tittel: React.ReactNode; children: React.ReactNode }) {
   return (
-    <header>
+    <header className="text-center">
       <Smuler side={side} />
-      <h1 className="mt-6 max-w-[16ch] font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
+      <h1 className="mx-auto mt-6 max-w-[22ch] text-balance font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
         {tittel}
       </h1>
-      <div className="mt-5 max-w-[58ch] text-[18px] leading-[1.6] text-[var(--color-tekst-2)] md:mt-6">{children}</div>
+      <div className="mx-auto mt-5 max-w-[58ch] text-balance text-[18px] leading-[1.6] text-[var(--color-tekst-2)] md:mt-6">{children}</div>
     </header>
   );
 }
