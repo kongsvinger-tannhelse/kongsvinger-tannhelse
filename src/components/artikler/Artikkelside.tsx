@@ -49,7 +49,7 @@ const DATO = new Date(`${GJENNOMGATT}T12:00:00Z`).toLocaleDateString("nb-NO", { 
 function Kilder({ artikkel }: { artikkel: Artikkel }) {
   return (
     <section aria-labelledby="kilder" className="mt-10 border-t border-dashed border-[var(--color-strek)] pt-8 md:mt-12">
-      <h2 id="kilder" className="text-[15px] font-bold uppercase tracking-[0.12em] text-[var(--color-tekst-2)]">
+      <h2 id="kilder" className="text-[18px] font-bold tracking-[-0.01em] text-[var(--color-tekst-2)]">
         Kilder
       </h2>
       <p className="mt-2 max-w-[60ch] text-[15px] leading-[1.6] text-[var(--color-tekst-2)]">

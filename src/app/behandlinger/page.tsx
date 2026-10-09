@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Oppslag } from "@/components/behandlinger/Oppslag";
-import { Bestill, Sporsmal, Strukturert, Topp } from "@/components/behandlinger/side";
+import { Sporsmal, Strukturert, Topp } from "@/components/behandlinger/side";
 
 export const metadata: Metadata = {
   title: "Tannbehandling i Kongsvinger: alle behandlinger",
@@ -32,7 +32,6 @@ export default function Page() {
         </div>
 
         <Sporsmal />
-        <Bestill />
       </main>
     </>
   );

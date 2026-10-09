@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import nodemailer from "nodemailer";
 import { klinikk } from "@/data/klinikk";
-import { FELT, feilI, type Felt } from "@/components/kontakt/sjekk";
+import { FELT, feilene, type Felt } from "@/components/kontakt/sjekk";
 
 /**
  * Sends a message from the contact form to the clinic's inbox, as Ringebu
@@ -48,18 +48,14 @@ export async function sendMelding(_forrige: MeldingState, form: FormData): Promi
   if (les(form, "nettsted")) return { status: "sent" };
 
   const v = Object.fromEntries(FELT.map((f) => [f, les(form, f)])) as Record<Felt, string>;
-  const errors: Partial<Record<Felt, string>> = {};
-  for (const f of FELT) {
-    const feil = feilI(f, v[f]);
-    if (feil) errors[f] = feil;
-  }
+  const errors = feilene(v);
   if (Object.keys(errors).length) return { status: "invalid", errors };
 
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() || "ukjent";
   if (forMange(ip)) return { status: "error", reason: "busy" };
 
   const subject = `Melding fra nettsiden: ${v.navn.replace(/[\r\n]+/g, " ")}`;
-  const text = `Navn: ${v.navn}\nTelefon: ${v.telefon}\nE-post: ${v.epost}\n\n${v.melding}\n`;
+  const text = `Navn: ${v.navn}\nTelefon: ${v.telefon || "(ikke oppgitt)"}\nE-post: ${v.epost || "(ikke oppgitt)"}\n\n${v.melding}\n`;
 
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
@@ -84,8 +80,8 @@ export async function sendMelding(_forrige: MeldingState, form: FormData): Promi
       .sendMail({
         from: { name: "Nettsiden", address: user },
         to: process.env.SMTP_TO ?? klinikk.epost,
-        // The clinic answers by pressing Svar
-        replyTo: { name: v.navn, address: v.epost },
+        // The clinic answers by pressing Svar, when there is an address to answer
+        ...(v.epost && { replyTo: { name: v.navn, address: v.epost } }),
         subject,
         text,
       });

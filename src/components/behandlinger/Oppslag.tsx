@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type KeyboardEvent } from "react";
 import { useReducedMotion } from "framer-motion";
-import { ArrowLeft, ArrowRight, CalendarDays, ChevronRight, Phone, Search, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, ChevronRight, Search, X } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { GRUPPER } from "@/components/forside/behandlinger/grupper";
 import { harSide, sideSti } from "@/data/behandlinger/sider";
@@ -64,6 +64,19 @@ const ORD: Record<string, string> = {
   helprotese: "protese gebiss tannløs",
 };
 const SOKBAR = Object.fromEntries(PUNKTER.map((p) => [p.id, enkel(`${p.navn} ${KORT[p.id]} ${p.tekst} ${ORD[p.id] ?? ""}`)]));
+const NAVN = Object.fromEntries(PUNKTER.map((p) => [p.id, enkel(p.navn)]));
+const STIKKORD = Object.fromEntries(PUNKTER.map((p) => [p.id, enkel(`${p.navn} ${KORT[p.id]} ${ORD[p.id] ?? ""}`)]));
+
+/**
+ * How well a treatment answers a search, lowest first: its name, then its
+ * few words and other words, then only its long text. Between two that
+ * answer equally well, the urgent one comes first, since a word like
+ * «tannpine» may mean someone is in pain.
+ */
+const rang = (p: Punkt, ord: string[]) => {
+  if (ord.every((o) => NAVN[p.id].includes(o))) return 0;
+  return (ord.every((o) => STIKKORD[p.id].includes(o)) ? 1 : 3) + (p.gruppe === "akutt" ? 0 : 1);
+};
 
 type Filter = "alle" | (typeof GRUPPER)[number]["id"];
 
@@ -82,11 +95,26 @@ export function Oppslag() {
   const [sok, setSok] = useState("");
   const [filter, setFilter] = useState<Filter>("alle");
   const liste = useRef<HTMLUListElement | null>(null);
+  const sokeboks = useRef<HTMLDivElement | null>(null);
 
   const vist = useMemo(() => {
     const ord = enkel(sok).split(/\s+/).filter(Boolean);
-    return PUNKTER.filter((p) => (filter === "alle" || p.gruppe === filter) && ord.every((o) => SOKBAR[p.id].includes(o)));
+    const treff = PUNKTER.filter((p) => (filter === "alle" || p.gruppe === filter) && ord.every((o) => SOKBAR[p.id].includes(o)));
+    return ord.length ? [...treff].sort((a, b) => rang(a, ord) - rang(b, ord)) : treff;
   }, [sok, filter]);
+
+  // the right page shows the chosen treatment while it is in the list, else the list's first
+  const aktiv = vist.some((p) => p.id === valgt) ? valgt : (vist[0]?.id ?? valgt);
+
+  // on a phone the search box stays at the top; a new search brings the list's top back up under it
+  const tilListen = () => {
+    if (bred) return;
+    requestAnimationFrame(() => {
+      const boks = sokeboks.current?.getBoundingClientRect().bottom;
+      const topp = liste.current?.getBoundingClientRect().top;
+      if (boks !== undefined && topp !== undefined && topp < boks) window.scrollBy({ top: topp - boks });
+    });
+  };
 
   const velg = (id: string) => {
     setValgt(id);
@@ -141,7 +169,7 @@ export function Oppslag() {
   const piler = (e: KeyboardEvent) => {
     if (!bred || (e.key !== "ArrowDown" && e.key !== "ArrowUp")) return;
     e.preventDefault();
-    const i = vist.findIndex((p) => p.id === valgt);
+    const i = vist.findIndex((p) => p.id === aktiv);
     const neste = vist[Math.min(vist.length - 1, Math.max(0, i + (e.key === "ArrowDown" ? 1 : -1)))];
     if (neste) {
       velg(neste.id);
@@ -149,17 +177,17 @@ export function Oppslag() {
     }
   };
 
-  const i = PUNKTER.findIndex((p) => p.id === valgt);
-  const forrige = PUNKTER[i - 1];
-  const neste = PUNKTER[i + 1];
+  // the right page's arrows walk the same list as the register beside it
+  const i = vist.findIndex((p) => p.id === aktiv);
+  const forrige = i > 0 ? vist[i - 1] : undefined;
+  const neste = i >= 0 ? vist[i + 1] : undefined;
 
   return (
     <>
       <div className={s.bok}>
         {/* the register */}
         <div className="flex min-h-0 flex-col">
-          <div className="sticky top-[72px] z-30 -mx-[var(--container-px)] bg-[color-mix(in_srgb,var(--color-papir)_94%,transparent)] px-[var(--container-px)] pb-3 pt-2 backdrop-blur-md md:static md:mx-0 md:bg-transparent md:px-8 md:pb-3 md:pt-8 md:backdrop-blur-none">
-            <p className="mb-3 hidden text-[12px] font-semibold uppercase tracking-[0.14em] text-[var(--color-tekst-svak)] md:block">Register · {PUNKTER.length} behandlinger</p>
+          <div ref={sokeboks} className="sticky top-[72px] z-30 -mx-[var(--container-px)] bg-[color-mix(in_srgb,var(--color-papir)_94%,transparent)] px-[var(--container-px)] pb-3 pt-2 backdrop-blur-md md:static md:mx-0 md:bg-transparent md:px-8 md:pb-3 md:pt-8 md:backdrop-blur-none">
             <div className="relative">
               <label htmlFor="behandlingssok" className="sr-only">
                 Søk i behandlingene
@@ -169,7 +197,10 @@ export function Oppslag() {
                 id="behandlingssok"
                 type="search"
                 value={sok}
-                onChange={(e) => setSok(e.target.value)}
+                onChange={(e) => {
+                  setSok(e.target.value);
+                  tilListen();
+                }}
                 placeholder="Søk: tannpine, hvite tenner …"
                 autoComplete="off"
                 className="h-12 w-full rounded-full border border-[var(--color-strek)] bg-white pl-11 pr-11 text-[16px] placeholder:text-[var(--color-tekst-svak)] focus:border-[var(--color-teal)] focus:outline-none focus-visible:outline-none md:h-11 md:text-[15px] [&::-webkit-search-cancel-button]:appearance-none"
@@ -189,7 +220,10 @@ export function Oppslag() {
                     key={f}
                     type="button"
                     aria-pressed={pa}
-                    onClick={() => setFilter(f)}
+                    onClick={() => {
+                      setFilter(f);
+                      tilListen();
+                    }}
                     className={cn("inline-flex h-9 shrink-0 items-center rounded-full px-3.5 text-[14px] font-semibold transition-colors md:h-8 md:px-3 md:text-[13px]", pa ? "text-white" : "bg-white text-[var(--color-tekst-2)] shadow-[0_0_0_1px_var(--color-strek)]")}
                     style={pa ? { background: g ? PINFARGE[g.id] : "var(--color-glomma)" } : undefined}
                   >
@@ -206,7 +240,7 @@ export function Oppslag() {
 
           <ul ref={liste} onKeyDown={piler} aria-label="Behandlingene" className="-mx-2 min-h-0 flex-1 pb-36 md:mx-0 md:overflow-y-auto md:px-5 md:pb-6">
             {vist.map((p) => {
-              const pa = bred && p.id === valgt;
+              const pa = bred && p.id === aktiv;
               return (
                 <li key={p.id}>
                   <button
@@ -234,7 +268,12 @@ export function Oppslag() {
             })}
             {vist.length === 0 && (
               <li className="mx-2 mt-4 rounded-[20px] border border-dashed border-[var(--color-strek)] px-5 py-8 text-center md:mx-0">
-                <p className="text-[16px] font-semibold text-[var(--color-glomma-deep)]">Ingen treff på «{sok}».</p>
+                <p className="text-[16px] font-semibold text-[var(--color-glomma-deep)]">Ingen treff på «{sok}»{filter !== "alle" && ` blant de ${GRUPPER.find((g) => g.id === filter)?.kort.toLowerCase()}e`}.</p>
+                {filter !== "alle" && (
+                  <button type="button" onClick={() => setFilter("alle")} className="mt-2 block w-full text-[15px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
+                    Søk i alle behandlingene
+                  </button>
+                )}
                 <a href={klinikk.telefon.lenke} className="mt-2 inline-block text-[15px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
                   Ring oss, så hjelper vi deg
                 </a>
@@ -246,8 +285,8 @@ export function Oppslag() {
         {/* the right page: every treatment's text is here; the chosen one shows (on a wide screen) */}
         <div className={cn(s.hoyre, "hidden md:flex")}>
           {PUNKTER.map((p) => (
-            <article key={p.id} id={p.id} aria-labelledby={`${p.id}-tittel`} hidden={p.id !== valgt} className={cn("min-h-0 flex-1 overflow-y-auto px-10 pt-8", p.id === valgt && s.blad)}>
-              {p.id === valgt && bred && <Vindu p={p} className="aspect-[2/1] max-h-[28svh] w-full rounded-[22px] shadow-[0_18px_34px_-24px_rgba(22,48,59,0.6)]" opp />}
+            <article key={p.id} id={p.id} aria-labelledby={`${p.id}-tittel`} hidden={p.id !== aktiv} className={cn("min-h-0 flex-1 overflow-y-auto px-10 pt-8", p.id === aktiv && s.blad)}>
+              {p.id === aktiv && bred && <Vindu p={p} className="aspect-[2/1] max-h-[28svh] w-full rounded-[22px] shadow-[0_18px_34px_-24px_rgba(22,48,59,0.6)]" opp />}
               <Innhold p={p} />
             </article>
           ))}
@@ -256,9 +295,7 @@ export function Oppslag() {
               <ArrowLeft className="size-4 shrink-0" aria-hidden="true" />
               <span className="truncate">{forrige?.navn ?? "Forrige"}</span>
             </button>
-            <span className="text-[13px] text-[var(--color-tekst-svak)]">
-              {i + 1} av {PUNKTER.length}
-            </span>
+            <span className="text-[13px] text-[var(--color-tekst-svak)]">{i >= 0 && `${i + 1} av ${vist.length}`}</span>
             <button type="button" disabled={!neste} onClick={() => neste && velg(neste.id)} className="inline-flex min-w-0 items-center gap-2 rounded-full px-3 py-2 text-[14px] font-semibold text-[var(--color-glomma)] hover:bg-black/[0.04] disabled:opacity-30">
               <span className="truncate">{neste?.navn ?? "Neste"}</span>
               <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
@@ -277,27 +314,22 @@ export function Oppslag() {
 function Innhold({ p, tittelId = `${p.id}-tittel` }: { p: Punkt; tittelId?: string }) {
   return (
     <>
-      <div className="flex items-center gap-3 pt-6 md:pt-6">
+      <div className="pt-6">
         <Merke p={p} />
-        <span className="text-[13px] text-[var(--color-tekst-svak)]">Nr. {p.nr}</span>
       </div>
       <h2 id={tittelId} className="mt-3 text-[30px] font-bold leading-[1.02] tracking-[-0.04em] text-[var(--color-glomma-deep)] md:text-[clamp(34px,3.4vw,46px)] md:tracking-[-0.045em]">
         {p.navn}
       </h2>
       <p className="mt-2 text-[16px] font-medium text-[var(--color-tekst-svak)] md:text-[18px]">{KORT[p.id]}</p>
       <p className="mt-3 max-w-[60ch] text-[17.5px] leading-[1.6] text-[var(--color-tekst)] md:mt-4 md:text-[18.5px] md:leading-[1.65]">{p.tekst}</p>
-      {harSide(p.id) && (
-        <Link href={sideSti(p.id)} className="group mt-4 inline-flex items-center gap-1.5 text-[16px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
-          Les mer om {p.navn.toLowerCase()}
-          <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
-        </Link>
-      )}
-      <div className="mt-6 grid grid-cols-2 gap-2.5 pb-6 md:mt-7 md:flex md:flex-wrap md:pb-8">
-        <a href={klinikk.telefon.lenke} className={cn("inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[15px] font-semibold text-white", p.gruppe === "akutt" ? "bg-[#B4472F]" : "bg-[var(--color-glomma)]")}>
-          <Phone className="size-4" aria-hidden="true" />
-          <span className="md:hidden">Ring oss</span>
-          <span className="hidden md:inline">Ring {klinikk.telefon.visning}</span>
-        </a>
+      {/* on the book's right page the buttons stay in sight while a long text scrolls under them */}
+      <div className="mt-6 grid grid-cols-2 gap-2.5 pb-6 md:sticky md:bottom-0 md:z-10 md:-mx-10 md:mt-3 md:flex md:flex-wrap md:bg-[#FFFDF8] md:px-10 md:pb-6 md:pt-4 md:shadow-[0_-18px_18px_-6px_#FFFDF8]">
+        {harSide(p.id) && (
+          <Link href={sideSti(p.id)} className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 text-[15px] font-semibold text-white transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]">
+            Les mer<span className="sr-only"> om {p.navn.toLowerCase()}</span>
+            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+          </Link>
+        )}
         <Link href="/kontakt" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-strek)] bg-white px-6 text-[15px] font-semibold text-[var(--color-glomma-deep)]">
           <CalendarDays className="size-4" aria-hidden="true" />
           Be om time
@@ -388,7 +420,7 @@ function Ark({ p, liste, onBytt, onLukk }: { p: Punkt | null; liste: Punkt[]; on
             {neste && (
               <button type="button" onClick={() => onBytt(neste)} className="mb-2 flex w-full items-center justify-between rounded-[18px] bg-white px-4 py-3.5 text-left shadow-[0_0_0_1px_var(--color-strek)]">
                 <span>
-                  <span className="block text-[12px] font-semibold uppercase tracking-[0.1em] text-[var(--color-tekst-svak)]">Neste</span>
+                  <span className="block text-[13.5px] font-medium text-[var(--color-tekst-svak)]">Neste</span>
                   <span className="block text-[16px] font-semibold text-[var(--color-glomma-deep)]">{neste.navn}</span>
                 </span>
                 <ArrowRight className="size-5 text-[var(--color-glomma)]" aria-hidden="true" />

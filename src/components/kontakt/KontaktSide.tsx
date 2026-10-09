@@ -9,7 +9,7 @@ import { Smuler } from "@/components/Smuler";
 import { klinikk } from "@/data/klinikk";
 import { cn } from "@/lib/utils";
 import { sendMelding, type MeldingState } from "./melding";
-import { MAX, type Felt, type Verdier } from "./sjekk";
+import { MAX, PAKREVD, type Felt, type Verdier } from "./sjekk";
 import { AKUTT, INTRO, VEIBESKRIVELSE } from "./tekst";
 import s from "./brevveksling.module.css";
 
@@ -75,10 +75,8 @@ function Konvolutt({ fase, innRef }: { fase: Fase; innRef: React.RefObject<HTMLD
         <div className={cn(s.side, "absolute inset-0 bg-[#F3ECDC] p-[5%] shadow-[0_26px_44px_-26px_rgba(10,25,32,0.6)]")} style={{ backgroundImage: PAPIR }}>
           <div className="flex h-full flex-col">
             <div className="flex items-start justify-between">
-              <p className="text-[11px] font-semibold uppercase leading-snug tracking-[0.16em] text-[var(--color-tekst-svak)]">
-                Fra:
-                <br />
-                deg
+              <p className="text-[14px] font-medium leading-snug text-[var(--color-tekst-svak)] max-sm:text-[12.5px]">
+                Fra: deg
               </p>
               <div className="relative origin-top-right max-sm:scale-[0.72]">
                 <Frimerke />
@@ -174,7 +172,7 @@ export function KontaktSide() {
   const felt = (f: Felt) => ({
     name: f,
     id: `${id}${f}`,
-    required: true,
+    required: PAKREVD[f],
     maxLength: MAX[f],
     value: v[f],
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setV((x) => ({ ...x, [f]: e.target.value })),
@@ -293,9 +291,14 @@ export function KontaktSide() {
           <div className={s.inn}>
             <Konvolutt fase={fase} innRef={inni} />
           </div>
+          {/* without JavaScript nothing would lay the envelope down */}
+          <noscript>
+            <style>{`.${s.inn}{opacity:1;transform:none}`}</style>
+          </noscript>
 
-          <aside aria-labelledby="kort-i" className={cn(s.inn, "relative rotate-[-1.5deg] bg-[#FFFDF8] p-6 shadow-[0_22px_40px_-26px_rgba(10,25,32,0.55)]")} style={{ backgroundImage: PAPIR, animationDelay: "0.3s" }}>
-            <h2 id="kort-i" className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[var(--color-tekst-svak)]">
+          {/* the phone and what to do with toothache: there from the first paint, never faded in */}
+          <aside aria-labelledby="kort-i" className="relative rotate-[-1.5deg] bg-[#FFFDF8] p-6 shadow-[0_22px_40px_-26px_rgba(10,25,32,0.55)]" style={{ backgroundImage: PAPIR }}>
+            <h2 id="kort-i" className="text-[16px] font-semibold text-[var(--color-tekst-2)]">
               Heller ringe?
             </h2>
             <a href={telefon.lenke} className="mt-1.5 block text-[30px] font-bold leading-none tracking-[-0.02em] text-[var(--color-glomma-deep)] underline-offset-4 hover:underline">

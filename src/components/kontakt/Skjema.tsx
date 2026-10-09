@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { cn } from "@/lib/utils";
 import { sendMelding, type MeldingState } from "./melding";
-import { FELT, MAX, type Felt, type Verdier } from "./sjekk";
+import { FELT, MAX, PAKREVD, type Felt, type Verdier } from "./sjekk";
 
 /**
  * The contact form. It posts to sendMelding (melding.ts), which mails it to
@@ -76,7 +76,7 @@ export function Skjema({
 
   const felt = (f: Felt, mer?: string) => ({
     name: f,
-    required: true,
+    required: PAKREVD[f],
     maxLength: MAX[f],
     value: verdier[f],
     onChange: sett(f),

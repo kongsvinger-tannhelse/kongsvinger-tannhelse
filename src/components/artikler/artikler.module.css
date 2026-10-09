@@ -1,6 +1,6 @@
-/* The article drafts' motion. A drawing waits flat until its sheet is seen
-   (data-vis="nei" on server and first render, so it hydrates), then:
-   pen lines draw themselves (A), paper pictures stand up (B), bubbles rise (C). */
+/* The articles' motion. A drawing waits until its sheet is seen
+   (data-vis="nei" on server and first render, so it hydrates), then its pen
+   lines draw themselves, the ink fills in, and the yellow notes rise. */
 
 /* ── Pen lines that draw themselves ── */
 .strek {
@@ -15,16 +15,7 @@
 }
 [data-vis="nei"] .blekk { opacity: 0; }
 
-/* ── Paper that stands up, like a page in a pop-up book ── */
-.opp {
-  transform-origin: 50% 100%;
-  transition:
-    transform 1.1s cubic-bezier(0.3, 1.35, 0.5, 1) var(--forsink, 0.1s),
-    opacity 0.35s var(--ease-rolig) var(--forsink, 0.1s);
-}
-[data-vis="nei"] .opp { transform: perspective(900px) rotateX(82deg); opacity: 0; }
-
-/* ── A speech bubble rising into place ── */
+/* ── A note rising into place ── */
 .stig {
   transition:
     transform 0.7s var(--ease-rolig) var(--forsink, 0s),
@@ -32,19 +23,8 @@
 }
 [data-vis="nei"] .stig { transform: translateY(14px); opacity: 0; }
 
-/* ── The lamps of the traffic light, coming on one after another ── */
-.lampe {
-  transition: opacity 0.5s var(--ease-rolig) var(--forsink, 0s), filter 0.5s var(--ease-rolig) var(--forsink, 0s);
-}
-[data-vis="nei"] .lampe { opacity: 0.18; filter: saturate(0.2); }
-
-/* The open book's fold, down the middle of a spread. */
-.fals {
-  background: linear-gradient(90deg, rgba(22, 48, 59, 0) 0%, rgba(22, 48, 59, 0.07) 46%, rgba(22, 48, 59, 0.13) 50%, rgba(22, 48, 59, 0.07) 54%, rgba(22, 48, 59, 0) 100%);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .strek, .blekk, .opp, .stig, .lampe { transition: none !important; }
+  .strek, .blekk, .stig { transition: none !important; }
   [data-vis] .strek { stroke-dashoffset: 0 !important; }
-  [data-vis] .blekk, [data-vis] .opp, [data-vis] .stig, [data-vis] .lampe { opacity: 1 !important; transform: none !important; filter: none !important; }
+  [data-vis] .blekk, [data-vis] .stig { opacity: 1 !important; transform: none !important; }
 }
