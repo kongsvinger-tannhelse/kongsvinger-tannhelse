@@ -18,7 +18,7 @@ import s from "./leporello.module.css";
  * comes into view it unfolds from the middle, fold by fold, and comes to
  * rest standing in a gentle zigzag, the panels catching the light from the
  * left by turns. Then each scene stands up in its panel, one after the
- * other. Under each panel stands what it shows.
+ * other, with what it shows printed on the paper under it.
  *
  * Each panel hangs on the right edge of the one before (the DOM nests them),
  * so a fold is one rotateY about that edge, and the angles add up.
@@ -99,56 +99,114 @@ export function Bred() {
     width: useMotionTemplate`calc(var(--w) * ${skyggeBredde})`,
   };
 
-  const scene = (k: number) => <Scene id={TRE[k].id} oppe={staar > k} spiller={synlig && staar > k} redusert={redusert} />;
+  // a scene is pure picture; the words under it are the panel's text
+  const scene = (k: number) => (
+    <div aria-hidden="true" className="absolute inset-0">
+      <Scene id={TRE[k].id} oppe={staar > k} spiller={synlig && staar > k} redusert={redusert} />
+    </div>
+  );
+  const side = (k: number, bilde: ReactNode) => (
+    <Side bilde={bilde}>
+      <div className={cn(ORD, "hero-loft")} style={{ animationPlayState: staar > k ? "running" : "paused", animationDelay: "0.25s" }}>
+        <Ord k={k} />
+      </div>
+    </Side>
+  );
 
   return (
     <div ref={ref} className={s.bred}>
       <div className={s.bredBoks}>
+        {/* The box's height: the four panels' words, stacked unseen in one
+            cell, so every panel is as tall as the one with the most to say. */}
+        <div aria-hidden="true" inert className={s.maal}>
+          {[0, 1, 2, 3].map((k) => (
+            <div key={k} className={ORD}>
+              <Ord k={k} skjult />
+            </div>
+          ))}
+        </div>
+
         {/* its shadow on the page */}
         <m.div aria-hidden="true" className={s.bredSkygge} style={skyggeStil} />
 
-        <div aria-hidden="true" className="absolute inset-0" style={{ perspective: 2400, perspectiveOrigin: "50% 35%" }}>
+        <div className="absolute inset-0" style={{ perspective: 2400, perspectiveOrigin: "50% 35%" }}>
           <m.div className="absolute inset-y-0 left-0 w-[var(--w)]" style={{ transform: flytt, transformStyle: "preserve-3d" }}>
-            <Panel forste ledd={fot} vinkel={a0} forside={scene(0)}>
-              <Panel ledd={l1} vinkel={a1} forside={scene(1)}>
-                <Panel ledd={l2} vinkel={a2} forside={scene(2)}>
-                  <Panel ledd={l3} vinkel={a3} forside={<Register />} bakside={<Omslag />} />
+            <Panel forste ledd={fot} vinkel={a0} forside={side(0, scene(0))}>
+              <Panel ledd={l1} vinkel={a1} forside={side(1, scene(1))}>
+                <Panel ledd={l2} vinkel={a2} forside={side(2, scene(2))}>
+                  <Panel ledd={l3} vinkel={a3} forside={side(3, <Register />)} bakside={<Omslag />} />
                 </Panel>
               </Panel>
             </Panel>
           </m.div>
         </div>
       </div>
-
-      {/* what each panel shows, under it */}
-      <ol className={s.bredTekster}>
-        {TRE.map((t, k) => (
-          <li key={t.id} className={cn(s.bredTekst, "hero-loft")} style={{ animationPlayState: staar > k ? "running" : "paused", animationDelay: "0.25s" }}>
-            <p className={MERKE}>{t.gruppe.tittel}</p>
-            <h3 className="mt-2.5 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(26px, 2.3vw, 32px)", lineHeight: 1, letterSpacing: "-0.04em" }}>
-              {t.navn}
-            </h3>
-            <p className="mt-3 text-[15px] leading-[1.6] text-[var(--color-tekst-2)]">{t.tekst}</p>
-            {harSide(t.id) && (
-              <Link href={sideSti(t.id)} className="group mt-3 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
-                Les mer om {t.navn.toLowerCase()}
-                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
-              </Link>
-            )}
-          </li>
-        ))}
-        <li className={cn(s.bredTekst, "hero-loft")} style={{ animationPlayState: staar > 3 ? "running" : "paused", animationDelay: "0.25s" }}>
-          <p className={MERKE}>Alle behandlingene</p>
-          <Link
-            href="/behandlinger"
-            className="group mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
-          >
-            Se alle behandlingene
-            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
-          </Link>
-        </li>
-      </ol>
     </div>
+  );
+}
+
+/** The words' place on a panel: under the scene, on the same paper. */
+const ORD = "px-[8%] pb-[8%] pt-[6%]";
+
+/** One panel's face: its picture at the top, as tall as the panel used to be, and its words under it. */
+function Side({ bilde, children }: { bilde: ReactNode; children: ReactNode }) {
+  return (
+    <div className="absolute inset-0 flex flex-col" style={{ background: FARGE.papir }}>
+      <div className="relative shrink-0" style={{ height: "calc(var(--w) * 1.2)" }}>
+        {bilde}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+/**
+ * What a panel says: the group, the treatment, a few words and the way to
+ * its page; on the last panel, the way to them all. `skjult` is the unseen
+ * copy that sizes the box, with no heading or link of its own.
+ */
+function Ord({ k, skjult = false }: { k: number; skjult?: boolean }) {
+  const Tittel = skjult ? "p" : "h3";
+  if (k === TRE.length) {
+    return (
+      <>
+        <p className={MERKE}>Alle behandlingene</p>
+        <Lenke
+          skjult={skjult}
+          href="/behandlinger"
+          className="group mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
+        >
+          Se alle behandlingene
+          <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+        </Lenke>
+      </>
+    );
+  }
+  const t = TRE[k];
+  return (
+    <>
+      <p className={MERKE}>{t.gruppe.tittel}</p>
+      <Tittel className="mt-2.5 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(26px, 2.3vw, 32px)", lineHeight: 1, letterSpacing: "-0.04em" }}>
+        {t.navn}
+      </Tittel>
+      <p className="mt-3 text-[15px] leading-[1.6] text-[var(--color-tekst-2)]">{t.tekst}</p>
+      {harSide(t.id) && (
+        <Lenke skjult={skjult} href={sideSti(t.id)} className="group mt-3 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
+          Les mer om {t.navn.toLowerCase()}
+          <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+        </Lenke>
+      )}
+    </>
+  );
+}
+
+/** A link, or in the unseen copy just its words. */
+function Lenke({ skjult, href, className, children }: { skjult: boolean; href: string; className: string; children: ReactNode }) {
+  if (skjult) return <span className={className}>{children}</span>;
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
   );
 }
 
@@ -167,7 +225,7 @@ function Panel({ forste = false, ledd, vinkel, forside, bakside, children }: { f
         <div className={s.kant} />
         <m.div className="pointer-events-none absolute inset-0 bg-[#3B3424]" style={{ opacity: skyggeFor }} />
       </div>
-      <div className={cn(s.flate, s.bak)}>
+      <div aria-hidden="true" className={cn(s.flate, s.bak)}>
         {bakside}
         <m.div className="pointer-events-none absolute inset-0 bg-[#3B3424]" style={{ opacity: skyggeBak }} />
       </div>
@@ -176,14 +234,11 @@ function Panel({ forste = false, ledd, vinkel, forside, bakside, children }: { f
   );
 }
 
-/** The last panel: every treatment, set large enough to fill the page, like the back of a book. A link to them all (the button under it is the one in the tab order). */
+/** The last panel's picture: every treatment, set large enough to fill it, like the back of a book. */
 function Register() {
   return (
-    <Link href="/behandlinger" tabIndex={-1} className="absolute inset-0 flex flex-col px-[9%] pb-[8%] pt-[9%] text-[var(--color-glomma-deep)]" style={{ background: FARGE.papir }}>
-      <Alle className="flex flex-1 flex-col justify-between" style={{ fontSize: "calc(var(--w) * 0.046)", lineHeight: 1.45 }} />
-      <span className="mt-[5%] inline-flex items-center gap-1.5 border-t border-[var(--color-strek)] pt-[5%] font-semibold" style={{ fontSize: "calc(var(--w) * 0.046)" }}>
-        Se alle <ArrowRight style={{ width: "1em", height: "1em" }} aria-hidden="true" />
-      </span>
-    </Link>
+    <div className="absolute inset-0 flex flex-col border-b border-[var(--color-strek)] px-[9%] pb-[7%] pt-[9%] text-[var(--color-glomma-deep)]">
+      <Alle className="flex flex-1 flex-col justify-between" style={{ fontSize: "calc(var(--w) * 0.05)", lineHeight: 1.45 }} />
+    </div>
   );
 }

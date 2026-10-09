@@ -42,7 +42,7 @@ export function OmOssSide() {
           <Ingress className="mt-6 max-w-[42ch]" />
           <Avsnitt className="mt-6 max-w-[58ch]" />
         </div>
-        <Skog className="relative mx-auto aspect-[4/5] w-full max-w-[340px] rounded-t-full bg-[#FBF8F1] p-[3%] shadow-[0_30px_60px_-30px_rgba(10,25,32,0.55)] lg:max-w-[440px]">
+        <Skog className="relative mx-auto aspect-[4/5] w-full max-w-[340px] rounded-t-full bg-[#FFFDF8] p-[3%] shadow-[0_30px_60px_-30px_rgba(10,25,32,0.55)] lg:max-w-[440px]">
           <div className="relative size-full overflow-hidden rounded-t-full">
             <Skogsbilde />
           </div>

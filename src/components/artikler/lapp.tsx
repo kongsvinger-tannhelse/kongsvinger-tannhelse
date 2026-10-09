@@ -24,7 +24,7 @@ const KANT = "border-t border-dashed border-[var(--color-strek)]";
 /** The sheet of paper the note is written on. */
 export function Ark({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <article className={cn("relative rounded-[28px] bg-[#FBF8F1] px-[clamp(22px,6vw,80px)] pb-[clamp(36px,6vw,72px)] pt-[clamp(32px,5vw,60px)] shadow-[0_40px_70px_-50px_rgba(10,25,32,0.5)] ring-1 ring-[var(--color-strek)]", className)}>
+    <article className={cn("relative rounded-[28px] bg-[#FFFDF8] px-[clamp(22px,6vw,80px)] pb-[clamp(36px,6vw,72px)] pt-[clamp(32px,5vw,60px)] shadow-[0_40px_70px_-50px_rgba(10,25,32,0.5)] ring-1 ring-[var(--color-strek)]", className)}>
       {children}
     </article>
   );

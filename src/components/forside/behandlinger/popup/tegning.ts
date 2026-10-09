@@ -170,7 +170,7 @@ export const FARGE = {
   /** Cold. */
   kulde: "#8CC8D8",
   /** The paper's own colour, under the print. */
-  papir: "#FBF8F1",
+  papir: "#FFFDF8",
 } as const;
 
 /** The tint each group's scenes are printed in: a pale disc and a dotted ring. */

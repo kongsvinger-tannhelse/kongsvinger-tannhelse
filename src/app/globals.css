@@ -4,15 +4,15 @@
   /* ── Kongsvinger: the river, the fortress stone, the limewashed walls ── */
   --color-glomma:       #22404D;   /* deep river slate — dark anchor, primary CTA */
   --color-glomma-deep:  #16303B;   /* footer, text on paper */
-  --color-papir:        #F3F4F1;   /* limestone paper, default background */
-  --color-kalk:         #E7E8E2;   /* one notch deeper, for sections that need separating */
+  --color-papir:        #FDF9F0;   /* light, soft cream, default background (a step under the sheets' #FFFDF8) */
+  --color-kalk:         #F7F0E1;   /* one notch deeper, for sections that need separating */
   --color-stein:        #8A8B84;   /* fortress stone — hairlines, captions */
   --color-bjork:        #A7B88A;   /* spring birch — accents on dark */
   --color-teal:         #2DA4B4;   /* the clinic's logo */
 
   --color-tekst:        #172228;
   --color-tekst-2:      #4B565C;
-  --color-tekst-svak:   #676F73;   /* faint, but 4.5:1 on papir and the cards' #FBF8F1 (WCAG AA) */
+  --color-tekst-svak:   #62696D;   /* faint, but 5.3:1 on papir, 4.9:1 on kalk (WCAG AA) */
   --color-tekst-lys:    #F3F4F1;
   --color-tekst-lys-2:  rgba(243, 244, 241, 0.72);
 

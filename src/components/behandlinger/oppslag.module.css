@@ -9,7 +9,7 @@
     height: min(800px, calc(100svh - 120px));
     min-height: 600px;
     border-radius: 28px;
-    background: #FBF8F1;
+    background: #FFFDF8;
     box-shadow:
       0 0 0 1px var(--color-strek),
       0 40px 70px -44px rgba(22, 48, 59, 0.6);

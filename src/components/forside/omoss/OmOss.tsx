@@ -4,12 +4,14 @@ import { useId, useRef } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 import { Buebilde, Navn, Opp } from "./deler";
 import { PERSONER, TEKST } from "./ansatte";
+import { Punkter } from "./punkter";
 import s from "./omoss.module.css";
 
 /**
  * «Om oss». The three at the clinic stand in a row in arches with a paper
  * border, as on Ringebu, and stand up one after another as they come into
- * view. Under them, along the foot of the section, the town as it is seen
+ * view. Under them, what the clinic stands for, in three lines with pen
+ * sketches. Then, along the foot of the section, the town as it is seen
  * from across the valley: Kongsvinger festning on its hill (the stone wall
  * and bastion, the brick gable, the rust roofs, the yellow block, the flag
  * lifting in the wind), the autumn trees on the slope and the old town's
@@ -101,6 +103,9 @@ export function OmOss() {
             </li>
           ))}
         </ul>
+
+        {/* what the clinic stands for */}
+        <Punkter className="mx-auto mt-14 grid max-w-[860px] grid-cols-3 gap-4 sm:gap-8 md:mt-20" />
       </div>
 
       {/* the town and the fortress, along the foot of the section */}

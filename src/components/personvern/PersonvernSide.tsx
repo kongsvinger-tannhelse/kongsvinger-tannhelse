@@ -102,7 +102,7 @@ export function PersonvernSide() {
           <p>Hva nettsiden samler inn om deg, og hvorfor.</p>
         </Topp>
 
-        <dl className="mt-10 rounded-[28px] bg-[#FBF8F1] px-[clamp(22px,5vw,56px)] py-[clamp(14px,2.5vw,28px)] shadow-[0_40px_70px_-50px_rgba(10,25,32,0.5)] ring-1 ring-[var(--color-strek)] md:mt-14">
+        <dl className="mt-10 rounded-[28px] bg-[#FFFDF8] px-[clamp(22px,5vw,56px)] py-[clamp(14px,2.5vw,28px)] shadow-[0_40px_70px_-50px_rgba(10,25,32,0.5)] ring-1 ring-[var(--color-strek)] md:mt-14">
           {RADER.map((r) => (
             <div key={r.tittel} className="grid gap-1.5 border-b border-dashed border-[var(--color-strek)] py-6 last:border-b-0 md:grid-cols-[200px_minmax(0,1fr)] md:gap-10">
               <dt className="text-[13px] font-semibold uppercase leading-[1.5] tracking-[0.12em] text-[var(--color-teal)] md:pt-1">{r.tittel}</dt>

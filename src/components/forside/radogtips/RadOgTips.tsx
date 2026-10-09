@@ -4,8 +4,8 @@ import { ARTIKLER, RAD_OG_TIPS } from "@/data/artikler";
 import { Vis } from "@/components/artikler/deler";
 import { TEGNINGER } from "@/components/artikler/tegninger";
 
-/* A small band on the front page: three of the notes from «Råd og tips»,
-   each on its own sheet with its pen sketch, and a way to all of them. */
+/* A band on the front page: three of the notes from «Råd og tips», each on
+   its own large sheet with its pen sketch on top, and a way to all of them. */
 
 const UTVALG = ["vondt-i-tanna", "redd-for-tannlegen", "slik-pusser-du-tennene"];
 
@@ -27,21 +27,21 @@ export function RadOgTips() {
           </Link>
         </div>
 
-        <ul className="mt-8 grid gap-4 md:mt-10 md:grid-cols-3">
+        <ul className="mt-8 grid gap-5 md:mt-10 md:grid-cols-3 md:gap-6">
           {artikler.map((a, i) => {
             const T = TEGNINGER[a.tegning];
             return (
               <Vis as="li" key={a.slug}>
                 <Link
                   href={`${RAD_OG_TIPS.sti}/${a.slug}`}
-                  className="group flex h-full items-center gap-4 rounded-[22px] bg-[#FBF8F1] p-4 pr-5 ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_40px_-30px_rgba(10,25,32,0.5)] md:p-5"
+                  className="group flex h-full flex-col rounded-[28px] bg-[#FFFDF8] p-6 ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-[0_30px_50px_-34px_rgba(10,25,32,0.5)] md:p-8"
                 >
-                  <T strek className="w-16 shrink-0 md:w-20" forsink={i * 0.2} />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-[18px] font-bold leading-[1.25] tracking-[-0.01em] text-[var(--color-glomma-deep)]">{a.tittel}</span>
-                    <span className="mt-1 block text-[14px] text-[var(--color-tekst-svak)]">{a.lesetid}</span>
+                  <T strek className="w-28 md:w-36" forsink={i * 0.2} />
+                  <span className="mt-6 block text-[22px] font-bold leading-[1.2] tracking-[-0.015em] text-[var(--color-glomma-deep)] md:text-[24px]">{a.tittel}</span>
+                  <span className="mt-auto flex items-center justify-between gap-4 pt-6">
+                    <span className="text-[15px] text-[var(--color-tekst-svak)]">{a.lesetid}</span>
+                    <ArrowRight className="size-6 shrink-0 text-[var(--color-teal)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                   </span>
-                  <ArrowRight className="size-5 shrink-0 text-[var(--color-teal)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                 </Link>
               </Vis>
             );
