@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
-import { Utsikt } from "@/components/forside/utsikt/Utsikt";
+import { Utsikt, type Lag } from "@/components/forside/utsikt/Utsikt";
 import { Klinikkbilder } from "@/components/forside/Klinikkbilder";
 import { Apningsstatus } from "@/components/forside/Apningsstatus";
 
@@ -18,10 +18,10 @@ import { Apningsstatus } from "@/components/forside/Apningsstatus";
  * (Earlier versions of the clinic photos are kept on the git branch
  * mockups/klinikkbilder.)
  */
-export function Hero() {
+export function Hero({ lag }: { lag?: Lag } = {}) {
   return (
     <section aria-label="Velkommen" className="relative h-[100svh] min-h-[640px] overflow-hidden">
-      <Utsikt glid zoom={1.22} fx={0.62} fy={0.46} fxSmal={0.7} />
+      <Utsikt glid zoom={1.22} fx={0.62} fy={0.46} fxSmal={0.7} lag={lag} />
 
       {/* The wrapper spans the hero; only what is in it takes the pointer. */}
       <div className="pointer-events-none absolute inset-x-0 top-[84px] md:top-[clamp(96px,13vh,132px)]">

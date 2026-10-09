@@ -6,6 +6,10 @@ import { m, useMotionValue, useScroll, useSpring, useTransform } from "framer-mo
 import { cn } from "@/lib/utils";
 import far from "./far.webp";
 import near from "./near.webp";
+
+/** The two depths of the view: the photograph unless a page asks for others (e.g. the drawn mockup). */
+export type Lag = { far: StaticImageData; near: StaticImageData };
+const FOTO: Lag = { far, near };
 import s from "./utsikt.module.css";
 
 /**
@@ -90,9 +94,11 @@ type Props = {
   className?: string;
   /** placed between the two depths, e.g. words that sit behind the ramparts */
   mellom?: React.ReactNode;
+  /** other pictures for the two depths, in the same 3:2 shape */
+  lag?: Lag;
 };
 
-export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = false, zoom = 1, etterslep = 14, className, mellom }: Props) {
+export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = false, zoom = 1, etterslep = 14, className, mellom, lag = FOTO }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
   const reduced = useSyncExternalStore(subscribeReduce, () => window.matchMedia(REDUCE).matches, () => false);
 
@@ -187,7 +193,7 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
         <div className={s.inngang}>
           <div className={s.pust}>
             <m.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: farX, y: farY }}>
-              <Dybdefoto src={far} />
+              <Dybdefoto src={lag.far} />
             </m.div>
           </div>
         </div>
@@ -199,7 +205,7 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
         <div className={cn(s.inngang, s.inngangNaer)}>
           <div className={cn(s.pust, s.pustNaer)}>
             <m.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: naerX, y: naerY }}>
-              <Dybdefoto src={near} />
+              <Dybdefoto src={lag.near} />
             </m.div>
           </div>
         </div>
