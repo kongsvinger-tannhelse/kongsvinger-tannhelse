@@ -372,8 +372,8 @@ export function KontaktSide() {
           </noscript>
         </div>
 
-        {/* a card for toothache: there from the first paint, never faded in */}
-        <aside aria-labelledby="akutt-tittel" className="relative self-start bg-[#FFFDF8] p-6 shadow-[0_22px_40px_-26px_rgba(10,25,32,0.55)] rotate-[-1.5deg] max-md:-mt-2 md:col-[2] md:row-[2] lg:row-[2]" style={{ backgroundImage: PAPIR }}>
+        {/* a card for toothache: there from the first paint, never faded in; on a phone it comes first, so the number is near the top */}
+        <aside aria-labelledby="akutt-tittel" className="relative self-start bg-[#FFFDF8] p-6 shadow-[0_22px_40px_-26px_rgba(10,25,32,0.55)] rotate-[-1.5deg] max-md:order-first md:col-[2] md:row-[2] lg:row-[2]" style={{ backgroundImage: PAPIR }}>
           <h2 id="akutt-tittel" className="text-[19px] font-bold text-[#A3301F]">
             {AKUTT.tittel}
           </h2>
