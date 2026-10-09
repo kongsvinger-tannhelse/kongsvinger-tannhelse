@@ -4,16 +4,71 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Check, Phone } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
-import { FORBEHOLD, RAD_OG_TIPS, STENGT, type Sjekk as SjekkData } from "@/data/artikler/typer";
+import { FORBEHOLD, LEGEVAKT, RAD_OG_TIPS, STENGT, type Handling, type Sjekk as SjekkData } from "@/data/artikler/typer";
+import type { Apningsstatus } from "@/lib/apent";
 import { cn } from "@/lib/utils";
+import { stengtSetning, useApningsstatus } from "./klokke";
 import { Nerve, TEGNINGER } from "./tegninger";
 
 /* The check at the bottom of the note: tap what fits, and get a hint at
    once, with what to do next. Nothing is chosen on the server or the first
-   render, so it hydrates; the answer rises in with the hero's «loft». */
+   render, so it hydrates; the answer rises in with the hero's «loft».
+
+   The hint knows the time. When the clinic is closed and the hint says to
+   ring today or now, it says that we are closed and when we open, and the
+   button rings the legevakt (116 117) instead; our number comes second. */
+
+const KNAPP = "mt-4 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[15px] font-semibold text-[var(--color-papir)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]";
+
+/** What to do next, by day: as written. */
+function Dag({ h }: { h: Handling }) {
+  return (
+    <>
+      <p className="text-[19px] font-bold text-[var(--color-glomma-deep)]">{h.tittel}</p>
+      <p className="mt-1.5 text-[17px] leading-[1.55] text-[var(--color-tekst)]">{h.tekst}</p>
+      {h.stengt && <p className="mt-2 text-[15.5px] leading-[1.55] text-[var(--color-tekst-2)]">{STENGT}</p>}
+      {h.knapp === "bestill" && (
+        <Link href="/kontakt" className={KNAPP}>
+          <CalendarDays className="size-4" aria-hidden="true" />
+          Be om time
+        </Link>
+      )}
+      {h.knapp === "ring" && (
+        <a href={klinikk.telefon.lenke} className={KNAPP}>
+          <Phone className="size-4" aria-hidden="true" />
+          Ring {klinikk.telefon.visning}
+        </a>
+      )}
+    </>
+  );
+}
+
+/** What to do next when the clinic is closed and it should not wait: the legevakt first, our number after. */
+function Natt({ h, status }: { h: Handling; status: Apningsstatus }) {
+  return (
+    <>
+      <p className="text-[19px] font-bold text-[var(--color-glomma-deep)]">{stengtSetning(status)}</p>
+      <p className="mt-1.5 text-[17px] leading-[1.55] text-[var(--color-tekst)]">
+        {h.stengt ? "Ikke vent til vi åpner. Ring legevakten nå." : "Kan det ikke vente til vi åpner, ring legevakten."}
+      </p>
+      <a href={LEGEVAKT.lenke} className={KNAPP}>
+        <Phone className="size-4" aria-hidden="true" />
+        Ring legevakten {LEGEVAKT.visning}
+      </a>
+      <p className="mt-3 text-[15.5px] leading-[1.55] text-[var(--color-tekst-2)]">
+        Vårt nummer, når vi har åpent:{" "}
+        <a href={klinikk.telefon.lenke} className="whitespace-nowrap font-semibold text-[var(--color-glomma-deep)] underline underline-offset-4">
+          {klinikk.telefon.visning}
+        </a>
+      </p>
+    </>
+  );
+}
 
 export function Sjekk({ sjekk, className }: { sjekk: SjekkData; className?: string }) {
   const [valgtId, setValgtId] = useState<string | null>(null);
+  const status = useApningsstatus();
+  const stengt = status !== null && !status.apen;
   const valgt = sjekk.valg.find((v) => v.id === valgtId) ?? null;
   const T = valgt ? TEGNINGER[valgt.tegning] : null;
 
@@ -74,20 +129,10 @@ export function Sjekk({ sjekk, className }: { sjekk: SjekkData; className?: stri
 
               {valgt.handling && (
                 <div className="mt-6 rounded-[18px] bg-[var(--color-kalk)]/70 p-5">
-                  <p className="text-[19px] font-bold text-[var(--color-glomma-deep)]">{valgt.handling.tittel}</p>
-                  <p className="mt-1.5 text-[17px] leading-[1.55] text-[var(--color-tekst)]">{valgt.handling.tekst}</p>
-                  {valgt.handling.stengt && <p className="mt-2 text-[15.5px] leading-[1.55] text-[var(--color-tekst-2)]">{STENGT}</p>}
-                  {valgt.handling.knapp === "bestill" && (
-                    <Link href="/kontakt" className="mt-4 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[15px] font-semibold text-[var(--color-papir)]">
-                      <CalendarDays className="size-4" aria-hidden="true" />
-                      Be om time
-                    </Link>
-                  )}
-                  {valgt.handling.knapp === "ring" && (
-                    <a href={klinikk.telefon.lenke} className="mt-4 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[15px] font-semibold text-[var(--color-papir)]">
-                      <Phone className="size-4" aria-hidden="true" />
-                      Ring {klinikk.telefon.visning}
-                    </a>
+                  {stengt && valgt.handling.haster ? <Natt h={valgt.handling} status={status} /> : <Dag h={valgt.handling} />}
+                  {/* ringing us, but not urgent: the button stays, with when we open */}
+                  {stengt && !valgt.handling.haster && valgt.handling.knapp === "ring" && (
+                    <p className="mt-3 text-[15.5px] leading-[1.55] text-[var(--color-tekst-2)]">{stengtSetning(status)}</p>
                   )}
                 </div>
               )}

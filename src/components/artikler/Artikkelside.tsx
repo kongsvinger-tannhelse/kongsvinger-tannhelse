@@ -3,13 +3,15 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { ARTIKLER, GJENNOMGATT, RAD_OG_TIPS, type Artikkel } from "@/data/artikler";
 import { Smuler, Vis } from "./deler";
-import { Ark, Avsender, Brod, DelVisning, Hilsen, Sporsmal } from "./lapp";
+import { Ark, Avsender, Brod, DelVisning, Hilsen, Sporsmal, type Seksjon } from "./lapp";
+import { Margflyt } from "./Margflyt";
+import type { Festet } from "./mellom";
 import { Sjekk } from "./Sjekk";
 import { TEGNINGER } from "./tegninger";
 
 /* One «Råd og tips» article: a note from the clinic on a sheet of paper,
-   with pen sketches in the margin and yellow sticky notes between the
-   sections. Once you have read it, you can tap what fits you and get a
+   with pen sketches, and yellow sticky notes pinned to the words they
+   explain. Once you have read it, you can tap what fits you and get a
    hint; the note ends with one button, to book. Under the sheet, the
    other articles. */
 
@@ -77,8 +79,23 @@ function Kilder({ artikkel }: { artikkel: Artikkel }) {
   );
 }
 
+/** The sections in order, each with the sticky notes that follow it in the data. */
+function seksjoner(a: Artikkel) {
+  const ut: { del: Seksjon; lapper: Festet[] }[] = [];
+  let n = 0;
+  for (const del of a.deler) {
+    if (del.type !== "lapp") {
+      ut.push({ del, lapper: [] });
+      continue;
+    }
+    // index.ts makes sure every note comes after a section
+    ut[ut.length - 1]?.lapper.push({ lapp: del.lapp, n, id: del.lapp.feste ? `feste-${n}` : null });
+    n++;
+  }
+  return ut;
+}
+
 export function Artikkelside({ artikkel }: { artikkel: Artikkel }) {
-  let lapper = 0;
   const andre = ARTIKLER.filter((a) => a.slug !== artikkel.slug);
   return (
     <main className="overflow-x-clip bg-[var(--color-papir)] pb-[clamp(56px,10vw,140px)] pt-[clamp(96px,12vw,140px)]">
@@ -87,14 +104,14 @@ export function Artikkelside({ artikkel }: { artikkel: Artikkel }) {
         // Safe: built from the site's own static data, not user input
         dangerouslySetInnerHTML={{ __html: JSON.stringify(strukturert(artikkel)) }}
       />
-      <div className="mx-auto w-full max-w-[1040px] px-[var(--container-px)]">
+      <div className="mx-auto w-full max-w-[1040px] px-[var(--container-px)] xl:max-w-[1180px]">
         <Smuler sider={[{ navn: RAD_OG_TIPS.navn, href: RAD_OG_TIPS.sti }, { navn: artikkel.kort }]} />
 
         <Ark className="mt-8">
           <Avsender artikkel={artikkel} />
-          <div className="mt-10 md:mt-14">
-            {artikkel.deler.map((del, i) => (
-              <DelVisning key={del.type === "lapp" ? `lapp-${i}` : del.id} del={del} n={del.type === "lapp" ? lapper++ : 0} />
+          <Margflyt className="mt-10 md:mt-14">
+            {seksjoner(artikkel).map(({ del, lapper }) => (
+              <DelVisning key={del.id} del={del} lapper={lapper} />
             ))}
 
             {/* after reading: what fits you? */}
@@ -103,8 +120,8 @@ export function Artikkelside({ artikkel }: { artikkel: Artikkel }) {
               <Brod className="mt-3">{artikkel.sjekk.intro}</Brod>
               <Sjekk sjekk={artikkel.sjekk} className="mt-7" />
             </Vis>
-          </div>
-          <Hilsen tekst={artikkel.slutt} />
+          </Margflyt>
+          <Hilsen tekst={artikkel.slutt} apent />
           <Kilder artikkel={artikkel} />
         </Ark>
 

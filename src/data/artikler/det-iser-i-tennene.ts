@@ -7,6 +7,8 @@ import { HANDLING, type Artikkel } from "./typer";
 export const detIser: Artikkel = {
   slug: "det-iser-i-tennene",
   tittel: "Det iser når jeg drikker kaldt",
+  gruppe: "galt",
+  linje: "Hvorfor det iser når du drikker kaldt, hva det kan være, og hva som hjelper.",
   kort: "Ising i tennene",
   // SML Tennene: many are bothered by ising when they eat or drink something cold
   ingress: "Et kort stikk når du drikker kaldt eller spiser is? Det heter ising, og mange har det. Her ser du hvorfor det skjer, og hva som hjelper.",
@@ -26,7 +28,7 @@ export const detIser: Artikkel = {
       tegning: "kanaler",
     },
     // SML Tannemalje: damage to enamel cannot be repaired by the body
-    { type: "lapp", lapp: { slag: "visste", tekst: "Emaljen kan ikke vokse ut igjen når den først er borte. Derfor er det lurt å ta godt vare på den du har." } },
+    { type: "lapp", lapp: { slag: "visste", tekst: "Emaljen kan ikke vokse ut igjen når den først er borte. Derfor er det lurt å ta godt vare på den du har.", feste: "dekket av emalje" } },
     {
       type: "liste",
       id: "arsaker",
@@ -45,7 +47,7 @@ export const detIser: Artikkel = {
       ],
     },
     // Helsedirektoratet Råd for voksne: drink acidic drinks through a straw and rinse with water afterwards
-    { type: "lapp", lapp: { slag: "triks", tekst: "Drikker du brus eller juice? Drikk med sugerør, og skyll munnen med vann etterpå." } },
+    { type: "lapp", lapp: { slag: "triks", tekst: "Drikker du brus eller juice? Drikk med sugerør, og skyll munnen med vann etterpå.", feste: "Sur drikke, som brus og juice" } },
     {
       type: "tips",
       id: "tips",
@@ -62,7 +64,7 @@ export const detIser: Artikkel = {
       obs: "Iser det lenge etter at kulden er borte, eller begynner det å verke? Da bør vi se på det.",
     },
     // Tannlegeforeningen (do not rinse, the fluoride works longer), SML Remineralisering (fluoride strengthens enamel)
-    { type: "lapp", lapp: { slag: "tips", tekst: "Spytt ut tannkremen etter pussing, men ikke skyll med vann. Da virker fluoren lenger, og den gjør emaljen sterkere." } },
+    { type: "lapp", lapp: { slag: "tips", tekst: "Spytt ut tannkremen etter pussing, men ikke skyll med vann. Da virker fluoren lenger, og den gjør emaljen sterkere.", feste: "tannkrem for følsomme tenner" } },
     // SML Tannsmerter
     {
       type: "tekst",
