@@ -71,7 +71,7 @@ export function Hero() {
                   <a href={klinikk.telefon.lenke} className="font-medium text-[var(--color-glomma-deep)] underline decoration-1 underline-offset-[3px]">
                     Ring oss
                   </a>{" "}
-                  tidlig på dagen.
+                  så fort du kan.
                 </p>
               </div>
             </div>
