@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef, useSyncExternalStore, type CSSProperties, type ReactNode } from "react";
 import { useInView, useReducedMotion, type UseInViewOptions } from "framer-motion";
-import { Buebilde, Navn, Opp } from "@/components/forside/omoss/deler";
-import { PERSONER } from "@/components/forside/omoss/ansatte";
+import { Buebilde, Opp } from "@/components/forside/omoss/deler";
+import { PERSONER, type Person } from "@/components/forside/omoss/ansatte";
 import { cn } from "@/lib/utils";
-import { AVSNITT, INGRESS, TITTEL } from "./tekst";
+import { AVSNITT, INGRESS, LAPPER, TITTEL } from "./tekst";
+import l from "./laget.module.css";
 
 /* The parts of the «Om oss» page: the forest's "in view" switch, the
    heading and text, and the three in their arches. */
@@ -43,22 +44,59 @@ export function Avsnitt({ className }: { className?: string }) {
   );
 }
 
-/** The three in a row, in their arches, standing up one after another. */
-export function Laget({ className, stor = false }: { className?: string; stor?: boolean }) {
-  const redusert = useReducedMotion() ?? false;
-  const ref = useRef<HTMLUListElement | null>(null);
-  const vist = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
+/** How much each yellow note leans, in turn. */
+const VRI = [-2.2, 1.7, -1.3] as const;
+
+/* Phones show the three one under another, so each stands up as it is
+   reached, without waiting its turn. Only the timing depends on it, never
+   what is drawn, so the server's guess (wide) can't break hydration. */
+const SMAL = "(max-width: 767px)";
+function lytt(cb: () => void) {
+  const mq = window.matchMedia(SMAL);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+}
+const smalNa = () => window.matchMedia(SMAL).matches;
+const bred = () => false;
+
+/**
+ * One of the three: the portrait in its open arch, which stands up when it
+ * comes into view; the yellow note with their own line, stuck on once it
+ * has stood; their name and role. No note when there is no line.
+ */
+function Personen({ person, n, redusert }: { person: Person; n: number; redusert: boolean }) {
+  const ref = useRef<HTMLLIElement | null>(null);
+  const vist = useInView(ref, { once: true, margin: "0px 0px -12% 0px" });
+  const tur = useSyncExternalStore(lytt, smalNa, bred) ? 0 : n;
+  const { linje } = LAPPER[person.navn];
+  const stil = { "--vri": `${VRI[n % VRI.length]}deg`, "--forsink": `${0.55 + tur * 0.18}s` } as CSSProperties;
   return (
-    <ul ref={ref} className={cn("grid grid-cols-3 gap-3 sm:gap-6 md:gap-10", stor ? "max-w-[820px]" : "max-w-[760px]", className)}>
+    <li ref={ref} data-vis={vist ? "ja" : "nei"}>
+      <figure className={cn(l.person, n % 2 === 1 && l.speil, !linje && l.utenLapp)}>
+        <Opp vis={vist} n={tur} redusert={redusert} className={cn(l.bilde, "relative aspect-[19/28] w-full self-center")}>
+          <Buebilde person={person} kolonne={{ px: 280, vw: 46 }} />
+        </Opp>
+        {linje && (
+          <blockquote className={l.lapp} style={stil}>
+            <p>«{linje}»</p>
+          </blockquote>
+        )}
+        <figcaption className={cn(l.navn, "md:mt-5")}>
+          <span className="block text-[19px] font-bold leading-tight tracking-[-0.02em] text-[var(--color-glomma-deep)] md:text-[21px]">{person.navn}</span>
+          <span className="mt-1 block text-[15px] leading-tight text-[var(--color-tekst-2)] md:text-[16px]">{person.rolle}</span>
+        </figcaption>
+      </figure>
+    </li>
+  );
+}
+
+/** The three, each in their arch with a note from them, standing up one after another. */
+export function Laget({ className }: { className?: string }) {
+  const redusert = useReducedMotion() ?? false;
+  return (
+    <ul className={cn("grid max-w-[460px] gap-11 md:max-w-[900px] md:grid-cols-3 md:gap-8 lg:gap-12", className)}>
       {PERSONER.map((p, i) => (
-        <li key={p.navn} className="flex flex-col items-center text-center">
-          <Opp vis={vist} n={i} redusert={redusert} className="relative aspect-[19/28] w-full">
-            <Buebilde person={p} kolonne={{ px: stor ? 250 : 230, vw: 30 }} />
-          </Opp>
-          <div className="mt-3 md:mt-4">
-            <Navn person={p} />
-          </div>
-        </li>
+        <Personen key={p.navn} person={p} n={i} redusert={redusert} />
       ))}
     </ul>
   );
