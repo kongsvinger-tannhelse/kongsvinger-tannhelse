@@ -122,4 +122,8 @@
     transition: opacity 0.4s;
     transform: none;
   }
+  /* the rooms stay still, so there is nothing to stop */
+  .knapp {
+    display: none;
+  }
 }

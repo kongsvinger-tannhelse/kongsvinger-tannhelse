@@ -78,17 +78,17 @@ export function Klinikkbilder() {
           <path className={s.lys} d={LYS} pathLength={1} />
         </svg>
 
-        {!redusert && (
-          <button
-            type="button"
-            className={s.knapp}
-            onClick={spill}
-            aria-label={viserPause ? "Stopp bildene" : "Vis bildene"}
-            tabIndex={klar ? 0 : -1}
-          >
-            {viserPause ? <Pause className="size-3.5" aria-hidden="true" /> : <Play className="size-3.5 translate-x-px" aria-hidden="true" />}
-          </button>
-        )}
+        {/* always rendered (the server can't know about reduced motion, and the
+            first render must match it); the CSS hides it when nothing moves */}
+        <button
+          type="button"
+          className={s.knapp}
+          onClick={spill}
+          aria-label={viserPause ? "Stopp bildene" : "Vis bildene"}
+          tabIndex={klar ? 0 : -1}
+        >
+          {viserPause ? <Pause className="size-3.5" aria-hidden="true" /> : <Play className="size-3.5 translate-x-px" aria-hidden="true" />}
+        </button>
       </div>
     </m.figure>
   );
