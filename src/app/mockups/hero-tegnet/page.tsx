@@ -21,7 +21,8 @@ export default function HeroTegnet() {
     <>
       <Navbar forside />
       <main>
-        <Hero lag={{ far: farTegnet, near: naerTegnet }} />
+        {/* phones get the drawing at 2560 px, not 1600: its houses and bridge stay crisp enlarged */}
+        <Hero lag={{ far: farTegnet, near: naerTegnet, telefon: 2560 }} />
         <Leporello />
         <OmOss />
         <RadOgTips />

@@ -7,8 +7,12 @@ import { cn } from "@/lib/utils";
 import far from "./far.webp";
 import near from "./near.webp";
 
-/** The two depths of the view: the photograph unless a page asks for others (e.g. the drawn mockup). */
-export type Lag = { far: StaticImageData; near: StaticImageData };
+/**
+ * The two depths of the view: the photograph unless a page asks for others (e.g. the drawn mockup).
+ * `telefon` is the one width phones get, if not TELEFON: a drawing's crisp edges go soft at
+ * 1600 px enlarged twice, and its flat colour costs few bytes more at 2560.
+ */
+export type Lag = { far: StaticImageData; near: StaticImageData; telefon?: number };
 const FOTO: Lag = { far, near };
 import s from "./utsikt.module.css";
 
@@ -40,21 +44,22 @@ const TELEFON = 1600;
 
 /**
  * One depth of the photograph. Wide screens choose from the full range of
- * widths by `sizes`; phones get a single 1600 px version, whatever their
- * pixel density: the panorama is about 1600 CSS px wide there (what PageSpeed
- * measures as displayed), and bigger files cost bytes for treetops a little
- * sharper than anyone sees in motion. Loaded eagerly at high priority, not through Next's preload, which
- * would fetch the wide-screen size on phones as well.
+ * widths by `sizes`; phones get a single version (1600 px unless the layers
+ * ask for another), whatever their pixel density: the panorama is about
+ * 1600 CSS px wide there (what PageSpeed measures as displayed), and bigger
+ * files cost bytes for treetops a little sharper than anyone sees in motion.
+ * Loaded eagerly at high priority, not through Next's preload, which would
+ * fetch the wide-screen size on phones as well.
  */
-function Dybdefoto({ src }: { src: StaticImageData }) {
+function Dybdefoto({ src, telefon = TELEFON }: { src: StaticImageData; telefon?: number }) {
   const felles = { src, alt: "", quality: 75 } as const;
   const { props: bred } = getImageProps({ ...felles, sizes: "max(130vw, 195vh)" });
-  const { props: smal } = getImageProps({ ...felles, width: TELEFON, height: Math.round(TELEFON / AR) });
+  const { props: smal } = getImageProps({ ...felles, width: telefon, height: Math.round(telefon / AR) });
   // getImageProps gives the phone version as "…w=1600 1x, …w=3200 2x"; keep only the first
   const smalSrc = smal.srcSet?.split(", ")[0].split(" ")[0] ?? smal.src;
   return (
     <picture>
-      <source media="(max-width: 767px)" srcSet={`${smalSrc} ${TELEFON}w`} sizes="max(130vw, 195vh)" />
+      <source media="(max-width: 767px)" srcSet={`${smalSrc} ${telefon}w`} sizes="max(130vw, 195vh)" />
       <img {...bred} alt="" loading="eager" fetchPriority="high" />
     </picture>
   );
@@ -193,7 +198,7 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
         <div className={s.inngang}>
           <div className={s.pust}>
             <m.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: farX, y: farY }}>
-              <Dybdefoto src={lag.far} />
+              <Dybdefoto src={lag.far} telefon={lag.telefon} />
             </m.div>
           </div>
         </div>
@@ -205,7 +210,7 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
         <div className={cn(s.inngang, s.inngangNaer)}>
           <div className={cn(s.pust, s.pustNaer)}>
             <m.div className={cn(s.ramme, "utsikt-ramme")} style={{ x: naerX, y: naerY }}>
-              <Dybdefoto src={lag.near} />
+              <Dybdefoto src={lag.near} telefon={lag.telefon} />
             </m.div>
           </div>
         </div>
