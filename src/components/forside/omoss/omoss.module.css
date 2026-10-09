@@ -15,7 +15,7 @@
    deepening into a soft summer blue down at the hill's line (the drawing
    leaves its sky out, so this shows through it). */
 .himmel {
-  --himmel: #BCDDEE;
+  --himmel: #A4D0EA; /* option 3 of 4, picked by the user 2026-10-09 */
   background: linear-gradient(
     to bottom,
     color-mix(in srgb, var(--himmel) 0%, var(--color-papir)) 0%,
