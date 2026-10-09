@@ -19,12 +19,14 @@ export const OPPDATERT = "2026-10-08";
 
 const STERK = "font-semibold text-[var(--color-glomma-deep)]";
 
-const RADER: { tittel: string; tekst: React.ReactNode }[] = [
+/* One paragraph per thing article 13 asks for, with no labels: each says
+   what it is about in its own first words. */
+const AVSNITT: { id: string; tekst: React.ReactNode }[] = [
   {
-    tittel: "Hvem er ansvarlig",
+    id: "ansvarlig",
     tekst: (
       <>
-        <span className={STERK}>{klinikk.navn}</span>, {adresse.gate}, {adresse.postnummer} {adresse.sted}.<br />
+        Ansvarlig for opplysningene er <span className={STERK}>{klinikk.navn}</span>, {adresse.gate}, {adresse.postnummer} {adresse.sted}.<br />
         <Lenke href={`mailto:${epost}`}>{epost}</Lenke>
         <br />
         <Lenke href={telefon.lenke}>{telefon.visning}</Lenke>
@@ -32,7 +34,7 @@ const RADER: { tittel: string; tekst: React.ReactNode }[] = [
     ),
   },
   {
-    tittel: "Kontaktskjemaet",
+    id: "skjema",
     tekst: (
       <>
         Skriver du til oss, får vi navnet ditt, telefonnummeret, e-postadressen og meldingen. Vi bruker det bare til å svare deg. Det er
@@ -41,33 +43,33 @@ const RADER: { tittel: string; tekst: React.ReactNode }[] = [
     ),
   },
   {
-    tittel: "Når du besøker siden",
+    id: "besok",
     tekst: (
       <>
-        Serveren registrerer IP-adressen din, hvilken side du åpner og når, for å vise sidene og beskytte dem mot angrep og søppelpost.
+        Når du besøker siden, registrerer serveren IP-adressen din, hvilken side du åpner og når, for å vise sidene og beskytte dem mot angrep og søppelpost.
       </>
     ),
   },
   {
-    tittel: "Grunnlag i loven",
+    id: "grunnlag",
     tekst: (
       <>
-        Vår berettigede interesse i å svare dem som tar kontakt, og i en trygg nettside (personvernforordningen artikkel 6 nr. 1 bokstav f).
+        Grunnlaget i loven er vår berettigede interesse i å svare dem som tar kontakt, og i en trygg nettside (personvernforordningen artikkel 6 nr. 1 bokstav f).
       </>
     ),
   },
   {
-    tittel: "Hvem får opplysningene",
+    id: "mottakere",
     tekst: (
       <>
-        Leverandørene som drifter nettsiden (<span className={STERK}>Vercel Inc.</span>) og e-posten vår (<span className={STERK}>one.com</span>).
+        Opplysningene går til leverandørene som drifter nettsiden (<span className={STERK}>Vercel Inc.</span>) og e-posten vår (<span className={STERK}>one.com</span>).
         Nettsiden kjører på Vercels servere i Stockholm, men Vercel er et amerikansk selskap, så opplysningene kan bli overført til USA. Det bygger på EU-U.S. Data Privacy Framework, som Vercel er
         sertifisert under.
       </>
     ),
   },
   {
-    tittel: "Hvor lenge",
+    id: "lagring",
     tekst: (
       <>
         Vi sletter meldingen når vi ikke lenger trenger den for å svare deg. Vercel lagrer de tekniske opplysningene bare en begrenset tid.
@@ -75,7 +77,7 @@ const RADER: { tittel: string; tekst: React.ReactNode }[] = [
     ),
   },
   {
-    tittel: "Rettighetene dine",
+    id: "rettigheter",
     tekst: (
       <>
         Du kan be om innsyn i hva vi har om deg, og om å få det rettet eller slettet. Du kan også be oss begrense bruken, eller protestere mot den.
@@ -84,7 +86,7 @@ const RADER: { tittel: string; tekst: React.ReactNode }[] = [
     ),
   },
   {
-    tittel: "Klage",
+    id: "klage",
     tekst: (
       <>
         Mener du at vi bryter reglene, kan du{" "}
@@ -102,14 +104,13 @@ export function PersonvernSide() {
           <p>Hva nettsiden samler inn om deg, og hvorfor.</p>
         </Topp>
 
-        <dl className="mt-10 rounded-[28px] bg-[#FFFDF8] px-[clamp(22px,5vw,56px)] py-[clamp(14px,2.5vw,28px)] shadow-[0_40px_70px_-50px_rgba(10,25,32,0.5)] ring-1 ring-[var(--color-strek)] md:mt-14">
-          {RADER.map((r) => (
-            <div key={r.tittel} className="grid gap-1.5 border-b border-dashed border-[var(--color-strek)] py-6 last:border-b-0 md:grid-cols-[200px_minmax(0,1fr)] md:gap-10">
-              <dt className="text-[13px] font-semibold uppercase leading-[1.5] tracking-[0.12em] text-[var(--color-teal)] md:pt-1">{r.tittel}</dt>
-              <dd className="max-w-[60ch] text-[17px] leading-[1.65] text-[var(--color-tekst)]">{r.tekst}</dd>
-            </div>
+        <div className="mx-auto mt-10 max-w-[760px] rounded-[28px] bg-[#FFFDF8] px-[clamp(22px,5vw,56px)] py-[clamp(14px,2.5vw,28px)] shadow-[0_40px_70px_-50px_rgba(10,25,32,0.5)] ring-1 ring-[var(--color-strek)] md:mt-14">
+          {AVSNITT.map((a) => (
+            <p key={a.id} className="border-b border-dashed border-[var(--color-strek)] py-6 text-[17px] leading-[1.65] text-[var(--color-tekst)] last:border-b-0">
+              {a.tekst}
+            </p>
           ))}
-        </dl>
+        </div>
       </div>
     </main>
   );
