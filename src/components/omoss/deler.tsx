@@ -53,7 +53,7 @@ export function Laget({ className, stor = false }: { className?: string; stor?: 
       {PERSONER.map((p, i) => (
         <li key={p.navn} className="flex flex-col items-center text-center">
           <Opp vis={vist} n={i} redusert={redusert} className="relative aspect-[19/28] w-full">
-            <Buebilde person={p} sizes="(min-width: 768px) 240px, 30vw" />
+            <Buebilde person={p} kolonne={{ px: stor ? 250 : 230, vw: 30 }} />
           </Opp>
           <div className="mt-3 md:mt-4">
             <Navn person={p} />

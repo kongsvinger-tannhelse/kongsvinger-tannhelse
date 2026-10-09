@@ -17,18 +17,22 @@ import s from "./leporello.module.css";
  * all the treatments. It lies closed on the page, showing its cover; when it
  * comes into view it unfolds from the middle, fold by fold, and comes to
  * rest standing in a gentle zigzag, the panels catching the light from the
- * left by turns. Then each scene stands up in its panel, one after the
- * other, with what it shows printed on the paper under it.
+ * left by turns (the two middle panels flatter than the outer two, so their
+ * words read straight on). Then each scene stands up in its panel, one after
+ * the other, with what it shows printed on the paper under it.
  *
  * Each panel hangs on the right edge of the one before (the DOM nests them),
  * so a fold is one rotateY about that edge, and the angles add up.
  */
 
-/** The angle each panel stands at once open, from the page's plane. */
+/** The angle the two outer panels stand at once open, from the page's plane. */
 const VINKEL = 16;
+/** The two middle panels' angle: flatter, so their words are not slanted. */
+const MIDT = 6;
 /** Closed, each fold is almost flat back on the panel before it. */
 const LUKKET = 178;
-const COS = Math.cos((VINKEL * Math.PI) / 180);
+/** How far the open strip reaches, in panel widths (the CSS's --bred). */
+const SPENN = 2 * Math.cos((VINKEL * Math.PI) / 180) + 2 * Math.cos((MIDT * Math.PI) / 180);
 const FJAER = { type: "spring", stiffness: 52, damping: 14, mass: 1 } as const;
 
 const grad = (v: number) => (v * Math.PI) / 180;
@@ -56,7 +60,8 @@ export function Bred() {
   useEffect(() => {
     if (!vist) return;
     const leddene = [l1, l2, l3];
-    const maal = [-2 * VINKEL, 2 * VINKEL, -2 * VINKEL];
+    // the panels end at VINKEL, -MIDT, MIDT and -VINKEL
+    const maal = [-(VINKEL + MIDT), 2 * MIDT, -(VINKEL + MIDT)];
     const timere: number[] = [];
     if (redusert) {
       fot.set(VINKEL);
@@ -90,7 +95,7 @@ export function Bred() {
     }
     return [min, max] as const;
   });
-  const skyv = useTransform(() => 2 * COS - (spenn.get()[0] + spenn.get()[1]) / 2);
+  const skyv = useTransform(() => SPENN / 2 - (spenn.get()[0] + spenn.get()[1]) / 2);
   const flytt = useMotionTemplate`translateX(calc(var(--w) * ${skyv}))`;
   const skyggeVenstre = useTransform(() => spenn.get()[0] + skyv.get());
   const skyggeBredde = useTransform(() => spenn.get()[1] - spenn.get()[0]);

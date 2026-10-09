@@ -8,8 +8,20 @@ import type { Person } from "./ansatte";
 
 /* The pieces of the «Om oss» section: the portraits and their names. */
 
-/** The photo, cropped to the face and zoomed so the three heads match. */
-function Foto({ person, sizes }: { person: Person; sizes: string }) {
+/** A portrait column's width: in px from md up, in vw below. */
+export type Kolonne = { px: number; vw: number };
+
+/** How much wider than its column the photo is drawn: a 3:4 photo covering a 19:28 arch, inside its 4% border, spills over the sides by about 5%. */
+const SPILL = 1.05;
+
+/**
+ * The photo, cropped to the face and zoomed so the three heads match. It
+ * asks for as many pixels as it is drawn with, spill and zoom included, so
+ * a zoomed face is not a small picture stretched.
+ */
+function Foto({ person, kolonne }: { person: Person; kolonne: Kolonne }) {
+  const k = SPILL * person.zoom;
+  const sizes = `(min-width: 768px) ${Math.ceil(kolonne.px * k)}px, ${Math.ceil(kolonne.vw * k)}vw`;
   return (
     <Image
       src={person.bilde}
@@ -42,11 +54,11 @@ export function Opp({ vis, n, redusert, className, style, children }: { vis: boo
 }
 
 /** A portrait under a round head, in a thin paper border, as Ringebu's arches. */
-export function Buebilde({ person, sizes }: { person: Person; sizes: string }) {
+export function Buebilde({ person, kolonne }: { person: Person; kolonne: Kolonne }) {
   return (
     <span className="absolute inset-0 block rounded-t-full bg-[#FFFDF8] p-[4%] shadow-[0_22px_40px_-22px_rgba(10,25,32,0.65)]">
       <span className="relative block h-full w-full overflow-hidden rounded-t-full">
-        <Foto person={person} sizes={sizes} />
+        <Foto person={person} kolonne={kolonne} />
       </span>
     </span>
   );
