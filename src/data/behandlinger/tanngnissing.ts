@@ -11,7 +11,6 @@ export const tanngnissing: Behandlingsside = {
   // the clinic's own words (klinikk.ts)
   ingress: "Tanngnissing er at du biter hardt sammen eller gnisser tennene uten å merke det, oftest mens du sover. Her ser du hva det kan komme av, og hva som kan hjelpe.",
   tittelbilde: "natt",
-  lesetid: "2 minutter å lese",
   beskrivelse: "Tanngnissing hos tannlegen i Kongsvinger: hva tanngnissing er, tegn du kan merke, hva det kan komme av, og hva som kan hjelpe, som bittskinne.",
   deler: [
     {

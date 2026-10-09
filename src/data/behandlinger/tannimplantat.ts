@@ -12,7 +12,6 @@ export const tannimplantat: Behandlingsside = {
   // the clinic's own words (klinikk.ts)
   ingress: "Et tannimplantat er en liten skrue i kjevebenet som vokser fast og bærer en ny tann. Her ser du hvordan det går for seg, steg for steg.",
   tittelbilde: "implantat",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Tannimplantat hos tannlegen i Kongsvinger: hva et implantat er, hvem det passer for, hvordan det settes inn steg for steg, og hvordan du tar vare på det.",
   deler: [
     {

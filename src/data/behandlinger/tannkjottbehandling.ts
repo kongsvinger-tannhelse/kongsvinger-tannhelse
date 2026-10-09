@@ -11,7 +11,6 @@ export const tannkjottbehandling: Behandlingsside = {
   // the clinic's own words (klinikk.ts)
   ingress: "Rødt, hovent eller blødende tannkjøtt er ofte gingivitt, det tidligste stadiet av tannkjøttsykdom. Her ser du hvordan tannkjøttsykdom behandles, og hva du selv kan gjøre.",
   tittelbilde: "tannkjott",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Tannkjøttbehandling hos tannlegen i Kongsvinger: gingivitt og periodontitt, tegn på tannkjøttsykdom, hvordan det behandles, og hva du selv kan gjøre.",
   deler: [
     {

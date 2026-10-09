@@ -12,7 +12,6 @@ export const tannfylling: Behandlingsside = {
   // the clinic's own words (klinikk.ts)
   ingress: "Har du fått hull i tannen, fjerner tannlegen det ødelagte tannvevet og fyller rommet med en tannfarget fylling. Her ser du hvordan det går for seg.",
   tittelbilde: "fylling",
-  lesetid: "2 minutter å lese",
   beskrivelse: "Tannfylling hos tannlegen i Kongsvinger: tegn på hull i tennene, hvordan en fylling lages steg for steg, bedøvelse, og hva du bør tenke på etterpå.",
   deler: [
     {

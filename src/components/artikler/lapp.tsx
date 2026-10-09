@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { CalendarDays } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
-import type { Artikkel, Del } from "@/data/artikler";
+import type { Del } from "@/data/artikler";
 import { cn } from "@/lib/utils";
 import { Merke, Vis } from "./deler";
 import { ApentNa } from "./klokke";
@@ -10,7 +10,7 @@ import { InneLapp, MargLapp, type Festet } from "./mellom";
 import { TEGNINGER } from "./tegninger";
 import s from "./artikler.module.css";
 
-/* The note from the clinic, in parts: the sheet, who it is from, each kind
+/* The note from the clinic, in parts: the sheet, its title, each kind
    of section with its pen sketches and the sticky notes pinned to it, and
    the goodbye with one button.
 
@@ -42,28 +42,14 @@ export function Ark({ children, className }: { children: React.ReactNode; classN
   );
 }
 
-/** Who a note is from: the clinic's mark, its name, and a small line under it. */
-export function Fra({ under }: { under: string }) {
+/** The top of a sheet: the title and the short intro under it, centred. The text below starts from the left. */
+export function Topp({ tittel, ingress, className }: { tittel: string; ingress: string; className?: string }) {
   return (
-    <div className="flex items-center gap-4">
-      <Merke className="size-14 shadow-[0_6px_18px_-10px_rgba(10,25,32,0.45)] ring-1 ring-[var(--color-strek)] md:size-[72px]" />
-      <div>
-        <p className="text-[15px] font-semibold text-[var(--color-glomma-deep)]">Fra tannlegene på {klinikk.navn}</p>
-        <p className="text-[13.5px] text-[var(--color-tekst-svak)]">{under}</p>
-      </div>
-    </div>
-  );
-}
-
-/** Who the note is from, the title and the short intro. */
-export function Avsender({ artikkel }: { artikkel: Artikkel }) {
-  return (
-    <header>
-      <Fra under={artikkel.lesetid} />
-      <h1 className="mt-8 max-w-[15ch] font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(42px, 6.4vw, 78px)", lineHeight: 0.98, letterSpacing: "-0.05em" }}>
-        {artikkel.tittel}
+    <header className={cn("text-center", className)}>
+      <h1 className="mx-auto max-w-[22ch] text-balance font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(34px, 4.2vw, 50px)", lineHeight: 1.05, letterSpacing: "-0.04em" }}>
+        {tittel}
       </h1>
-      <p className="mt-6 max-w-[38ch] text-[20px] leading-[1.55] text-[var(--color-tekst-2)] md:text-[23px]">{artikkel.ingress}</p>
+      <p className="mx-auto mt-4 max-w-[44ch] text-balance text-[18px] leading-[1.55] text-[var(--color-tekst-2)] md:mt-5 md:text-[20px]">{ingress}</p>
     </header>
   );
 }

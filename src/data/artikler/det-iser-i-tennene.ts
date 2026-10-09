@@ -12,7 +12,6 @@ export const detIser: Artikkel = {
   kort: "Ising i tennene",
   // SML Tennene: many are bothered by ising when they eat or drink something cold
   ingress: "Et kort stikk når du drikker kaldt eller spiser is? Det heter ising, og mange har det. Her ser du hvorfor det skjer, og hva som hjelper.",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Ising i tennene forklart enkelt: hvorfor det iser når du drikker kaldt, hva det kan være, og hva som hjelper.",
   tegning: "kanaler",
   deler: [

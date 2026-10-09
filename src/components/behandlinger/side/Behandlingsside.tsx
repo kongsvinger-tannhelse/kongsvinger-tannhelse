@@ -1,9 +1,8 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { RAD_OG_TIPS } from "@/data/artikler/typer";
-import { klinikk } from "@/data/klinikk";
 import { BGJENNOMGATT, type Behandlingsside as Side, type Del } from "@/data/behandlinger";
-import { Merke, Smuler, Vis } from "@/components/artikler/deler";
+import { Smuler, Vis } from "@/components/artikler/deler";
 import { Ark, Brod, Hilsen, Sporsmal } from "@/components/artikler/lapp";
 import { GulLapp } from "@/components/artikler/mellom";
 import { Bunnlinje } from "@/components/behandlinger/deler";
@@ -154,14 +153,7 @@ export function Behandlingsside({ side }: { side: Side }) {
         <Smuler sider={[{ navn: "Behandlinger", href: "/behandlinger" }, { navn: side.navn }]} />
         <Ark className="mt-8">
           <Vis as="header" margin="0px">
-            <div className="flex items-center gap-4">
-              <Merke className="size-14 shadow-[0_6px_18px_-10px_rgba(10,25,32,0.45)] ring-1 ring-[var(--color-strek)] md:size-[72px]" />
-              <div>
-                <p className="text-[15px] font-semibold text-[var(--color-glomma-deep)]">Fra tannlegene på {klinikk.navn}</p>
-                <p className="text-[13.5px] text-[var(--color-tekst-svak)]">{side.lesetid}</p>
-              </div>
-            </div>
-            <h1 className="mt-8 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(46px, 7vw, 88px)", lineHeight: 0.95, letterSpacing: "-0.05em" }}>
+            <h1 className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(46px, 7vw, 88px)", lineHeight: 0.95, letterSpacing: "-0.05em" }}>
               {side.navn}
             </h1>
             <div className="mt-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,330px)] md:items-center md:gap-10">

@@ -1,143 +1,88 @@
-/* The three on the «Om oss» page. On a phone, one under another, the
-   portrait and the words side by side, every other one mirrored. From md
-   up, three in a row, each yellow note taped over the foot of its portrait,
-   the name under it. */
+/* The three on the «Om oss» page, as old photographic prints: a square
+   photo in a white paper border with a scalloped edge, a little warm and
+   faded, the name and a few words written in the wider border under it.
+   Each lies a little askew. On a phone one under another, from side to
+   side; from md up three in a row, all as tall as the tallest. */
 
-.person {
-  display: grid;
-  grid-template-columns: minmax(0, 46%) minmax(0, 1fr);
-  /* the name beside the face, the note low down, so its tape lands on a
-     shoulder and never on a face */
-  grid-template-rows: 1fr auto auto 14px;
-  grid-template-areas:
-    "bilde ."
-    "bilde navn"
-    "bilde lapp"
-    "bilde .";
-  column-gap: 18px;
+.plass {
+  list-style: none;
+  width: 86%;
 }
-.speil {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 46%);
-  grid-template-areas:
-    ". bilde"
-    "navn bilde"
-    "lapp bilde"
-    ". bilde";
-}
-/* without a note, the name sits in the middle of the portrait's height */
-.utenLapp {
-  grid-template-rows: 1fr auto auto 1fr;
-}
-.bilde { grid-area: bilde; }
-.navn { grid-area: navn; }
-
-/* The note: square yellow paper, a strip of tape, a little askew. It
-   reaches back over the edge of the portrait it belongs to. */
-.lapp {
-  grid-area: lapp;
-  position: relative;
-  z-index: 1;
-  max-width: 250px;
-  margin: 14px 0 0 -30px;
-  padding: 15px 16px 16px 18px;
-  border-radius: 2px;
-  background: var(--color-lapp);
-  color: var(--color-lapp-tekst);
-  font-size: clamp(15px, 4.1vw, 16px);
-  line-height: 1.42;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  text-wrap: pretty;
-  box-shadow:
-    0 16px 26px -16px rgba(107, 74, 16, 0.55),
-    0 2px 0 rgba(107, 74, 16, 0.08);
-  rotate: var(--vri, 0deg);
-}
-.speil .lapp {
+/* on a phone they lie one under another, every other one further right */
+.plass:nth-child(2n) {
   justify-self: end;
-  margin: 14px -30px 0 0;
 }
-/* the tape, across the corner that lies on the photo, pointing up into the
-   photo (away from the name) */
-.lapp::before {
+@media (min-width: 768px) {
+  .plass {
+    width: auto;
+  }
+}
+
+/* The shadow is on a wrapper, since the print's scalloped mask would cut a box-shadow off. */
+.skygge {
+  height: 100%;
+  rotate: var(--vri, 0deg);
+  filter: drop-shadow(0 16px 18px rgba(10, 25, 32, 0.2)) drop-shadow(0 1px 1.5px rgba(10, 25, 32, 0.14));
+}
+
+.trykk {
+  --r: 3px; /* the scallops' radius */
+  --d: calc(var(--r) * 2);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 7% 7% 0;
+  background: #fbf8f0;
+  /* the scalloped edge: the paper inset by one radius, and a row of round
+     bumps along each side, fitted so a whole number of them go round */
+  mask-image:
+    linear-gradient(#000 0 0),
+    radial-gradient(circle closest-side, #000 92%, transparent),
+    radial-gradient(circle closest-side, #000 92%, transparent),
+    radial-gradient(circle closest-side, #000 92%, transparent),
+    radial-gradient(circle closest-side, #000 92%, transparent);
+  mask-size:
+    calc(100% - var(--d)) calc(100% - var(--d)),
+    var(--d) var(--d),
+    var(--d) var(--d),
+    var(--d) var(--d),
+    var(--d) var(--d);
+  mask-position:
+    center,
+    0 0,
+    0 100%,
+    0 0,
+    100% 0;
+  mask-repeat:
+    no-repeat,
+    round no-repeat,
+    round no-repeat,
+    no-repeat round,
+    no-repeat round;
+}
+
+.bilde {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #d9d2c3;
+}
+/* warm and a little faded, like a print kept in a drawer, never so much that it changes how anyone looks */
+.bilde img {
+  filter: sepia(0.16) saturate(0.92) contrast(1.02);
+}
+/* and a shade darker towards its corners */
+.bilde::after {
   content: "";
   position: absolute;
-  top: -9px;
-  left: -25px;
-  width: 46px;
-  height: 18px;
-  rotate: 30deg;
-  background: rgba(246, 241, 222, 0.82);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
-}
-.speil .lapp::before {
-  left: auto;
-  right: -25px;
-  rotate: -30deg;
+  inset: 0;
+  box-shadow: inset 0 0 36px rgba(70, 48, 18, 0.16);
+  pointer-events: none;
 }
 
-@media (min-width: 768px) {
-  .person,
-  .speil,
-  .utenLapp {
-    height: 100%;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas:
-      "bilde"
-      "lapp"
-      "navn";
-    text-align: center;
-  }
-  /* a little off centre, one way and then the other, as if put up by hand */
-  .lapp {
-    max-width: none;
-    margin: -46px 11% 0 3%;
-    text-align: left;
-    font-size: 15.5px;
-  }
-  .speil .lapp {
-    justify-self: stretch;
-    margin: -46px 3% 0 11%;
-  }
-  .lapp::before,
-  .speil .lapp::before {
-    top: -11px;
-    left: 50%;
-    right: auto;
-    width: 76px;
-    height: 22px;
-    translate: -50% 0;
-    rotate: -3deg;
-  }
-  .navn {
-    align-self: end;
-  }
-}
-
-@media (min-width: 1024px) {
-  .lapp {
-    font-size: 16.5px;
-  }
-}
-
-/* The note is stuck on when its portrait has stood up. */
-.lapp {
-  transition:
-    opacity 0.35s ease var(--forsink, 0s),
-    translate 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--forsink, 0s);
-}
-[data-vis="nei"] .lapp {
-  opacity: 0;
-  translate: 0 -10px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lapp {
-    transition: none;
-  }
-  [data-vis] .lapp {
-    opacity: 1;
-    translate: none;
-  }
+.tekst {
+  display: block;
+  flex: 1;
+  padding: 14px 2px 22px;
 }

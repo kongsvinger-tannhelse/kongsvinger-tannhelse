@@ -120,7 +120,7 @@ export function Sjekk({ sjekk, className }: { sjekk: SjekkData; className?: stri
               {valgt.lenke && (
                 <Link
                   href={`${RAD_OG_TIPS.sti}/${valgt.lenke.slug}`}
-                  className="mt-3 inline-flex items-center gap-1.5 self-start text-[16px] font-semibold text-[var(--color-teal-tekst)] underline-offset-4 hover:underline"
+                  className="mt-3 inline-flex items-center gap-1.5 self-start text-[16px] font-semibold text-[var(--color-tekst)] underline underline-offset-4"
                 >
                   {valgt.lenke.tekst}
                   <ArrowRight className="size-4" aria-hidden="true" />

@@ -11,7 +11,6 @@ export const vondtITanna: Artikkel = {
   linje: "Hva det kan være, hva du kan gjøre i dag, og når du bør komme til tannlegen.",
   kort: "Tannverk",
   ingress: "Vondt i en tann er ekkelt. Men det er nesten alltid noe vi kan fikse. Her ser du hva det kan bety, og hva du kan gjøre allerede i dag.",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Tannverk forklart enkelt: hva det kan være, hva du kan gjøre i dag, og når du bør komme til tannlegen.",
   tegning: "betennelse",
   deler: [

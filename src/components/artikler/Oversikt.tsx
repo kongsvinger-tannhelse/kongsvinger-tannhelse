@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { klinikk } from "@/data/klinikk";
-import { ARTIKLER, ARTIKLER_GRUPPERT, GJENNOMGATT, RAD_OG_TIPS, type Artikkel } from "@/data/artikler";
+import { ARTIKLER_GRUPPERT, RAD_OG_TIPS, type Artikkel } from "@/data/artikler";
 import { cn } from "@/lib/utils";
 import { Smuler, Vis } from "./deler";
-import { Ark, Fra, Hilsen } from "./lapp";
+import { Ark, Hilsen, Topp } from "./lapp";
 import { TEGNINGER } from "./tegninger";
 import s from "./artikler.module.css";
 
@@ -41,9 +41,6 @@ const strukturert = {
   ],
 };
 
-/** «8. oktober 2026», kept on one line. */
-const DATO = new Date(`${GJENNOMGATT}T12:00:00Z`).toLocaleDateString("nb-NO", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Oslo" }).replace(/ /g, "\u00a0");
-
 /** One line in the list: the title is the link, but the whole line can be clicked, and it is the line that shows focus. */
 function Linje({ artikkel }: { artikkel: Artikkel }) {
   const T = TEGNINGER[artikkel.tegning];
@@ -62,7 +59,7 @@ function Linje({ artikkel }: { artikkel: Artikkel }) {
           <Link
             href={`${RAD_OG_TIPS.sti}/${artikkel.slug}`}
             className={cn(
-              "decoration-[var(--color-teal-tekst)] decoration-2 underline-offset-[6px] after:absolute after:inset-0 after:rounded-[20px] group-hover:text-[var(--color-teal-tekst)] group-hover:underline",
+              "decoration-[var(--color-tekst)] decoration-2 underline-offset-[6px] after:absolute after:inset-0 after:rounded-[20px] group-hover:underline",
               s.linjelenke,
             )}
           >
@@ -87,13 +84,7 @@ export function Oversikt() {
         <Smuler sider={[{ navn: RAD_OG_TIPS.navn }]} />
 
         <Ark className="mt-8">
-          <header>
-            <Fra under={`${ARTIKLER.length} korte tekster, sist sjekket ${DATO}`} />
-            <h1 className="mt-8 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(44px, 6.6vw, 88px)", lineHeight: 0.95, letterSpacing: "-0.055em" }}>
-              {RAD_OG_TIPS.navn}
-            </h1>
-            <p className="mt-6 max-w-[44ch] text-[19px] leading-[1.6] text-[var(--color-tekst-2)] md:text-[22px]">{RAD_OG_TIPS.ingress}</p>
-          </header>
+          <Topp tittel={RAD_OG_TIPS.navn} ingress={RAD_OG_TIPS.ingress} />
 
           <div className="mt-10 md:mt-14">
             {ARTIKLER_GRUPPERT.map((g) => (
@@ -102,7 +93,7 @@ export function Oversikt() {
                 aria-labelledby={`gruppe-${g.id}`}
                 className="border-t border-dashed border-[var(--color-strek)] pb-3 pt-8 md:pt-10 lg:grid lg:grid-cols-[210px_minmax(0,1fr)] lg:gap-x-12 lg:pb-6"
               >
-                <h2 id={`gruppe-${g.id}`} className="text-[20px] font-bold leading-[1.25] tracking-[-0.02em] text-[var(--color-teal-tekst)] md:text-[22px] lg:pt-[38px]">
+                <h2 id={`gruppe-${g.id}`} className="text-[20px] font-bold leading-[1.25] tracking-[-0.02em] text-[var(--color-tekst)] md:text-[22px] lg:pt-[38px]">
                   {g.navn}
                 </h2>
                 <ul className="mt-2 lg:mt-0">

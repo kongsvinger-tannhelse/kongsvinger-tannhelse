@@ -12,7 +12,6 @@ export const tannkjottetBlor: Artikkel = {
   kort: "Blødende tannkjøtt",
   // NHI and SML: bleeding gums are an early sign of gingivitis, which is reversible with good cleaning
   ingress: "Litt blod i vasken når du pusser, er et tegn på at tannkjøttet er betent. Det gode er at det ofte går over når du pusser godt.",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Blødende tannkjøtt forklart enkelt: hvorfor tannkjøttet blør når du pusser, hva du kan gjøre selv, og når du bør komme.",
   tegning: "plakk",
   deler: [

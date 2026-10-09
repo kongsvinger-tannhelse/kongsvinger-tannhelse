@@ -3,7 +3,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { ARTIKLER, GJENNOMGATT, RAD_OG_TIPS, type Artikkel } from "@/data/artikler";
 import { Smuler, Vis } from "./deler";
-import { Ark, Avsender, Brod, DelVisning, Hilsen, Sporsmal, type Seksjon } from "./lapp";
+import { Ark, Brod, DelVisning, Hilsen, Sporsmal, Topp, type Seksjon } from "./lapp";
 import { Margflyt } from "./Margflyt";
 import type { Festet } from "./mellom";
 import { Sjekk } from "./Sjekk";
@@ -108,7 +108,7 @@ export function Artikkelside({ artikkel }: { artikkel: Artikkel }) {
         <Smuler sider={[{ navn: RAD_OG_TIPS.navn, href: RAD_OG_TIPS.sti }, { navn: artikkel.kort }]} />
 
         <Ark className="mt-8">
-          <Avsender artikkel={artikkel} />
+          <Topp tittel={artikkel.tittel} ingress={artikkel.ingress} />
           <Margflyt className="mt-10 md:mt-14">
             {seksjoner(artikkel).map(({ del, lapper }) => (
               <DelVisning key={del.id} del={del} lapper={lapper} />
@@ -140,11 +140,8 @@ export function Artikkelside({ artikkel }: { artikkel: Artikkel }) {
                     className="group flex items-center gap-4 rounded-[22px] bg-[#FFFDF8] p-4 pr-5 ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_40px_-30px_rgba(10,25,32,0.5)]"
                   >
                     <T strek className="w-16 shrink-0" />
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-[17.5px] font-bold leading-[1.25] text-[var(--color-glomma-deep)]">{a.tittel}</span>
-                      <span className="mt-1 block text-[14px] text-[var(--color-tekst-svak)]">{a.lesetid}</span>
-                    </span>
-                    <ArrowRight className="size-5 shrink-0 text-[var(--color-teal)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                    <span className="min-w-0 flex-1 text-[17.5px] font-bold leading-[1.25] text-[var(--color-glomma-deep)]">{a.tittel}</span>
+                    <ArrowRight className="size-5 shrink-0 text-[var(--color-tekst)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                   </Link>
                 </li>
               );

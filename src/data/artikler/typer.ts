@@ -104,7 +104,6 @@ export type Artikkel = {
   /** A few words for the crumbs. */
   kort: string;
   ingress: string;
-  lesetid: string;
   /** For search engines and the list of articles. */
   beskrivelse: string;
   /** The sketch on the article's card in the list. */

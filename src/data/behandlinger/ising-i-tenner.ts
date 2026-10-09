@@ -12,7 +12,6 @@ export const isingITenner: Behandlingsside = {
   // the clinic's own words (klinikk.ts)
   ingress: "Isner det i tennene når du drikker noe kaldt? Her ser du hvorfor det skjer, hva tannlegen ser etter, og hva som kan hjelpe.",
   tittelbilde: "lue",
-  lesetid: "2 minutter å lese",
   beskrivelse: "Ising i tennene hos tannlegen i Kongsvinger: hvorfor det iser, hva tannlegen ser etter, og hva som kan gjøres hos tannlegen.",
   deler: [
     {

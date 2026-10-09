@@ -1,19 +1,17 @@
 import { Smuler } from "@/components/Smuler";
-import { Avsnitt, Ingress, Laget, Skog, Tittel } from "./deler";
+import { Ingress, Laget, Skog, Tittel } from "./deler";
 import { Galleri } from "./Galleri";
-import { Bunn, Skogsbilde } from "./Skogbunn";
+import { Bunn, Lund } from "./Skogbunn";
 import { GALLERI, LAGET } from "./tekst";
 
 /**
- * The «Om oss» page, «Skogbunnen»: mostly light paper and text, and the
- * forest seen low down. The people come first, right after the welcome:
- * the three in their open arches, each with a yellow note in their own
- * words, standing above a strip of forest floor kept clear under them.
- * From md up, beside the welcome, an arched window (the portraits' shape)
- * looking into the forest: trunks rising out of it, light from the upper
- * right, moss and berries at the foot. A phone leaves it out: there it would
- * only push the three further down. Last, the photos in the order of a
- * visit: one large, arrows on each side, all of them small underneath.
+ * The «Om oss» page, «Skogbunnen»: mostly light paper, and the forest seen
+ * low down. A short welcome, and from md up a small grove beside it, drawn
+ * like the forest floor further down (a phone leaves it out, so the people
+ * come sooner). Then the three, as old photographs with a few words about
+ * each in the border, standing above a strip of forest floor kept clear
+ * under them. Last, the photos in the order of a visit: one large, arrows on
+ * each side, all of them small underneath.
  */
 
 const h2 = { fontSize: "clamp(30px, 3.4vw, 48px)", lineHeight: 1, letterSpacing: "-0.045em" } as const;
@@ -34,19 +32,16 @@ function Stripe({ seed, fri, className }: { seed: number; fri?: boolean; classNa
 export function OmOssSide() {
   return (
     <main className="overflow-hidden bg-[var(--color-papir)]">
-      <section aria-labelledby="om-tittel" className="mx-auto grid w-full max-w-[var(--container-max)] gap-10 px-[var(--container-px)] pt-[clamp(104px,10vw,132px)] pb-4 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:items-center md:gap-12 md:pb-8 lg:gap-16">
-        <div>
+      <section aria-labelledby="om-tittel" className="mx-auto grid w-full max-w-[var(--container-max)] gap-10 px-[var(--container-px)] pt-[clamp(104px,10vw,132px)] pb-4 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:items-end md:gap-12 md:pb-0 lg:gap-16">
+        <div className="md:pb-10">
           <Smuler side="Om oss" />
           <div id="om-tittel" className="mt-6">
             <Tittel />
           </div>
           <Ingress className="mt-6 max-w-[42ch]" />
-          <Avsnitt className="mt-6 max-w-[58ch]" />
         </div>
-        <Skog className="relative mx-auto hidden aspect-[4/5] w-full max-w-[340px] rounded-t-full bg-[#FFFDF8] p-[3%] shadow-[0_30px_60px_-30px_rgba(10,25,32,0.55)] md:block lg:max-w-[440px]">
-          <div className="relative size-full overflow-hidden rounded-t-full">
-            <Skogsbilde />
-          </div>
+        <Skog className="hidden md:block">
+          <Lund className="block h-auto w-full" />
         </Skog>
       </section>
 

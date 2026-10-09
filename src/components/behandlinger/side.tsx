@@ -104,13 +104,12 @@ export function Topp({ veiledning }: { veiledning: string }) {
         </ol>
       </nav>
 
-      <h1 className="mt-6 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(42px, 6vw, 80px)", lineHeight: 0.95, letterSpacing: "-0.055em" }}>
+      <h1 className="mt-6 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(38px, 5vw, 66px)", lineHeight: 0.96, letterSpacing: "-0.05em" }}>
         Tannbehandling{" "}
         <br />i Kongsvinger
       </h1>
       <p className="mt-4 max-w-[54ch] text-[17.5px] md:mt-6 leading-[1.65] text-[var(--color-tekst-2)]">
-        Hos tannlegene Hafthun &amp; Zia i {adresse.gate} får du hjelp med det meste: fra tannsjekk og tannrens til akutt tannpine, rotfylling,
-        tannimplantat og tannbleking. Her er alle de {PUNKTER.length} behandlingene våre, forklart enkelt. {veiledning}
+        Hos oss får du hjelp med det meste: fra tannsjekk og tannrens til akutt tannpine, rotfylling, tannimplantat og tannbleking. {veiledning}
       </p>
 
       {/* on a phone the bottom bar has these */}

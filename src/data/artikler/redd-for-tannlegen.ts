@@ -13,7 +13,6 @@ export const reddForTannlegen: Artikkel = {
   linje: "Hva som hjelper mot tannlegeskrekk, hva du selv kan gjøre, og hvor du får hjelp hvis angsten er sterk.",
   kort: "Redd for tannlegen",
   ingress: "Mange gruer seg til å gå til tannlegen. Du er ikke alene, og du trenger ikke å skamme deg. Her kan du lese hva som gjør det lettere.",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Redd for tannlegen? Les hva som hjelper mot tannlegeskrekk, hva du selv kan gjøre, og hvor du får hjelp hvis angsten er sterk.",
   tegning: "haand",
   deler: [

@@ -13,7 +13,6 @@ export const tannverk: Behandlingsside = {
   // the clinic's own words (klinikk.ts, Tannsmerte)
   ingress: "Har du vedvarende vondt i en tann, er det på tide å gå til tannlegen. Her ser du hva det kan komme av, og hvordan tannlegen finner årsaken.",
   tittelbilde: "klut",
-  lesetid: "2 minutter å lese",
   beskrivelse: "Tannverk og tannsmerter hos tannlegen i Kongsvinger: hva det kan komme av, hvordan tannlegen finner årsaken, hva behandlingen kan bli, og når det haster.",
   deler: [
     {

@@ -11,7 +11,6 @@ export const slikPusserDu: Artikkel = {
   linje: "Hvor ofte, hvordan, hva du gjør mellom tennene, og hvordan du hjelper barna.",
   kort: "Slik pusser du",
   ingress: "Å pusse tennene er noe av det viktigste du kan gjøre for munnen din. Her ser du hvordan du gjør det riktig, og hvordan du hjelper barna.",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Slik pusser du tennene riktig: hvor ofte, hvordan, hva du gjør mellom tennene, og hvordan du hjelper barna.",
   tegning: "skraa",
   deler: [

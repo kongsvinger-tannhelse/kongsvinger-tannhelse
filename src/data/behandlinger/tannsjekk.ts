@@ -12,7 +12,6 @@ export const tannsjekk: Behandlingsside = {
   // the clinic's own words
   ingress: "En tannsjekk er den enkleste måten å holde munnen frisk på. Vi finner problemer tidlig, mens de er små og enkle å behandle.",
   tittelbilde: "stol",
-  lesetid: "2 minutter å lese",
   beskrivelse: "Tannsjekk hos tannlegen i Kongsvinger: hva som skjer på en tannsjekk, hvor ofte du bør komme, og røntgen.",
   deler: [
     {

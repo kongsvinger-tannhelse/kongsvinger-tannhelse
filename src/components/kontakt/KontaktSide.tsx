@@ -9,7 +9,6 @@ import { Frimerke } from "@/components/forside/kontakt/deler";
 import { Smuler } from "@/components/Smuler";
 import { klinikk } from "@/data/klinikk";
 import { cn } from "@/lib/utils";
-import { Apningslapp } from "./Apningslapp";
 import { sendMelding, type MeldingState } from "./melding";
 import { Postkort } from "./Postkort";
 import { MAX, PAKREVD, type Felt, type Verdier } from "./sjekk";
@@ -18,8 +17,7 @@ import s from "./brevveksling.module.css";
 
 /**
  * The Kontakt page, «Brevvekslingen». It opens with the one thing most
- * people need, the phone number, and a yellow note that says whether the
- * clinic is open now. Then your letter to the clinic is the form: dated today,
+ * people need, the phone number and the opening hours. Then your letter to the clinic is the form: dated today,
  * «Kjære Kongsvinger Tannhelse», and signed with your name as you type it.
  * Beside it lies the envelope, already addressed to Fjellgata 4 and stamped,
  * with the opening hours as the postmark, and a card for toothache. Send the
@@ -289,8 +287,8 @@ export function KontaktSide() {
           Kontakt tannlegen
         </h1>
 
-        {/* call, or write: the number first, and a note saying whether anyone is there now */}
-        <Vis className="mt-6 flex flex-col items-start gap-x-14 gap-y-7 sm:mt-8 sm:flex-row sm:items-center">
+        {/* call, or write: the number first */}
+        <Vis className="mt-6 sm:mt-8">
           <p className="text-[clamp(20px,2.2vw,26px)] leading-[1.4] text-[var(--color-tekst-2)]">
             <span className="block text-[clamp(36px,4.8vw,62px)] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--color-glomma-deep)]">
               Ring{" "}
@@ -305,7 +303,6 @@ export function KontaktSide() {
             </span>{" "}
             <span className="block">Eller skriv et brev her.</span>
           </p>
-          <Apningslapp className="rotate-[2.2deg] max-sm:ml-1" />
         </Vis>
       </header>
 

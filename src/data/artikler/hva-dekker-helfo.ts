@@ -15,7 +15,6 @@ export const hvaDekkerHelfo: Artikkel = {
   kort: "Hva dekker Helfo",
   // Helsenorge Tannlegeregning: as a rule adults pay themselves; folketrygden covers part in some cases
   ingress: "De fleste voksne betaler tannlegen selv. Men barn og unge får hjelp, og har du visse sykdommer, betaler Helfo en del. Her ser du hvem som betaler hva.",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Hva dekker Helfo hos tannlegen? Hvem som betaler tannbehandlingen for barn, unge voksne fra 19 til 28 år og voksne, når Helfo gir stønad, refusjon og frikort.",
   tegning: "regning",
   deler: [

@@ -272,7 +272,9 @@ export function Oppslag() {
                     <span className="min-w-0 flex-1 border-b border-[var(--color-strek)] pb-2.5 pt-1 md:border-0 md:p-0">
                       <span className="flex items-center gap-2 text-[17px] font-semibold tracking-[-0.015em] text-[var(--color-glomma-deep)] md:text-[15.5px]">
                         {p.navn}
-                        {p.gruppe === "akutt" && <span className="size-2 rounded-full bg-[#B4472F] md:size-1.5" aria-label="akutt" />}
+                        {/* the row's group: a dot in its colour, in words for screen readers */}
+                        <span aria-hidden="true" className="size-2 shrink-0 rounded-full md:size-1.5" style={{ background: PINFARGE[p.gruppe] }} />
+                        <span className="sr-only">, {GRUPPENAVN[p.gruppe].toLowerCase()}</span>
                       </span>
                       <span className="mt-0.5 block text-[14.5px] leading-snug text-[var(--color-tekst-svak)] md:truncate md:text-[13.5px]">{KORT[p.id]}</span>
                     </span>

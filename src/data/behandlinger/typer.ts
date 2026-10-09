@@ -231,7 +231,6 @@ export type Behandlingsside = {
   ingress: string;
   /** The pen scene beside the title. */
   tittelbilde: Tittelbilde;
-  lesetid: string;
   /** For search engines. */
   beskrivelse: string;
   deler: Del[];

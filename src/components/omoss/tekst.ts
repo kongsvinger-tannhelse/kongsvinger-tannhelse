@@ -11,27 +11,23 @@ export const TITTEL = "Velkommen til Kongsvinger Tannhelse";
 
 export const INGRESS = `Vi er en tannklinikk midt i Kongsvinger, i ${adresse.gate}. Hos oss er alle velkomne.`;
 
-export const AVSNITT = [
-  "Her jobber tannlegene Per Hafthun og Umer Zia og tannpleier Eba Wasty.",
-  "Hos oss møter du et dedikert team som brenner for å skape gode opplevelser og varige resultater. Vi kombinerer moderne teknologi med varme smil, slik at du kan føle deg trygg i stolen.",
-  "Vi hjelper deg med alt fra tannsjekk og tannrens til fyllinger, tannbleking, tannimplantat og akutt tannpine.",
-] as const;
-
 export const LAGET = { tittel: "Dette er oss", tekst: "Tannlegene og tannpleieren du møter når du kommer til oss." };
 
 type Navn = (typeof ansatte)[number]["navn"];
 
 /**
- * The yellow note on each portrait: one line in that person's own words.
+ * A few words about each of the three, written in the white border under
+ * their photo.
  *
- * PLACEHOLDERS. These must be replaced with a line each person has written
- * or approved themselves before the page goes live. Never write a line for
- * them. `null` = no note: the note is simply not drawn.
+ * PLACEHOLDERS. The old site says nothing about them but their names, so
+ * these must come from the clinic, written or approved by each person,
+ * before the page goes live. Never write them for them. `null` = name and
+ * role only.
  */
-export const LAPPER: Record<Navn, { linje: string | null }> = {
-  "Per Hafthun": { linje: "[Per skriver en linje her]" },
-  "Umer Zia": { linje: "[Umer skriver en linje her]" },
-  "Eba Wasty": { linje: "[Eba skriver en linje her]" },
+export const BIOER: Record<Navn, string | null> = {
+  "Per Hafthun": "[Kort om Per, fra klinikken: to eller tre setninger, skrevet eller godkjent av Per selv.]",
+  "Umer Zia": "[Kort om Umer, fra klinikken: to eller tre setninger, skrevet eller godkjent av Umer selv.]",
+  "Eba Wasty": "[Kort om Eba, fra klinikken: to eller tre setninger, skrevet eller godkjent av Eba selv.]",
 };
 
 export const GALLERI = {
