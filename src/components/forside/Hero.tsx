@@ -1,9 +1,19 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
-import { Utsikt } from "@/components/forside/utsikt/Utsikt";
+import { Utsikt, type Lag } from "@/components/forside/utsikt/Utsikt";
 import { Klinikkbilder } from "@/components/forside/Klinikkbilder";
 import { Apningsstatus } from "@/components/forside/Apningsstatus";
+import farTegnet from "@/components/forside/utsikt/far-tegnet.webp";
+import naerTegnet from "@/components/forside/utsikt/near-tegnet.webp";
+
+/**
+ * The view is drawn (tools/tegn_hero.py): morning over Glomma, the sun low
+ * over the hills, the town and the fortress on the right. Phones get it at
+ * 2560 px, so the houses and the bridge stay crisp enlarged. The photograph
+ * it replaced is still Utsikt's default.
+ */
+const TEGNING: Lag = { far: farTegnet, near: naerTegnet, telefon: 2560 };
 
 /**
  * «Langs elva». On first paint the camera follows Glomma from the fortress,
@@ -11,7 +21,7 @@ import { Apningsstatus } from "@/components/forside/Apningsstatus";
  * rest. While it settles, the name arrives up in the sky, top left, in the
  * river's own dark slate, with the buttons under it, and the clinic's rooms
  * appear beside it in a square pane with a ring of light: all of it in about
- * two seconds. The words don't wait for the photographs; only the view and
+ * two seconds. The words don't wait for the pictures; only the view and
  * the pane do. Under the buttons: whether the clinic is open right now, and
  * what to do with a toothache. Nothing stands at the foot of the view.
  *
@@ -21,7 +31,7 @@ import { Apningsstatus } from "@/components/forside/Apningsstatus";
 export function Hero() {
   return (
     <section aria-label="Velkommen" className="relative h-[100svh] min-h-[640px] overflow-hidden">
-      <Utsikt glid zoom={1.22} fx={0.62} fy={0.46} fxSmal={0.7} />
+      <Utsikt glid zoom={1.22} fx={0.62} fy={0.46} fxSmal={0.7} lag={TEGNING} />
 
       {/* The wrapper spans the hero; only what is in it takes the pointer. */}
       <div className="pointer-events-none absolute inset-x-0 top-[84px] md:top-[clamp(96px,13vh,132px)]">
