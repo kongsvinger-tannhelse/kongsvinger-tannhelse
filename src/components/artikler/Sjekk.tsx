@@ -80,7 +80,7 @@ export function Sjekk({ sjekk, className }: { sjekk: SjekkData; className?: stri
                   {valgt.handling.knapp === "bestill" && (
                     <Link href="/kontakt" className="mt-4 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[15px] font-semibold text-[var(--color-papir)]">
                       <CalendarDays className="size-4" aria-hidden="true" />
-                      Bestill time
+                      Be om time
                     </Link>
                   )}
                   {valgt.handling.knapp === "ring" && (

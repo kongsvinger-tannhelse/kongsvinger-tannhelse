@@ -30,13 +30,13 @@
 .rom {
   object-fit: cover;
   opacity: 0;
-  transform: scale(1.14);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0s linear 0.8s;
+  transform: scale(1.06);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0s linear 1.2s;
 }
 .rom[data-vis="true"] {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 3.5s cubic-bezier(0.2, 0.6, 0.3, 1);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 6s cubic-bezier(0.25, 0.5, 0.3, 1);
 }
 .innerskygge {
   position: absolute;
@@ -66,21 +66,40 @@
 .rute[data-klar="true"] .lys {
   animation: tegn 1s cubic-bezier(0.65, 0, 0.25, 1) 0.15s forwards;
 }
-/* each room's time: the light brightens round, like a clock hand */
-.tid {
-  fill: none;
-  stroke: #ffffff;
-  stroke-width: 1.5;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  opacity: 0.85;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
-  animation: tegn linear forwards;
-}
 @keyframes tegn {
   to {
     stroke-dashoffset: 0;
   }
+}
+
+/* Stops the rooms (and starts them again): small, in the glass's corner. */
+.knapp {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  color: var(--color-glomma-deep);
+  background: rgba(255, 253, 248, 0.82);
+  box-shadow: 0 4px 14px -6px rgba(10, 25, 32, 0.5);
+  backdrop-filter: blur(6px);
+  opacity: 0.85;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+.knapp:hover,
+.knapp:focus-visible {
+  opacity: 1;
+  background: #fffdf8;
+}
+/* a bigger target than it looks, for fingers */
+.knapp::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
 }
 
 /* Phones: a smaller pane at the right, under the name */
@@ -102,5 +121,9 @@
   .rom[data-vis="true"] {
     transition: opacity 0.4s;
     transform: none;
+  }
+  /* the rooms stay still, so there is nothing to stop */
+  .knapp {
+    display: none;
   }
 }

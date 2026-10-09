@@ -68,7 +68,7 @@ export function Navbar() {
             href="/kontakt"
             className="hidden whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-5 py-2.5 text-[13px] font-semibold text-[var(--color-papir)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)] sm:inline-flex"
           >
-            Bestill time
+            Be om time
           </Link>
           <button
             type="button"
@@ -100,7 +100,7 @@ export function Navbar() {
           </ul>
           <div className="mt-6 flex gap-2">
             <Link href="/kontakt" className="rounded-full bg-[var(--color-glomma)] px-5 py-3 text-[14px] font-semibold text-[var(--color-papir)]">
-              Bestill time
+              Be om time
             </Link>
             <a href={klinikk.telefon.lenke} className="rounded-full border border-[var(--color-strek)] px-5 py-3 text-[14px] font-medium">
               {klinikk.telefon.visning}

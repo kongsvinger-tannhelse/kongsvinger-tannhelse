@@ -150,7 +150,7 @@ export function Hilsen({ tekst, className }: { tekst: string; className?: string
           className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-8 py-4 text-[17px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
         >
           <CalendarDays className="size-5" aria-hidden="true" />
-          Bestill time
+          Be om time
         </Link>
         <p className="mt-2.5 text-[14.5px] text-[var(--color-tekst-2)] md:text-center">
           eller ring{" "}

@@ -300,7 +300,7 @@ function Innhold({ p, tittelId = `${p.id}-tittel` }: { p: Punkt; tittelId?: stri
         </a>
         <Link href="/kontakt" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-strek)] bg-white px-6 text-[15px] font-semibold text-[var(--color-glomma-deep)]">
           <CalendarDays className="size-4" aria-hidden="true" />
-          Bestill time
+          Be om time
         </Link>
       </div>
     </>

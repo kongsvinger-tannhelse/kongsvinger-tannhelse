@@ -10,6 +10,9 @@ export const klinikk = {
   // From the Google Maps embed on the old site
   geo: { lat: 60.1915, lng: 11.9955 },
   apningstider: { dager: "Mandag–fredag", fra: "08:30", til: "15:30", stengt: "Lørdag–søndag" },
+  // Days the clinic is closed on a weekday beyond the public holidays (holidays,
+  // courses), as YYYY-MM-DD. The front page's «Åpent nå» reads it; ask the clinic.
+  stengteDager: [] as readonly string[],
   // Tannlege Per Hafthun AS, Fjellgata 4 (Brønnøysundregistrene, 2026-10-09). Not on the old site: to be confirmed.
   orgnr: "918 313 931",
 } as const;
