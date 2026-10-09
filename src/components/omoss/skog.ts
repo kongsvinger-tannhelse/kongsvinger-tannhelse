@@ -11,7 +11,7 @@ export { r2, rng };
 
 /** The forest's colours, by distance: the far ones fade into the sky. */
 export const SKOG = {
-  himmel: "#FDF9F0",
+  himmel: "#E2F1F1",
   lys: "#F7F0DA",
   /** far, middle, near and nearest: [shaded half, lit half] */
   fjern: ["#C3CEC6", "#CFD8D1"],
