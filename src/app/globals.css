@@ -58,14 +58,13 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 /* ── The front page's sections open with their own sentence, in the old
-   headings' weight and colour, on the left. The section names are still
-   there as headings, for screen readers only. ── */
+   headings' weight and colour, across the container's whole width. The
+   section names are still there as headings, for screen readers only. ── */
 .seksjonsinngang {
-  max-width: 42ch;
-  font-size: 21px;
+  font-size: 26px;
   font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: -0.015em;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
   color: var(--color-glomma-deep);
 }
 
