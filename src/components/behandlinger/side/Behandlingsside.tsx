@@ -6,6 +6,7 @@ import { Smuler, Vis } from "@/components/artikler/deler";
 import { Ark, Brod, Hilsen, Sporsmal } from "@/components/artikler/lapp";
 import { GulLapp } from "@/components/artikler/mellom";
 import { Bunnlinje } from "@/components/behandlinger/deler";
+import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";
 import { BTEGNINGER } from "./tegninger";
 import { TITTELBILDER } from "./tittelbilder";
@@ -152,14 +153,12 @@ export function Behandlingsside({ side }: { side: Side }) {
       <div className="mx-auto w-full max-w-[1040px] px-[var(--container-px)]">
         <Smuler sider={[{ navn: "Behandlinger", href: "/behandlinger" }, { navn: side.navn }]} />
         <Ark className="mt-8">
-          <Vis as="header" margin="0px">
-            <h1 className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(34px, 4.2vw, 50px)", lineHeight: 1.05, letterSpacing: "-0.04em" }}>
+          <Vis as="header" margin="0px" className="text-center">
+            <h1 className="mx-auto max-w-[22ch] text-balance font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
               {side.navn}
             </h1>
-            <div className="mt-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,330px)] md:items-center md:gap-10">
-              <p className="max-w-[38ch] text-[20px] leading-[1.55] text-[var(--color-tekst-2)] md:text-[23px]">{side.ingress}</p>
-              <Tittelbilde className="mx-auto mt-8 w-full max-w-[340px] md:mt-0" />
-            </div>
+            <p className="mx-auto mt-4 max-w-[44ch] text-balance text-[18px] leading-[1.55] text-[var(--color-tekst-2)] md:mt-5 md:text-[20px]">{side.ingress}</p>
+            <Tittelbilde className="mx-auto mt-8 w-full max-w-[300px]" />
           </Vis>
           <div className="mt-10 md:mt-14">
             {side.deler.map((del, i) => (

@@ -262,13 +262,13 @@ export function KontaktSide() {
 
   return (
     <main className="overflow-x-clip bg-[var(--color-papir)]">
-      <header className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pt-[clamp(104px,12vw,150px)]">
+      <header className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pt-[clamp(104px,12vw,150px)] text-center">
         <Smuler side="Kontakt" />
         <h1 className="mt-6 font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
           Kontakt tannlegen
         </h1>
 
-        <p className="mt-5 max-w-[56ch] text-[18px] leading-[1.6] text-[var(--color-tekst-2)]">{INTRO}</p>
+        <p className="mx-auto mt-5 max-w-[52ch] text-balance text-[18px] leading-[1.6] text-[var(--color-tekst-2)]">{INTRO}</p>
       </header>
 
       {/* Wide: the letter on the left; the envelope and the toothache card down the right.

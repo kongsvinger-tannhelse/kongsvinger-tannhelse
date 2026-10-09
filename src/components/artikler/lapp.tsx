@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CalendarDays } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import type { Del } from "@/data/artikler";
+import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";
 import { Merke, Vis } from "./deler";
 import { ApentNa } from "./klokke";
@@ -46,7 +47,7 @@ export function Ark({ children, className }: { children: React.ReactNode; classN
 export function Topp({ tittel, ingress, className }: { tittel: string; ingress: string; className?: string }) {
   return (
     <header className={cn("text-center", className)}>
-      <h1 className="mx-auto max-w-[22ch] text-balance font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(34px, 4.2vw, 50px)", lineHeight: 1.05, letterSpacing: "-0.04em" }}>
+      <h1 className="mx-auto max-w-[22ch] text-balance font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
         {tittel}
       </h1>
       <p className="mx-auto mt-4 max-w-[44ch] text-balance text-[18px] leading-[1.55] text-[var(--color-tekst-2)] md:mt-5 md:text-[20px]">{ingress}</p>

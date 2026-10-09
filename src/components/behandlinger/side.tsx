@@ -88,11 +88,12 @@ export function Strukturert() {
   );
 }
 
+/** The top of the page, centred: crumbs, the title, a few words, and (from md up) Ring, Be om time and the facts. */
 export function Topp({ veiledning }: { veiledning: string }) {
   return (
-    <header>
+    <header className="mx-auto max-w-[760px] text-center">
       <nav aria-label="Brødsmuler" className="text-[13px] text-[var(--color-tekst-svak)]">
-        <ol className="flex items-center gap-2">
+        <ol className="flex items-center justify-center gap-2">
           <li>
             <Link href="/" className="underline-offset-4 hover:text-[var(--color-tekst)] hover:underline">
               Forside
@@ -105,16 +106,15 @@ export function Topp({ veiledning }: { veiledning: string }) {
         </ol>
       </nav>
 
-      <h1 className="mt-6 font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
-        Tannbehandling{" "}
-        <br />i Kongsvinger
+      <h1 className="mt-6 text-balance font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
+        Tannbehandling i Kongsvinger
       </h1>
-      <p className="mt-4 max-w-[54ch] text-[17.5px] md:mt-6 leading-[1.65] text-[var(--color-tekst-2)]">
+      <p className="mx-auto mt-4 max-w-[54ch] text-balance text-[17.5px] leading-[1.65] text-[var(--color-tekst-2)] md:mt-5">
         Hos oss får du hjelp med det meste: fra tannsjekk og tannrens til akutt tannpine, rotfylling, tannimplantat og tannbleking. {veiledning}
       </p>
 
       {/* on a phone the bottom bar has these */}
-      <div className="mt-8 hidden flex-wrap items-center gap-3 md:flex">
+      <div className="mt-8 hidden flex-wrap items-center justify-center gap-3 md:flex">
         <a
           href={telefon.lenke}
           className="inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[15px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
@@ -131,7 +131,7 @@ export function Topp({ veiledning }: { veiledning: string }) {
         </Link>
       </div>
 
-      <dl className="mt-9 hidden flex-wrap gap-x-8 gap-y-3 border-t border-[var(--color-strek)] pt-5 text-[14px] md:flex">
+      <dl className="mt-9 hidden flex-wrap justify-center gap-x-10 gap-y-3 border-t border-[var(--color-strek)] pt-5 text-[14px] md:flex">
         <div>
           <dt className="text-[var(--color-tekst-svak)]">Adresse</dt>
           <dd className="font-medium text-[var(--color-tekst)]">

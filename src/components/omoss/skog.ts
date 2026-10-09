@@ -15,7 +15,13 @@ export const SKOG = {
   fjern: ["#C3CEC6", "#CFD8D1"],
   midt: ["#8FA796", "#A3B8A8"],
   naer: ["#4E6C5A", "#628270"],
+  naermest: ["#2E4A3C", "#3E5D4C"],
   stamme: "#6E4E38",
+  furustamme: "#8E5B3E",
+  bjorkestamme: "#F2EFE6",
+  bjorkemerke: "#3A3A36",
+  bjorkelauv: ["#8FA672", "#A7B88A"],
+  sti: ["#D8C7A4", "#E6D9BC"],
   gress: ["#C8D3AE", "#B9C99C", "#A8BC8A"],
   mose: ["#7F9A5C", "#93AE6C"],
   lyng: "#5F7A55",
@@ -65,6 +71,74 @@ export function gran(x: number, y: number, h: number, w: number, seed: number) {
     lys: halv(1),
     stamme: `M${r2(x - sw / 2)},${r2(fot - 4)} L${r2(x + sw / 2)},${r2(fot - 4)} L${r2(x + sw * 0.6)},${r2(y)} L${r2(x - sw * 0.6)},${r2(y)} Z`,
   };
+}
+
+/**
+ * A pine: a tall bare trunk, a little crooked, going warm orange high up,
+ * and a loose, rounded crown of needle clumps on short branches, wider
+ * than it is deep, as old pines on a ridge.
+ */
+export function furu(x: number, y: number, h: number, w: number, seed: number) {
+  const rand = rng(seed);
+  const boy = (rand() - 0.5) * w * 0.3;
+  const tw = Math.max(2, w * 0.045);
+  const topp = y - h * 0.9;
+  const stamme = `M${r2(x - tw)},${r2(y)} C${r2(x - tw)},${r2(y - h * 0.4)} ${r2(x + boy - tw * 0.6)},${r2(y - h * 0.62)} ${r2(x + boy - tw * 0.35)},${r2(topp)} L${r2(x + boy + tw * 0.35)},${r2(topp)} C${r2(x + boy + tw * 0.6)},${r2(y - h * 0.62)} ${r2(x + tw)},${r2(y - h * 0.4)} ${r2(x + tw)},${r2(y)} Z`;
+
+  // the crown: an umbrella of clumps between 62% and 100% of the height
+  const greiner: string[] = [];
+  const skyer: { cy: number; skygge: string; lys: string }[] = [];
+  const antall = 9 + Math.floor(rand() * 4);
+  for (let i = 0; i < antall; i++) {
+    const t = rand();
+    const side = rand() * 2 - 1;
+    const hoyde = 0.64 + 0.32 * (1 - Math.abs(side) ** 1.6) * (0.55 + t * 0.45);
+    const cy = y - h * hoyde;
+    const cx = x + boy * (0.7 + hoyde * 0.3) + side * w * 0.5;
+    const rx = w * (0.11 + rand() * 0.08);
+    const ry = rx * (0.5 + rand() * 0.15);
+    const fra = x + boy * (0.7 + hoyde * 0.3);
+    const fraY = cy + h * 0.03 + Math.abs(side) * h * 0.03;
+    if (Math.abs(side) > 0.25) greiner.push(`M${r2(fra)},${r2(fraY)} Q${r2((fra + cx) / 2)},${r2(fraY - h * 0.01)} ${r2(cx)},${r2(cy + ry * 0.3)}`);
+    skyer.push({
+      cy,
+      skygge: lauv(cx, cy, rx, ry, seed * 7 + i, 12),
+      lys: lauv(cx + rx * 0.14, cy - ry * 0.28, rx * 0.68, ry * 0.55, seed * 13 + i, 9),
+    });
+  }
+  // the low clumps first, so the high ones lie over them
+  skyer.sort((a, b) => b.cy - a.cy);
+  return { stamme, greiner: greiner.join(" "), skyer };
+}
+
+/**
+ * A birch: a slim white trunk with black marks and a loose, light crown.
+ */
+export function bjork(x: number, y: number, h: number, w: number, seed: number) {
+  const rand = rng(seed);
+  const boy = (rand() - 0.5) * w * 0.2;
+  const tw = Math.max(2.5, w * 0.06);
+  const topp = y - h * 0.9;
+  const stamme = `M${r2(x - tw)},${r2(y)} C${r2(x - tw * 0.9)},${r2(y - h * 0.5)} ${r2(x + boy - tw * 0.4)},${r2(y - h * 0.7)} ${r2(x + boy)},${r2(topp)} C${r2(x + boy + tw * 0.4)},${r2(y - h * 0.7)} ${r2(x + tw * 0.9)},${r2(y - h * 0.5)} ${r2(x + tw)},${r2(y)} Z`;
+  let merker = "";
+  for (let my = y - h * 0.06; my > y - h * 0.62; my -= h * (0.05 + rand() * 0.05)) {
+    const t = (y - my) / h;
+    const cx = x + boy * t * 0.8;
+    const l = tw * (0.5 + rand() * 0.7);
+    const fra = rand() < 0.5 ? -1 : 1;
+    merker += ` M${r2(cx + fra * tw * 0.95)},${r2(my)} L${r2(cx + fra * (tw * 0.95 - l))},${r2(my + 0.6)}`;
+  }
+  const krone: { skygge: string; lys: string }[] = [];
+  for (let i = 0; i < 5; i++) {
+    const cx = x + boy + (rand() - 0.5) * w * 0.55;
+    const cy = y - h * (0.62 + rand() * 0.3);
+    const rx = w * (0.22 + rand() * 0.12);
+    krone.push({
+      skygge: lauv(cx, cy, rx, rx * 0.8, seed * 5 + i, 10),
+      lys: lauv(cx + rx * 0.15, cy - rx * 0.18, rx * 0.66, rx * 0.5, seed * 9 + i, 8),
+    });
+  }
+  return { stamme, merker: merker.trim(), krone };
 }
 
 /** A strip of ground: a soft line through points across, filled down to `bunn`. */
@@ -160,4 +234,32 @@ export function sopp(x: number, y: number, s: number) {
     hatt: `M${r2(x - s * 0.72)},${r2(y - s * 0.98)} C${r2(x - s * 0.74)},${r2(y - s * 1.55)} ${r2(x + s * 0.74)},${r2(y - s * 1.55)} ${r2(x + s * 0.72)},${r2(y - s * 0.98)} Q${r2(x)},${r2(y - s * 0.86)} ${r2(x - s * 0.72)},${r2(y - s * 0.98)} Z`,
     lys: `M${r2(x - s * 0.1)},${r2(y - s * 1.36)} C${r2(x + s * 0.2)},${r2(y - s * 1.42)} ${r2(x + s * 0.5)},${r2(y - s * 1.3)} ${r2(x + s * 0.58)},${r2(y - s * 1.12)} C${r2(x + s * 0.4)},${r2(y - s * 1.22)} ${r2(x + s * 0.15)},${r2(y - s * 1.3)} ${r2(x - s * 0.1)},${r2(y - s * 1.36)} Z`,
   };
+}
+
+/** A row of trees along a strip, seeded: x from `fra` to `til`, a gap kept clear between `apen[0]` and `apen[1]`. */
+export function rekke(opts: {
+  fra: number;
+  til: number;
+  steg: number;
+  bunn: (x: number) => number;
+  hoyde: [number, number];
+  bredde: number;
+  seed: number;
+  apen?: readonly [number, number];
+  /** pines among the spruce, 0–1 */
+  furu?: number;
+  /** grow taller towards the sides (0 = no) */
+  kant?: number;
+  midt?: number;
+}) {
+  const rand = rng(opts.seed);
+  const ut: { x: number; y: number; h: number; w: number; art: "gran" | "furu"; seed: number }[] = [];
+  for (let x = opts.fra; x <= opts.til; x += opts.steg * (0.7 + rand() * 0.6)) {
+    if (opts.apen && x > opts.apen[0] && x < opts.apen[1]) continue;
+    const kant = opts.kant ? 1 + opts.kant * Math.min(1, Math.abs(x - (opts.midt ?? 800)) / 800) : 1;
+    const h = (opts.hoyde[0] + rand() * (opts.hoyde[1] - opts.hoyde[0])) * kant;
+    const art = rand() < (opts.furu ?? 0) ? "furu" : "gran";
+    ut.push({ x: r2(x), y: r2(opts.bunn(x) + 6), h: r2(h), w: r2(h * (art === "furu" ? 0.4 : opts.bredde) * (0.85 + rand() * 0.3)), art, seed: Math.floor(rand() * 1e6) });
+  }
+  return ut;
 }

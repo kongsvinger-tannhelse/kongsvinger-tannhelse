@@ -110,8 +110,8 @@ export function Sider() {
 /**
  * The bottom line: copyright and the privacy page, the credits, back to the
  * top. The hero is our own drawing and needs no credit. The fortress drawing
- * in «Om oss» is drawn over a CC BY 2.0 photo, and the fortress on the
- * Behandlinger book is traced from OpenStreetMap; both licences ask for one.
+ * in «Om oss» is drawn over a CC BY 2.0 photo, and the map on the front
+ * page is drawn from OpenStreetMap; both licences ask for one.
  */
 export function Bunnlinje({ className }: { className?: string }) {
   return (
