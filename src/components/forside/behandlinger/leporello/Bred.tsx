@@ -105,13 +105,12 @@ export function Bred() {
       <Scene id={TRE[k].id} oppe={staar > k} spiller={synlig && staar > k} redusert={redusert} />
     </div>
   );
-  const side = (k: number, bilde: ReactNode) => (
-    <Side bilde={bilde}>
-      <div className={cn(ORD, "hero-loft")} style={{ animationPlayState: staar > k ? "running" : "paused", animationDelay: "0.25s" }}>
-        <Ord k={k} />
-      </div>
-    </Side>
+  const ord = (k: number) => (
+    <div className={cn(ORD, "hero-loft")} style={{ animationPlayState: staar > k ? "running" : "paused", animationDelay: "0.25s" }}>
+      <Ord k={k} />
+    </div>
   );
+  const side = (k: number, bilde: ReactNode) => <Side bilde={bilde}>{ord(k)}</Side>;
 
   return (
     <div ref={ref} className={s.bred}>
@@ -134,7 +133,7 @@ export function Bred() {
             <Panel forste ledd={fot} vinkel={a0} forside={side(0, scene(0))}>
               <Panel ledd={l1} vinkel={a1} forside={side(1, scene(1))}>
                 <Panel ledd={l2} vinkel={a2} forside={side(2, scene(2))}>
-                  <Panel ledd={l3} vinkel={a3} forside={side(3, <Register />)} bakside={<Omslag />} />
+                  <Panel ledd={l3} vinkel={a3} forside={<Register>{ord(3)}</Register>} bakside={<Omslag />} />
                 </Panel>
               </Panel>
             </Panel>
@@ -234,11 +233,16 @@ function Panel({ forste = false, ledd, vinkel, forside, bakside, children }: { f
   );
 }
 
-/** The last panel's picture: every treatment, set large enough to fill it, like the back of a book. */
-function Register() {
+/** The last panel: every treatment, set large enough to fill the whole page like the back of a book, and the way to them all at its foot. */
+function Register({ children }: { children: ReactNode }) {
   return (
-    <div className="absolute inset-0 flex flex-col border-b border-[var(--color-strek)] px-[9%] pb-[7%] pt-[9%] text-[var(--color-glomma-deep)]">
-      <Alle className="flex flex-1 flex-col justify-between" style={{ fontSize: "calc(var(--w) * 0.05)", lineHeight: 1.45 }} />
+    <div className="absolute inset-0 flex flex-col" style={{ background: FARGE.papir }}>
+      <div className="flex min-h-0 flex-1 flex-col px-[9%] pt-[9%] text-[var(--color-glomma-deep)]">
+        {/* 0.058: the largest that fits every width from 1024 to 1920 px (measured); any room left spreads between the groups */}
+        <Alle className="flex flex-1 flex-col justify-between" style={{ fontSize: "calc(var(--w) * 0.058)", lineHeight: 1.45 }} />
+      </div>
+      <div className="mx-[8%] mt-[6%] border-t border-[var(--color-strek)]" />
+      {children}
     </div>
   );
 }
