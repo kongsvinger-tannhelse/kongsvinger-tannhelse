@@ -12,7 +12,6 @@ export const mistetFylling: Behandlingsside = {
   // the clinic's own words (klinikk.ts)
   ingress: "Har du mistet en fylling, kontakt tannlegen så snart som mulig. Her ser du hvorfor det kan skje, og hva tannlegen gjør.",
   tittelbilde: "skjaere",
-  lesetid: "2 minutter å lese",
   beskrivelse: "Mistet fylling hos tannlegen i Kongsvinger: hvorfor en fylling kan falle ut, hvorfor du bør komme snart, og hva tannlegen gjør.",
   deler: [
     {

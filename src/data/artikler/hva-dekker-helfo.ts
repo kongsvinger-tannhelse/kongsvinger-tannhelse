@@ -10,10 +10,11 @@ import type { Artikkel } from "./typer";
 export const hvaDekkerHelfo: Artikkel = {
   slug: "hva-dekker-helfo",
   tittel: "Hva dekker Helfo hos tannlegen?",
+  gruppe: "praktisk",
+  linje: "Hvem som betaler tannbehandlingen for barn, unge voksne og voksne, og når Helfo gir stønad og frikort.",
   kort: "Hva dekker Helfo",
   // Helsenorge Tannlegeregning: as a rule adults pay themselves; folketrygden covers part in some cases
   ingress: "De fleste voksne betaler tannlegen selv. Men barn og unge får hjelp, og har du visse sykdommer, betaler Helfo en del. Her ser du hvem som betaler hva.",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Hva dekker Helfo hos tannlegen? Hvem som betaler tannbehandlingen for barn, unge voksne fra 19 til 28 år og voksne, når Helfo gir stønad, refusjon og frikort.",
   tegning: "regning",
   deler: [
@@ -43,7 +44,7 @@ export const hvaDekkerHelfo: Artikkel = {
       ],
     },
     // Helfo Unge voksne: from 1 July 2026 no Helfo support for 19–28, the counties are responsible
-    { type: "lapp", lapp: { slag: "visste", tekst: "Fra 1. juli 2026 får unge mellom 19 og 28 år ikke lenger hjelp fra Helfo hos private tannleger. Rabatten får de i Den offentlige tannhelsetjenesten." } },
+    { type: "lapp", lapp: { slag: "visste", tekst: "Fra 1. juli 2026 får unge mellom 19 og 28 år ikke lenger hjelp fra Helfo hos private tannleger. Rabatten får de i Den offentlige tannhelsetjenesten.", feste: "Unge voksne går også til Den offentlige tannhelsetjenesten" } },
     {
       type: "liste",
       id: "helfo",
@@ -74,7 +75,7 @@ export const hvaDekkerHelfo: Artikkel = {
       tegning: "snakke",
     },
     // Prisopplysningsforskriften § 18
-    { type: "lapp", lapp: { slag: "visste", tekst: "Koster behandlingen mer enn 5 000 kroner, skal du få et skriftlig pristilbud før den starter. Betaler Helfo noe, står det der også." } },
+    { type: "lapp", lapp: { slag: "visste", tekst: "Koster behandlingen mer enn 5 000 kroner, skal du få et skriftlig pristilbud før den starter. Betaler Helfo noe, står det der også.", feste: "forskjellen betaler du selv" } },
     {
       type: "tekst",
       id: "frikort",
@@ -88,7 +89,7 @@ export const hvaDekkerHelfo: Artikkel = {
       tegning: "frikort",
     },
     // Helsenorge Frikort: 3278 kroner in 2026
-    { type: "lapp", lapp: { slag: "visste", tekst: "I 2026 får du frikort når du har betalt 3 278 kroner i egenandeler." } },
+    { type: "lapp", lapp: { slag: "visste", tekst: "I 2026 får du frikort når du har betalt 3 278 kroner i egenandeler.", feste: "teller egenandelen med på frikortet" } },
     {
       type: "tekst",
       id: "hjelp",

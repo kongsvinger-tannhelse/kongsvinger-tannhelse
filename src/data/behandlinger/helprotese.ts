@@ -11,7 +11,6 @@ export const helprotese: Behandlingsside = {
   // the clinic's own words (klinikk.ts)
   ingress: "En helprotese er et avtakbart tannsett når alle tennene i en kjeve er borte. Her ser du hvordan den lages, og hvordan det er å begynne å bruke den.",
   tittelbilde: "gebiss",
-  lesetid: "2 minutter å lese",
   beskrivelse: "Helprotese hos tannlegen i Kongsvinger: hva en helprotese er, hvordan den lages steg for steg, og hvordan det er å venne seg til den.",
   deler: [
     {

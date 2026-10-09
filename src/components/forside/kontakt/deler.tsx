@@ -27,6 +27,9 @@ export function Frimerke() {
   );
 }
 
+/** The rim of the postmark: a circle of radius 41, its length in map units, which the rim text is spread to fill. */
+const RAND = 2 * Math.PI * 41;
+
 /** The postmark: the clinic round the rim, the opening hours in the middle. Pressed on once `vis` turns true. */
 export function Poststempel({ vis }: { vis: boolean }) {
   const id = `rand-${useId().replace(/:/g, "")}`;
@@ -41,15 +44,15 @@ export function Poststempel({ vis }: { vis: boolean }) {
         <path id={id} d="M-41,0 a41,41 0 1,1 82,0 a41,41 0 1,1 -82,0" fill="none" />
         <circle r={52} fill="none" stroke={blekk} strokeWidth={2} />
         <circle r={32} fill="none" stroke={blekk} strokeWidth={1.4} />
-        <text fontSize={10.5} fontWeight={600} letterSpacing={2.2} fill={blekk}>
-          <textPath href={`#${id}`} startOffset="0">
-            {`${klinikk.navn.toUpperCase()} · ${adresse.gate.toUpperCase()} ·`}
-          </textPath>
+        {/* small enough to go round with room to spare, then spread to close the ring */}
+        <text fontSize={8.6} fontWeight={600} letterSpacing={1.2} fill={blekk}>
+          <textPath href={`#${id}`} textLength={RAND - 1} lengthAdjust="spacing">{`${klinikk.navn.toUpperCase()} · ${adresse.gate.toUpperCase()} · `}</textPath>
         </text>
-        <text y={-4} textAnchor="middle" fontSize={11} fontWeight={700} letterSpacing={1} fill={blekk}>
+        {/* sized to sit inside the inner ring */}
+        <text y={-3} textAnchor="middle" fontSize={10} fontWeight={700} letterSpacing={0.8} fill={blekk}>
           MAN–FRE
         </text>
-        <text y={12} textAnchor="middle" fontSize={11.5} fontWeight={700} fill={blekk}>
+        <text y={11} textAnchor="middle" fontSize={9} fontWeight={700} fill={blekk}>
           {tid.fra}–{tid.til}
         </text>
         {/* the wavy cancellation lines, running on over the stamp */}

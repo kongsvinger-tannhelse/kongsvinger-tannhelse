@@ -23,8 +23,28 @@
 }
 [data-vis="nei"] .stig { transform: translateY(14px); opacity: 0; }
 
+/* ── The pen underline under the words a sticky note explains ──
+   One coral pen stroke, stretched along the phrase. On a phrase that wraps,
+   the stroke runs on from line to line (the background is sliced, not
+   cloned), so it draws itself across the lines in reading order. */
+.understrek {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 12' preserveAspectRatio='none'%3E%3Cpath d='M2 7.2 C 50 5.4, 96 8.6, 150 6.6 S 246 5.2, 298 7.4' fill='none' stroke='%23D9634C' stroke-width='2.3' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.5em;
+  padding-bottom: 0.14em;
+  transition: background-size 1s var(--ease-rolig) var(--forsink, 0.1s);
+}
+[data-vis="nei"] .understrek,
+.understrek[data-vis="nei"] { background-size: 0% 0.5em; }
+
+/* ── A line in the list of articles: the line shows focus, not the link ──
+   (Out of any layer, like the site-wide :focus-visible rule it overrides.) */
+.linjelenke:focus-visible { outline: none; }
+
 @media (prefers-reduced-motion: reduce) {
-  .strek, .blekk, .stig { transition: none !important; }
+  .strek, .blekk, .stig, .understrek { transition: none !important; }
   [data-vis] .strek { stroke-dashoffset: 0 !important; }
   [data-vis] .blekk, [data-vis] .stig { opacity: 1 !important; transform: none !important; }
+  [data-vis] .understrek, .understrek[data-vis] { background-size: 100% 0.5em !important; }
 }

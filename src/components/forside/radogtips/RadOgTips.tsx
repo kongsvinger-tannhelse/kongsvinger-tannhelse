@@ -53,8 +53,7 @@ export function RadOgTips() {
                   <T strek className="w-16 md:w-32" forsink={i * 0.2} />
                   <span className={cn("mt-3 block text-[18px] font-bold leading-[1.2] tracking-[-0.015em] md:mt-6 md:text-[24px]", h.gul ? "text-[var(--color-lapp-tekst)]" : "text-[var(--color-glomma-deep)]")}>{a.tittel}</span>
                   <span className={cn("mt-2 hidden text-[16px] leading-[1.55] md:block", h.gul ? "text-[var(--color-lapp-blekk)]" : "text-[var(--color-tekst-2)]")}>{a.ingress}</span>
-                  <span className="mt-auto flex items-center justify-between gap-4 pt-4 md:pt-6">
-                    <span className={cn("text-[14px] md:text-[16px]", h.gul ? "text-[var(--color-lapp-blekk)]" : "text-[var(--color-tekst-svak)]")}>{a.lesetid}</span>
+                  <span className="mt-auto flex justify-end pt-4 md:pt-6">
                     <ArrowRight className={cn("size-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1 md:size-6", h.gul ? "text-[var(--color-lapp-blekk)]" : "text-[var(--color-teal)]")} aria-hidden="true" />
                   </span>
                 </Link>

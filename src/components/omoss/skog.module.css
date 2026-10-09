@@ -1,6 +1,6 @@
 /* The forest's motion: trees stand up from their foot, one after another,
    when their forest comes into view (data-vis="ja" on an ancestor); the
-   nearest sway a little in the wind; light falls in through the gaps. */
+   nearest sway a little in the wind. */
 
 .tre,
 .tue {
@@ -32,19 +32,6 @@
   70% { transform: rotate(-0.4deg); }
 }
 
-/* light through the trees */
-.strale {
-  mix-blend-mode: screen;
-  animation: strale 9s ease-in-out infinite;
-}
-.strale:nth-child(2n) { animation-duration: 11s; animation-delay: -3s; }
-.strale:nth-child(3n) { animation-duration: 13s; animation-delay: -6s; }
-@keyframes strale {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 0.9; }
-}
-
-
 @media (prefers-reduced-motion: reduce) {
   .tre,
   .tue {
@@ -53,8 +40,7 @@
     opacity: 1;
   }
   .vind,
-  [data-vis="ja"] .vind,
-  .strale {
+  [data-vis="ja"] .vind {
     animation: none;
   }
 }

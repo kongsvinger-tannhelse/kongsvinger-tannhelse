@@ -12,7 +12,6 @@ export const tannbro: Behandlingsside = {
   // the clinic's own words (klinikk.ts)
   ingress: "En tannbro erstatter én eller flere tenner som mangler. Den festes til tennene ved siden av og sitter fast hele tiden. Her ser du hvordan den lages.",
   tittelbilde: "bro-elv",
-  lesetid: "2 minutter å lese",
   beskrivelse: "Tannbro hos tannlegen i Kongsvinger: hva en bro er, hvilke andre måter det finnes å erstatte en tann på, og hvordan en bro lages steg for steg.",
   deler: [
     {

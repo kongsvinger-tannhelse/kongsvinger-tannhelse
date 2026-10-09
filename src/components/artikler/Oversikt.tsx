@@ -1,12 +1,19 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
-import { ARTIKLER, RAD_OG_TIPS } from "@/data/artikler";
+import { ARTIKLER_GRUPPERT, RAD_OG_TIPS, type Artikkel } from "@/data/artikler";
+import { cn } from "@/lib/utils";
 import { Smuler, Vis } from "./deler";
+import { Ark, Hilsen, Topp } from "./lapp";
 import { TEGNINGER } from "./tegninger";
+import s from "./artikler.module.css";
 
-/* /rad-og-tips: every note, each on its own small sheet of paper with its
-   pen sketch, drawing itself as the sheets come into view. */
+/* /rad-og-tips: one sheet from the clinic, like the articles themselves,
+   with what we have written, grouped by what you need. Each line is a
+   title and one plain sentence, with its pen sketch in the margin drawing
+   itself as the line comes into view. A new article is one more line. */
+
+/** The order the page shows them in: by need. */
+const I_REKKEFOLGE = ARTIKLER_GRUPPERT.flatMap((g) => g.artikler);
 
 const strukturert = {
   "@context": "https://schema.org",
@@ -21,7 +28,7 @@ const strukturert = {
       publisher: { "@type": "Dentist", "@id": `${klinikk.url}/#klinikk`, name: klinikk.navn },
       mainEntity: {
         "@type": "ItemList",
-        itemListElement: ARTIKLER.map((a, i) => ({ "@type": "ListItem", position: i + 1, name: a.tittel, url: `${klinikk.url}${RAD_OG_TIPS.sti}/${a.slug}` })),
+        itemListElement: I_REKKEFOLGE.map((a, i) => ({ "@type": "ListItem", position: i + 1, name: a.tittel, url: `${klinikk.url}${RAD_OG_TIPS.sti}/${a.slug}` })),
       },
     },
     {
@@ -34,9 +41,40 @@ const strukturert = {
   ],
 };
 
+/** One line in the list: the title is the link, but the whole line can be clicked, and it is the line that shows focus. */
+function Linje({ artikkel }: { artikkel: Artikkel }) {
+  const T = TEGNINGER[artikkel.tegning];
+  return (
+    <Vis
+      as="li"
+      className={cn(
+        "group relative -mx-3 flow-root rounded-[20px] px-3 py-4 transition-colors duration-300 hover:bg-[var(--color-papir)]/55",
+        "has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-glomma",
+        "md:-mx-5 md:px-5 md:py-5 lg:grid lg:grid-cols-[minmax(0,1fr)_128px] lg:items-center lg:gap-x-10",
+      )}
+    >
+      <T strek className="float-right -mt-1 mb-1 ml-3 w-[72px] sm:w-24 lg:order-2 lg:float-none lg:m-0 lg:w-full" forsink={0.1} />
+      <div className="lg:order-1">
+        <h3 className="text-[22px] font-bold leading-[1.2] tracking-[-0.025em] text-[var(--color-glomma-deep)] md:text-[26px]">
+          <Link
+            href={`${RAD_OG_TIPS.sti}/${artikkel.slug}`}
+            className={cn(
+              "decoration-[var(--color-tekst)] decoration-2 underline-offset-[6px] after:absolute after:inset-0 after:rounded-[20px] group-hover:underline",
+              s.linjelenke,
+            )}
+          >
+            {artikkel.tittel}
+          </Link>
+        </h3>
+        <p className="mt-2 max-w-[54ch] text-[17px] leading-[1.6] text-[var(--color-tekst-2)] md:text-[18px]">{artikkel.linje}</p>
+      </div>
+    </Vis>
+  );
+}
+
 export function Oversikt() {
   return (
-    <main className="bg-[var(--color-papir)] pb-[clamp(56px,10vw,140px)] pt-[clamp(96px,12vw,140px)]">
+    <main className="overflow-x-clip bg-[var(--color-papir)] pb-[clamp(56px,10vw,140px)] pt-[clamp(96px,12vw,140px)]">
       <script
         type="application/ld+json"
         // Safe: built from the site's own static data, not user input
@@ -44,37 +82,31 @@ export function Oversikt() {
       />
       <div className="mx-auto w-full max-w-[1120px] px-[var(--container-px)]">
         <Smuler sider={[{ navn: RAD_OG_TIPS.navn }]} />
-        <header className="mt-6 max-w-[760px]">
-          <h1 className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(44px, 6.6vw, 88px)", lineHeight: 0.95, letterSpacing: "-0.055em" }}>
-            {RAD_OG_TIPS.navn}
-          </h1>
-          <p className="mt-5 max-w-[46ch] text-[19px] leading-[1.6] text-[var(--color-tekst-2)] md:text-[21px]">{RAD_OG_TIPS.ingress}</p>
-        </header>
 
-        <ul className="mt-12 grid gap-5 md:mt-16 md:grid-cols-2 lg:grid-cols-3">
-          {ARTIKLER.map((a, i) => {
-            const T = TEGNINGER[a.tegning];
-            return (
-              <Vis as="li" key={a.slug}>
-                <Link
-                  href={`${RAD_OG_TIPS.sti}/${a.slug}`}
-                  className="group flex h-full flex-col rounded-[26px] bg-[#FFFDF8] p-6 shadow-[0_30px_50px_-46px_rgba(10,25,32,0.55)] ring-1 ring-[var(--color-strek)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-[0_36px_60px_-40px_rgba(10,25,32,0.55)] md:p-7"
-                >
-                  <T strek className="w-28 md:w-32" forsink={(i % 3) * 0.2} />
-                  <h2 className="mt-4 text-[24px] font-bold leading-[1.15] tracking-[-0.03em] text-[var(--color-glomma-deep)]">{a.tittel}</h2>
-                  <p className="mt-2.5 text-[16.5px] leading-[1.6] text-[var(--color-tekst-2)]">{a.ingress}</p>
-                  <span className="mt-auto flex items-center justify-between gap-3 pt-6 text-[15px]">
-                    <span className="text-[var(--color-tekst-svak)]">{a.lesetid}</span>
-                    <span className="inline-flex items-center gap-1.5 font-semibold text-[var(--color-teal-tekst)]">
-                      Les
-                      <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
-                    </span>
-                  </span>
-                </Link>
-              </Vis>
-            );
-          })}
-        </ul>
+        <Ark className="mt-8">
+          <Topp tittel={RAD_OG_TIPS.navn} ingress={RAD_OG_TIPS.ingress} />
+
+          <div className="mt-10 md:mt-14">
+            {ARTIKLER_GRUPPERT.map((g) => (
+              <section
+                key={g.id}
+                aria-labelledby={`gruppe-${g.id}`}
+                className="border-t border-dashed border-[var(--color-strek)] pb-3 pt-8 md:pt-10 lg:grid lg:grid-cols-[210px_minmax(0,1fr)] lg:gap-x-12 lg:pb-6"
+              >
+                <h2 id={`gruppe-${g.id}`} className="text-[20px] font-bold leading-[1.25] tracking-[-0.02em] text-[var(--color-tekst)] md:text-[22px] lg:pt-[38px]">
+                  {g.navn}
+                </h2>
+                <ul className="mt-2 lg:mt-0">
+                  {g.artikler.map((a) => (
+                    <Linje key={a.slug} artikkel={a} />
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+
+          <Hilsen tekst="Lurer du på noe mer? Spør oss neste gang du er her." apent bestill={false} className="md:mt-10" />
+        </Ark>
       </div>
     </main>
   );

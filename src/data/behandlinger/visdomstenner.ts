@@ -11,7 +11,6 @@ export const visdomstenner: Behandlingsside = {
   navn: "Visdomstenner",
   ingress: "Visdomstennene er de bakerste tennene i munnen, og ofte er det for lite plass til dem. Her ser du når de bør fjernes, og hvordan det går for seg.",
   tittelbilde: "ugle",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Visdomstenner hos tannlegen i Kongsvinger: når visdomstanna blir et problem, hvordan den fjernes steg for steg, og hva du gjør de første dagene etterpå.",
   deler: [
     {

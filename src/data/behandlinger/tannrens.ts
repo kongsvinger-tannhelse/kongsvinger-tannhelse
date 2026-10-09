@@ -12,7 +12,6 @@ export const tannrens: Behandlingsside = {
   // the clinic's own words (klinikk.ts)
   ingress: "En tannrens fjerner plakk og tannstein som har bygget seg opp over tid. Her ser du hvorfor det er viktig, og hvordan det foregår.",
   tittelbilde: "rens",
-  lesetid: "2 minutter å lese",
   beskrivelse: "Tannrens hos tannlegen i Kongsvinger: hva plakk og tannstein er, hva det kan gjøre med tennene og tannkjøttet, og hvordan tannsteinen fjernes.",
   deler: [
     {

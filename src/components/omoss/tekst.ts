@@ -1,4 +1,4 @@
-import { klinikk, klinikkbilder } from "@/data/klinikk";
+import { ansatte, klinikk, klinikkbilder } from "@/data/klinikk";
 
 /* The words on the «Om oss» page. Plain and
    short, with the words people search for (tannlege i Kongsvinger,
@@ -11,24 +11,42 @@ export const TITTEL = "Velkommen til Kongsvinger Tannhelse";
 
 export const INGRESS = `Vi er en tannklinikk midt i Kongsvinger, i ${adresse.gate}. Hos oss er alle velkomne.`;
 
-export const AVSNITT = [
-  "Her jobber tannlegene Per Hafthun og Umer Zia og tannpleier Eba Wasty.",
-  "Hos oss møter du et dedikert team som brenner for å skape gode opplevelser og varige resultater. Vi kombinerer moderne teknologi med varme smil, slik at du kan føle deg trygg i stolen.",
-  "Vi hjelper deg med alt fra tannsjekk og tannrens til fyllinger, tannbleking, tannimplantat og akutt tannpine.",
-] as const;
-
 export const LAGET = { tittel: "Dette er oss", tekst: "Tannlegene og tannpleieren du møter når du kommer til oss." };
+
+type Navn = (typeof ansatte)[number]["navn"];
+
+/**
+ * A few words about each of the three, written in the white border under
+ * their photo.
+ *
+ * PLACEHOLDERS. The old site says nothing about them but their names, so
+ * these must come from the clinic, written or approved by each person,
+ * before the page goes live. Never write them for them. `null` = name and
+ * role only.
+ */
+export const BIOER: Record<Navn, string | null> = {
+  "Per Hafthun": "[Kort om Per, fra klinikken: to eller tre setninger, skrevet eller godkjent av Per selv.]",
+  "Umer Zia": "[Kort om Umer, fra klinikken: to eller tre setninger, skrevet eller godkjent av Umer selv.]",
+  "Eba Wasty": "[Kort om Eba, fra klinikken: to eller tre setninger, skrevet eller godkjent av Eba selv.]",
+};
 
 export const GALLERI = {
   tittel: "Bli kjent med klinikken",
-  tekst: "Venterommet, behandlingsrommene og utstyret vi bruker. Bla med pilene, eller trykk på et av de små bildene.",
+  tekst: "Bildene følger et besøk hos oss, fra venterommet til behandlingsstolen.",
 };
 
-/** Every photo from the clinic: the eight the site already shows, and the one it didn't. */
-export const BILDER = [
-  ...klinikkbilder,
-  { src: "/images/klinikk/bilde7.webp", tekst: "Radioen på klinikken", bredde: 2400, hoyde: 1920 },
-].map((b) => ({ ...b, alt: `${b.tekst}, hos Kongsvinger Tannhelse i ${adresse.gate}` }));
+/**
+ * The photos on this page, in the order of a visit: the waiting room, a
+ * detail from it, the treatment room, and the chair. (There is no photo of
+ * the door.) The close-ups of instruments and equipment are left out: they
+ * can frighten someone who is anxious about the dentist.
+ */
+const BESOK = ["bilde9", "bilde1", "bilde3", "bilde8", "bilde6"];
+
+export const BILDER = BESOK.map((navn) => klinikkbilder.find((b) => b.src.endsWith(`/${navn}.webp`))!).map((b) => ({
+  ...b,
+  alt: `${b.tekst}, hos Kongsvinger Tannhelse i ${adresse.gate}`,
+}));
 
 export type Bilde = (typeof BILDER)[number];
 

@@ -12,7 +12,6 @@ export const skallfasetter: Behandlingsside = {
   // the clinic's own words (klinikk.ts)
   ingress: "Skallfasetter er tynne skall av keramikk eller kompositt som festes på forsiden av tennene, for en jevnere og lysere overflate.",
   tittelbilde: "skjell",
-  lesetid: "2 minutter å lese",
   beskrivelse: "Skallfasetter hos tannlegen i Kongsvinger: hva en fasett er, hvilke andre valg som finnes, og hvordan fasetter lages steg for steg.",
   deler: [
     {

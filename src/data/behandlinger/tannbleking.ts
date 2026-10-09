@@ -11,7 +11,6 @@ export const tannbleking: Behandlingsside = {
   navn: "Tannbleking",
   ingress: "Vil du ha hvitere tenner? Bleking hos tannlegen gjør tennene lysere. Her ser du hvordan det går for seg, og hva som er lurt å vite først.",
   tittelbilde: "bleking",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Tannbleking hos tannlegen i Kongsvinger: hvordan bleking virker, hvorfor tennene blir mørkere, hvordan det foregår hos oss og hjemme, og hvem som kan bleke.",
   deler: [
     {

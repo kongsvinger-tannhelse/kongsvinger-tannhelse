@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type KeyboardEvent } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties, type KeyboardEvent, type UIEvent } from "react";
 import { useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, CalendarDays, ChevronRight, Search, X } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { GRUPPER } from "@/components/forside/behandlinger/grupper";
 import { harSide, sideSti } from "@/data/behandlinger/sider";
 import { cn } from "@/lib/utils";
-import { Bunnlinje, KORT, Merke, Vindu } from "./deler";
+import { Bokmerke, Bunnlinje, GRUPPENAVN, KORT, Vindu } from "./deler";
 import { PINFARGE, PUNKTER, type Punkt } from "./punkter";
 import s from "./oppslag.module.css";
 
@@ -16,15 +16,18 @@ import s from "./oppslag.module.css";
  * The treatments on /behandlinger, as a book to look things up in.
  *
  * On a wide screen it lies open: the left page is the register (a search
- * box, the three groups, a row for every treatment with a round window on
- * its paper scene and a few words), the right page is the chosen treatment,
- * its scene standing big over the text in large type. Pick another and the
- * right page turns on the spine; the arrow keys walk the register.
+ * box, a row for every treatment with a round window on its paper scene and
+ * a few words, and the three groups as a thumb index cut into the page's
+ * edge), the right page is the chosen treatment, its scene standing big over
+ * the text in large type, a ribbon in its group's colour lying over it.
+ * Pick another and the right page turns on the spine; the arrow keys walk
+ * the register.
  *
- * On a phone the register is the page itself, with the search kept at the
- * top, and a tap slides a sheet up from the bottom with the scene, the full
- * text and the buttons; drag it down, tap outside or press back to put it
- * away. Ring and Bestill stay along the bottom of the screen.
+ * On a phone the register is the page itself, with the search and the
+ * group tabs kept at the top, and a tap slides a sheet up from the bottom
+ * with the scene, the full text and the buttons; drag it down, tap outside
+ * or press back to put it away. Ring and Bestill stay along the bottom of
+ * the screen.
  *
  * The address follows the chosen treatment (/behandlinger#rotfylling), so
  * the front page and search results can link straight to one. Every
@@ -79,6 +82,9 @@ const rang = (p: Punkt, ord: string[]) => {
 };
 
 type Filter = "alle" | (typeof GRUPPER)[number]["id"];
+const FILTRE: Filter[] = ["alle", ...GRUPPER.map((g) => g.id)];
+/** A tab's colour: its group's, and the river's for all of them. */
+const fanefarge = (f: Filter) => (f === "alle" ? "var(--color-glomma)" : PINFARGE[f]);
 
 const BRED = "(min-width: 768px)";
 const lytt = (endret: () => void) => {
@@ -96,6 +102,7 @@ export function Oppslag() {
   const [filter, setFilter] = useState<Filter>("alle");
   const liste = useRef<HTMLUListElement | null>(null);
   const sokeboks = useRef<HTMLDivElement | null>(null);
+  const merke = useRef<HTMLSpanElement | null>(null);
 
   const vist = useMemo(() => {
     const ord = enkel(sok).split(/\s+/).filter(Boolean);
@@ -177,6 +184,14 @@ export function Oppslag() {
     }
   };
 
+  // the ribbon lies on the page: it goes up with a long text, and a new page starts at the top
+  const folg = (e: UIEvent<HTMLElement>) => {
+    if (merke.current) merke.current.style.translate = `0 ${-e.currentTarget.scrollTop}px`;
+  };
+  useEffect(() => {
+    if (merke.current) merke.current.style.translate = "";
+  }, [aktiv]);
+
   // the right page's arrows walk the same list as the register beside it
   const i = vist.findIndex((p) => p.id === aktiv);
   const forrige = i > 0 ? vist[i - 1] : undefined;
@@ -187,7 +202,7 @@ export function Oppslag() {
       <div className={s.bok}>
         {/* the register */}
         <div className="flex min-h-0 flex-col">
-          <div ref={sokeboks} className="sticky top-[72px] z-30 -mx-[var(--container-px)] bg-[color-mix(in_srgb,var(--color-papir)_94%,transparent)] px-[var(--container-px)] pb-3 pt-2 backdrop-blur-md md:static md:mx-0 md:bg-transparent md:px-8 md:pb-3 md:pt-8 md:backdrop-blur-none">
+          <div ref={sokeboks} className="sticky top-[72px] z-30 -mx-[var(--container-px)] bg-[color-mix(in_srgb,var(--color-papir)_94%,transparent)] px-[var(--container-px)] pt-2 backdrop-blur-md md:static md:mx-0 md:bg-transparent md:pb-3 md:pl-11 md:pr-8 md:pt-8 md:backdrop-blur-none">
             <div className="relative">
               <label htmlFor="behandlingssok" className="sr-only">
                 Søk i behandlingene
@@ -211,23 +226,23 @@ export function Oppslag() {
                 </button>
               )}
             </div>
-            <div role="group" aria-label="Vis gruppe" className="mt-2.5 flex gap-1.5 overflow-x-auto [scrollbar-width:none] md:mt-3 md:flex-wrap">
-              {(["alle", ...GRUPPER.map((g) => g.id)] as Filter[]).map((f) => {
+            {/* the thumb index: along the list's top on a phone, cut into the book's edge on a wide screen */}
+            <div role="group" aria-label="Vis gruppe" className={s.faner} style={{ "--valgt": fanefarge(filter) } as CSSProperties}>
+              {FILTRE.map((f) => {
                 const g = GRUPPER.find((x) => x.id === f);
-                const pa = filter === f;
                 return (
                   <button
                     key={f}
                     type="button"
-                    aria-pressed={pa}
+                    aria-pressed={filter === f}
                     onClick={() => {
                       setFilter(f);
                       tilListen();
                     }}
-                    className={cn("inline-flex h-9 shrink-0 items-center rounded-full px-3.5 text-[14px] font-semibold transition-colors md:h-8 md:px-3 md:text-[13px]", pa ? "text-white" : "bg-white text-[var(--color-tekst-2)] shadow-[0_0_0_1px_var(--color-strek)]")}
-                    style={pa ? { background: g ? PINFARGE[g.id] : "var(--color-glomma)" } : undefined}
+                    className={s.fane}
+                    style={{ "--farge": fanefarge(f) } as CSSProperties}
                   >
-                    {g ? `${g.kort}e` : "Alle"}
+                    <span>{g ? `${g.kort}e` : "Alle"}</span>
                   </button>
                 );
               })}
@@ -238,7 +253,7 @@ export function Oppslag() {
             {sok || filter !== "alle" ? `${vist.length} behandlinger` : ""}
           </p>
 
-          <ul ref={liste} onKeyDown={piler} aria-label="Behandlingene" className="-mx-2 min-h-0 flex-1 pb-36 md:mx-0 md:overflow-y-auto md:px-5 md:pb-6">
+          <ul ref={liste} onKeyDown={piler} aria-label="Behandlingene" className="-mx-2 min-h-0 flex-1 pb-36 pt-1 md:mx-0 md:overflow-y-auto md:pb-6 md:pl-8 md:pr-5 md:pt-0">
             {vist.map((p) => {
               const pa = bred && p.id === aktiv;
               return (
@@ -257,7 +272,9 @@ export function Oppslag() {
                     <span className="min-w-0 flex-1 border-b border-[var(--color-strek)] pb-2.5 pt-1 md:border-0 md:p-0">
                       <span className="flex items-center gap-2 text-[17px] font-semibold tracking-[-0.015em] text-[var(--color-glomma-deep)] md:text-[15.5px]">
                         {p.navn}
-                        {p.gruppe === "akutt" && <span className="size-2 rounded-full bg-[#B4472F] md:size-1.5" aria-label="akutt" />}
+                        {/* the row's group: a dot in its colour, in words for screen readers */}
+                        <span aria-hidden="true" className="size-2 shrink-0 rounded-full md:size-1.5" style={{ background: PINFARGE[p.gruppe] }} />
+                        <span className="sr-only">, {GRUPPENAVN[p.gruppe].toLowerCase()}</span>
                       </span>
                       <span className="mt-0.5 block text-[14.5px] leading-snug text-[var(--color-tekst-svak)] md:truncate md:text-[13.5px]">{KORT[p.id]}</span>
                     </span>
@@ -284,18 +301,30 @@ export function Oppslag() {
 
         {/* the right page: every treatment's text is here; the chosen one shows (on a wide screen) */}
         <div className={cn(s.hoyre, "hidden md:flex")}>
-          {PUNKTER.map((p) => (
-            <article key={p.id} id={p.id} aria-labelledby={`${p.id}-tittel`} hidden={p.id !== aktiv} className={cn("min-h-0 flex-1 overflow-y-auto px-10 pt-8", p.id === aktiv && s.blad)}>
-              {p.id === aktiv && bred && <Vindu p={p} className="aspect-[2/1] max-h-[28svh] w-full rounded-[22px] shadow-[0_18px_34px_-24px_rgba(22,48,59,0.6)]" opp />}
-              <Innhold p={p} />
-            </article>
-          ))}
+          <div className={s.sider}>
+            {PUNKTER.map((p) => (
+              <article
+                key={p.id}
+                id={p.id}
+                aria-labelledby={`${p.id}-tittel`}
+                hidden={p.id !== aktiv}
+                onScroll={p.id === aktiv ? folg : undefined}
+                className={cn("min-h-0 flex-1 overflow-y-auto px-10 pt-8", p.id === aktiv && s.blad)}
+              >
+                {p.id === aktiv && bred && <Vindu p={p} className="aspect-[2/1] max-h-[28svh] w-full rounded-[22px] shadow-[0_18px_34px_-24px_rgba(22,48,59,0.6)]" opp />}
+                <Innhold p={p} />
+              </article>
+            ))}
+            {/* the ribbon stays with the book while the page turns under it */}
+            <div className={s.merkefelt}>
+              <Bokmerke ref={merke} gruppe={(PUNKTER.find((p) => p.id === aktiv) ?? PUNKTER[0]).gruppe} />
+            </div>
+          </div>
           <div className="flex items-center justify-between gap-3 border-t border-[var(--color-strek)] px-10 py-4">
             <button type="button" disabled={!forrige} onClick={() => forrige && velg(forrige.id)} className="inline-flex min-w-0 items-center gap-2 rounded-full px-3 py-2 text-[14px] font-semibold text-[var(--color-glomma)] hover:bg-black/[0.04] disabled:opacity-30">
               <ArrowLeft className="size-4 shrink-0" aria-hidden="true" />
               <span className="truncate">{forrige?.navn ?? "Forrige"}</span>
             </button>
-            <span className="text-[13px] text-[var(--color-tekst-svak)]">{i >= 0 && `${i + 1} av ${vist.length}`}</span>
             <button type="button" disabled={!neste} onClick={() => neste && velg(neste.id)} className="inline-flex min-w-0 items-center gap-2 rounded-full px-3 py-2 text-[14px] font-semibold text-[var(--color-glomma)] hover:bg-black/[0.04] disabled:opacity-30">
               <span className="truncate">{neste?.navn ?? "Neste"}</span>
               <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
@@ -310,14 +339,12 @@ export function Oppslag() {
   );
 }
 
-/** A treatment's tag, name, few words, full text and buttons: on the right page and in the sheet. */
+/** A treatment's name, few words, full text and buttons: on the right page and in the sheet. Its group is on the ribbon. */
 function Innhold({ p, tittelId = `${p.id}-tittel` }: { p: Punkt; tittelId?: string }) {
   return (
     <>
-      <div className="pt-6">
-        <Merke p={p} />
-      </div>
-      <h2 id={tittelId} className="mt-3 text-[30px] font-bold leading-[1.02] tracking-[-0.04em] text-[var(--color-glomma-deep)] md:text-[clamp(34px,3.4vw,46px)] md:tracking-[-0.045em]">
+      <p className="sr-only">{GRUPPENAVN[p.gruppe]}</p>
+      <h2 id={tittelId} className="mt-6 text-[30px] md:mt-8 font-bold leading-[1.02] tracking-[-0.04em] text-[var(--color-glomma-deep)] md:text-[clamp(34px,3.4vw,46px)] md:tracking-[-0.045em]">
         {p.navn}
       </h2>
       <p className="mt-2 text-[16px] font-medium text-[var(--color-tekst-svak)] md:text-[18px]">{KORT[p.id]}</p>
@@ -412,6 +439,7 @@ function Ark({ p, liste, onBytt, onLukk }: { p: Punkt | null; liste: Punkt[]; on
 
         <div ref={kropp} className="relative overflow-y-auto overscroll-contain px-4 pb-[max(20px,env(safe-area-inset-bottom))]">
           <Vindu key={p.id} p={p} className="aspect-[400/320] w-full" opp={ute} />
+          <Bokmerke gruppe={p.gruppe} className={s.liten} />
           <button ref={lukkKnapp} type="button" onClick={onLukk} aria-label="Lukk" className="absolute right-6 top-2 inline-flex size-10 items-center justify-center rounded-full bg-white/90 shadow-[0_0_0_1px_var(--color-strek)] backdrop-blur">
             <X className="size-4" aria-hidden="true" />
           </button>

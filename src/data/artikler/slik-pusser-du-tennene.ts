@@ -7,9 +7,10 @@ import type { Artikkel } from "./typer";
 export const slikPusserDu: Artikkel = {
   slug: "slik-pusser-du-tennene",
   tittel: "Slik pusser du tennene",
+  gruppe: "hverdag",
+  linje: "Hvor ofte, hvordan, hva du gjør mellom tennene, og hvordan du hjelper barna.",
   kort: "Slik pusser du",
   ingress: "Å pusse tennene er noe av det viktigste du kan gjøre for munnen din. Her ser du hvordan du gjør det riktig, og hvordan du hjelper barna.",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Slik pusser du tennene riktig: hvor ofte, hvordan, hva du gjør mellom tennene, og hvordan du hjelper barna.",
   tegning: "skraa",
   deler: [
@@ -25,8 +26,8 @@ export const slikPusserDu: Artikkel = {
       ],
       tegning: "klokke",
     },
-    // SML Remineralisering: fluoride helps an early, beginning hole remineralise
-    { type: "lapp", lapp: { slag: "visste", tekst: "Fluor gjør emaljen sterkere, og kan hjelpe et lite, begynnende hull å bli friskt igjen." } },
+    // Helsenorge: about two minutes. (Was after «Mellom tennene»; moved here, beside «to minutter», which it is about.)
+    { type: "lapp", lapp: { slag: "triks", tekst: "Ta tiden med klokka på mobilen. To minutter er lenger enn mange tror.", feste: "omtrent to minutter hver gang" } },
     {
       type: "liste",
       id: "slik",
@@ -43,7 +44,11 @@ export const slikPusserDu: Artikkel = {
         { id: "skyll", navn: "4. Spytt, ikke skyll", tekst: "Spytt ut tannkremen, men ikke skyll med vann. Da virker fluoren lenger.", tegning: "glass" },
       ],
     },
-    // NHI Tannhelse hos barn: sugary food or drink after the evening brushing is especially discouraged
+    // SML Remineralisering: fluoride helps an early, beginning hole remineralise.
+    // (Was after «To ganger om dagen»; moved one section down, beside the fluoride item, so the two-minute note can sit by «to minutter».)
+    { type: "lapp", lapp: { slag: "visste", tekst: "Fluor gjør emaljen sterkere, og kan hjelpe et lite, begynnende hull å bli friskt igjen.", feste: "tannkrem med 1450 ppm fluor" } },
+    // NHI Tannhelse hos barn: sugary food or drink after the evening brushing is especially discouraged.
+    // Not pinned: it says the same as the last tip under «Barn og pussing», so it stays between the sections.
     { type: "lapp", lapp: { slag: "tips", tekst: "Ikke spis eller drikk noe søtt etter kveldspussen. Vann er fint." } },
     {
       type: "tekst",
@@ -57,8 +62,6 @@ export const slikPusserDu: Artikkel = {
       ],
       tegning: "traad",
     },
-    // Helsenorge: about two minutes
-    { type: "lapp", lapp: { slag: "triks", tekst: "Ta tiden med klokka på mobilen. To minutter er lenger enn mange tror." } },
     {
       type: "tips",
       id: "barn",
@@ -73,7 +76,7 @@ export const slikPusserDu: Artikkel = {
       ],
     },
     // NHI Tannhelse hos barn: teeth let the child chew and form words, and affect how the jaws grow
-    { type: "lapp", lapp: { slag: "visste", tekst: "Melketennene er viktige. Barnet trenger dem for å tygge og snakke, og de påvirker hvordan kjevene vokser." } },
+    { type: "lapp", lapp: { slag: "visste", tekst: "Melketennene er viktige. Barnet trenger dem for å tygge og snakke, og de påvirker hvordan kjevene vokser.", feste: "fra den første tanna kommer" } },
   ],
   sjekk: {
     tittel: "Hva synes du er vanskeligst?",

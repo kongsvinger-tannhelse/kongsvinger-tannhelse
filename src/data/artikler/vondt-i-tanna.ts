@@ -7,9 +7,10 @@ import { HANDLING, type Artikkel } from "./typer";
 export const vondtITanna: Artikkel = {
   slug: "vondt-i-tanna",
   tittel: "Det gjør vondt i tanna",
+  gruppe: "galt",
+  linje: "Hva det kan være, hva du kan gjøre i dag, og når du bør komme til tannlegen.",
   kort: "Tannverk",
   ingress: "Vondt i en tann er ekkelt. Men det er nesten alltid noe vi kan fikse. Her ser du hva det kan bety, og hva du kan gjøre allerede i dag.",
-  lesetid: "3 minutter å lese",
   beskrivelse: "Tannverk forklart enkelt: hva det kan være, hva du kan gjøre i dag, og når du bør komme til tannlegen.",
   tegning: "betennelse",
   deler: [
@@ -25,7 +26,7 @@ export const vondtITanna: Artikkel = {
       tegning: "nerve",
     },
     // SML Tennene (three layers), SML Tannemalje (the body's hardest substance)
-    { type: "lapp", lapp: { slag: "visste", tekst: "En tann har tre lag. Ytterst er emaljen, det hardeste stoffet i hele kroppen. Under den er dentin, og innerst bor nerven." } },
+    { type: "lapp", lapp: { slag: "visste", tekst: "En tann har tre lag. Ytterst er emaljen, det hardeste stoffet i hele kroppen. Under den er dentin, og innerst bor nerven.", feste: "Inne i hver tann bor det en liten nerve" } },
     {
       type: "liste",
       id: "arsaker",
@@ -43,8 +44,11 @@ export const vondtITanna: Artikkel = {
         { id: "betennelse", navn: "En syk nerve", tekst: "Hvis et hull får vokse lenge, kan nerven inne i tanna bli betent.", ekstra: "Det banker og verker, og går sjelden over av seg selv.", tegning: "betennelse" },
       ],
     },
+    // NHI Førstehjelp ved tannpine: decay is the main cause of toothache in most children and adults.
+    // (Was the last note; moved here, beside the causes it tells you the commonest of.)
+    { type: "lapp", lapp: { slag: "visste", tekst: "Hull i tennene er den vanligste grunnen til tannverk, både hos barn og voksne.", feste: "fire ting som gir vondt i en tann" } },
     // NHI Førstehjelp ved tannpine: use floss to remove food between the teeth
-    { type: "lapp", lapp: { slag: "triks", tekst: "Prøv tanntråd først. Mat som sitter fast mellom tennene kan gjøre vondt, og tanntråd kan få den ut." } },
+    { type: "lapp", lapp: { slag: "triks", tekst: "Prøv tanntråd først. Mat som sitter fast mellom tennene kan gjøre vondt, og tanntråd kan få den ut.", feste: "Noen ganger sitter det mat fast der" } },
     {
       type: "tips",
       id: "tips",
@@ -59,7 +63,8 @@ export const vondtITanna: Artikkel = {
       // Helsenorge Reseptfrie smertestillende: not more than 5 days for pain without talking to a doctor (toothache named)
       obs: "Ikke bruk smertestillende mot tannverk i mer enn fem dager uten å snakke med tannlege eller lege.",
     },
-    // Tannlegeforeningen Gode råd: do not rinse after brushing, the fluoride works longer
+    // Tannlegeforeningen Gode råd: do not rinse after brushing, the fluoride works longer.
+    // Not pinned: it explains nothing in this article (it is brushing advice), so it stays between the sections.
     { type: "lapp", lapp: { slag: "tips", tekst: "Spytt ut tannkremen etter pussing, men ikke skyll med vann. Da virker fluoren lenger." } },
     // SML Tannsmerter (as the nerve dies, the tooth turns tender to bite on), NHI Tannbyll (a dead pulp can give an abscess)
     {
@@ -72,8 +77,6 @@ export const vondtITanna: Artikkel = {
       ],
       tegning: "stille",
     },
-    // NHI Førstehjelp ved tannpine: decay is the main cause of toothache in most children and adults
-    { type: "lapp", lapp: { slag: "visste", tekst: "Hull i tennene er den vanligste grunnen til tannverk, både hos barn og voksne." } },
   ],
   sjekk: {
     tittel: "Hvordan kjennes det hos deg?",

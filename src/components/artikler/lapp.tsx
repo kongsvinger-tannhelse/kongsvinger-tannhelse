@@ -1,15 +1,24 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { CalendarDays } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
-import type { Artikkel, Del } from "@/data/artikler";
+import type { Del } from "@/data/artikler";
 import { cn } from "@/lib/utils";
 import { Merke, Vis } from "./deler";
-import { GulLapp } from "./mellom";
+import { ApentNa } from "./klokke";
+import { InneLapp, MargLapp, type Festet } from "./mellom";
 import { TEGNINGER } from "./tegninger";
+import s from "./artikler.module.css";
 
-/* The note from the clinic, in parts: the sheet, who it is from, each kind
-   of section with its pen sketches, the yellow sticky notes between them,
-   and the goodbye with one button. */
+/* The note from the clinic, in parts: the sheet, its title, each kind
+   of section with its pen sketches and the sticky notes pinned to it, and
+   the goodbye with one button.
+
+   On a wide screen every section is a text column and a margin. The margin
+   holds the section's sticky notes (Margflyt.tsx puts each one beside its
+   words), or, when there are none, the section's sketch. When the notes
+   take the margin, the sketch steps into the text, on the left, clear of
+   the arrows. */
 
 export function Sporsmal({ children }: { children: React.ReactNode }) {
   return <h2 className="text-[26px] font-bold leading-[1.15] tracking-[-0.03em] text-[var(--color-glomma-deep)] md:text-[30px]">{children}</h2>;
@@ -21,6 +30,9 @@ export function Brod({ children, className }: { children: React.ReactNode; class
 
 const KANT = "border-t border-dashed border-[var(--color-strek)]";
 
+/** A section on a wide screen: the text, and the margin beside it. */
+const MED_MARG = "lg:grid lg:grid-cols-[minmax(0,1fr)_var(--marg)] lg:gap-x-[var(--renne)]";
+
 /** The sheet of paper the note is written on. */
 export function Ark({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
@@ -30,109 +42,200 @@ export function Ark({ children, className }: { children: React.ReactNode; classN
   );
 }
 
-/** Who the note is from, the title and the short intro. */
-export function Avsender({ artikkel }: { artikkel: Artikkel }) {
+/** The top of a sheet: the title and the short intro under it, centred. The text below starts from the left. */
+export function Topp({ tittel, ingress, className }: { tittel: string; ingress: string; className?: string }) {
   return (
-    <header>
-      <div className="flex items-center gap-4">
-        <Merke className="size-14 shadow-[0_6px_18px_-10px_rgba(10,25,32,0.45)] ring-1 ring-[var(--color-strek)] md:size-[72px]" />
-        <div>
-          <p className="text-[15px] font-semibold text-[var(--color-glomma-deep)]">Fra tannlegene på {klinikk.navn}</p>
-          <p className="text-[13.5px] text-[var(--color-tekst-svak)]">{artikkel.lesetid}</p>
-        </div>
-      </div>
-      <h1 className="mt-8 max-w-[15ch] font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(42px, 6.4vw, 78px)", lineHeight: 0.98, letterSpacing: "-0.05em" }}>
-        {artikkel.tittel}
+    <header className={cn("text-center", className)}>
+      <h1 className="mx-auto max-w-[22ch] text-balance font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(34px, 4.2vw, 50px)", lineHeight: 1.05, letterSpacing: "-0.04em" }}>
+        {tittel}
       </h1>
-      <p className="mt-6 max-w-[38ch] text-[20px] leading-[1.55] text-[var(--color-tekst-2)] md:text-[23px]">{artikkel.ingress}</p>
+      <p className="mx-auto mt-4 max-w-[44ch] text-balance text-[18px] leading-[1.55] text-[var(--color-tekst-2)] md:mt-5 md:text-[20px]">{ingress}</p>
     </header>
   );
 }
 
-/** One section of the note, of whichever kind. `n` counts the sticky notes, so they alternate sides. */
-export function DelVisning({ del, n }: { del: Del; n: number }) {
+export type Seksjon = Exclude<Del, { type: "lapp" }>;
+
+/** The pinned notes whose words are in this piece of text. */
+const iTekst = (tekst: string, lapper: Festet[]) => lapper.filter((l) => l.id && l.lapp.feste && tekst.includes(l.lapp.feste));
+
+/** A piece of text, with a pen underline under the words a note is pinned to. */
+function Merket({ tekst, lapper }: { tekst: string; lapper: Festet[] }) {
+  const her = iTekst(tekst, lapper)
+    .map((l) => ({ l, i: tekst.indexOf(l.lapp.feste as string) }))
+    .sort((a, b) => a.i - b.i);
+  if (her.length === 0) return tekst;
+  const biter: React.ReactNode[] = [];
+  let fra = 0;
+  for (const { l, i } of her) {
+    const ord = l.lapp.feste as string;
+    if (i < fra) continue;
+    biter.push(tekst.slice(fra, i));
+    biter.push(
+      <Vis as="span" key={l.id} id={l.id as string} className={s.understrek}>
+        {ord}
+      </Vis>,
+    );
+    fra = i + ord.length;
+  }
+  biter.push(tekst.slice(fra));
+  return biter;
+}
+
+/** On a narrower screen: the notes pinned in this piece of text, right after it. */
+function Inne({ tekst, lapper }: { tekst: string; lapper: Festet[] }) {
+  return iTekst(tekst, lapper).map((l) => <InneLapp key={l.n} festet={l} />);
+}
+
+/** On a narrower screen: the notes that are not pinned, after the section's text. */
+function Frie({ lapper }: { lapper: Festet[] }) {
+  return lapper.filter((l) => !l.id).map((l) => <InneLapp key={l.n} festet={l} className="pt-8" />);
+}
+
+/** On a wide screen: the margin with the section's notes, the pinned ones first. */
+function Marg({ lapper }: { lapper: Festet[] }) {
+  const ordnet = [...lapper.filter((l) => l.id), ...lapper.filter((l) => !l.id)];
+  return (
+    <div data-marg="" className="hidden lg:order-2 lg:flex lg:flex-col lg:gap-10">
+      {ordnet.map((l) => (
+        <MargLapp key={l.n} festet={l} />
+      ))}
+    </div>
+  );
+}
+
+/** One section of the note, of whichever kind, with the sticky notes that follow it. */
+export function DelVisning({ del, lapper }: { del: Seksjon; lapper: Festet[] }) {
+  const harMarg = lapper.length > 0;
   switch (del.type) {
     case "tekst": {
       const T = del.tegning ? TEGNINGER[del.tegning] : null;
       return (
-        <Vis as="section" id={del.id} className={cn("scroll-mt-28 flow-root gap-x-14 py-10 md:grid md:grid-cols-[minmax(0,1fr)_200px] md:py-14", KANT)}>
+        <Vis as="section" id={del.id} className={cn("scroll-mt-28 flow-root gap-x-14 py-10 md:grid md:grid-cols-[minmax(0,1fr)_200px] md:py-14", MED_MARG, KANT)}>
           {T && (
-            <div className="float-right mb-2 ml-4 w-28 md:order-2 md:float-none md:m-0 md:w-full">
+            <div className={cn("float-right mb-2 ml-4 w-28 md:order-2 md:float-none md:m-0 md:w-full lg:max-w-[210px]", harMarg && "lg:hidden")}>
               <T strek className="w-full" />
             </div>
           )}
           <div className="space-y-4 md:order-1">
             <Sporsmal>{del.tittel}</Sporsmal>
-            {del.avsnitt.map((a) => (
-              <Brod key={a}>{a}</Brod>
-            ))}
+            <div className={cn(T && harMarg && "lg:grid lg:grid-cols-[136px_minmax(0,1fr)] lg:items-start lg:gap-x-8")}>
+              {/* the notes have the margin: the sketch comes into the text, on the left */}
+              {T && harMarg && (
+                <div className="hidden pt-1 lg:block">
+                  <T strek className="w-full" />
+                </div>
+              )}
+              <div className="space-y-4">
+                {del.avsnitt.map((a) => (
+                  <Fragment key={a}>
+                    <Brod>
+                      <Merket tekst={a} lapper={lapper} />
+                    </Brod>
+                    <Inne tekst={a} lapper={lapper} />
+                  </Fragment>
+                ))}
+                <Frie lapper={lapper} />
+              </div>
+            </div>
           </div>
+          {harMarg && <Marg lapper={lapper} />}
         </Vis>
       );
     }
 
-    case "liste":
+    case "liste": {
+      const festet = lapper.some((l) => l.id);
       return (
-        <Vis as="section" id={del.id} className={cn("scroll-mt-28 py-10 md:py-14", KANT)}>
-          <Sporsmal>{del.tittel}</Sporsmal>
-          {del.intro && <Brod className="mt-4">{del.intro}</Brod>}
-          <ul className="mt-8 grid gap-x-10 gap-y-10 sm:grid-cols-2">
-            {del.punkter.map((p, i) => {
-              const T = TEGNINGER[p.tegning];
-              return (
-                <li key={p.id} id={`${del.id}-${p.id}`} className="flex scroll-mt-28 gap-4">
-                  <T strek className="w-24 shrink-0 md:w-28" forsink={i * 0.25} />
-                  <div>
-                    <h3 className="text-[19px] font-bold text-[var(--color-glomma-deep)]">{p.navn}</h3>
-                    <p className="mt-1.5 text-[17px] leading-[1.6] text-[var(--color-tekst)]">{p.tekst}</p>
-                    {p.ekstra && (
-                      <p className="mt-2 text-[15.5px] leading-[1.55] text-[var(--color-tekst-2)]">
-                        {del.ekstraNavn && <span className="font-semibold text-[var(--color-tekst)]">{del.ekstraNavn} </span>}
-                        {p.ekstra}
-                      </p>
-                    )}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+        <Vis as="section" id={del.id} className={cn("scroll-mt-28 py-10 md:py-14", MED_MARG, KANT)}>
+          <div className="min-w-0 lg:order-1">
+            <Sporsmal>{del.tittel}</Sporsmal>
+            {del.intro && (
+              <>
+                <Brod className="mt-4">
+                  <Merket tekst={del.intro} lapper={lapper} />
+                </Brod>
+                <Inne tekst={del.intro} lapper={lapper} />
+              </>
+            )}
+            {/* side by side on a tablet, unless a note has to fit in after an item */}
+            <ul className={cn("mt-8 grid gap-x-10 gap-y-10", !festet && "sm:grid-cols-2 lg:grid-cols-1")}>
+              {del.punkter.map((p, i) => {
+                const T = TEGNINGER[p.tegning];
+                return (
+                  <li key={p.id} id={`${del.id}-${p.id}`} className="scroll-mt-28">
+                    <div className="flex gap-4">
+                      <T strek className="w-24 shrink-0 md:w-28" forsink={i * 0.25} />
+                      <div>
+                        <h3 className="text-[19px] font-bold text-[var(--color-glomma-deep)]">{p.navn}</h3>
+                        <p className="mt-1.5 text-[17px] leading-[1.6] text-[var(--color-tekst)]">
+                          <Merket tekst={p.tekst} lapper={lapper} />
+                        </p>
+                        {p.ekstra && (
+                          <p className="mt-2 text-[15.5px] leading-[1.55] text-[var(--color-tekst-2)]">
+                            {del.ekstraNavn && <span className="font-semibold text-[var(--color-tekst)]">{del.ekstraNavn} </span>}
+                            <Merket tekst={p.ekstra} lapper={lapper} />
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <Inne tekst={p.tekst} lapper={lapper} />
+                    {p.ekstra && <Inne tekst={p.ekstra} lapper={lapper} />}
+                  </li>
+                );
+              })}
+            </ul>
+            <Frie lapper={lapper} />
+          </div>
+          {harMarg && <Marg lapper={lapper} />}
         </Vis>
       );
+    }
 
     case "tips":
       return (
-        <Vis as="section" id={del.id} className={cn("scroll-mt-28 py-10 md:py-14", KANT)}>
-          <Sporsmal>{del.tittel}</Sporsmal>
-          <ol className="mt-7 space-y-5">
-            {del.punkter.map((p, i) => {
-              const T = TEGNINGER[p.tegning];
-              return (
-                <li key={p.tekst} className="flex items-center gap-4 md:gap-5">
-                  <T strek className="w-14 shrink-0 md:w-16" forsink={i * 0.2} />
-                  <Brod>{p.tekst}</Brod>
-                </li>
-              );
-            })}
-          </ol>
-          {del.obs && (
-            <p className="mt-8 rounded-r-2xl border-l-4 bg-[#F8E4DB]/60 px-5 py-4 text-[17px] leading-[1.6] text-[#5E2418]" style={{ borderColor: "#D9634C" }}>
-              <span className="font-bold">Obs! </span>
-              {del.obs}
-            </p>
-          )}
+        <Vis as="section" id={del.id} className={cn("scroll-mt-28 py-10 md:py-14", MED_MARG, KANT)}>
+          <div className="min-w-0 lg:order-1">
+            <Sporsmal>{del.tittel}</Sporsmal>
+            <ol className="mt-7 space-y-5">
+              {del.punkter.map((p, i) => {
+                const T = TEGNINGER[p.tegning];
+                return (
+                  <li key={p.tekst}>
+                    <div className="flex items-center gap-4 md:gap-5">
+                      <T strek className="w-14 shrink-0 md:w-16" forsink={i * 0.2} />
+                      <Brod>
+                        <Merket tekst={p.tekst} lapper={lapper} />
+                      </Brod>
+                    </div>
+                    <Inne tekst={p.tekst} lapper={lapper} />
+                  </li>
+                );
+              })}
+            </ol>
+            {del.obs && (
+              <>
+                <p className="mt-8 rounded-r-2xl border-l-4 bg-[#F8E4DB]/60 px-5 py-4 text-[17px] leading-[1.6] text-[#5E2418]" style={{ borderColor: "#D9634C" }}>
+                  <span className="font-bold">Obs! </span>
+                  <Merket tekst={del.obs} lapper={lapper} />
+                </p>
+                <Inne tekst={del.obs} lapper={lapper} />
+              </>
+            )}
+            <Frie lapper={lapper} />
+          </div>
+          {harMarg && <Marg lapper={lapper} />}
         </Vis>
       );
-
-    case "lapp":
-      return <GulLapp lapp={del.lapp} side={n % 2 === 0 ? "h" : "v"} vri={VRI[n % VRI.length]} />;
   }
 }
 
-/** How much each sticky note leans, in turn. */
-const VRI = [1.5, -1.8, 1.2, -1.4];
-
-/** The goodbye at the bottom of the note: a line, and one button to book. */
-export function Hilsen({ tekst, className }: { tekst: string; className?: string }) {
+/**
+ * The goodbye at the bottom of the note: a line, and one button to book.
+ * `apent`: under the phone number, say whether the clinic is open now (the articles do).
+ */
+/** The goodbye at the foot of a note. `bestill` adds the «Be om time» button; without it, just the phone number. */
+export function Hilsen({ tekst, className, apent = false, bestill = true }: { tekst: string; className?: string; apent?: boolean; bestill?: boolean }) {
   return (
     <footer className={cn("mt-12 flex flex-col items-start gap-6 rounded-[22px] bg-[var(--color-kalk)]/70 p-6 md:mt-16 md:flex-row md:items-center md:justify-between md:p-8", className)}>
       <div className="flex items-center gap-4">
@@ -145,18 +248,22 @@ export function Hilsen({ tekst, className }: { tekst: string; className?: string
         </p>
       </div>
       <div className="shrink-0">
-        <Link
-          href="/kontakt"
-          className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-8 py-4 text-[17px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
-        >
-          <CalendarDays className="size-5" aria-hidden="true" />
-          Be om time
-        </Link>
-        <p className="mt-2.5 text-[14.5px] text-[var(--color-tekst-2)] md:text-center">
-          eller ring{" "}
+        {bestill && (
+          <Link
+            href="/kontakt"
+            className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-8 py-4 text-[17px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
+          >
+            <CalendarDays className="size-5" aria-hidden="true" />
+            Be om time
+          </Link>
+        )}
+        <p className={cn("text-[14.5px] text-[var(--color-tekst-2)]", bestill ? "mt-2.5 md:text-center" : "md:text-right")}>
+          {bestill ? "eller ring" : "Ring oss på"}{" "}
           <a href={klinikk.telefon.lenke} className="whitespace-nowrap font-semibold text-[var(--color-glomma-deep)] underline-offset-4 hover:underline">
             {klinikk.telefon.visning}
           </a>
+          {/* the hours on the server; open now, or when it opens, in the browser */}
+          {apent && <ApentNa className="mt-0.5 block text-[13.5px] text-[var(--color-tekst-svak)]" />}
         </p>
       </div>
     </footer>

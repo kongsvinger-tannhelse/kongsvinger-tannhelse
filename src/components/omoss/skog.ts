@@ -11,17 +11,11 @@ export { r2, rng };
 
 /** The forest's colours, by distance: the far ones fade into the sky. */
 export const SKOG = {
-  himmel: "#E2F1F1",
-  lys: "#F7F0DA",
   /** far, middle, near and nearest: [shaded half, lit half] */
   fjern: ["#C3CEC6", "#CFD8D1"],
   midt: ["#8FA796", "#A3B8A8"],
   naer: ["#4E6C5A", "#628270"],
   stamme: "#6E4E38",
-  furustamme: "#8E5B3E",
-  furustammeLys: "#A86E48",
-  bjorkestamme: "#F2EFE6",
-  bjorkemerke: "#3A3A36",
   gress: ["#C8D3AE", "#B9C99C", "#A8BC8A"],
   mose: ["#7F9A5C", "#93AE6C"],
   lyng: "#5F7A55",
@@ -146,60 +140,6 @@ export function stein(cx: number, y: number, b: number, seed: number) {
     stein: lauv(cx, y - h * 0.3, b / 2, h * 0.6, seed, 9),
     lys: lauv(cx + b * 0.06, y - h * 0.52, b * 0.32, h * 0.3, seed + 3, 7),
   };
-}
-
-/**
- * A trunk rising out of the picture: a spruce's dark grey one with dead
- * twigs low down, a pine's warm plated one, or a birch's white one with
- * black marks. From `bunn` up past `topp`, `w` wide at the foot.
- */
-export function stamme(x: number, bunn: number, topp: number, w: number, art: "gran" | "furu" | "bjork", seed: number) {
-  const rand = rng(seed);
-  const h = bunn - topp;
-  const lean = (rand() - 0.5) * w * 0.6;
-  const toppW = w * (art === "bjork" ? 0.7 : 0.62);
-  const fot = w * 0.18;
-  const form = `M${r2(x - w / 2 - fot)},${r2(bunn)} Q${r2(x - w / 2)},${r2(bunn - h * 0.04)} ${r2(x - w / 2)},${r2(bunn - h * 0.12)} L${r2(x + lean - toppW / 2)},${r2(topp)} L${r2(x + lean + toppW / 2)},${r2(topp)} L${r2(x + w / 2)},${r2(bunn - h * 0.12)} Q${r2(x + w / 2)},${r2(bunn - h * 0.04)} ${r2(x + w / 2 + fot)},${r2(bunn)} Z`;
-  // the lit right edge
-  const lys = `M${r2(x + w * 0.12)},${r2(bunn - h * 0.02)} L${r2(x + lean + toppW * 0.14)},${r2(topp)} L${r2(x + lean + toppW / 2)},${r2(topp)} L${r2(x + w / 2)},${r2(bunn - h * 0.12)} Q${r2(x + w / 2)},${r2(bunn - h * 0.04)} ${r2(x + w / 2 + fot * 0.6)},${r2(bunn)} Z`;
-  let merker = "";
-  const at = (t: number) => x + lean * t;
-  const bredde = (t: number) => (w / 2) * (1 - t) + (toppW / 2) * t;
-  if (art === "bjork") {
-    // short black bands, mostly from one edge, a few across
-    for (let y = bunn - h * 0.05; y > topp; y -= h * (0.03 + rand() * 0.04)) {
-      const t = (bunn - y) / h;
-      const side = rand() < 0.5 ? -1 : 1;
-      const l = bredde(t) * 2 * (0.25 + rand() * 0.45);
-      const a = at(t) + side * bredde(t) * 0.92;
-      merker += ` M${r2(a)},${r2(y)} Q${r2(a - side * l * 0.5)},${r2(y - 1.5)} ${r2(a - side * l)},${r2(y + 0.5)}`;
-    }
-  } else if (art === "furu") {
-    for (let y = bunn - h * 0.05; y > topp; y -= h * (0.035 + rand() * 0.03)) {
-      const t = (bunn - y) / h;
-      const a = at(t) - bredde(t) * (0.8 - rand() * 0.3);
-      const b = a + bredde(t) * (0.5 + rand() * 0.6);
-      merker += ` M${r2(a)},${r2(y)} L${r2(b)},${r2(y + (rand() - 0.5) * 4)}`;
-    }
-  } else {
-    // bark lines, and the dead twigs a spruce keeps low down
-    for (let i = 0; i < 7; i++) {
-      const xx = at(0.5) + (rand() - 0.5) * w * 0.7;
-      merker += ` M${r2(xx)},${r2(bunn - h * rand() * 0.2)} L${r2(xx + lean * 0.3)},${r2(topp + h * rand() * 0.3)}`;
-    }
-  }
-  const kvister: string[] = [];
-  if (art === "gran") {
-    for (let i = 0; i < 4; i++) {
-      const t = 0.42 + i * 0.12 + rand() * 0.05;
-      const y = bunn - h * t;
-      const side = i % 2 ? 1 : -1;
-      const x0 = at(t) + side * bredde(t) * 0.9;
-      const l = w * (0.6 + rand() * 0.6);
-      kvister.push(`M${r2(x0)},${r2(y)} Q${r2(x0 + side * l * 0.5)},${r2(y - l * 0.08)} ${r2(x0 + side * l)},${r2(y + l * 0.22)} M${r2(x0 + side * l * 0.55)},${r2(y + l * 0.02)} L${r2(x0 + side * l * 0.75)},${r2(y - l * 0.18)}`);
-    }
-  }
-  return { form, lys, merker: merker.trim(), kvister: kvister.join(" ") };
 }
 
 /** A pine cone lying on its side. */
