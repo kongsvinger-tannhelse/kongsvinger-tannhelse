@@ -1,7 +1,9 @@
 """Draws the landscape at the foot of the «Om oss» section: Kongsvinger
 festning on its hill (the stone wall and bastion, the brick gable, the rust
 roofs, the yellow block, the flagpole), the trees on the slope and the old
-town's painted houses below, in autumn.
+town's painted houses below, in late summer (the same season as the
+photograph at the top of the page; it was autumn until 2026-10-09: the old
+colours are in git history).
 
 Drawn from a photograph used only as a reference: «Kongsvinger festning 02»
 by Kongsvinger kommune (CC BY 2.0, Wikimedia Commons). Coordinates are those
@@ -160,9 +162,9 @@ GM = ("#24402B", "#2F5434", "#3E6B3A")
 G = ("#3B6532", "#4E7E3A", "#6A9944")
 GL = ("#56823A", "#6F9A42", "#8DB052")
 OL = ("#6F7A2E", "#8E9A38", "#AEB24A")
-GUL = ("#8C8A2C", "#B2A93E", "#D2C25A")
-ORA = ("#A8471F", "#CF6A28", "#E89A3A")
-ROD = ("#7E2A1F", "#A63A26", "#C95A33")
+GUL = ("#6F8E35", "#93AE48", "#BFCB68")
+ORA = ("#4F7A33", "#6C9440", "#9DB85A")
+ROD = ("#2E4D30", "#3F6338", "#5B8545")
 
 
 # ---------- to both sides, for wide screens ----------
@@ -194,7 +196,7 @@ def sider():
             for _ in range(14):
                 cx = random.uniform(830, 1210) if side > 0 else random.uniform(-410, -20)
                 tre(cx, y + random.uniform(14, 30), random.uniform(16, 24), random.choice([G, GM, GL, OL, ORA]))
-    # the autumn trees in front
+    # the broadleaf trees in front
     for x0, x1 in [(-430, -20), (820, 1230)]:
         x = x0
         while x < x1:
@@ -210,8 +212,8 @@ def scene():
     for x, top in [(4, 196), (22, 188), (40, 192), (58, 182), (78, 190), (96, 186), (114, 196), (132, 193), (150, 200)]:
         gran(x + random.uniform(-2, 2), 275, 275 - top, "#1C3123", "#2A4632")
     tre(620, 214, 24, ("#24402B", "#2F5434", "#3E6B3A"))
-    tre(722, 214, 22, ("#A8471F", "#CF6A28", "#E89A3A"))
-    tre(768, 226, 22, ("#7E2A1F", "#A63A26", "#C95A33"))
+    tre(722, 214, 22, ("#4F7A33", "#6C9440", "#9DB85A"))
+    tre(768, 226, 22, ("#2E4D30", "#3F6338", "#5B8545"))
     tre(668, 226, 22, ("#3B6532", "#4E7E3A", "#6A9944"))
 
     # the hill itself, under everything below the wall
@@ -283,9 +285,9 @@ def scene():
     G = ("#3B6532", "#4E7E3A", "#6A9944")
     GL = ("#56823A", "#6F9A42", "#8DB052")
     OL = ("#6F7A2E", "#8E9A38", "#AEB24A")
-    GUL = ("#8C8A2C", "#B2A93E", "#D2C25A")
-    ORA = ("#A8471F", "#CF6A28", "#E89A3A")
-    ROD = ("#7E2A1F", "#A63A26", "#C95A33")
+    GUL = ("#6F8E35", "#93AE48", "#BFCB68")
+    ORA = ("#4F7A33", "#6C9440", "#9DB85A")
+    ROD = ("#2E4D30", "#3F6338", "#5B8545")
     for x, base, h in [(8, 300, 70), (30, 296, 62), (70, 300, 60)]:
         gran(x, base, h)
     tre(176, 240, 28, G)
@@ -375,7 +377,7 @@ def scene():
     rad_traer(492, 512, 36, [G, GM, OL, GL, ORA], rmin=17, rmax=24, unnga=[(330, 396, 470, 520)])
     hus_lang(336, 526, 54, 26, 20, "#A8322B", "#5D6168", rader=2, kol=3)
 
-    # ---------- the autumn birches in front ----------
+    # ---------- the birches in front ----------
     for x, base, h in [(334, 520, 80), (420, 530, 96), (522, 528, 92), (476, 540, 70)]:
         gran(x, base, h)
     x = -30
@@ -391,6 +393,22 @@ def scene():
 KROM = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 MAPPE = os.path.join(os.path.dirname(__file__), "tegninger")
 PUBLIC = os.path.join(os.path.dirname(__file__), "..", "public", "images", "tegninger")
+
+
+def ettermiddag(bilde):
+    """Late-afternoon light: the page runs through one summer day, from the
+    midday photograph at the top to the bridge at dusk in the footer, and the
+    hill sits in between. A warm glaze, strongest on the treetops and the
+    fortress up top, fading down the slope. Alpha is left alone."""
+    import numpy as np
+    from PIL import Image
+
+    a = np.asarray(bilde).astype(np.float32)
+    h = a.shape[0]
+    styrke = np.linspace(1.0, 0.45, h, dtype=np.float32)[:, None]
+    for kanal, varme in enumerate((1.055, 1.012, 0.9)):
+        a[..., kanal] *= 1 + styrke * (varme - 1)
+    return Image.fromarray(np.clip(a + 0.5, 0, 255).astype(np.uint8), "RGBA")
 
 
 def skriv(navn, viewbox, med_sider, skala):
@@ -420,7 +438,7 @@ def skriv(navn, viewbox, med_sider, skala):
     )
     os.makedirs(PUBLIC, exist_ok=True)
     webp = os.path.join(PUBLIC, navn + ".webp")
-    Image.open(png).convert("RGBA").save(webp + ".tmp", "WEBP", quality=84, method=6)
+    ettermiddag(Image.open(png).convert("RGBA")).save(webp + ".tmp", "WEBP", quality=84, method=6)
     os.replace(webp + ".tmp", webp)
     print("wrote", os.path.normpath(webp), f"{b}x{h}", os.path.getsize(webp) // 1024, "KB")
 
