@@ -298,7 +298,7 @@ export function KontaktSide() {
             <h2 id="kort-i" className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[var(--color-tekst-svak)]">
               Heller ringe?
             </h2>
-            <a href={telefon.lenke} className="mt-1.5 block text-[30px] font-bold tabular-nums leading-none tracking-[-0.02em] text-[var(--color-glomma-deep)] underline-offset-4 hover:underline">
+            <a href={telefon.lenke} className="mt-1.5 block text-[30px] font-bold leading-none tracking-[-0.02em] text-[var(--color-glomma-deep)] underline-offset-4 hover:underline">
               {telefon.visning}
             </a>
             <p className="mt-2 text-[15px] text-[var(--color-tekst-2)]">

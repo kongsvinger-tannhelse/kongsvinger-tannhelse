@@ -68,8 +68,8 @@ export function Buebilde({ person, kolonne }: { person: Person; kolonne: Kolonne
 export function Navn({ person }: { person: Person }) {
   return (
     <>
-      <p className="text-[12.5px] font-semibold leading-tight tracking-[-0.01em] text-[var(--color-glomma-deep)] md:text-[15px]">{person.navn}</p>
-      <p className={cn("mt-0.5 text-[11px] leading-tight text-[var(--color-tekst-2)] md:text-[12px]")}>{person.rolle}</p>
+      <p className="text-[12px] font-semibold leading-tight tracking-[-0.01em] text-[var(--color-glomma-deep)] md:text-[16px]">{person.navn}</p>
+      <p className={cn("mt-0.5 text-[12px] leading-tight text-[var(--color-tekst-2)] md:text-[12px]")}>{person.rolle}</p>
     </>
   );
 }

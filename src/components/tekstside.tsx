@@ -23,7 +23,7 @@ const LENKE = "font-medium text-[var(--color-glomma)] underline decoration-1 und
 /** A link inside the text. Phone numbers never break across lines. */
 export function Lenke({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} className={cn(LENKE, href.startsWith("tel:") && "whitespace-nowrap tabular-nums")}>
+    <a href={href} className={cn(LENKE, href.startsWith("tel:") && "whitespace-nowrap")}>
       {children}
     </a>
   );

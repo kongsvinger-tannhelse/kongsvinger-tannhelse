@@ -5,15 +5,16 @@ import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { useInView, useReducedMotion } from "framer-motion";
 import { Opp } from "@/components/forside/omoss/deler";
-import { INNLEDNING, Kartkreditt, Kontaktlinje } from "@/components/kontakt/Detaljer";
+import { INNLEDNING, Kartkreditt } from "@/components/kontakt/Detaljer";
 import { Kart } from "@/components/kontakt/Kart";
 import { Skjema } from "@/components/kontakt/Skjema";
 import { klinikk } from "@/data/klinikk";
 import { Frimerke, Poststempel } from "./deler";
 
 /**
- * «Kontakt», «Postkortet». Under the heading, phone, e-mail and opening hours
- * in one line. Then a postcard to the clinic stands up on the hero's spring:
+ * «Kontakt», «Postkortet». Under the sentence, a postcard to the clinic stands
+ * up on the hero's spring (phone, e-mail and hours are in the footer just below,
+ * so they are not repeated here):
  * its picture side is the drawn map of the clinic's part of town (a link to
  * Google Maps, with the pin dropping onto Fjellgata 4); its writing side is
  * the form, on writing lines, with the clinic's address printed where the
@@ -41,8 +42,6 @@ export function Kontakt() {
         </h2>
         <p className="seksjonsinngang">{INNLEDNING}</p>
 
-        <Kontaktlinje className="mt-10 md:mt-12" />
-
         <div ref={ref} className="mt-12 md:mt-16">
           <Opp vis={vist} n={0} redusert={redusert}>
             <div className="grid grid-cols-1 gap-x-8 rounded-[6px] bg-[#FFFDF8] p-3 shadow-[0_34px_70px_-34px_rgba(10,25,32,0.6),0_2px_0_rgba(10,25,32,0.04)] sm:p-4 md:grid-cols-2 md:p-5">
@@ -56,10 +55,10 @@ export function Kontakt() {
               <div className="relative px-2 pb-3 pt-6 sm:px-4 md:pb-4 md:pl-2 md:pr-6 md:pt-6">
                 <div className="flex items-start justify-between gap-6">
                   <div className="pt-1">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-tekst-svak)]">Til</p>
+                    <p className="text-[14px] text-[var(--color-tekst-svak)]">Til</p>
                     <address className="mt-2 not-italic">
                       {[klinikk.navn, adresse.gate, `${adresse.postnummer} ${adresse.sted}`].map((linje) => (
-                        <span key={linje} className="block border-b border-[rgba(23,34,40,0.2)] py-1 text-[15.5px] font-medium text-[var(--color-glomma-deep)]">
+                        <span key={linje} className="block border-b border-[rgba(23,34,40,0.2)] py-1 text-[16px] font-medium text-[var(--color-glomma-deep)]">
                           {linje}
                         </span>
                       ))}

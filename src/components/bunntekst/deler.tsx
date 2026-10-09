@@ -20,9 +20,9 @@ const SIDER = [
 /** A plain link out to the map; nothing is embedded. */
 const KARTLENKE = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${adresse.gate}, ${adresse.postnummer} ${adresse.sted}`)}`;
 
-const tekst = "text-[15px] leading-[1.7] text-[var(--color-tekst-lys-2)]";
+const tekst = "text-[16px] leading-[1.7] text-[var(--color-tekst-lys-2)]";
 const lenke = "text-[var(--color-tekst-lys)] transition-colors duration-300 hover:text-white";
-const etikett = "mb-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white";
+const etikett = "mb-2 text-[16px] font-semibold tracking-[-0.01em] text-white";
 
 /** The clinic's name with its mark, and the organisation number under it. */
 export function Merke() {
@@ -31,11 +31,11 @@ export function Merke() {
       <Link href="/" className="inline-flex items-center gap-3">
         <Image src="/images/merke.png" alt="" width={44} height={44} className="size-11 rounded-[10px]" />
         <span className="text-left leading-[1.1]">
-          <span className="block text-[19px] font-semibold tracking-[-0.02em] text-[var(--color-papir)]">{klinikk.navn}</span>
-          <span className="block text-[13px] text-[var(--color-tekst-lys-2)]">{klinikk.undertittel}</span>
+          <span className="block text-[20px] font-semibold tracking-[-0.02em] text-[var(--color-papir)]">{klinikk.navn}</span>
+          <span className="block text-[14px] text-[var(--color-tekst-lys-2)]">{klinikk.undertittel}</span>
         </span>
       </Link>
-      <p className="mt-4 text-[13px] tabular-nums text-[var(--color-tekst-lys-2)]">Org.nr. {klinikk.orgnr}</p>
+      <p className="mt-4 text-[14px] text-[var(--color-tekst-lys-2)]">Org.nr. {klinikk.orgnr}</p>
     </div>
   );
 }
@@ -45,8 +45,8 @@ export function Kontakt() {
   return (
     <div className="col-span-2 md:col-span-1">
       <h3 className={etikett}>Kontakt</h3>
-      <p className="text-[15px] leading-[1.7]">
-        <a href={telefon.lenke} className={cn("tabular-nums", lenke)}>
+      <p className="text-[16px] leading-[1.7]">
+        <a href={telefon.lenke} className={lenke}>
           {telefon.visning}
         </a>
         <br />
@@ -79,7 +79,7 @@ export function Tider() {
   return (
     <div>
       <h3 className={etikett}>Åpningstider</h3>
-      <p className={cn(tekst, "tabular-nums")}>
+      <p className={tekst}>
         {tid.dager} <span className="whitespace-nowrap">{tid.fra}–{tid.til}</span>
         <br />
         {tid.stengt} stengt
@@ -92,7 +92,7 @@ export function Sider() {
   return (
     <nav aria-label="Bunnmeny">
       <h3 className={etikett}>Sider</h3>
-      <ul className="space-y-1 text-[15px] leading-[1.7]">
+      <ul className="space-y-1 text-[16px] leading-[1.7]">
         {SIDER.map((l) => (
           <li key={l.href}>
             <Link href={l.href} className={lenke}>
@@ -112,7 +112,7 @@ export function Sider() {
  */
 export function Bunnlinje({ className }: { className?: string }) {
   return (
-    <div className={cn("flex flex-col gap-3 border-t border-white/12 pt-6 text-[12.5px] leading-[1.6] text-white/55 md:flex-row md:items-start md:justify-between md:gap-10", className)}>
+    <div className={cn("flex flex-col gap-3 border-t border-white/12 pt-6 text-[12px] leading-[1.6] text-white/55 md:flex-row md:items-start md:justify-between md:gap-10", className)}>
       <p className="shrink-0">
         © {new Date().getFullYear()} {klinikk.navn} ·{" "}
         <Link href="/personvern" className="underline decoration-1 underline-offset-2 hover:text-white">

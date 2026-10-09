@@ -143,7 +143,7 @@ export function Skjema({
           <p role="alert" className="mt-5 text-[15px] leading-[1.55] text-[var(--color-tekst)]">
             {state.reason === "busy" ? "Du har sendt mange meldinger på kort tid. " : "Det gikk ikke å sende meldingen. "}
             Ring oss på{" "}
-            <a href={klinikk.telefon.lenke} className={cn(LENKE, "tabular-nums")}>
+            <a href={klinikk.telefon.lenke} className={LENKE}>
               {klinikk.telefon.visning}
             </a>{" "}
             eller skriv til{" "}

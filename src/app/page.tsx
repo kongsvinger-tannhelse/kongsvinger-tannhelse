@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <Navbar forside />
       <main>
         <Hero />
         <Leporello />

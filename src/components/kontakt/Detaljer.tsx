@@ -22,7 +22,7 @@ export function Kontaktlinje({ className }: { className?: string }) {
     <div className={cn("grid grid-cols-1 gap-x-10 gap-y-6 border-y border-[var(--color-strek)] py-7 sm:grid-cols-2 md:grid-cols-3", className)}>
       <a href={klinikk.telefon.lenke} className="group block">
         <span className={MERKE}>Ring oss</span>
-        <span className={cn(VERDI, "tabular-nums transition-colors group-hover:text-[var(--color-glomma)]")}>{klinikk.telefon.visning}</span>
+        <span className={cn(VERDI, "transition-colors group-hover:text-[var(--color-glomma)]")}>{klinikk.telefon.visning}</span>
       </a>
       <a href={`mailto:${klinikk.epost}`} className="group block">
         <span className={MERKE}>E-post</span>
@@ -30,7 +30,7 @@ export function Kontaktlinje({ className }: { className?: string }) {
       </a>
       <div className="sm:col-span-2 md:col-span-1">
         <p className={MERKE}>Åpningstider</p>
-        <p className={cn(VERDI, "tabular-nums")}>
+        <p className={VERDI}>
           {tid.dager} {tid.fra}–{tid.til}
           <span className="block text-[var(--color-tekst-2)]">{tid.stengt} stengt</span>
         </p>

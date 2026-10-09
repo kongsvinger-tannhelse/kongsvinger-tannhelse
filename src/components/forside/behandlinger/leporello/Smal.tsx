@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { harSide, sideSti } from "@/data/behandlinger/sider";
 import { cn } from "@/lib/utils";
 import { TRE } from "../grupper";
-import { Alle, MERKE, Scene } from "./deler";
+import { Alle, Scene } from "./deler";
 import s from "./leporello.module.css";
 
 /**
@@ -43,16 +43,12 @@ export function Smal() {
           <Brett n={2 * k + 1} redusert={redusert}>
             {() => (
               <div className="relative px-6 pb-8 pt-7">
-                <span aria-hidden="true" className="absolute right-6 top-7 text-[12px] font-semibold tabular-nums text-[var(--color-teal)]">
-                  0{k + 1}
-                </span>
-                <p className={MERKE}>{t.gruppe.tittel}</p>
-                <h3 className="mt-2.5 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(22px, 6vw, 26px)", lineHeight: 1, letterSpacing: "-0.04em" }}>
+                <h3 className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(22px, 6vw, 26px)", lineHeight: 1, letterSpacing: "-0.03em" }}>
                   {t.navn}
                 </h3>
-                <p className="mt-3 text-[15.5px] leading-[1.6] text-[var(--color-tekst-2)]">{t.tekst}</p>
+                <p className="mt-3 text-[16px] leading-[1.6] text-[var(--color-tekst-2)]">{t.tekst}</p>
                 {harSide(t.id) && (
-              <Link href={sideSti(t.id)} className="group mt-3 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
+              <Link href={sideSti(t.id)} className="group mt-3 inline-flex items-center gap-1.5 text-[16px] font-semibold text-[var(--color-glomma)] underline underline-offset-4">
                 Les mer om {t.navn.toLowerCase()}
                 <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
