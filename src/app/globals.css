@@ -58,15 +58,18 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 /* ── The front page's sections open with their own sentence, in the old
-   headings' weight and colour, on the left. The section names are still
-   there as headings, for screen readers only. ── */
+   headings' weight and colour, across the container's whole width. The
+   section names are still there as headings, for screen readers only. ── */
 .seksjonsinngang {
-  max-width: 42ch;
-  font-size: 21px;
+  font-size: 30px;
   font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: -0.015em;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  text-wrap: pretty; /* no lone word on the last line */
   color: var(--color-glomma-deep);
+}
+@media (min-width: 768px) {
+  .seksjonsinngang { font-size: 39px; line-height: 1.15; }
 }
 
 .hero-linje { animation: stig 1.1s var(--ease-film) both; }

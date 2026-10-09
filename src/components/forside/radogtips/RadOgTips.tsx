@@ -18,13 +18,13 @@ export function RadOgTips() {
     <section id="rad-og-tips" aria-labelledby="rad-og-tips-tittel" className="bg-[var(--color-papir)] pt-[clamp(72px,9vw,128px)]">
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
-          <div>
+          <div className="w-full min-w-0 md:w-auto md:flex-1">
             <h2 id="rad-og-tips-tittel" className="sr-only">
               {RAD_OG_TIPS.navn}
             </h2>
             <p className="seksjonsinngang">Her finner du artikler som hjelper deg med alt fra generell munnhelse til Helfo.</p>
           </div>
-          <Link href={RAD_OG_TIPS.sti} className="group inline-flex items-center gap-2 text-[16px] font-semibold text-[var(--color-glomma-deep)] underline-offset-4 hover:underline">
+          <Link href={RAD_OG_TIPS.sti} className="group inline-flex shrink-0 items-center gap-2 text-[16px] font-semibold text-[var(--color-glomma-deep)] underline-offset-4 hover:underline">
             Se alle
             <ArrowRight className="size-4 text-[var(--color-teal)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
           </Link>
