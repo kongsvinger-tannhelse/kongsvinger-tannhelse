@@ -27,7 +27,7 @@ export function Bunntekst() {
           {/* phones and tablets: the name over the columns, centred; wide: the name on the left and the four beside it, five in a row (closer together below 1280 px, so the row fits at 1024) */}
           <div className="flex flex-col items-center text-center lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:text-left xl:gap-12">
             <Merke />
-            <div className="mt-12 grid w-full max-w-[900px] grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-4 lg:mt-0 lg:flex lg:w-auto lg:max-w-none lg:gap-x-8 xl:gap-x-[clamp(40px,5vw,80px)]">
+            <div className="mt-12 grid w-full max-w-[900px] grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-3 lg:mt-0 lg:flex lg:w-auto lg:max-w-none lg:gap-x-8 xl:gap-x-[clamp(40px,5vw,80px)]">
               <Kontakt />
               <Besok />
               <Tider />

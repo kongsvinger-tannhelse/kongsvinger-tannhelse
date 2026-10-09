@@ -42,8 +42,9 @@ export function Merke() {
 
 /** Phone and e-mail. On phones it takes the full width, so the address stays on one line. */
 export function Kontakt() {
+  // its own row on phones and tablets: the e-mail address is wider than a quarter of a tablet
   return (
-    <div className="col-span-2 md:col-span-1">
+    <div className="col-span-2 md:col-span-3">
       <h3 className={etikett}>Kontakt</h3>
       <p className="text-[16px] leading-[1.7]">
         <a href={telefon.lenke} className={lenke}>

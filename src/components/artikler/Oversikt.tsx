@@ -114,7 +114,7 @@ export function Oversikt() {
             ))}
           </div>
 
-          <Hilsen tekst="Lurer du på noe mer? Spør oss neste gang du er her." apent className="md:mt-10" />
+          <Hilsen tekst="Lurer du på noe mer? Spør oss neste gang du er her." apent bestill={false} className="md:mt-10" />
         </Ark>
       </div>
     </main>

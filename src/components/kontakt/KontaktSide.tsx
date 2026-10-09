@@ -144,9 +144,9 @@ function Understrek() {
 function Svarbrev({ navn, hoyde, tittelRef }: { navn: string; hoyde: number | null; tittelRef: React.RefObject<HTMLHeadingElement | null> }) {
   return (
     <article
-      className={cn(s.svar, "relative flex flex-col bg-[#FFFDF8] px-6 pb-7 pt-7 shadow-[0_34px_70px_-36px_rgba(10,25,32,0.55),0_1px_0_rgba(10,25,32,0.05)] sm:px-12 sm:pb-9 sm:pt-10")}
-      // as tall as the letter it replaces, so nothing on the page moves
-      style={{ backgroundImage: PAPIR, minHeight: hoyde ?? undefined }}
+      className={cn(s.svar, "relative flex flex-col bg-[#FFFDF8] sm:min-h-[var(--hoyde,0px)] px-6 pb-7 pt-7 shadow-[0_34px_70px_-36px_rgba(10,25,32,0.55),0_1px_0_rgba(10,25,32,0.05)] sm:px-12 sm:pb-9 sm:pt-10")}
+      // from sm up as tall as the letter it replaces, so nothing beside it moves; a phone just gets the reply, without blank paper under it
+      style={{ backgroundImage: PAPIR, ...(hoyde ? { "--hoyde": `${hoyde}px` } : {}) } as React.CSSProperties}
     >
       <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex items-center gap-3">

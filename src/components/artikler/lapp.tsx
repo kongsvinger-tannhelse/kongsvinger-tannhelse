@@ -248,7 +248,8 @@ export function DelVisning({ del, lapper }: { del: Seksjon; lapper: Festet[] }) 
  * The goodbye at the bottom of the note: a line, and one button to book.
  * `apent`: under the phone number, say whether the clinic is open now (the articles do).
  */
-export function Hilsen({ tekst, className, apent = false }: { tekst: string; className?: string; apent?: boolean }) {
+/** The goodbye at the foot of a note. `bestill` adds the «Be om time» button; without it, just the phone number. */
+export function Hilsen({ tekst, className, apent = false, bestill = true }: { tekst: string; className?: string; apent?: boolean; bestill?: boolean }) {
   return (
     <footer className={cn("mt-12 flex flex-col items-start gap-6 rounded-[22px] bg-[var(--color-kalk)]/70 p-6 md:mt-16 md:flex-row md:items-center md:justify-between md:p-8", className)}>
       <div className="flex items-center gap-4">
@@ -261,15 +262,17 @@ export function Hilsen({ tekst, className, apent = false }: { tekst: string; cla
         </p>
       </div>
       <div className="shrink-0">
-        <Link
-          href="/kontakt"
-          className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-8 py-4 text-[17px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
-        >
-          <CalendarDays className="size-5" aria-hidden="true" />
-          Be om time
-        </Link>
-        <p className="mt-2.5 text-[14.5px] text-[var(--color-tekst-2)] md:text-center">
-          eller ring{" "}
+        {bestill && (
+          <Link
+            href="/kontakt"
+            className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-[var(--color-glomma)] px-8 py-4 text-[17px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
+          >
+            <CalendarDays className="size-5" aria-hidden="true" />
+            Be om time
+          </Link>
+        )}
+        <p className={cn("text-[14.5px] text-[var(--color-tekst-2)]", bestill ? "mt-2.5 md:text-center" : "md:text-right")}>
+          {bestill ? "eller ring" : "Ring oss på"}{" "}
           <a href={klinikk.telefon.lenke} className="whitespace-nowrap font-semibold text-[var(--color-glomma-deep)] underline-offset-4 hover:underline">
             {klinikk.telefon.visning}
           </a>
