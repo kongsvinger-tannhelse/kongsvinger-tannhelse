@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { Utsikt } from "@/components/forside/utsikt/Utsikt";
 import { Klinikkbilder } from "@/components/forside/Klinikkbilder";
-import s from "./hero.module.css";
+import { Apningsstatus } from "@/components/forside/Apningsstatus";
 
 /**
  * «Langs elva». On first paint the camera follows Glomma from the fortress,
@@ -11,14 +11,16 @@ import s from "./hero.module.css";
  * rest. While it settles, the name arrives up in the sky, top left, in the
  * river's own dark slate, with the buttons under it, and the clinic's rooms
  * appear beside it in a square pane with a ring of light: all of it in about
- * two seconds. Nothing stands at the foot of the view.
+ * two seconds. The words don't wait for the photographs; only the view and
+ * the pane do. Under the buttons: whether the clinic is open right now, and
+ * what to do with a toothache. Nothing stands at the foot of the view.
  *
  * (Earlier versions of the clinic photos are kept on the git branch
  * mockups/klinikkbilder.)
  */
 export function Hero() {
   return (
-    <section aria-label="Velkommen" className={`${s.hero} relative h-[100svh] min-h-[640px] overflow-hidden`}>
+    <section aria-label="Velkommen" className="relative h-[100svh] min-h-[640px] overflow-hidden">
       <Utsikt glid zoom={1.22} fx={0.62} fy={0.46} fxSmal={0.7} />
 
       {/* The wrapper spans the hero; only what is in it takes the pointer. */}
@@ -37,18 +39,20 @@ export function Hero() {
             </h1>
 
             <p className="hero-loft mt-4 text-[18px] font-medium leading-[1.4] text-[var(--color-glomma)] md:mt-5 md:text-[20px]" style={{ animationDelay: "0.95s" }}>
-              Tannlegene Hafthun og Zia, {klinikk.adresse.gate}.
+              Tannlegene Hafthun og Zia, {klinikk.adresse.gate}.{" "}
+              <br />
+              Vi tar imot nye pasienter.
             </p>
 
-            {/* the two buttons, and the opening hours under them as wide as both together:
-                white like the call button, but with no ring, since it is not a button */}
+            {/* the two buttons, and under them, as wide as both together, a white note
+                (not a button): open or closed right now, and what to do with a toothache */}
             <div className="hero-loft mt-7 inline-flex flex-col gap-2.5" style={{ animationDelay: "1.05s" }}>
               <div className="flex gap-2.5">
                 <Link
                   href="/kontakt"
                   className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
                 >
-                  Bestill time
+                  Be om time
                   <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
                 </Link>
                 <a
@@ -58,10 +62,18 @@ export function Hero() {
                   Ring {klinikk.telefon.visning}
                 </a>
               </div>
-              <p className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3.5 text-[14px] font-medium text-[var(--color-glomma-deep)]">
-                <Clock className="size-4 text-[var(--color-glomma)]" aria-hidden="true" />
-                Åpningstider: man–fre {klinikk.apningstider.fra}–{klinikk.apningstider.til}
-              </p>
+              <div className="rounded-[20px] bg-white px-5 py-3.5 text-[14px] leading-[1.45]">
+                <p className="flex items-center gap-2 font-medium text-[var(--color-glomma-deep)]">
+                  <Apningsstatus />
+                </p>
+                <p className="mt-1 text-[var(--color-tekst-2)]">
+                  Akutt tannpine?{" "}
+                  <a href={klinikk.telefon.lenke} className="font-medium text-[var(--color-glomma-deep)] underline decoration-1 underline-offset-[3px]">
+                    Ring oss
+                  </a>{" "}
+                  tidlig på dagen.
+                </p>
+              </div>
             </div>
           </div>
 

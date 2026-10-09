@@ -126,7 +126,7 @@ export function Topp({ veiledning }: { veiledning: string }) {
           href="/kontakt"
           className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-strek)] bg-white/60 px-6 py-3.5 text-[15px] font-semibold text-[var(--color-glomma-deep)] transition-colors duration-300 hover:border-[var(--color-glomma)]"
         >
-          Bestill time
+          Be om time
           <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
         </Link>
       </div>
