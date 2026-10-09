@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { useInView, useReducedMotion } from "framer-motion";
 import { Opp } from "@/components/forside/omoss/deler";
-import { INNLEDNING, Kartkreditt, Kontaktlinje, Tittel } from "@/components/kontakt/Detaljer";
+import { INNLEDNING, Kartkreditt, Kontaktlinje } from "@/components/kontakt/Detaljer";
 import { Kart } from "@/components/kontakt/Kart";
 import { Skjema } from "@/components/kontakt/Skjema";
 import { klinikk } from "@/data/klinikk";
@@ -36,10 +36,10 @@ export function Kontakt() {
   return (
     <section id="kontakt" aria-labelledby="kontakt-tittel" className="bg-[var(--color-papir)] pb-[clamp(88px,10vw,140px)] pt-[clamp(88px,11vw,152px)]">
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
-        <div className="md:flex md:items-end md:justify-between md:gap-12">
-          <Tittel id="kontakt-tittel" />
-          <p className="mt-4 max-w-[44ch] text-[17px] leading-[1.6] text-[var(--color-tekst-2)] md:mt-0">{INNLEDNING}</p>
-        </div>
+        <h2 id="kontakt-tittel" className="sr-only">
+          Kontakt oss
+        </h2>
+        <p className="seksjonsinngang">{INNLEDNING}</p>
 
         <Kontaktlinje className="mt-10 md:mt-12" />
 
