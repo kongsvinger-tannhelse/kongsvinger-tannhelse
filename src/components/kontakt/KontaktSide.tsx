@@ -3,28 +3,25 @@
 import Link from "next/link";
 import { useActionState, useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
-import { Merke, Vis } from "@/components/artikler/deler";
-import pen from "@/components/artikler/artikler.module.css";
+import { Merke } from "@/components/artikler/deler";
 import { Frimerke } from "@/components/forside/kontakt/deler";
 import { Smuler } from "@/components/Smuler";
 import { klinikk } from "@/data/klinikk";
 import { cn } from "@/lib/utils";
 import { sendMelding, type MeldingState } from "./melding";
-import { Postkort } from "./Postkort";
 import { MAX, PAKREVD, type Felt, type Verdier } from "./sjekk";
-import { AKUTT, SVAR, VEIEN } from "./tekst";
+import { AKUTT, INTRO, SVAR } from "./tekst";
 import s from "./brevveksling.module.css";
 
 /**
- * The Kontakt page, «Brevvekslingen». It opens with the one thing most
- * people need, the phone number and the opening hours. Then your letter to the clinic is the form: dated today,
+ * The Kontakt page, «Brevvekslingen». Under the heading, the old site's own
+ * words. Then your letter to the clinic is the form: dated today,
  * «Kjære Kongsvinger Tannhelse», and signed with your name as you type it.
  * Beside it lies the envelope, already addressed to Fjellgata 4 and stamped,
  * with the opening hours as the postmark, and a card for toothache. Send the
  * letter, and the envelope turns over and opens, the letter folds into it, the
  * flap closes, the envelope turns back, a postmark says MOTTATT, and a reply
- * from the clinic lies where your letter was. Below, a postcard of the town
- * with the way from the station drawn on it in pen.
+ * from the clinic lies where your letter was.
  */
 
 const { adresse, apningstider: tid, telefon } = klinikk;
@@ -117,24 +114,6 @@ function Konvolutt({ fase, innRef }: { fase: Fase; innRef: React.RefObject<HTMLD
         </div>
       </div>
     </div>
-  );
-}
-
-/** A pen line under the phone number, drawn once the top of the page is seen. */
-function Understrek() {
-  return (
-    <svg viewBox="0 0 260 12" preserveAspectRatio="none" className="pointer-events-none absolute -bottom-[0.16em] left-[-1%] h-[0.2em] w-[102%] overflow-visible" aria-hidden="true">
-      <path
-        d="M3,8.5 C38,5.2 74,9.6 118,7.4 S206,4.4 257,6.6"
-        fill="none"
-        stroke="var(--color-teal)"
-        strokeWidth={3.2}
-        strokeLinecap="round"
-        pathLength={1}
-        className={pen.strek}
-        style={{ "--forsink": "0.5s", transitionDuration: "0.9s" } as React.CSSProperties}
-      />
-    </svg>
   );
 }
 
@@ -287,37 +266,19 @@ export function KontaktSide() {
           Kontakt tannlegen
         </h1>
 
-        {/* call, or write: the number first */}
-        <Vis className="mt-6 sm:mt-8">
-          <p className="text-[clamp(20px,2.2vw,26px)] leading-[1.4] text-[var(--color-tekst-2)]">
-            <span className="block text-[clamp(36px,4.8vw,62px)] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--color-glomma-deep)]">
-              Ring{" "}
-              <a href={telefon.lenke} className="relative inline-block whitespace-nowrap font-bold transition-colors hover:text-[var(--color-glomma)]">
-                {telefon.visning}
-                <Understrek />
-              </a>
-              ,
-            </span>{" "}
-            <span className="mt-2 block">
-              {tid.dager.toLowerCase()} {tid.fra}–{tid.til}.
-            </span>{" "}
-            <span className="block">Eller skriv et brev her.</span>
-          </p>
-        </Vis>
+        <p className="mt-5 max-w-[56ch] text-[18px] leading-[1.6] text-[var(--color-tekst-2)]">{INTRO}</p>
       </header>
 
-      {/* Wide: the letter on the left with the way here in words under it; the envelope, the
-          toothache card and the postcard down the right. The last row is the flexible one, so
-          the postcard's height goes there and the words stay close under the letter.
-          Tablets: the letter across, then envelope and card, then the words and the postcard.
-          Phones: one after another. */}
+      {/* Wide: the letter on the left; the envelope and the toothache card down the right.
+          Tablets: the letter across, then envelope and card side by side. Phones: one after
+          another. */}
       <div
         ref={ref}
         data-vis={vist ? "ja" : "nei"}
-        className="mx-auto mt-12 grid w-full max-w-[var(--container-max)] gap-12 px-[var(--container-px)] pb-[clamp(104px,11vw,150px)] md:mt-16 md:grid-cols-2 md:gap-x-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-14 lg:gap-y-10"
+        className="mx-auto mt-12 grid w-full max-w-[var(--container-max)] gap-12 px-[var(--container-px)] pb-[clamp(104px,11vw,150px)] md:mt-16 md:grid-cols-2 md:gap-x-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-10"
       >
         {/* your letter, and in its place once it is sent, the clinic's reply */}
-        <div className="relative md:col-[1/-1] lg:col-[1] lg:row-[1/span_3]">
+        <div className="relative md:col-[1/-1] lg:col-[1] lg:row-[1/span_2]">
           {!svart && (
             <div key="brev" ref={brev} className={cn(s.brev, "relative origin-center bg-[#FDFAF2] px-6 pb-9 pt-8 shadow-[0_34px_70px_-36px_rgba(10,25,32,0.55),0_1px_0_rgba(10,25,32,0.05)] sm:px-12 sm:pt-11")} style={{ backgroundImage: `${PAPIR}, repeating-linear-gradient(90deg, rgba(120,100,60,0.035) 0 1px, transparent 1px 7px)` }}>
               <p className="text-right text-[14px] text-[var(--color-tekst-2)]">
@@ -403,9 +364,9 @@ export function KontaktSide() {
         {/* the envelope, above the letter so the letter goes into it */}
         <div className={cn(s.inn, "relative z-10 md:col-[1] md:row-[2] lg:col-[2] lg:row-[1]")}>
           <Konvolutt fase={fase} innRef={inni} />
-          {/* without JavaScript nothing would lay the envelope down, or draw the pen lines */}
+          {/* without JavaScript nothing would lay the envelope down */}
           <noscript>
-            <style>{`.${s.inn}{opacity:1;transform:none}.${pen.strek}{stroke-dashoffset:0!important}.${pen.blekk}{opacity:1!important}`}</style>
+            <style>{`.${s.inn}{opacity:1;transform:none}`}</style>
           </noscript>
         </div>
 
@@ -432,12 +393,6 @@ export function KontaktSide() {
           </p>
         </aside>
 
-        {/* the way here: in words, and drawn in pen on a postcard */}
-        <div className="max-w-[46ch] self-start max-md:mt-8 md:col-[1] md:row-[3] md:mt-6 lg:row-[4]">
-          <h2 className="text-[26px] font-semibold tracking-[-0.03em] text-[var(--color-glomma-deep)] sm:text-[30px]">{VEIEN.tittel}</h2>
-          <p className="mt-4 text-[18px] leading-[1.6] text-[var(--color-tekst-2)]">{VEIEN.tekst}</p>
-        </div>
-        <Postkort className="w-full max-w-[480px] self-start max-md:-mt-3 md:col-[2] md:row-[3] md:mt-4 lg:row-[3/span_2]" />
       </div>
     </main>
   );

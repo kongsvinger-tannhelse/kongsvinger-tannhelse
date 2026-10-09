@@ -1,21 +1,14 @@
-import { ansatte, klinikk } from "@/data/klinikk";
-import { RUTE } from "./kartdata";
+import { ansatte } from "@/data/klinikk";
 
 /* The words on the Kontakt page that aren't the form. A plain module (see klinikk.ts). */
 
-const { adresse } = klinikk;
+/** The old site's own words under the heading, without where to find us. */
+export const INTRO = "Vi står klare til å hjelpe deg med alt fra rutinemessige undersøkelser til akutte behov. Ring oss, send en e-post eller skriv til oss her.";
 
 /** What to do with toothache. «Time samme dag» is the clinic's own promise (2026-10-08). */
 export const AKUTT = {
   tittel: "Akutt tannpine?",
   tekst: "Ring oss så tidlig på dagen som mulig. Vi gjør vårt beste for å gi deg time samme dag.",
-} as const;
-
-/** Under the postcard: the way the pen line takes, in words, for those who would rather read it. */
-export const VEIEN = {
-  tittel: `${adresse.gate}, midt i ${adresse.sted}`,
-  tekst: `Kommer du med tog, er det rundt ${Math.round(RUTE.meter / 100) * 100} meter fra stasjonen: langs Glommengata, over Glomma og opp Storgata til Rådhusplassen, der Fjellgata begynner.`,
-  bildetekst: `Fra ${adresse.sted} stasjon til ${adresse.gate}`,
 } as const;
 
 /** «Per, Umer og Eba»: the first names of everyone at the clinic, from klinikk.ts. */
@@ -28,6 +21,3 @@ export const SVAR = {
   haster: "Haster det, ring oss på",
   fra: alle,
 } as const;
-
-/** Google Maps with the way to the clinic from where you are. */
-export const VEIBESKRIVELSE = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${adresse.gate}, ${adresse.postnummer} ${adresse.sted}`)}`;

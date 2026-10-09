@@ -8,8 +8,8 @@ import { GALLERI, LAGET } from "./tekst";
  * The «Om oss» page, «Skogbunnen»: mostly light paper, and the forest seen
  * low down. A short welcome, and from md up a small grove beside it, drawn
  * like the forest floor further down (a phone leaves it out, so the people
- * come sooner). Then the three, as old photographs with a few words about
- * each in the border, standing above a strip of forest floor kept clear
+ * come sooner). Then the three, as old studio portraits with a few words
+ * about each on the card, standing above a strip of forest floor kept clear
  * under them. Last, the photos in the order of a visit: one large, arrows on
  * each side, all of them small underneath.
  */

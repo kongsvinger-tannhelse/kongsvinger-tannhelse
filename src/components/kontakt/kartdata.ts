@@ -19,32 +19,17 @@ export type Utsnitt = { x: number; y: number; b: number; h: number };
 export const KLINIKKHUS =
   "M-4.4,-2.8 7.1,13.4 8.9,12.1 10.4,12.9 18.6,-4 9,-8.7 9.3,-9.3 8.5,-9.7 7.2,-11.4 6.7,-11 2,-17.6 4.1,-19.1 1.8,-22.4 -0.3,-20.9 -3.6,-25.5 -7.4,-22.9 -7.7,-23.4 -14.1,-18.9 -3.3,-3.6Z";
 
-/** A name on the map. `stor` are the landmarks; the rest are quiet. */
-export type Kartnavn = { tekst: string; x: number; y: number; slag: "vann" | "stor" | "strok" };
-
-export const NAVN: readonly Kartnavn[] = [
+/** The names on the map. `stor` are the landmarks; the rest are quiet. */
+export const NAVN = [
   { tekst: "Glomma", x: 150, y: 146, slag: "vann" },
   { tekst: "Kongsvinger festning", x: 381, y: -392, slag: "stor" },
   { tekst: "Kongsvinger stasjon", x: 157, y: 248, slag: "stor" },
   { tekst: "Midtbyen", x: 70, y: -112, slag: "strok" },
   { tekst: "Øvrebyen", x: 229, y: -262, slag: "strok" },
-];
+] as const;
 
 /** Fjellgata, from the bridge end up the hill, for its name to run along. */
 export const FJELLGATA = "M-93.8,-129.5 L-18.6,-19.9";
-
-/**
- * The way from Kongsvinger stasjon to the clinic, as the Kontakt page's
- * postcard draws it in pen: from the street outside the station along
- * Glommengata, over Glomma on Storgata, through Rådhusplassen and a few
- * steps up Fjellgata to where it passes number 4. The shortest walk on the
- * streets the map draws, printed by tools/tegn_kart.py with its length.
- */
-export const RUTE = {
-  sti: "M142.1,244.2 100.7,231.8 6.1,193.5 -47.1,169.2 -7.7,62.2 13,17.5 2.3,12.1 -3.4,2.3",
-  start: { x: 142.1, y: 244.2 },
-  meter: 781,
-} as const;
 
 export const GOOGLE_MAPS = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   `${klinikk.navn}, ${klinikk.adresse.gate}, ${klinikk.adresse.postnummer} ${klinikk.adresse.sted}`
