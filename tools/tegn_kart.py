@@ -12,6 +12,7 @@ and the clinic's house over it (positions printed at the end).
 
 Run from the repo root:  python tools/tegn_kart.py
 """
+import heapq
 import json
 import math
 import os
@@ -132,6 +133,57 @@ def inni(px, py, poly):
         if (ay > py) != (by > py) and px < (bx - ax) * (py - ay) / (by - ay) + ax:
             inne = not inne
     return inne
+
+
+def rute_fra_stasjonen(noder, veier, gater):
+    """The way from Kongsvinger stasjon to the clinic, on the streets the map
+    draws: the shortest walk from the drawn street nearest the station to
+    Fjellgata, ending where Fjellgata passes the clinic's address point (0, 0).
+    Returns the points in map units."""
+    pos = {n: xy(*v[:2]) for n, v in noder.items()}
+    nett = {}
+    for w in veier.values():
+        t = w["tags"]
+        if t.get("highway") not in gater or t.get("area") == "yes" or t.get("tunnel") in ("yes", "building_passage"):
+            continue
+        nd = [n for n in w["nd"] if n in pos]
+        for a, b in zip(nd, nd[1:]):
+            d = math.dist(pos[a], pos[b])
+            nett.setdefault(a, []).append((b, d))
+            nett.setdefault(b, []).append((a, d))
+    stasjon = next(xy(la, lo) for la, lo, t in noder.values() if t.get("railway") == "station" and t.get("name") == "Kongsvinger")
+    start = min(nett, key=lambda n: math.dist(pos[n], stasjon))
+    fjellgata = [w["nd"] for w in veier.values() if w["tags"].get("name") == "Fjellgata" and w["tags"].get("highway")]
+    mal = min((n for nd in fjellgata for n in nd if n in nett), key=lambda n: math.hypot(*pos[n]))
+
+    # Dijkstra
+    avstand, fra, ko = {start: 0.0}, {}, [(0.0, start)]
+    while ko:
+        d, n = heapq.heappop(ko)
+        if n == mal:
+            break
+        if d > avstand[n]:
+            continue
+        for m, w in nett[n]:
+            if d + w < avstand.get(m, math.inf):
+                avstand[m], fra[m] = d + w, n
+                heapq.heappush(ko, (d + w, m))
+    vei = [mal]
+    while vei[-1] != start:
+        vei.append(fra[vei[-1]])
+    pts = [pos[n] for n in reversed(vei)]
+
+    # on up Fjellgata to the foot of the perpendicular from the address point
+    def fot(a, b):
+        (ax, ay), (bx, by) = a, b
+        dx, dy = bx - ax, by - ay
+        k = max(0.0, min(1.0, -(ax * dx + ay * dy) / (dx * dx + dy * dy or 1e-9)))
+        return (ax + k * dx, ay + k * dy)
+
+    ved = min((fot(pos[a], pos[b]) for nd in fjellgata for a, b in zip(nd, nd[1:]) if a in pos and b in pos), key=lambda p: math.hypot(*p))
+    if math.dist(ved, pts[-1]) > 0.5:
+        pts.append(ved)
+    return pts
 
 
 def main():
@@ -259,6 +311,9 @@ def main():
         if w["tags"].get("bridge") == "yes" and w["tags"].get("name"):
             p = punkter(w["nd"])
             print("bru", w["tags"]["name"], tall(p[0][0]), tall(p[0][1]), tall(p[-1][0]), tall(p[-1][1]))
+    rute = rute_fra_stasjonen(noder, veier, BREDDE)
+    lengde = sum(math.dist(a, b) for a, b in zip(rute, rute[1:])) * ENHET
+    print(f"rute fra stasjonen ({lengde:.0f} m):", sti(dp(rute, 0.6)))
 
 
 if __name__ == "__main__":
