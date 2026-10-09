@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, type CSSProperties, type Ref } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 import { CalendarDays, Phone } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
@@ -9,9 +9,10 @@ import { Scene } from "@/components/forside/behandlinger/leporello/deler";
 import { TONE } from "@/components/forside/behandlinger/popup/tegning";
 import { PINFARGE, type Punkt } from "./punkter";
 import { cn } from "@/lib/utils";
+import o from "./oppslag.module.css";
 
-/* The small parts of /behandlinger: the short words, the group tag, a
-   window on a treatment's paper scene, and the phone's bottom bar. */
+/* The small parts of /behandlinger: the short words, the ribbon bookmark,
+   a window on a treatment's paper scene, and the phone's bottom bar. */
 
 /** Each treatment in a few words, for a list row or a card's subtitle. */
 export const KORT: Record<string, string> = {
@@ -44,11 +45,17 @@ export const KORT: Record<string, string> = {
 
 export const GRUPPENAVN = { ordinaer: "Ordinær", akutt: "Akutt", estetisk: "Estetisk" } as const;
 
-/** The small coloured tag for a treatment's group. */
-export function Merke({ p, className }: { p: Punkt; className?: string }) {
+/**
+ * The ribbon bookmark: a band of satin in the group's colour, hanging over
+ * the page from its top edge, with the group's name on it and a forked
+ * tail. It is one ribbon for the whole book, so when the group changes its
+ * colour changes slowly, as the page turns under it. For the eye only: the
+ * page says the group to screen readers itself.
+ */
+export function Bokmerke({ gruppe, className, ref }: { gruppe: Punkt["gruppe"]; className?: string; ref?: Ref<HTMLSpanElement> }) {
   return (
-    <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-[12px] font-semibold text-white", className)} style={{ background: PINFARGE[p.gruppe] }}>
-      {GRUPPENAVN[p.gruppe]}
+    <span ref={ref} aria-hidden="true" className={cn(o.bokmerke, className)} style={{ "--farge": PINFARGE[gruppe] } as CSSProperties}>
+      <span className={o.baand}>{GRUPPENAVN[gruppe]}</span>
     </span>
   );
 }

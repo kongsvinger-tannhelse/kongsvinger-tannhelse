@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Oppslag } from "@/components/behandlinger/Oppslag";
+import { Boktegning } from "@/components/behandlinger/boka";
 import { Sporsmal, Strukturert, Topp } from "@/components/behandlinger/side";
 
 export const metadata: Metadata = {
@@ -23,8 +24,12 @@ export default function Page() {
       <Strukturert />
       <main className="bg-[var(--color-papir)]">
         <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pt-[clamp(96px,12vw,148px)]">
-          <div className="max-w-[760px]">
-            <Topp veiledning="Søk, eller trykk på en behandling for å lese om den." />
+          <div className="relative">
+            <div className="max-w-[760px]">
+              <Topp veiledning="Søk, eller trykk på en behandling for å lese om den." />
+            </div>
+            {/* the book, closed, in the corner the text leaves empty */}
+            <Boktegning className="absolute right-0 top-[clamp(8px,2vw,36px)] hidden w-[clamp(300px,32vw,470px)] lg:block" />
           </div>
           <div className="mt-8 pb-[clamp(40px,9vw,120px)] md:mt-14">
             <Oppslag />

@@ -12,6 +12,15 @@
     background: #FFFDF8;
     box-shadow:
       0 0 0 1px var(--color-strek),
+      /* the leaves under the open pages, showing at the edges */
+      -3px 2px 0 0 #F6F1E5,
+      3px 2px 0 0 #F6F1E5,
+      -3px 2px 0 1px rgba(23, 34, 40, 0.1),
+      3px 2px 0 1px rgba(23, 34, 40, 0.1),
+      -6px 4px 0 0 #F1EBDD,
+      6px 4px 0 0 #F1EBDD,
+      -6px 4px 0 1px rgba(23, 34, 40, 0.1),
+      6px 4px 0 1px rgba(23, 34, 40, 0.1),
       0 40px 70px -44px rgba(22, 48, 59, 0.6);
   }
   /* the fold down the middle */
@@ -30,6 +39,15 @@
 .hoyre {
   min-height: 0;
   flex-direction: column;
+}
+
+/* the right page's leaves, and the ribbon lying over them */
+.sider {
+  position: relative;
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
   perspective: 1800px;
 }
 
@@ -43,6 +61,173 @@
   animation: blad 0.6s cubic-bezier(0.25, 1, 0.35, 1) both;
 }
 
+/* ── The thumb index: the groups as tabs in their colours ──
+   On a phone they stand along the top of the list like a divider's tabs,
+   the chosen one joined to a band in its colour that runs across the list.
+   On the book they are cut into the left page's edge, read upwards like a
+   spine; the chosen one is on the open page, pulled out a little. */
+
+.faner {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  margin-top: 12px;
+  border-bottom: 3px solid var(--valgt);
+  overflow-x: auto;
+  scrollbar-width: none;
+  transition: border-color 0.5s var(--ease-rolig);
+}
+
+.fane {
+  --tint: color-mix(in srgb, var(--farge) 20%, #FFFDF8);
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  /* all four fit side by side down to a 320 px screen */
+  padding-inline: clamp(7px, 2.5vw, 10px);
+  border-radius: 12px 12px 0 0;
+  background: var(--tint);
+  color: color-mix(in srgb, var(--farge) 75%, #000);
+  font-size: clamp(14px, 4vw, 15px);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background-color 0.35s var(--ease-rolig),
+    color 0.35s var(--ease-rolig),
+    height 0.35s var(--ease-rolig),
+    translate 0.35s var(--ease-rolig),
+    box-shadow 0.35s var(--ease-rolig);
+}
+.fane[aria-pressed="true"] {
+  height: 48px;
+  background: var(--farge);
+  color: #fff;
+}
+
+.fane:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -5px;
+  border-radius: 12px 12px 0 0;
+}
+
+@media (min-width: 768px) {
+  .faner {
+    position: absolute;
+    z-index: 2;
+    top: 40px;
+    left: -16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0;
+    border: 0;
+    overflow: visible;
+  }
+  /* each one a half-round notch cut in from the edge, the page's cut edge
+     casting a little shadow into it; the chosen one is on the open page */
+  .fane {
+    flex: none;
+    width: 42px;
+    height: auto;
+    padding: 16px 0;
+    border-radius: 10px 21px 21px 10px;
+    font-size: 16px;
+    box-shadow:
+      inset -7px 0 6px -4px rgba(23, 34, 40, 0.24),
+      inset 0 1px 2px rgba(23, 34, 40, 0.1),
+      inset 0 0 0 1px color-mix(in srgb, var(--farge) 24%, transparent),
+      -2px 2px 3px -2px rgba(22, 48, 59, 0.3);
+  }
+  .fane > span {
+    writing-mode: vertical-rl;
+    rotate: 180deg;
+  }
+  .fane[aria-pressed="true"] {
+    height: auto;
+    translate: -10px 0;
+    width: 52px;
+    box-shadow: -6px 8px 14px -8px rgba(22, 48, 59, 0.55);
+  }
+  .fane:not([aria-pressed="true"]):hover {
+    translate: -4px 0;
+  }
+  .fane:focus-visible {
+    border-radius: 10px 21px 21px 10px;
+  }
+}
+
+/* ── The ribbon bookmark ── */
+
+.bokmerke {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  /* close to the page's edge on a narrow book, so it keeps off the scene
+     (a toothbrush or a lamp reaches out to the right in some of them) */
+  right: clamp(12px, 9vw - 80px, 56px);
+  display: block;
+  width: 72px;
+  height: 124px;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 8px rgba(22, 48, 59, 0.2)) drop-shadow(0 1px 1.5px rgba(22, 48, 59, 0.3));
+}
+.baand {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  padding-top: 34px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 20px), 0 100%);
+  background-color: var(--farge);
+  background-image:
+    /* where it comes over the page's top edge */
+    linear-gradient(180deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0) 10px),
+    /* lying flatter towards the tail */
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.1)),
+    /* the woven edges */
+    linear-gradient(90deg, transparent 3px, rgba(255, 255, 255, 0.2) 3px 4px, transparent 4px calc(100% - 4px), rgba(255, 255, 255, 0.2) calc(100% - 4px) calc(100% - 3px), transparent calc(100% - 3px)),
+    /* the satin's soft curve across */
+    linear-gradient(90deg, rgba(0, 0, 0, 0.16), rgba(255, 255, 255, 0.1) 26%, rgba(255, 255, 255, 0) 52%, rgba(0, 0, 0, 0.06) 80%, rgba(0, 0, 0, 0.16)),
+    /* the threads, lengthwise */
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, rgba(255, 255, 255, 0) 1px 3px);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  transition: background-color 0.8s var(--ease-rolig);
+}
+
+@media (max-width: 1023px) {
+  .bokmerke { width: 66px; }
+  .baand { font-size: 14px; }
+}
+
+/* the ribbon over the phone's sheet */
+.liten {
+  right: auto;
+  left: 28px;
+  width: 64px;
+  height: 100px;
+}
+.liten .baand {
+  padding-top: 26px;
+  font-size: 14px;
+}
+
+/* the ribbon lies on the right page and goes up with it as a long text scrolls */
+.merkefelt {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .blad { animation: none; }
+  .faner, .fane, .baand { transition: none; }
 }
