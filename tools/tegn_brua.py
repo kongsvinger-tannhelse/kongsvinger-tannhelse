@@ -153,8 +153,8 @@ def fjernt():
     sti(glatt(for_ + [(1840, 230), (-280, 230)]), "#A9B7C1")
     hid = nid("dis")
     # the haze fades into the page's own colour (--color-papir)
-    A(f'<linearGradient id="{hid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FDF9F0" stop-opacity="0"/>'
-      f'<stop offset="1" stop-color="#FDF9F0" stop-opacity="0.85"/></linearGradient>')
+    A(f'<linearGradient id="{hid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2F1F1" stop-opacity="0"/>'
+      f'<stop offset="1" stop-color="#E2F1F1" stop-opacity="0.85"/></linearGradient>')
     A(f'<rect x="-280" y="118" width="2120" height="56" fill="url(#{hid})"/>')
 
     # the distant forest behind the fields (middle), pale with distance
@@ -869,7 +869,7 @@ def main():
         _, _, vw, vh = (float(t) for t in vb.split())
         bb, hh = round(vw * skala), round(vh * skala)
         hel = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" width="{bb}" height="{hh}">'
-               f'<rect x="{X0}" y="{Y0}" width="{X1 - X0}" height="{Y1 - Y0}" fill="#FDF9F0"/>'
+               f'<rect x="{X0}" y="{Y0}" width="{X1 - X0}" height="{Y1 - Y0}" fill="#E2F1F1"/>'
                + scene + b + fu + "</svg>")
         p = os.path.abspath(os.path.join(MAPPE, navn + ".svg"))
         lagre(p, hel)
