@@ -3,9 +3,8 @@ import { ansatte } from "@/data/klinikk";
 /* The three at the clinic as the «Om oss» section shows them, and the old
    site's own words. A plain module (see klinikk.ts). */
 
-/** The old site's «Om oss – Velg oss fordi», unchanged. */
-export const TEKST =
-  "Hos oss møter du et dedikert team som brenner for å skape gode opplevelser og varige resultater. Vi kombinerer moderne teknologi med varme smil, slik at du kan føle deg trygg i stolen.";
+/** The old site's «Om oss – Velg oss fordi», cut to one short sentence. */
+export const TEKST = "Hos oss møter du et dedikert team som vil at du skal føle deg trygg i stolen.";
 
 /** Where each face is in its photo, and how far to zoom so the three heads are the same size (the photos are framed differently). */
 const UTSNITT: Record<string, { fokus: string; zoom: number }> = {
