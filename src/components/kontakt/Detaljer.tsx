@@ -4,7 +4,7 @@ import { KART_KREDITT } from "./kartdata";
 
 /*
  * The words of the «Kontakt» section, apart from the form and the map: the
- * heading, the old site's line, and phone, e-mail and hours in one line.
+ * old site's line, and phone, e-mail and hours in one line.
  * The facts all come from klinikk.ts.
  */
 
@@ -12,14 +12,6 @@ import { KART_KREDITT } from "./kartdata";
 export const INNLEDNING = "Vi står klare til å hjelpe deg med alt fra rutinemessige undersøkelser til akutte behov.";
 
 const { apningstider: tid } = klinikk;
-
-export function Tittel({ id, className }: { id: string; className?: string }) {
-  return (
-    <h2 id={id} className={cn("seksjonstittel font-bold text-[var(--color-glomma-deep)]", className)}>
-      Kontakt oss
-    </h2>
-  );
-}
 
 const MERKE = "block text-[12px] font-medium uppercase tracking-[0.12em] text-[var(--color-tekst-svak)]";
 const VERDI = "mt-2 block text-[18px] font-medium leading-[1.45] tracking-[-0.01em] text-[var(--color-glomma-deep)]";

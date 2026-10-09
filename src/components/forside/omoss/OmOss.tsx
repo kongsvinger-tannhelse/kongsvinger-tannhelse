@@ -84,10 +84,10 @@ export function OmOss() {
   return (
     <section id="om-oss" aria-labelledby="om-oss-tittel" className="overflow-hidden bg-[var(--color-papir)] pt-[clamp(32px,3.5vw,48px)]">
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
-        <h2 id="om-oss-tittel" className="seksjonstittel font-bold text-[var(--color-glomma-deep)]">
+        <h2 id="om-oss-tittel" className="sr-only">
           Om oss
         </h2>
-        <p className="mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-[var(--color-tekst-2)]">{TEKST}</p>
+        <p className="seksjonsinngang">{TEKST}</p>
 
         {/* the three, in a row */}
         <ul ref={ref} className="mx-auto mt-12 grid max-w-[760px] grid-cols-3 gap-3 sm:gap-6 md:mt-16 md:gap-10">

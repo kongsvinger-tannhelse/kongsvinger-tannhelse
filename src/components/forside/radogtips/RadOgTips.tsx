@@ -18,11 +18,11 @@ export function RadOgTips() {
     <section id="rad-og-tips" aria-labelledby="rad-og-tips-tittel" className="bg-[var(--color-papir)] pt-[clamp(72px,9vw,128px)]">
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
-          <div className="max-w-[560px]">
-            <h2 id="rad-og-tips-tittel" className="seksjonstittel font-bold text-[var(--color-glomma-deep)]">
+          <div>
+            <h2 id="rad-og-tips-tittel" className="sr-only">
               {RAD_OG_TIPS.navn}
             </h2>
-            <p className="mt-3 text-[17.5px] leading-[1.6] text-[var(--color-tekst-2)]">Korte, enkle tekster om vanlige ting i munnen, skrevet så alle kan forstå dem.</p>
+            <p className="seksjonsinngang">Her finner du artikler som hjelper deg med alt fra generell munnhelse til Helfo.</p>
           </div>
           <Link href={RAD_OG_TIPS.sti} className="group inline-flex items-center gap-2 text-[16px] font-semibold text-[var(--color-glomma-deep)] underline-offset-4 hover:underline">
             Se alle
