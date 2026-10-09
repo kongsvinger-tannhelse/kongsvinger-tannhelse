@@ -7,6 +7,8 @@ import { HANDLING, type Artikkel } from "./typer";
 export const tannkjottetBlor: Artikkel = {
   slug: "tannkjottet-blor",
   tittel: "Tannkjøttet blør når jeg pusser",
+  gruppe: "galt",
+  linje: "Hvorfor tannkjøttet blør når du pusser, hva du kan gjøre selv, og når du bør komme.",
   kort: "Blødende tannkjøtt",
   // NHI and SML: bleeding gums are an early sign of gingivitis, which is reversible with good cleaning
   ingress: "Litt blod i vasken når du pusser, er et tegn på at tannkjøttet er betent. Det gode er at det ofte går over når du pusser godt.",
@@ -26,7 +28,7 @@ export const tannkjottetBlor: Artikkel = {
       tegning: "plakk",
     },
     // SML Gingivitt: gingivitis is fully reversible when the plaque is removed
-    { type: "lapp", lapp: { slag: "visste", tekst: "Tannkjøttbetennelse kan gå helt over. Når bakteriebelegget blir fjernet, forsvinner betennelsen." } },
+    { type: "lapp", lapp: { slag: "visste", tekst: "Tannkjøttbetennelse kan gå helt over. Når bakteriebelegget blir fjernet, forsvinner betennelsen.", feste: "Det kalles tannkjøttbetennelse" } },
     // SML Gingivitt and NHI: good oral hygiene is the treatment
     {
       type: "tekst",
@@ -39,7 +41,7 @@ export const tannkjottetBlor: Artikkel = {
       tegning: "skraa",
     },
     // NHI Tannhelse hos barn: the edge between gum and tooth matters most; SML Gingivitt: the plaque sits next to the gum
-    { type: "lapp", lapp: { slag: "triks", tekst: "Pass ekstra godt på kanten der tann og tannkjøtt møtes. Det er der bakteriene samler seg." } },
+    { type: "lapp", lapp: { slag: "triks", tekst: "Pass ekstra godt på kanten der tann og tannkjøtt møtes. Det er der bakteriene samler seg.", feste: "Puss heller forsiktig og grundig akkurat der det blør" } },
     {
       type: "liste",
       id: "arsaker",
@@ -72,7 +74,7 @@ export const tannkjottetBlor: Artikkel = {
       obs: "Blør det fortsatt selv om du pusser godt hver dag? Da vil vi gjerne se på det.",
     },
     // Helsedirektoratet: interdental cleaning chosen by individual need
-    { type: "lapp", lapp: { slag: "tips", tekst: "Spør tannlegen eller tannpleieren hva som passer best mellom dine tenner: tanntråd, tannstikker eller mellomromsbørster." } },
+    { type: "lapp", lapp: { slag: "tips", tekst: "Spør tannlegen eller tannpleieren hva som passer best mellom dine tenner: tanntråd, tannstikker eller mellomromsbørster.", feste: "tanntråd, tannstikker eller mellomromsbørster" } },
     // NHI Tannkjøttbetennelse: periodontitis goes deeper, loses bone and support, can loosen teeth; few symptoms early on
     {
       type: "tekst",
@@ -85,7 +87,7 @@ export const tannkjottetBlor: Artikkel = {
       tegning: "tannhals",
     },
     // NHI Tannkjøttbetennelse: risk factors
-    { type: "lapp", lapp: { slag: "visste", tekst: "Røyking, munntørrhet og diabetes gjør det lettere å få tannkjøttbetennelse." } },
+    { type: "lapp", lapp: { slag: "visste", tekst: "Røyking, munntørrhet og diabetes gjør det lettere å få tannkjøttbetennelse.", feste: "tannkjøttbetennelse" } },
   ],
   sjekk: {
     tittel: "Hvordan er det hos deg?",

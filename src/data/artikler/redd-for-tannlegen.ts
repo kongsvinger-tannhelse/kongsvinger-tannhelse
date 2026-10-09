@@ -9,6 +9,8 @@ import type { Artikkel } from "./typer";
 export const reddForTannlegen: Artikkel = {
   slug: "redd-for-tannlegen",
   tittel: "Redd for tannlegen?",
+  gruppe: "gruer",
+  linje: "Hva som hjelper mot tannlegeskrekk, hva du selv kan gjøre, og hvor du får hjelp hvis angsten er sterk.",
   kort: "Redd for tannlegen",
   ingress: "Mange gruer seg til å gå til tannlegen. Du er ikke alene, og du trenger ikke å skamme deg. Her kan du lese hva som gjør det lettere.",
   lesetid: "3 minutter å lese",
@@ -26,7 +28,7 @@ export const reddForTannlegen: Artikkel = {
       tegning: "snakke",
     },
     // SML Tannlegeskrekk: may affect 5 to 10 percent of the adult population
-    { type: "lapp", lapp: { slag: "visste", tekst: "Mellom 5 og 10 av 100 voksne har så sterk tannlegeskrekk at det er vanskelig å gå til tannlegen." } },
+    { type: "lapp", lapp: { slag: "visste", tekst: "Mellom 5 og 10 av 100 voksne har så sterk tannlegeskrekk at det er vanskelig å gå til tannlegen.", feste: "Andre gruer seg så mye at de nesten ikke klarer å gå" } },
     {
       type: "liste",
       id: "hjelper",
@@ -43,7 +45,10 @@ export const reddForTannlegen: Artikkel = {
         { id: "too", navn: "Hjelp ved sterk angst", tekst: "Har du så sterk angst at du ikke klarer å gå til tannlegen, finnes det et eget tilbud i den offentlige tannhelsetjenesten. Det heter TOO, og du kan ta kontakt selv.", tegning: "roligtann" },
       ],
     },
-    // Helsenorge Mestring av langvarige smerter: breathe deep down into the stomach
+    // Helsedirektoratet: focus on mastery. (Was after «Små ting som hjelper»; moved here, beside «Litt og litt», which it explains.)
+    { type: "lapp", lapp: { slag: "visste", tekst: "Hver gang det går fint hos tannlegen, blir det ofte litt lettere neste gang. Det kalles mestring.", feste: "kjenner at det går fint" } },
+    // Helsenorge Mestring av langvarige smerter: breathe deep down into the stomach.
+    // Not pinned: no sentence in the article is about breathing, so it stays between the sections.
     { type: "lapp", lapp: { slag: "triks", tekst: "Pust rolig, helt ned i magen. Kjenn at brystet utvider seg, og la kroppen finne en god rytme." } },
     {
       type: "tips",
@@ -56,8 +61,6 @@ export const reddForTannlegen: Artikkel = {
         { tekst: "Snakk med tannlegen om hva som skal gjøres denne gangen, så du vet hva som kommer.", tegning: "steg" },
       ],
     },
-    // Helsedirektoratet: focus on mastery
-    { type: "lapp", lapp: { slag: "visste", tekst: "Hver gang det går fint hos tannlegen, blir det ofte litt lettere neste gang. Det kalles mestring." } },
     {
       type: "tekst",
       id: "lenge",
