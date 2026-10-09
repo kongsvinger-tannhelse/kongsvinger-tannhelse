@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef } from "react";
+import { useId, useRef, type CSSProperties } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 import { Buebilde, Navn, Opp } from "./deler";
 import { PERSONER, TEKST } from "./ansatte";
@@ -13,8 +13,9 @@ import s from "./omoss.module.css";
  * view. Under them, what the clinic stands for, in three short lines. Then, along the foot of the section, the town as it is seen
  * from across the valley: Kongsvinger festning on its hill (the stone wall
  * and bastion, the brick gable, the rust roofs, the yellow block, the flag
- * lifting in the wind), the autumn trees on the slope and the old town's
- * painted houses below.
+ * lifting in the wind), the summer trees on the slope and the old town's
+ * painted houses below, under an afternoon sky: the page's pale teal deepens
+ * into blue towards the hill, with the sun high on the right.
  *
  * The landscape is drawn by tools/tegn_landskap.py from a photograph used as
  * a reference, and saved as two pictures: a wide one whose hill and town
@@ -82,7 +83,7 @@ export function OmOss() {
   const vist = useInView(ref, { once: true, margin: "0px 0px -15% 0px" });
 
   return (
-    <section id="om-oss" aria-labelledby="om-oss-tittel" className="overflow-hidden bg-[var(--color-papir)] pt-[clamp(32px,3.5vw,48px)]">
+    <section id="om-oss" aria-labelledby="om-oss-tittel" className="relative isolate overflow-hidden bg-[var(--color-papir)] pt-[clamp(32px,3.5vw,48px)]">
       <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
         <h2 id="om-oss-tittel" className="sr-only">
           Om oss
@@ -90,7 +91,7 @@ export function OmOss() {
         <p className="seksjonsinngang">{TEKST}</p>
 
         {/* the three, in a row */}
-        <ul ref={ref} className="mx-auto mt-12 grid max-w-[760px] grid-cols-3 gap-3 sm:gap-6 md:mt-16 md:gap-10">
+        <ul ref={ref} className="mx-auto mt-10 grid max-w-[760px] grid-cols-3 gap-3 sm:gap-6 md:mt-12 md:gap-10">
           {PERSONER.map((p, i) => (
             <li key={p.navn} className="flex flex-col items-center text-center">
               <Opp vis={vist} n={i} redusert={redusert} className="relative aspect-[19/28] w-full">
@@ -104,11 +105,16 @@ export function OmOss() {
         </ul>
 
         {/* what the clinic stands for */}
-        <Punkter className="mx-auto mt-14 grid max-w-[960px] gap-8 sm:grid-cols-3 sm:gap-8 md:mt-20 md:gap-12" />
+        <Punkter className="mx-auto mt-10 grid max-w-[960px] gap-8 sm:grid-cols-3 sm:gap-8 md:mt-14 md:gap-12" />
       </div>
 
-      {/* the town and the fortress, along the foot of the section */}
-      <div className="relative mx-auto mt-6 w-full md:-mt-2">
+      {/* the town and the fortress, along the foot of the section, with open sky
+          above them; the sky starts up behind the three lines (under the words)
+          and runs down behind the hill to about half the picture's height,
+          where the hill is lowest at the sides */}
+      <div className="relative mx-auto mt-[var(--luft)] w-full" style={{ "--luft": "clamp(72px, 9vw, 160px)" } as CSSProperties}>
+        <div aria-hidden="true" className={`${s.himmel} pointer-events-none absolute inset-x-0 -top-[clamp(220px,24vw,420px)] bottom-1/2 -z-10`} />
+        <span aria-hidden="true" className={s.sol} />
         <Landskap />
         {/* the foot of the trees goes into shadow, into the dark band below */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-[9%] bg-linear-to-b from-transparent to-[var(--color-glomma-deep)]" />

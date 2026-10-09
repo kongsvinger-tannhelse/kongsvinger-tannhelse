@@ -5,7 +5,7 @@
 const PUNKTER = [
   { tittel: "Erfarne tannleger", tekst: "Vi har mange års erfaring, og vi elsker det vi gjør." },
   { tittel: "Direkte oppgjør med Helfo", tekst: "Har du rett på støtte fra Helfo, ordner vi det for deg. Du betaler bare din del." },
-  { tittel: "Alltid pasienten i fokus", tekst: "Vi tar godt imot alle pasientene våre, og gjør vårt beste for at du skal føle deg vel hos oss." },
+  { tittel: "Alltid pasienten i fokus", tekst: "Vi tar godt imot alle pasientene våre, og gjør vårt beste for at du skal føle deg komfortabel hos oss." },
 ];
 
 export function Punkter({ className }: { className?: string }) {

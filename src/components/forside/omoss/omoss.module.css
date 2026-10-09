@@ -1,4 +1,4 @@
-/* «Om oss»: the one thing that moves by itself. */
+/* «Om oss»: the flag that moves by itself, and the afternoon sky. */
 
 /* The flag on the fortress lifts and falls in the wind, from its hoist. */
 .flagg {
@@ -11,6 +11,50 @@
   50% { transform: skewY(-4deg) scaleX(0.95); }
 }
 
+/* The afternoon sky behind the fortress: the page's own pale teal at the top,
+   deepening into a soft summer blue down at the hill's line (the drawing
+   leaves its sky out, so this shows through it). */
+.himmel {
+  --himmel: #BCDDEE;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--himmel) 0%, var(--color-papir)) 0%,
+    color-mix(in srgb, var(--himmel) 45%, var(--color-papir)) 45%,
+    var(--himmel) 100%
+  );
+}
+
+/* The sun, on the right in the open sky above the hill: a flat disc with a
+   soft halo, like the lamps on the bridge in the footer. It climbs a little as the page goes down (only
+   where the browser can tie an animation to scrolling; elsewhere it stands). */
+.sol {
+  --sol: clamp(56px, 6.5vw, 116px);
+  position: absolute;
+  z-index: -10;
+  right: clamp(24px, 9vw, 180px);
+  /* in the middle of the open sky between the three lines and the hill (--luft) */
+  top: calc(var(--luft, 96px) * -0.5 - var(--sol) * 0.5);
+  width: var(--sol);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #FFF4CC;
+  box-shadow:
+    0 0 0 clamp(10px, 1.3vw, 22px) rgba(255, 243, 204, 0.38),
+    0 0 clamp(40px, 6vw, 110px) clamp(14px, 2vw, 40px) rgba(255, 232, 170, 0.5);
+}
+@supports (animation-timeline: view()) {
+  .sol {
+    animation: sol linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 40%;
+  }
+}
+@keyframes sol {
+  from { translate: 0 36px; }
+  to { translate: 0 -36px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .flagg { animation: none; }
+  .sol { animation: none; }
 }
