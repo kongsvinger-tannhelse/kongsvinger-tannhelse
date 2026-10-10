@@ -1,6 +1,7 @@
 import { FARGE as F, JEKSEL, PULPA, lauv, r2, snofnugg, stjerne } from "@/components/forside/behandlinger/popup/tegning";
 import { AKSENT, BLEKK, Ramme, blekk, form, linje, type Stil } from "@/components/artikler/tegninger";
 import { Krone } from "./ruter3";
+import m from "./side.module.css";
 
 /* The title pictures of the last pages, 320 × 220, in the same pen as
    tittelbilder.tsx. Server-safe. */
@@ -60,6 +61,8 @@ export function Kulefisk({ strek = true, className, forsink }: Stil) {
   return (
     <Ramme className={className} forsink={forsink} boks={BOKS}>
       <path d={`${bolge(20, 180, 202)} ${bolge(50, 150, 212)}`} {...linje(strek, F.teal, 2, F.teal)} />
+      {/* the fish in one piece: once drawn, it puffs up and goes down again (side.module.css) */}
+      <g className={m.puff}>
       <path d={pigger} {...linje(strek, "#C9A54A", 2.2, "#C9A54A")} />
       <path d="M56,106 L26,82 Q34,106 26,130 Z" {...form(strek, "#F8E3A8", gul)} />
       <circle cx={cx} cy={cy} r={56} {...form(strek, "#F8E3A8", gul)} />
@@ -77,6 +80,7 @@ export function Kulefisk({ strek = true, className, forsink }: Stil) {
       <circle cx={135} cy={90} r={4.4} fill={BLEKK} {...blekk(strek)} />
       <circle cx={146} cy={112} r={8} fill="#F5C9BF" fillOpacity={0.75} {...blekk(strek)} />
       <ellipse cx={162} cy={106} rx={4} ry={5} {...form(strek, "#F1A39A", { w: 2, ink: AKSENT, penFill: "#F7C3BC" })} />
+      </g>
       {[
         [182, 92, 4],
         [194, 78, 3],

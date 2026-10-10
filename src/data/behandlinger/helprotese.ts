@@ -10,7 +10,10 @@ export const helprotese: Behandlingsside = {
   navn: "Helprotese",
   // the clinic's own words (klinikk.ts)
   ingress: "En helprotese er et avtakbart tannsett når alle tennene i en kjeve er borte. Her ser du hvordan den lages, og hvordan det er å begynne å bruke den.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på munnen din, og hva som passer for deg.",
   tittelbilde: "gebiss",
+  blekk: "plomme",
+  stripe: "smil",
   beskrivelse: "Helprotese hos tannlegen i Kongsvinger: hva en helprotese er, hvordan den lages steg for steg, og hvordan det er å venne seg til den.",
   deler: [
     {
@@ -32,7 +35,7 @@ export const helprotese: Behandlingsside = {
       avsnitt: [
         // Helsedirektoratet, stønadspunkt 15: two implants and an overdenture fixed to them
         "I underkjeven kan en protese også festes til implantater, så den sitter bedre.",
-        "Hva som passer, er forskjellig fra person til person. Tannlegen går gjennom valgene med deg.",
+        "Hva som passer, er forskjellig fra person til person. Vi går gjennom valgene med deg.",
       ],
       tegning: "protese-implantat",
     },
@@ -44,7 +47,7 @@ export const helprotese: Behandlingsside = {
         // UiO clinic handbook: first consultation
         { tegning: "snakke-protese", tekst: "Først snakker vi sammen og ser på munnen din." },
         // UiO clinic handbook: a first and a second impression
-        { tegning: "avtrykk-tannlos", tekst: "Tannlegen tar avtrykk av kjevene, ofte flere ganger, så protesen passer best mulig." },
+        { tegning: "avtrykk-tannlos", tekst: "Vi tar avtrykk av kjevene, ofte flere ganger, så protesen passer best mulig." },
         // UiO clinic handbook: recording how the jaws meet
         { tegning: "bitt-maal", tekst: "Vi måler hvordan kjevene møtes når du biter." },
         // UiO clinic handbook: the teeth tried in wax
@@ -60,7 +63,7 @@ export const helprotese: Behandlingsside = {
       avsnitt: [
         // UiO clinic handbook: needs getting used to, as the muscles of the mouth must learn
         "Det tar tid å venne seg til en ny protese, fordi musklene i munnen må lære seg å bruke den.",
-        "Hvor lang tid det tar, er forskjellig fra person til person. Tannlegen gir deg råd underveis.",
+        "Hvor lang tid det tar, er forskjellig fra person til person. Vi gir deg råd underveis.",
       ],
       tegning: "spire",
     },

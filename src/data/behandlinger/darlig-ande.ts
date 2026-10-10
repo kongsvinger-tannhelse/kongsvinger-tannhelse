@@ -9,8 +9,11 @@ export const darligAnde: Behandlingsside = {
   slug: "darlig-ande",
   navn: "Dårlig ånde",
   // the clinic's own words (klinikk.ts)
-  ingress: "Dårlig ånde er svært vanlig, og som regel kan du gjøre mye med det selv. Her ser du hvor den kommer fra, og hva tannlegen kan hjelpe med.",
+  ingress: "Dårlig ånde er svært vanlig, og som regel kan du gjøre mye med det selv. Her ser du hvor den kommer fra, og hva vi kan hjelpe med.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi etter om lukten kommer fra munnen, og hva som kan hjelpe.",
   tittelbilde: "klesklype",
+  blekk: "skog",
+  stripe: "skyer",
   beskrivelse: "Dårlig ånde hos tannlegen i Kongsvinger: hvor den kommer fra, hva den kan komme av, hva du kan gjøre selv, og hva tannlegen kan hjelpe med.",
   deler: [
     {
@@ -64,14 +67,14 @@ export const darligAnde: Behandlingsside = {
     {
       type: "serie",
       id: "hjelpe",
-      tittel: "Slik kan tannlegen hjelpe",
+      tittel: "Slik kan vi hjelpe",
       ruter: [
         // SML Dårlig ånde: the dentist deals with the mouth's part
-        { tegning: "snakke-ande", tekst: "Først snakker vi sammen, og tannlegen ser på tennene, tannkjøttet og tunga." },
+        { tegning: "snakke-ande", tekst: "Først snakker vi sammen, og ser på tennene, tannkjøttet og tunga." },
         // SML Dårlig ånde (decay, gum disease), SML Tannstein (tartar can give bad breath)
-        { tegning: "lupe-ande", tekst: "Tannlegen ser etter hull, tannstein og betent tannkjøtt." },
+        { tegning: "lupe-ande", tekst: "Vi ser etter hull, tannstein og betent tannkjøtt." },
         // SML Tannstein: tartar is removed by a dentist or dental hygienist
-        { tegning: "rens-ande", tekst: "Tannstein kan fjernes med en tannrens." },
+        { tegning: "rens-ande", tekst: "Tannstein kan vi fjerne med en tannrens." },
         // NHI Dårlig ånde: see a doctor if it may come from the tonsils, the sinuses or elsewhere
         { tegning: "lege", tekst: "Kommer lukten ikke fra munnen, kan det være lurt å gå til legen.", mellom: true },
       ],

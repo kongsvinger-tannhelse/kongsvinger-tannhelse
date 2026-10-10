@@ -1,6 +1,431 @@
 /* The drafts' own motion: a stage of the tooth fading into the next. */
 .lag { transition: opacity 0.7s var(--ease-rolig); }
 
+/* ── A comic frame, in the page's ink (blekk.ts); slate without one ── */
+.rute {
+  background: var(--b-rute, #FDFBF5);
+  border: 2px solid var(--b-ramme, rgba(22, 48, 59, 0.78));
+  box-shadow: 3px 4px 0 var(--b-skygge, rgba(22, 48, 59, 0.12));
+}
+/* a step not everyone needs */
+.mellom {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 40%, transparent);
+  box-shadow: none;
+}
+
+/* ── Round frames: the dotted string between them, once the frames are drawn ── */
+.traad { overflow: visible; fill: none; transition: opacity 0.8s var(--ease-rolig) 0.7s; }
+[data-vis="nei"] .traad { opacity: 0; }
+.traad path {
+  stroke: var(--b-ramme, #16303B);
+  stroke-width: 3;
+  stroke-dasharray: 0.1 8;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+/* ── The danger signs: a card in red pen ── */
+.varsel {
+  background: #FDF1EC;
+  border: 2.5px solid #C2412B;
+  border-radius: 26px 8px 28px 10px / 10px 26px 8px 28px;
+  padding: clamp(20px, 3.2vw, 34px);
+}
+
+/* ── Tanngnissing: the top of the sheet is night, and dawn comes under it ──
+   It runs to the sheet's edges: the sheet's own padding (Ark in
+   artikler/lapp.tsx) is clamp(32px, 5vw, 60px) on top, clamp(22px, 6vw, 80px)
+   at the sides. */
+.natt {
+  position: relative;
+  overflow: hidden;
+  margin: calc(-1 * clamp(32px, 5vw, 60px)) calc(-1 * clamp(22px, 6vw, 80px)) 0;
+  padding: calc(clamp(32px, 5vw, 60px) + 10px) clamp(22px, 6vw, 80px) clamp(170px, 18vw, 200px);
+  border-radius: 28px 28px 0 0;
+  background: linear-gradient(
+    to top,
+    #FFFDF8 0,
+    #F8E6D6 40px,
+    #DDBFC2 82px,
+    #9790B7 124px,
+    #4B5584 168px,
+    #2A3360 215px,
+    #1B2347 100%
+  );
+}
+.stjerne { animation: blinke 5s ease-in-out infinite both; }
+@keyframes blinke {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+/* ── Hevelse: the pufferfish puffs up once, and the swelling goes down ── */
+.puff { transform-box: view-box; transform-origin: 108px 106px; }
+[data-vis="ja"] .puff { animation: puste 3.4s ease-in-out 1.9s both; }
+@keyframes puste {
+  0% { transform: scale(1); }
+  28%, 46% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* ── Hevelse: pillows that breathe out, the first still puffed, the last calm ── */
+.pute path {
+  d: var(--til);
+  fill: var(--b-rute, #FDFBF5);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  transition: d 1.8s var(--ease-rolig) var(--puff, 0s);
+}
+[data-vis="nei"] .pute path { d: var(--fra); }
+.pute .puteSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+.puteMellom path {
+  stroke: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 45%, transparent);
+  stroke-dasharray: 6 6;
+}
+.puteMellom .puteSkygge { display: none; }
+
+/* ── Tannimplantat: working drawings on squared paper, crop marks at the corners ── */
+.tegneark {
+  display: flex;
+  flex-direction: column;
+  background: var(--b-rute, #FDFBF5);
+  border: 2px solid var(--b-ramme, rgba(22, 48, 59, 0.78));
+  border-radius: 3px;
+  box-shadow: 3px 4px 0 var(--b-skygge, rgba(22, 48, 59, 0.12));
+}
+.rutenett {
+  --linje: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 13%, transparent);
+  background-image: linear-gradient(var(--linje) 1px, transparent 1px), linear-gradient(90deg, var(--linje) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-position: -1px -1px;
+}
+/* the title box: under a double rule, the line for the step */
+.tittelfelt { flex: 1; border-top: 3px double var(--b-ramme, rgba(22, 48, 59, 0.78)); }
+.tegnearkMellom { border-style: dashed; box-shadow: none; }
+.merker {
+  --m: var(--b-ramme, #16303B);
+  position: absolute;
+  inset: -11px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--m), var(--m)) left 0 top 10px / 7px 1.5px no-repeat,
+    linear-gradient(var(--m), var(--m)) left 10px top 0 / 1.5px 7px no-repeat,
+    linear-gradient(var(--m), var(--m)) right 0 top 10px / 7px 1.5px no-repeat,
+    linear-gradient(var(--m), var(--m)) right 10px top 0 / 1.5px 7px no-repeat,
+    linear-gradient(var(--m), var(--m)) left 0 bottom 10px / 7px 1.5px no-repeat,
+    linear-gradient(var(--m), var(--m)) left 10px bottom 0 / 1.5px 7px no-repeat,
+    linear-gradient(var(--m), var(--m)) right 0 bottom 10px / 7px 1.5px no-repeat,
+    linear-gradient(var(--m), var(--m)) right 10px bottom 0 / 1.5px 7px no-repeat;
+  opacity: 0.55;
+}
+
+/* ── Tannsjekk: a sheet torn off the calendar, with the next sheet showing under it ── */
+.kalenderark {
+  position: relative;
+  background: var(--b-rute, #FDFBF5);
+  border: 2px solid var(--b-ramme, rgba(22, 48, 59, 0.78));
+  border-radius: 4px 4px 10px 10px;
+  box-shadow:
+    4px 5px 0 0 var(--b-rute, #FDFBF5),
+    4px 5px 0 2px color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 45%, transparent),
+    8px 11px 0 2px var(--b-skygge, rgba(22, 48, 59, 0.12));
+}
+.kalenderTopp {
+  position: relative;
+  height: 22px;
+  margin: -2px -2px 0;
+  border-radius: 4px 4px 0 0;
+  background: var(--b-ramme, #22404D);
+  border-bottom: 2px dashed color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 40%, var(--b-rute, #FDFBF5));
+}
+.kalenderTopp span {
+  position: absolute;
+  top: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFFDF8;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.25);
+}
+.kalenderTopp span:first-child { left: calc(30% - 4px); }
+.kalenderTopp span:last-child { left: calc(70% - 4px); }
+.kalenderMellom { border-style: dashed; box-shadow: none; }
+.kalenderMellom .kalenderTopp { background: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 40%, var(--b-rute, #FDFBF5)); }
+
+/* ── Tannsjekk: the sheet itself bound at the top like a wall calendar ── */
+.spiral { position: absolute; left: 56px; top: -14px; width: calc(100% - 112px); height: 34px; pointer-events: none; }
+
+/* ── Tannfylling: teeth standing in the gum ── */
+.tann path { vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.tannKrone { fill: var(--b-rute, #FDFBF5); stroke: var(--b-ramme, rgba(22, 48, 59, 0.78)); stroke-width: 2; }
+.tannSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); }
+.tannkjott { fill: #F8E1DB; }
+.tannkjottKant { fill: none; stroke: #D9998F; stroke-width: 2; stroke-linecap: round; }
+.tannMellom .tannKrone { stroke: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 45%, transparent); stroke-dasharray: 6 6; }
+.tannMellom .tannSkygge { display: none; }
+
+/* ── Tannbleking: shade tabs on a rail, each lighter than the last ── */
+.skinne {
+  position: absolute;
+  top: 2.4%;
+  left: calc(var(--gap) / -2);
+  right: calc(var(--gap) / -2);
+  height: 3px;
+  border-radius: 2px;
+  background: var(--b-ramme, #22404D);
+}
+.tab path, .tab rect { stroke: var(--b-ramme, rgba(22, 48, 59, 0.78)); stroke-width: 2; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.tabSkaft { fill: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 22%, #FFFFFF); }
+.tab .tabSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+
+/* ── Tannimplantat: the new tooth put together on its screw, part by part ── */
+.bygg1, .bygg2 { transform-box: view-box; }
+[data-vis="nei"] .bygg1 { transform: translateY(-20px); }
+[data-vis="nei"] .bygg2 { transform: translateY(-40px); }
+[data-vis="ja"] .bygg1 { animation: bygg1 1s var(--ease-rolig) 2s both; }
+[data-vis="ja"] .bygg2 { animation: bygg2 1.1s var(--ease-rolig) 2.8s both; }
+[data-vis="ja"] .akse { animation: akse 0.8s var(--ease-rolig) 3.9s both; }
+@keyframes bygg1 { from { transform: translateY(-20px); } to { transform: none; } }
+@keyframes bygg2 { from { transform: translateY(-40px); } to { transform: none; } }
+@keyframes akse { from { opacity: 1; } to { opacity: 0; } }
+
+/* ── Tannrens: tiles in their grout, a glint on each ── */
+.flis {
+  --fuge: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 10%, #F2F0E9);
+  background: var(--b-vask, #EEF3F1);
+  border: 2px solid color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 50%, transparent);
+  border-radius: 7px;
+  box-shadow: 0 0 0 5px var(--fuge);
+}
+.flisMellom { border-style: dashed; }
+.glans { fill: none; stroke: #FFFFFF; stroke-width: 3; stroke-linecap: round; opacity: 0.85; vector-effect: non-scaling-stroke; }
+
+/* ── Rotfylling: a tooth with roots; the canals filled in the last one ── */
+.rottann path {
+  fill: var(--b-rute, #FDFBF5);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.rottann .rottannSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+.rottann .kanal {
+  fill: none;
+  stroke: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 45%, transparent);
+  stroke-width: 1.6;
+  stroke-dasharray: 2 4;
+  stroke-linecap: round;
+}
+.rottann .kanalFylt {
+  fill: none;
+  stroke: #D99A4E;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  vector-effect: none;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.6s var(--ease-rolig) var(--forsink, 0s);
+}
+[data-vis="nei"] .rottann .kanalFylt { stroke-dashoffset: 1; }
+.rottannMellom path:not(.kanal):not(.kanalFylt) {
+  stroke: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 45%, transparent);
+  stroke-dasharray: 6 6;
+}
+.rottannMellom .rottannSkygge { display: none; }
+
+/* ── Visdomstenner: arched windows ── */
+.bue path {
+  fill: var(--b-rute, #FDFBF5);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.bue .bueSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+.bueMellom path { stroke: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 45%, transparent); stroke-dasharray: 6 6; }
+.bueMellom .bueSkygge { display: none; }
+
+/* ── Tannkrone: crowns, with pearls on the points and stones in the band ── */
+.krone path, .krone circle {
+  fill: var(--b-rute, #FDFBF5);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.krone .kroneSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+.krone .kroneBand { fill: none; stroke-width: 1.5; }
+.krone .kronePerle { fill: var(--b-vask, #EEF3F1); }
+.krone .kroneStein { fill: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 55%, transparent); stroke: none; }
+.kroneMellom path, .kroneMellom circle { stroke: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 45%, transparent); stroke-dasharray: 6 6; }
+.kroneMellom .kroneSkygge { display: none; }
+
+/* ── Tannbro: the little steel arch between two frames, once they are drawn ── */
+.bropar { overflow: visible; transition: opacity 0.8s var(--ease-rolig) 0.7s; }
+[data-vis="nei"] .bropar { opacity: 0; }
+.bropar path { fill: none; stroke: var(--b-ramme, #16303B); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.bropar .vann { stroke-width: 1.6; opacity: 0.45; }
+
+/* ── Helprotese: a tooth under the denture's pink gum ── */
+.smilTann {
+  background: var(--b-rute, #FDFBF5);
+  border: 2px solid var(--b-ramme, rgba(22, 48, 59, 0.78));
+  border-radius: 14px 14px 34% 34% / 14px 14px 22% 22%;
+  box-shadow: 3px 4px 0 var(--b-skygge, rgba(22, 48, 59, 0.12));
+}
+.smilGomme { fill: #F4CCC6; stroke: #D9998F; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.smilMellom { border-style: dashed; box-shadow: none; }
+.smilMellom .smilGomme { fill-opacity: 0.5; }
+
+/* ── Delprotese: puzzle pieces ── */
+.brikke path {
+  fill: var(--b-rute, #FDFBF5);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.brikkeFarget path { fill: var(--b-vask, #EEF3F1); }
+.brikkeMellom path { stroke-dasharray: 6 6; }
+
+/* ── Skallfasetter: seashells ── */
+.skjell path {
+  fill: var(--b-rute, #FDFBF5);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.skjell .skjellSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+.skjell .skjellRibbe { fill: none; stroke-width: 1.6; stroke-linecap: round; opacity: 0.45; }
+.skjellMellom path { stroke-dasharray: 6 6; }
+.skjellMellom .skjellSkygge { display: none; }
+
+/* ── Trekking: the frame that lifts out of its place, and the hollow it leaves ── */
+.lukeTann, .lukeHull { border-radius: 16px 16px 38% 38% / 16px 16px 26% 26%; }
+.lukeTann {
+  background: var(--b-rute, #FDFBF5);
+  border: 2px solid var(--b-ramme, rgba(22, 48, 59, 0.78));
+  box-shadow: 3px 4px 0 var(--b-skygge, rgba(22, 48, 59, 0.12));
+}
+.lukeMellom { border-style: dashed; box-shadow: none; }
+.lukeHull { position: absolute; inset: 0; background: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 10%, transparent); }
+.loftet {
+  translate: 0 -18px;
+  rotate: -5deg;
+  box-shadow: 5px 12px 0 var(--b-skygge, rgba(22, 48, 59, 0.12));
+  transition: translate 1.1s var(--ease-rolig) 1.5s, rotate 1.1s var(--ease-rolig) 1.5s, box-shadow 1.1s var(--ease-rolig) 1.5s;
+}
+@media (min-width: 768px) { .loftet { translate: 0 -30px; } }
+[data-vis="nei"] .loftet { translate: 0 0; rotate: 0deg; box-shadow: 3px 4px 0 var(--b-skygge, rgba(22, 48, 59, 0.12)); }
+
+/* ── Munntørrhet: drops of water ── */
+.draape path {
+  fill: var(--b-vask, #EEF3F1);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.draape .draapeSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+.draape .draapeGlans { fill: none; stroke: #FFFFFF; stroke-width: 3.5; stroke-linecap: round; opacity: 0.9; }
+.draapeMellom path { stroke-dasharray: 6 6; }
+.draapeMellom .draapeSkygge { display: none; }
+
+/* ── Tannkjøttbehandling: the probe's scale along a frame's foot ── */
+.skala path { fill: none; stroke: var(--b-ramme, #16303B); stroke-width: 1.5; stroke-linecap: round; vector-effect: non-scaling-stroke; opacity: 0.7; }
+.skalaBand { fill: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 22%, transparent); }
+
+/* ── Ising i tenner: a knitted band over the frame ── */
+.strikk path { fill: none; stroke: var(--b-ramme, #16303B); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.strikk .strikkPrikk { stroke-width: 3; }
+.strikkBand { fill: var(--b-vask, #EEF3F1); stroke: var(--b-ramme, #16303B); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+/* ── Dårlig ånde: clouds ── */
+.sky path {
+  fill: var(--b-rute, #FDFBF5);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.sky .skySkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+.skyMellom path { stroke-dasharray: 6 6; }
+.skyMellom .skySkygge { display: none; }
+
+/* ── Tannverk: magnifying glasses ── */
+.lupe circle {
+  fill: var(--b-rute, #FDFBF5);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2.5;
+  vector-effect: non-scaling-stroke;
+}
+.lupe .lupeSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+.lupe .lupeIndre { fill: none; stroke-width: 1.2; opacity: 0.5; }
+.lupeSkaft { fill: none; stroke: var(--b-ramme, #16303B); stroke-width: 9; stroke-linecap: round; }
+.lupeGlans { fill: none; stroke: var(--b-ramme, #16303B); stroke-width: 2.5; stroke-linecap: round; opacity: 0.25; vector-effect: non-scaling-stroke; }
+.lupeMellom circle { stroke-dasharray: 6 6; }
+.lupeMellom .lupeSkygge { display: none; }
+
+/* ── Tannskade: plasters ── */
+.plaster rect {
+  fill: var(--b-vask, #EEF3F1);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.plaster .plasterSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+.plaster .plasterPute { fill: var(--b-rute, #FDFBF5); stroke: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 40%, transparent); stroke-width: 1.5; }
+.plasterHull { fill: none; stroke: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 45%, transparent); stroke-width: 3.2; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.plasterMellom rect:not(.plasterPute) { stroke-dasharray: 6 6; }
+.plasterMellom .plasterSkygge { display: none; }
+
+/* ── Mistet fylling: a bite out of the corner, filled at the end ── */
+.hakk path {
+  fill: var(--b-rute, #FDFBF5);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.hakk .hakkSkygge { fill: var(--b-skygge, rgba(22, 48, 59, 0.12)); stroke: none; }
+.hakk .hakkFylt { fill: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 20%, #FFFFFF); }
+.hakk .hakkTomt { fill: none; stroke: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 45%, transparent); stroke-dasharray: 3 4; stroke-linecap: round; }
+.hakkMellom path:not(.hakkTomt) { stroke-dasharray: 6 6; }
+.hakkMellom .hakkSkygge { display: none; }
+
+/* ── Løsnet tannkrone: a cap askew; on the last frame it settles ── */
+.lokk { transform-origin: 50% 100%; }
+.lokk path {
+  fill: var(--b-vask, #EEF3F1);
+  stroke: var(--b-ramme, rgba(22, 48, 59, 0.78));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.lokkLos { rotate: var(--vri); translate: 3% -12px; }
+.lokkSetter { transition: rotate 1s var(--ease-rolig) 1.6s, translate 1s var(--ease-rolig) 1.6s; }
+[data-vis="nei"] .lokkSetter { rotate: -8deg; translate: 3% -12px; }
+.lokkMellom path { stroke-dasharray: 6 6; }
+.lokkTann {
+  background: var(--b-rute, #FDFBF5);
+  border: 2px solid var(--b-ramme, rgba(22, 48, 59, 0.78));
+  border-radius: 10px 10px 30% 30% / 10px 10px 22% 22%;
+  box-shadow: 3px 4px 0 var(--b-skygge, rgba(22, 48, 59, 0.12));
+}
+.lokkTannMellom { border-style: dashed; box-shadow: none; }
+
 @media (prefers-reduced-motion: reduce) {
-  .lag { transition: none !important; }
+  .lag, .traad, .pute path, .bropar, .rottann .kanalFylt, .loftet, .lokkSetter { transition: none !important; }
+  [data-vis="nei"] .lokkSetter { rotate: 0deg; translate: 0 0; }
+  [data-vis="nei"] .loftet { translate: 0 -18px; rotate: -5deg; }
+  @media (min-width: 768px) { [data-vis="nei"] .loftet { translate: 0 -30px; } }
+  [data-vis] .traad, [data-vis] .bropar { opacity: 1 !important; }
+  [data-vis] .rottann .kanalFylt { stroke-dashoffset: 0 !important; }
+  [data-vis] .pute path { d: var(--til) !important; }
+  .stjerne, [data-vis] .puff, [data-vis] .bygg1, [data-vis] .bygg2 { animation: none !important; transform: none !important; }
+  .akse { display: none; }
 }

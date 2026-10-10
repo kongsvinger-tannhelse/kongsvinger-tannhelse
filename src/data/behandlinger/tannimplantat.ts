@@ -11,7 +11,10 @@ export const tannimplantat: Behandlingsside = {
   navn: "Tannimplantat",
   // the clinic's own words (klinikk.ts)
   ingress: "Et tannimplantat er en liten skrue i kjevebenet som vokser fast og bærer en ny tann. Her ser du hvordan det går for seg, steg for steg.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på om et implantat passer for deg, og henviser deg videre hvis det trengs.",
   tittelbilde: "implantat",
+  blekk: "salvie",
+  stripe: "arbeidstegning",
   beskrivelse: "Tannimplantat hos tannlegen i Kongsvinger: hva et implantat er, hvem det passer for, hvordan det settes inn steg for steg, og hvordan du tar vare på det.",
   deler: [
     {
@@ -46,15 +49,15 @@ export const tannimplantat: Behandlingsside = {
       tittel: "Slik går det for seg",
       ruter: [
         // UNN: the bone is examined first
-        { tegning: "rontgen-luke", tekst: "Først undersøker tannlegen beinet i kjeven." },
+        { tegning: "rontgen-luke", tekst: "Først undersøker vi beinet i kjeven." },
         // UNN: usually under local anaesthesia
         { tegning: "rolig-luke", tekst: "Inngrepet gjøres som regel i lokalbedøvelse." },
         // UNN: the surgeon drills away a little bone to make room for the screw
-        { tegning: "implantat-skrue", tekst: "Tannlegen lager plass i beinet og setter inn skruen." },
+        { tegning: "implantat-skrue", tekst: "Det lages plass i beinet, og skruen settes inn." },
         // UNN: the screw needs months to grow into the bone (osseointegrasjon, SML)
         { tegning: "implantat-gror", tekst: "Så må skruen gro fast i beinet. Det tar vanligvis noen måneder." },
         // UNN: an impression, and the shape and colour decided
-        { tegning: "implantat-farge", tekst: "Når skruen sitter godt, tar tannlegen avtrykk, og dere finner form og farge på den nye tanna sammen." },
+        { tegning: "implantat-farge", tekst: "Når skruen sitter godt, tar vi avtrykk, og sammen finner vi form og farge på den nye tanna." },
         // SML Oral implantologi: a crown fixed to the implant
         { tegning: "implantat-krone", tekst: "Til slutt festes den nye tanna på skruen." },
       ],
@@ -71,7 +74,7 @@ export const tannimplantat: Behandlingsside = {
         // UNN: local anaesthesia
         "Skruen settes inn i lokalbedøvelse.",
         // UNN: swelling and pain can follow
-        "Etterpå kan det bli litt hovent og vondt. Hvor mye, er forskjellig fra person til person, og tannlegen forteller deg hva du bør tenke på.",
+        "Etterpå kan det bli litt hovent og vondt. Hvor mye, er forskjellig fra person til person, og vi forteller deg hva du bør tenke på.",
       ],
       tegning: "plaster-kinn",
     },
@@ -81,7 +84,7 @@ export const tannimplantat: Behandlingsside = {
       tittel: "Hvordan tar jeg vare på et implantat?",
       avsnitt: [
         // UNN: more effort and time every day than ordinary teeth
-        "Et implantat må holdes like rent som dine egne tenner, og det kan ta litt mer tid. Tannlegen gir deg råd om hvordan du best gjør det.",
+        "Et implantat må holdes like rent som dine egne tenner, og det kan ta litt mer tid. Vi gir deg råd om hvordan du best gjør det.",
         // UNN: smoking slows healing and raises the risk of bone loss
         "Røyking gjør at det gror dårligere, og øker faren for at beinet rundt skruen forsvinner.",
         // UNN: implants can get the same problem as teeth: periimplantitt

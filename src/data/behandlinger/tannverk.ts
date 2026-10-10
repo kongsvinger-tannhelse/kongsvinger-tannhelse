@@ -11,8 +11,10 @@ export const tannverk: Behandlingsside = {
   slug: "tannverk",
   navn: "Tannverk",
   // the clinic's own words (klinikk.ts, Tannsmerte)
-  ingress: "Har du vedvarende vondt i en tann, er det på tide å gå til tannlegen. Her ser du hva det kan komme av, og hvordan tannlegen finner årsaken.",
+  ingress: "Har du vedvarende vondt i en tann, er det på tide å gå til tannlegen. Her ser du hva det kan komme av, og hvordan vi finner årsaken.",
   tittelbilde: "klut",
+  blekk: "tegl",
+  stripe: "lupe",
   beskrivelse: "Tannverk og tannsmerter hos tannlegen i Kongsvinger: hva det kan komme av, hvordan tannlegen finner årsaken, hva behandlingen kan bli, og når det haster.",
   deler: [
     {
@@ -31,16 +33,16 @@ export const tannverk: Behandlingsside = {
     {
       type: "serie",
       id: "slik",
-      tittel: "Slik finner tannlegen årsaken",
+      tittel: "Slik finner vi årsaken",
       ruter: [
         // SML Tannrotbetennelse: the diagnosis rests on the history, an examination and an x-ray
         { tegning: "snakke-verk", tekst: "Først snakker vi sammen om hvordan det kjennes, og når det gjør vondt." },
         // SML Tannrotbetennelse (examination)
-        { tegning: "lupe-verk", tekst: "Tannlegen ser på tannen og tannkjøttet rundt." },
+        { tegning: "lupe-verk", tekst: "Vi ser på tannen og tannkjøttet rundt." },
         // NHI Pulpitt: the dentist as a rule takes x-rays; SML Tannrotbetennelse
-        { tegning: "rontgen-verk", tekst: "Tannlegen tar som regel et røntgenbilde." },
+        { tegning: "rontgen-verk", tekst: "Som regel tar vi et røntgenbilde." },
         // SML Tannsmerter: the treatment depends on the cause
-        { tegning: "plan-verk", tekst: "Så går tannlegen gjennom hva som er funnet, og hva som kan gjøres." },
+        { tegning: "plan-verk", tekst: "Så går vi gjennom hva vi har funnet, og hva som kan gjøres." },
       ],
     },
     // SML Tannrotbetennelse: the pressure can push the tooth out a little, so it stands higher than its neighbours

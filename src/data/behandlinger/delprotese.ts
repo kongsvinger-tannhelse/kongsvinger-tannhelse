@@ -11,7 +11,10 @@ export const delprotese: Behandlingsside = {
   navn: "Delprotese",
   // the clinic's own words (klinikk.ts)
   ingress: "En delprotese er en avtakbar protese som festes til tennene du har igjen, og erstatter de tennene som mangler. Her ser du hvordan den lages, og hva som er viktig når du har den.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på tennene du har igjen, og hva som passer for deg.",
   tittelbilde: "puslespill",
+  blekk: "lavendel",
+  stripe: "puslespill",
   beskrivelse: "Delprotese hos tannlegen i Kongsvinger: hva en delprotese er, når den kan passe, hvordan den lages steg for steg, og hvorfor kontroller er viktig.",
   deler: [
     {
@@ -34,7 +37,7 @@ export const delprotese: Behandlingsside = {
         // Tidende: a good treatment, for example where the missing teeth make a tooth-borne bridge impossible
         "En delprotese kan være et godt valg, for eksempel når tennene som mangler sitter slik at en bro ikke kan festes.",
         // SML Tannprotese (bridges), SML Tannimplantat
-        "Andre valg kan være en bro eller implantater. Hva som passer, er forskjellig fra person til person, og tannlegen går gjennom valgene med deg.",
+        "Andre valg kan være en bro eller implantater. Hva som passer, er forskjellig fra person til person, og vi går gjennom valgene med deg.",
       ],
       tegning: "veiviser",
     },
@@ -46,11 +49,11 @@ export const delprotese: Behandlingsside = {
         // UiO clinic handbook: the remaining teeth free of decay and gum disease first; Tidende: the gums treated first
         { tegning: "snakke-del", tekst: "Først snakker vi sammen og ser på tennene dine. Hull og tannkjøttsykdom behandles før protesen lages." },
         // UiO clinic handbook: impressions of both jaws
-        { tegning: "avtrykk-del", tekst: "Tannlegen tar avtrykk av begge kjevene." },
+        { tegning: "avtrykk-del", tekst: "Vi tar avtrykk av begge kjevene." },
         // UiO clinic handbook and Tidende: small rests ground into some teeth, for the denture to rest on
         { tegning: "opplegg", tekst: "Noen ganger slipes det en liten forsenkning i en tann, så protesen får noe å hvile på.", mellom: true },
         // UiO clinic handbook: the design drawn on the model, the denture made at a dental laboratory
-        { tegning: "tegning-del", tekst: "Tannlegen tegner hvordan protesen skal bli, og en tanntekniker lager den." },
+        { tegning: "tegning-del", tekst: "Vi tegner hvordan protesen skal bli, og en tanntekniker lager den." },
         // UiO clinic handbook: the teeth tried in wax, form and colour checked
         { tegning: "voks-speil", tekst: "Tennene prøves først i voks, så du kan se form og farge." },
         // UiO clinic handbook: handing over; the patient practises taking it out and putting it in
@@ -60,7 +63,7 @@ export const delprotese: Behandlingsside = {
       etter: "Etterpå kommer du til en kontroll, så protesen kan justeres hvis det trengs.",
     },
     // UiO clinic handbook: the patient's oral hygiene is the most important factor for the denture; instruction in mouth and denture hygiene
-    { type: "lapp", lapp: { slag: "tips", tekst: "God munnhygiene er det aller viktigste for at en delprotese skal fungere godt over tid. Tannlegen viser deg hvordan du holder tennene og protesen rene." } },
+    { type: "lapp", lapp: { slag: "tips", tekst: "God munnhygiene er det aller viktigste for at en delprotese skal fungere godt over tid. Vi viser deg hvordan du holder tennene og protesen rene." } },
     {
       type: "tekst",
       id: "kontroll",

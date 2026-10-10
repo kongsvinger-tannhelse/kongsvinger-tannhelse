@@ -212,12 +212,81 @@ export type BTegning =
 /** The larger pen scene beside a page's title. */
 export type Tittelbilde = "stol" | "bro-elv" | "natt" | "fylling" | "bleking" | "rens" | "tannkjott" | "rot" | "torr" | "tang" | "ugle" | "ball" | "krone" | "skjell" | "implantat" | "gebiss" | "klut" | "kulefisk" | "puslespill" | "lue" | "klesklype" | "skjaere" | "vind";
 
+/** The page's own ink: one muted colour for its comic frames, the washes behind its drawings and its notes. */
+export type Blekk =
+  | "natt"
+  | "tegl"
+  | "salvie"
+  | "oker"
+  | "kobolt"
+  | "lyng"
+  | "mynte"
+  | "skifer"
+  | "mose"
+  | "rubin"
+  | "fjord"
+  | "plomme"
+  | "lavendel"
+  | "sand"
+  | "granitt"
+  | "petrol"
+  | "rosen"
+  | "is"
+  | "skog";
+
+/**
+ * The shape the comic strip takes, each tied to its treatment: squares in
+ * rows; round frames on a string (tanngnissing); pillows that go down
+ * (hevelse); working drawings on squared paper (tannimplantat); tear-off
+ * calendar sheets (tannsjekk); a row of teeth in the gum (tannfylling);
+ * shade tabs on a rail, lighter one by one (tannbleking); tiles in their
+ * grout, cleaner one by one (tannrens); frames with roots, filled at the
+ * end (rotfylling); arched windows with the owl on the last (visdomstenner);
+ * royal crowns (tannkrone); frames joined by little steel arches (tannbro);
+ * a smile of teeth under pink denture gum (helprotese); puzzle pieces that
+ * lock together (delprotese); seashells (skallfasetter); a row with the
+ * middle frame lifted out (trekking-av-tenner); drops of water
+ * (munntorrhet); frames with the probe's scale (tannkjottbehandling);
+ * frames with a knitted band (ising-i-tenner); clouds of breath
+ * (darlig-ande); magnifying glasses (tannverk); plasters (tannskade);
+ * frames with a bite out of the corner, filled at the end (mistet-fylling);
+ * frames with a loose cap that settles on the last (losnet-tannkrone).
+ */
+export type Stripe =
+  | "ruter"
+  | "perler"
+  | "puter"
+  | "arbeidstegning"
+  | "kalender"
+  | "tannrad"
+  | "fargeskala"
+  | "fliser"
+  | "rotter"
+  | "buer"
+  | "kroner"
+  | "bro"
+  | "smil"
+  | "puslespill"
+  | "skjell"
+  | "luke"
+  | "draaper"
+  | "maal"
+  | "strikk"
+  | "skyer"
+  | "lupe"
+  | "plaster"
+  | "hakk"
+  | "lokk";
+
+/** What only this page has, across the whole sheet: the top of the sheet is night, or bound like a calendar. */
+export type Signatur = "natt" | "spiral";
+
 /** One panel of the comic strip, with a line under it. `mellom`: a step not everyone needs, in a dashed frame. */
 export type Rute = { tegning: BTegning; tekst: string; mellom?: boolean };
 
 export type Del =
-  /** A part of the note with a sketch in the margin. A title ending in «?» is also a question for search engines. `lenke`: a «Råd og tips» article that says more. */
-  | { type: "tekst"; id: string; tittel: string; avsnitt: string[]; tegning: BTegning; lenke?: { tekst: string; slug: string } }
+  /** A part of the note with a sketch in the margin. A title ending in «?» is also a question for search engines. `lenke`: a «Råd og tips» article that says more. `varsel`: the danger signs, a card in red pen with the numbers to call as links. */
+  | { type: "tekst"; id: string; tittel: string; avsnitt: string[]; tegning: BTegning; lenke?: { tekst: string; slug: string }; varsel?: boolean }
   /** Things you may notice, each with a small sketch. */
   | { type: "tegn"; id: string; tittel: string; intro?: string; punkter: { tekst: string; tegning: BTegning }[]; etter?: string }
   /** The treatment itself, as a comic strip. */
@@ -229,8 +298,20 @@ export type Behandlingsside = {
   slug: string;
   navn: string;
   ingress: string;
+  /**
+   * One line under the intro that ties the page to the clinic: what we do
+   * when you come to us with this, and nothing we can't stand behind (no
+   * promises, no claims to do every case ourselves). Every page has one but
+   * the akutt pages, which open with the call card instead.
+   */
+  hosOss?: string;
   /** The pen scene beside the title. */
   tittelbilde: Tittelbilde;
+  /** The page's own ink. Without one, the notes are yellow and the frames slate. */
+  blekk?: Blekk;
+  /** The shape of the comic strip; squares in rows if not given. */
+  stripe?: Stripe;
+  signatur?: Signatur;
   /** For search engines. */
   beskrivelse: string;
   deler: Del[];

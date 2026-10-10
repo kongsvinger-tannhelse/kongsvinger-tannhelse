@@ -11,7 +11,10 @@ export const tannrens: Behandlingsside = {
   navn: "Tannrens",
   // the clinic's own words (klinikk.ts)
   ingress: "En tannrens fjerner plakk og tannstein som har bygget seg opp over tid. Her ser du hvorfor det er viktig, og hvordan det foregår.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse fjerner vi tannsteinen, og gir deg råd om hvordan du holder tennene rene hjemme.",
   tittelbilde: "rens",
+  blekk: "mynte",
+  stripe: "fliser",
   beskrivelse: "Tannrens hos tannlegen i Kongsvinger: hva plakk og tannstein er, hva det kan gjøre med tennene og tannkjøttet, og hvordan tannsteinen fjernes.",
   deler: [
     {
@@ -53,7 +56,7 @@ export const tannrens: Behandlingsside = {
         // SML Tannstein
         { tegning: "tannstein", tekst: "Etter en stund herder belegget og blir til tannstein." },
         // SML Periodontitt: curettes and/or an ultrasonic instrument remove it mechanically
-        { tegning: "skrape", tekst: "Tannlegen eller tannpleieren fjerner tannsteinen med små håndinstrumenter, eller med et instrument som bruker ultralyd." },
+        { tegning: "skrape", tekst: "Vi fjerner tannsteinen med små håndinstrumenter, eller med et instrument som bruker ultralyd." },
         // SML Tannstein: the most important thing is good, regular cleaning yourself, with brush and floss or interdental brushes
         { tegning: "mellomrom", tekst: "Hjemme pusser du godt, og renser mellom tennene med tanntråd eller mellomromsbørster." },
       ],

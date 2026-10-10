@@ -10,7 +10,10 @@ export const tannbleking: Behandlingsside = {
   slug: "tannbleking",
   navn: "Tannbleking",
   ingress: "Vil du ha hvitere tenner? Bleking hos tannlegen gjør tennene lysere. Her ser du hvordan det går for seg, og hva som er lurt å vite først.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på tennene dine først, og forteller deg om bleking passer for deg.",
   tittelbilde: "bleking",
+  blekk: "lyng",
+  stripe: "fargeskala",
   beskrivelse: "Tannbleking hos tannlegen i Kongsvinger: hvordan bleking virker, hvorfor tennene blir mørkere, hvordan det foregår hos oss og hjemme, og hvem som kan bleke.",
   deler: [
     {
@@ -48,13 +51,13 @@ export const tannbleking: Behandlingsside = {
       tittel: "Slik går det for seg",
       ruter: [
         // Mattilsynet: a dentist must examine the teeth and enamel first
-        { tegning: "lupe-emalje", tekst: "Først undersøker tannlegen tennene og emaljen." },
+        { tegning: "lupe-emalje", tekst: "Først undersøker vi tennene og emaljen." },
         // Tidende 2026: an alginate impression and a bleaching tray
-        { tegning: "avtrykk-smil", tekst: "Tannlegen tar avtrykk av tennene dine." },
+        { tegning: "avtrykk-smil", tekst: "Vi tar avtrykk av tennene dine." },
         // Tidende 2026; the clinic's text: a tray that fits your teeth
         { tegning: "skinne", tekst: "Ut fra avtrykket lages en tynn skinne som passer akkurat dine tenner." },
         // how, and how long, is the dentist's call
-        { tegning: "tube", tekst: "Blekegelen legges i skinnen. Tannlegen forteller deg hvordan og hvor lenge den skal brukes." },
+        { tegning: "tube", tekst: "Blekegelen legges i skinnen. Vi forteller deg hvordan og hvor lenge den skal brukes." },
         // SML Tannbleking
         { tegning: "hvit", tekst: "Tennene blir lysere. Hvor mye, er forskjellig fra person til person." },
       ],

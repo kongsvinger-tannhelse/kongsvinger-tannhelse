@@ -10,8 +10,10 @@ import type { Behandlingsside } from "./typer";
 export const losnetTannkrone: Behandlingsside = {
   slug: "losnet-tannkrone",
   navn: "Løsnet tannkrone",
-  ingress: "Har en tannkrone løsnet, ta kontakt med tannlegen. Her ser du hvordan en krone sitter fast, hvorfor den kan løsne, og hva tannlegen gjør.",
+  ingress: "Har en tannkrone løsnet, ta kontakt med oss. Her ser du hvordan en krone sitter fast, hvorfor den kan løsne, og hva vi gjør.",
   tittelbilde: "vind",
+  blekk: "tegl",
+  stripe: "lokk",
   beskrivelse: "Løsnet tannkrone hos tannlegen i Kongsvinger: hvordan en krone sitter fast, hvorfor den kan løsne, og hva tannlegen gjør.",
   deler: [
     {
@@ -48,12 +50,12 @@ export const losnetTannkrone: Behandlingsside = {
     {
       type: "serie",
       id: "slik",
-      tittel: "Slik går det for seg hos tannlegen",
+      tittel: "Slik går det for seg hos oss",
       ruter: [
         // Tidende 2010, Tidende 2021: decay and fracture of the tooth under it
-        { tegning: "lupe-krone", tekst: "Tannlegen ser på kronen og tannen under." },
+        { tegning: "lupe-krone", tekst: "Vi ser på kronen og tannen under." },
         // Helsenorge Hull i tennene: x-rays are needed to find decay in most cases
-        { tegning: "rontgen-krone", tekst: "Tannlegen ser etter hull, og tar ofte et røntgenbilde." },
+        { tegning: "rontgen-krone", tekst: "Vi ser etter hull, og tar ofte et røntgenbilde." },
         // Helsenorge Hull i tennene (a hole is treated), Tidende 2021 (a fracture)
         { tegning: "behandle-stump", tekst: "Er det et hull eller en sprekk i tannen, må det behandles.", mellom: true },
         // Tidende 2010: a revision means a new crown
