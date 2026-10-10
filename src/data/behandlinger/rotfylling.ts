@@ -11,6 +11,7 @@ export const rotfylling: Behandlingsside = {
   navn: "Rotfylling",
   // SML Rotfylling
   ingress: "Er nerven inne i tannen betent eller død, kan en rotfylling redde tannen. Her ser du hva som skjer, steg for steg.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på tannen, og henviser deg videre hvis det trengs.",
   tittelbilde: "rot",
   beskrivelse: "Rotfylling hos tannlegen i Kongsvinger: hva det er, tegn på at nerven er syk, hvordan det foregår steg for steg, om det gjør vondt, og hva som skjer etterpå.",
   deler: [
@@ -45,17 +46,17 @@ export const rotfylling: Behandlingsside = {
         { tekst: "Tannen har fått et kraftig slag.", tegning: "sprekk" },
       ],
       // SML Rotfylling (chronic inflammation can give no symptoms), Tannrotbetennelse (x-ray)
-      etter: "Noen ganger merker du ingenting. Da ser tannlegen det på røntgen.",
+      etter: "Noen ganger merker du ingenting. Da ser vi det på røntgen.",
     },
     // Helsedirektoratet, via «Redd for tannlegen?»: preparation and predictability help
-    { type: "lapp", lapp: { slag: "tips", tekst: "Gruer du deg? Si fra når du bestiller time, så kan tannlegen forklare hva som skjer underveis." } },
+    { type: "lapp", lapp: { slag: "tips", tekst: "Gruer du deg? Si fra når du bestiller time, så kan vi forklare hva som skjer underveis." } },
     {
       type: "serie",
       id: "slik",
       tittel: "Slik går det for seg",
       ruter: [
         // SML Tannrotbetennelse: history, examination, x-ray
-        { tegning: "rontgen-rot", tekst: "Først ser tannlegen på tannen og tar et røntgenbilde." },
+        { tegning: "rontgen-rot", tekst: "Først ser vi på tannen og tar et røntgenbilde." },
         // UiO and Helsedirektoratet: anaesthesia
         { tegning: "rolig-nerve", tekst: "Tannen kan bedøves før vi begynner." },
         // SML Rotfylling: a disinfected rubber dam, sterile instruments
@@ -78,11 +79,11 @@ export const rotfylling: Behandlingsside = {
       tittel: "Gjør det vondt?",
       avsnitt: [
         // UiO and Helsedirektoratet (anaesthesia)
-        "Tannlegen kan bedøve tannen før behandlingen. Hvordan det kjennes, under og etter, er forskjellig fra person til person.",
+        "Vi kan bedøve tannen før behandlingen. Hvordan det kjennes, under og etter, er forskjellig fra person til person.",
         // SML Tannbyll: draining an abscess relieves the pressure pain
         "Har du en byll, kan det lette med en gang trykket slipper ut.",
         // UiO: the patient is told what to expect afterwards
-        "Tannlegen forteller deg hva du kan vente deg de første dagene etterpå.",
+        "Vi forteller deg hva du kan vente deg de første dagene etterpå.",
       ],
       tegning: "snakke-rot",
     },
@@ -96,7 +97,7 @@ export const rotfylling: Behandlingsside = {
         // Tannlegeforeningen Kloke valg: a crown only when a filling can't give good form, function and look
         "Ofte holder det med en vanlig fylling. En krone lages bare når en fylling ikke kan gi tannen god form og funksjon.",
         // UiO: the final result can only be judged at a later check
-        "Om rotfyllingen har lykkes, kan man først se sikkert etter en tid. Tannlegen forteller deg når du bør komme til kontroll.",
+        "Om rotfyllingen har lykkes, kan man først se sikkert etter en tid. Vi forteller deg når du bør komme til kontroll.",
         // NHI Pulpitt (extraction is the alternative; the inflammation can spread)
         "Det andre valget er å trekke tannen. Venter du for lenge, kan betennelsen spre seg til tannkjøttet og beinet rundt tannen.",
       ],

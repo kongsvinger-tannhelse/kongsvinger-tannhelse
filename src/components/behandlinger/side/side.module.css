@@ -1,6 +1,76 @@
 /* The drafts' own motion: a stage of the tooth fading into the next. */
 .lag { transition: opacity 0.7s var(--ease-rolig); }
 
+/* ── A comic frame, in the page's ink (blekk.ts); slate without one ── */
+.rute {
+  background: var(--b-rute, #FDFBF5);
+  border: 2px solid var(--b-ramme, rgba(22, 48, 59, 0.78));
+  box-shadow: 3px 4px 0 var(--b-skygge, rgba(22, 48, 59, 0.12));
+}
+/* a step not everyone needs */
+.mellom {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--b-ramme, rgb(22, 48, 59)) 40%, transparent);
+  box-shadow: none;
+}
+
+/* ── Round frames: the dotted string between them, once the frames are drawn ── */
+.traad { overflow: visible; fill: none; transition: opacity 0.8s var(--ease-rolig) 0.7s; }
+[data-vis="nei"] .traad { opacity: 0; }
+.traad path {
+  stroke: var(--b-ramme, #16303B);
+  stroke-width: 3;
+  stroke-dasharray: 0.1 8;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+/* ── The danger signs: a card in red pen ── */
+.varsel {
+  background: #FDF1EC;
+  border: 2.5px solid #C2412B;
+  border-radius: 26px 8px 28px 10px / 10px 26px 8px 28px;
+  padding: clamp(20px, 3.2vw, 34px);
+}
+
+/* ── Tanngnissing: the top of the sheet is night, and dawn comes under it ──
+   It runs to the sheet's edges: the sheet's own padding (Ark in
+   artikler/lapp.tsx) is clamp(32px, 5vw, 60px) on top, clamp(22px, 6vw, 80px)
+   at the sides. */
+.natt {
+  position: relative;
+  overflow: hidden;
+  margin: calc(-1 * clamp(32px, 5vw, 60px)) calc(-1 * clamp(22px, 6vw, 80px)) 0;
+  padding: calc(clamp(32px, 5vw, 60px) + 10px) clamp(22px, 6vw, 80px) clamp(170px, 18vw, 200px);
+  border-radius: 28px 28px 0 0;
+  background: linear-gradient(
+    to top,
+    #FFFDF8 0,
+    #F8E6D6 40px,
+    #DDBFC2 82px,
+    #9790B7 124px,
+    #4B5584 168px,
+    #2A3360 215px,
+    #1B2347 100%
+  );
+}
+.stjerne { animation: blinke 5s ease-in-out infinite both; }
+@keyframes blinke {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+/* ── Hevelse: the pufferfish puffs up once, and the swelling goes down ── */
+.puff { transform-box: view-box; transform-origin: 108px 106px; }
+[data-vis="ja"] .puff { animation: puste 3.4s ease-in-out 1.9s both; }
+@keyframes puste {
+  0% { transform: scale(1); }
+  28%, 46% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .lag { transition: none !important; }
+  .lag, .traad { transition: none !important; }
+  [data-vis] .traad { opacity: 1 !important; }
+  .stjerne, [data-vis] .puff { animation: none !important; }
 }

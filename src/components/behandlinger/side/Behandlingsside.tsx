@@ -1,51 +1,90 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { RAD_OG_TIPS } from "@/data/artikler/typer";
-import { BGJENNOMGATT, type Behandlingsside as Side, type Del } from "@/data/behandlinger";
+import { BGJENNOMGATT, type Behandlingsside as Side, type Del, type Stripe } from "@/data/behandlinger";
+import { SAMME_SIDE } from "@/data/behandlinger/sider";
 import { Smuler, Vis } from "@/components/artikler/deler";
 import { Ark, Brod, Hilsen, Sporsmal } from "@/components/artikler/lapp";
 import { GulLapp } from "@/components/artikler/mellom";
 import { Bunnlinje } from "@/components/behandlinger/deler";
+import { GRUPPER } from "@/components/forside/behandlinger/grupper";
 import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";
+import { blekkStil } from "./blekk";
+import { MedNummer, RingOss, Stjerner, Vask } from "./signaturer";
+import { Stripen } from "./striper";
 import { BTEGNINGER } from "./tegninger";
-import { TITTELBILDER } from "./tittelbilder";
+import { Natt, TITTELBILDER } from "./tittelbilder";
+import s from "./side.module.css";
 
 /**
  * A treatment's own page: a note from the clinic, like the «Råd og tips»
- * notes, with pen sketches in the margin and yellow notes between the
+ * notes, with pen sketches in the margin and sticky notes between the
  * parts. The treatment itself is told as a comic strip: pen drawings that
  * draw themselves one after the other, each with a line under it; a step
  * not everyone needs has a dashed frame. Then a goodbye with one button,
  * and the sources.
+ *
+ * Under the intro, one line ties the page to the clinic (hosOss); the pages
+ * for what can't wait open with the call card instead, and their danger
+ * signs sit in a card in red pen.
+ *
+ * What makes each page its own, beside its drawings: its ink (blekk.ts),
+ * which colours the frames, the notes and a watercolour wash behind the
+ * drawings; the shape of its strip (striper.tsx); and what only it has
+ * (signatur: a night sky over the top).
  */
 
 /** Under every comic strip: this is how it often goes, not a promise. */
-const SERIE_FORBEHOLD = "Slik går det ofte for seg, men det er forskjellig fra pasient til pasient. Tannlegen forteller deg hva som gjelder for deg.";
+const SERIE_FORBEHOLD = "Slik går det ofte for seg, men det er forskjellig fra pasient til pasient. Vi forteller deg hva som gjelder for deg.";
 const KANT = "scroll-mt-28 border-t border-dashed border-[var(--color-strek)] py-10 md:py-14";
 const DATO = new Date(`${BGJENNOMGATT}T12:00:00Z`).toLocaleDateString("nb-NO", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Oslo" });
 
-/** A part of the note with its sketch in the margin. */
-function MedTegning({ id, tittel, tegning, children }: { id: string; tittel: string; tegning: React.ReactNode; children: React.ReactNode }) {
-  return (
-    <Vis as="section" id={id} className={cn(KANT, "flow-root gap-x-14 md:grid md:grid-cols-[minmax(0,1fr)_200px]")}>
+/** The pages for what can't wait: the book's «Akutt» group, each by the page it has. */
+const AKUTT = new Set<string>(GRUPPER.find((g) => g.id === "akutt")?.liste.map((b) => SAMME_SIDE[b.id] ?? b.id));
+
+/** A part of the note with its sketch in the margin. `varsel`: the danger signs, in a card in red pen. */
+function MedTegning({ id, tittel, tegning, varsel = false, children }: { id: string; tittel: string; tegning: React.ReactNode; varsel?: boolean; children: React.ReactNode }) {
+  const rad = "flow-root gap-x-14 md:grid md:grid-cols-[minmax(0,1fr)_200px]";
+  const innhold = (
+    <>
       <div className="float-right mb-2 ml-4 w-28 md:order-2 md:float-none md:m-0 md:w-full">{tegning}</div>
       <div className="space-y-4 md:order-1">
-        <Sporsmal>{tittel}</Sporsmal>
+        <Sporsmal className={cn(varsel && "text-[#A3301F]")}>{tittel}</Sporsmal>
         {children}
       </div>
+    </>
+  );
+  return varsel ? (
+    <Vis as="section" id={id} className={KANT}>
+      <div className={cn(rad, s.varsel)}>{innhold}</div>
+    </Vis>
+  ) : (
+    <Vis as="section" id={id} className={cn(KANT, rad)}>
+      {innhold}
     </Vis>
   );
 }
 
-function Visning({ del, n }: { del: Del; n: number }) {
+/** A drawing, on a wash of the page's ink when it has one. */
+function Tegning({ id, vask, seed, className, forsink, utenfor = "-inset-3" }: { id: keyof typeof BTEGNINGER; vask: boolean; seed: number; className?: string; forsink?: number; utenfor?: string }) {
+  const T = BTEGNINGER[id];
+  return (
+    <div className={cn("relative", className)}>
+      {vask && <Vask seed={seed} className={utenfor} />}
+      <T className="relative w-full" forsink={forsink} />
+    </div>
+  );
+}
+
+/** One part of the note. `n`: a sticky note's place among the notes; `i`: the part's place, so each wash has its own shape. */
+function Visning({ del, n, i, vask, stripe }: { del: Del; n: number; i: number; vask: boolean; stripe?: Stripe }) {
   switch (del.type) {
-    case "tekst": {
-      const T = BTEGNINGER[del.tegning];
+    case "tekst":
       return (
-        <MedTegning id={del.id} tittel={del.tittel} tegning={<T className="w-full" />}>
+        <MedTegning id={del.id} tittel={del.tittel} varsel={del.varsel} tegning={<Tegning id={del.tegning} vask={vask && !del.varsel} seed={i * 7 + 3} />}>
           {del.avsnitt.map((a) => (
-            <Brod key={a}>{a}</Brod>
+            <Brod key={a}>{del.varsel ? <MedNummer tekst={a} /> : a}</Brod>
           ))}
           {del.lenke && (
             <p>
@@ -57,7 +96,6 @@ function Visning({ del, n }: { del: Del; n: number }) {
           )}
         </MedTegning>
       );
-    }
 
     case "tegn":
       return (
@@ -65,15 +103,12 @@ function Visning({ del, n }: { del: Del; n: number }) {
           <Sporsmal>{del.tittel}</Sporsmal>
           {del.intro && <Brod className="mt-4">{del.intro}</Brod>}
           <ul className="mt-7 grid gap-x-10 gap-y-5 sm:grid-cols-2">
-            {del.punkter.map((p, i) => {
-              const T = BTEGNINGER[p.tegning];
-              return (
-                <li key={p.tekst} className="flex items-center gap-4">
-                  <T className="w-16 shrink-0 md:w-[72px]" forsink={i * 0.15} />
-                  <span className="text-[18px] leading-[1.45] text-[var(--color-tekst)]">{p.tekst}</span>
-                </li>
-              );
-            })}
+            {del.punkter.map((p, j) => (
+              <li key={p.tekst} className="flex items-center gap-4">
+                <Tegning id={p.tegning} vask={vask} seed={i * 7 + j + 20} className="w-16 shrink-0 md:w-[72px]" forsink={j * 0.15} utenfor="-inset-1.5" />
+                <span className="text-[18px] leading-[1.45] text-[var(--color-tekst)]">{p.tekst}</span>
+              </li>
+            ))}
           </ul>
           {del.etter && <Brod className="mt-6">{del.etter}</Brod>}
         </Vis>
@@ -83,26 +118,7 @@ function Visning({ del, n }: { del: Del; n: number }) {
       return (
         <Vis as="section" id={del.id} className={KANT}>
           <Sporsmal>{del.tittel}</Sporsmal>
-          <ol className={cn("mt-8 grid grid-cols-2 gap-x-4 gap-y-7 md:gap-x-6 md:gap-y-10", del.ruter.length === 4 ? "md:grid-cols-4" : "md:grid-cols-3")}>
-            {del.ruter.map((r, i) => {
-              const T = BTEGNINGER[r.tegning];
-              return (
-                <li key={r.tekst}>
-                  <figure>
-                    <div
-                      className={cn(
-                        "grid aspect-square place-items-center rounded-[18px] bg-[#FDFBF5]",
-                        r.mellom ? "border-2 border-dashed border-[rgba(22,48,59,0.35)]" : "border-2 border-[rgba(22,48,59,0.78)] shadow-[3px_4px_0_rgba(22,48,59,0.12)]"
-                      )}
-                    >
-                      <T className="w-[82%]" forsink={i * 0.35} />
-                    </div>
-                    <figcaption className="mt-3 text-[15.5px] leading-[1.45] text-[var(--color-tekst)] md:text-[16.5px]">{r.tekst}</figcaption>
-                  </figure>
-                </li>
-              );
-            })}
-          </ol>
+          <Stripen form={stripe} ruter={del.ruter} />
           {del.etter && <Brod className="mt-8">{del.etter}</Brod>}
           <p className="mt-5 text-[16px] italic leading-[1.6] text-[var(--color-tekst-2)]">{SERIE_FORBEHOLD}</p>
         </Vis>
@@ -146,26 +162,46 @@ function Kilder({ side }: { side: Side }) {
 }
 
 export function Behandlingsside({ side }: { side: Side }) {
-  let lapper = 0;
   const Tittelbilde = TITTELBILDER[side.tittelbilde];
+  const natt = side.signatur === "natt";
+  const vask = side.blekk !== undefined;
+  const akutt = AKUTT.has(side.slug);
+  let lapper = 0;
+
   return (
     <main className="overflow-x-clip bg-[var(--color-papir)] pb-[clamp(110px,11vw,150px)] pt-[clamp(96px,12vw,140px)]">
-      <div className="mx-auto w-full max-w-[1040px] px-[var(--container-px)]">
+      <div className="mx-auto w-full max-w-[1040px] px-[var(--container-px)]" style={blekkStil(side.blekk)}>
         <Smuler sider={[{ navn: "Behandlinger", href: "/behandlinger" }, { navn: side.navn }]} />
         <Ark className="mt-8">
-          <Vis as="header" margin="0px" className="text-center">
-            <h1 className="mx-auto max-w-[22ch] text-balance font-bold text-[var(--color-glomma-deep)]" style={SIDETITTEL}>
+          <Vis as="header" margin="0px" className={cn("text-center", natt && s.natt)}>
+            {natt && <Stjerner />}
+            <h1 className={cn("relative mx-auto max-w-[22ch] text-balance font-bold", natt ? "text-[#FFF8E7]" : "text-[var(--color-glomma-deep)]")} style={SIDETITTEL}>
               {side.navn}
             </h1>
-            <p className="mx-auto mt-4 max-w-[44ch] text-balance text-[18px] leading-[1.55] text-[var(--color-tekst-2)] md:mt-5 md:text-[20px]">{side.ingress}</p>
-            <Tittelbilde className="mx-auto mt-8 w-full max-w-[300px]" />
+            <p className={cn("relative mx-auto mt-4 max-w-[44ch] text-balance text-[18px] leading-[1.55] md:mt-5 md:text-[20px]", natt ? "text-[#FFF8E7]/80" : "text-[var(--color-tekst-2)]")}>
+              {side.ingress}
+            </p>
+            {side.hosOss && (
+              <p className={cn("relative mx-auto mt-3 max-w-[44ch] text-balance text-[18px] font-semibold leading-[1.5] md:text-[20px]", natt ? "text-[#FFF8E7]" : "text-[var(--color-glomma-deep)]")}>
+                {side.hosOss}
+              </p>
+            )}
+            {akutt && (
+              <div className="mt-7">
+                <RingOss />
+              </div>
+            )}
+            <div className="relative mx-auto mt-8 w-full max-w-[300px]">
+              {vask && !natt && <Vask seed={5} className="-inset-x-6 -inset-y-4" />}
+              {natt ? <Natt paaMork className="relative w-full" /> : <Tittelbilde className="relative w-full" />}
+            </div>
           </Vis>
           <div className="mt-10 md:mt-14">
             {side.deler.map((del, i) => (
-              <Visning key={del.type === "lapp" ? `lapp-${i}` : del.id} del={del} n={del.type === "lapp" ? lapper++ : 0} />
+              <Visning key={del.type === "lapp" ? `lapp-${i}` : del.id} del={del} n={del.type === "lapp" ? lapper++ : 0} i={i} vask={vask} stripe={side.stripe} />
             ))}
           </div>
-          <Hilsen tekst={side.slutt} />
+          <Hilsen tekst={side.slutt} apent={akutt} />
           <Kilder side={side} />
         </Ark>
       </div>

@@ -11,6 +11,7 @@ export const tannbro: Behandlingsside = {
   navn: "Tannbro",
   // the clinic's own words (klinikk.ts)
   ingress: "En tannbro erstatter én eller flere tenner som mangler. Den festes til tennene ved siden av og sitter fast hele tiden. Her ser du hvordan den lages.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på luka og tennene rundt, og hva som passer for deg.",
   tittelbilde: "bro-elv",
   beskrivelse: "Tannbro hos tannlegen i Kongsvinger: hva en bro er, hvilke andre måter det finnes å erstatte en tann på, og hvordan en bro lages steg for steg.",
   deler: [
@@ -35,7 +36,7 @@ export const tannbro: Behandlingsside = {
       avsnitt: [
         // SML Tannprotese (fixed or removable), Tannimplantat, Plateprotese; Broprotese (an implant as a pillar)
         "En tann som mangler, kan erstattes på flere måter: med en bro, et tannimplantat eller en avtakbar protese. Et implantat kan også brukes som pilar for en bro.",
-        "Hva som passer, er forskjellig fra person til person. Tannlegen går gjennom valgene sammen med deg.",
+        "Hva som passer, er forskjellig fra person til person. Vi går gjennom valgene sammen med deg.",
       ],
       tegning: "valg",
     },
@@ -44,11 +45,11 @@ export const tannbro: Behandlingsside = {
       id: "slik",
       tittel: "Slik lages en bro",
       ruter: [
-        { tegning: "lupe-gap", tekst: "Først ser tannlegen på tennene og planlegger broen sammen med deg." },
+        { tegning: "lupe-gap", tekst: "Først ser vi på tennene og planlegger broen sammen med deg." },
         // UiO clinic handbook: the pillar teeth are prepared
         { tegning: "stubb", tekst: "Tennene ved siden av slipes til, så broen får plass." },
         // SML Tannprotese: made outside the mouth from exact impressions
-        { tegning: "gips", tekst: "Tannlegen tar avtrykk, og broen lages etter dem." },
+        { tegning: "gips", tekst: "Vi tar avtrykk, og broen lages etter dem." },
         // UiO clinic handbook: a temporary is often made
         { tegning: "provisorium", tekst: "I mellomtiden får du ofte en midlertidig bro.", mellom: true },
         // UiO clinic handbook: form and colour tried
@@ -65,7 +66,7 @@ export const tannbro: Behandlingsside = {
       tittel: "Hvordan tar jeg vare på en bro?",
       avsnitt: [
         // UiO clinic handbook: the patient is shown brushes, floss and interdental brushes
-        "Under og rundt en bro må du holde like rent som rundt dine egne tenner. Tannlegen gir deg råd om hvordan du best gjør det.",
+        "Under og rundt en bro må du holde like rent som rundt dine egne tenner. Vi gir deg råd om hvordan du best gjør det.",
       ],
       tegning: "bro-traad",
     },

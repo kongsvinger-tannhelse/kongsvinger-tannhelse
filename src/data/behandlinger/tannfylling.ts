@@ -10,7 +10,8 @@ export const tannfylling: Behandlingsside = {
   slug: "tannfylling",
   navn: "Tannfylling",
   // the clinic's own words (klinikk.ts)
-  ingress: "Har du fått hull i tannen, fjerner tannlegen det ødelagte tannvevet og fyller rommet med en tannfarget fylling. Her ser du hvordan det går for seg.",
+  ingress: "Har du fått hull i tannen, fjerner vi det ødelagte tannvevet og fyller rommet med en tannfarget fylling. Her ser du hvordan det går for seg.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på tannen først, og forteller deg om den trenger en fylling.",
   tittelbilde: "fylling",
   beskrivelse: "Tannfylling hos tannlegen i Kongsvinger: tegn på hull i tennene, hvordan en fylling lages steg for steg, bedøvelse, og hva du bør tenke på etterpå.",
   deler: [
@@ -44,16 +45,16 @@ export const tannfylling: Behandlingsside = {
       etter: "Små hull gir ofte ingen plager i det hele tatt.",
     },
     // Helsedirektoratet, voksne: enamel caries should be treated without drilling
-    { type: "lapp", lapp: { slag: "visste", tekst: "Ikke alle hull trenger fylling. Et tidlig hull i emaljen kan ofte stoppes uten at tannlegen borer." } },
+    { type: "lapp", lapp: { slag: "visste", tekst: "Ikke alle hull trenger fylling. Et tidlig hull i emaljen kan ofte stoppes uten boring." } },
     {
       type: "serie",
       id: "slik",
       tittel: "Slik går det for seg",
       ruter: [
         // SML Lidokain: dentists numb single teeth
-        { tegning: "rolig-hull", tekst: "Først bedøver tannlegen tannen." },
+        { tegning: "rolig-hull", tekst: "Først bedøver vi tannen." },
         // Helsenorge: the dentist drills away the damaged tooth
-        { tegning: "bor", tekst: "Så borer tannlegen bort det ødelagte tannvevet." },
+        { tegning: "bor", tekst: "Så borer vi bort det ødelagte tannvevet." },
         // SML Pulpitt: with deep fillings a protective material is laid underneath
         { tegning: "underlag", tekst: "Er hullet dypt, legges et beskyttende lag over nerven først.", mellom: true },
         // Helsenorge (tooth-coloured filling material), SML Kompositt
@@ -81,7 +82,7 @@ export const tannfylling: Behandlingsside = {
       avsnitt: [
         // SML Pulpitt: deep fillings near the nerve can pass on cold and heat
         "Hvordan tannen kjennes etterpå, er forskjellig fra person til person. Er fyllingen dyp, kan tannen for eksempel bli mer følsom for kulde og varme.",
-        "Tannlegen forteller deg hva du bør tenke på. Merker du noe som ikke går over, ring oss gjerne.",
+        "Vi forteller deg hva du bør tenke på. Merker du noe som ikke går over, ring oss gjerne.",
       ],
       tegning: "kald-varm",
     },

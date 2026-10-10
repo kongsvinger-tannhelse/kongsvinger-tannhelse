@@ -10,6 +10,7 @@ export const visdomstenner: Behandlingsside = {
   slug: "visdomstenner",
   navn: "Visdomstenner",
   ingress: "Visdomstennene er de bakerste tennene i munnen, og ofte er det for lite plass til dem. Her ser du når de bør fjernes, og hvordan det går for seg.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på visdomstennene dine, og henviser deg videre hvis det trengs.",
   tittelbilde: "ugle",
   beskrivelse: "Visdomstenner hos tannlegen i Kongsvinger: når visdomstanna blir et problem, hvordan den fjernes steg for steg, og hva du gjør de første dagene etterpå.",
   deler: [
@@ -50,15 +51,15 @@ export const visdomstenner: Behandlingsside = {
       tittel: "Slik fjernes en visdomstann",
       ruter: [
         // NHI Innkilt visdomstann, St. Olavs: an x-ray first
-        { tegning: "rontgen-visdom", tekst: "Ofte tas det først et røntgenbilde, så tannlegen ser hvordan tanna ligger." },
+        { tegning: "rontgen-visdom", tekst: "Ofte tar vi først et røntgenbilde, så vi ser hvordan tanna ligger." },
         // St. Olavs: ordinary dental anaesthesia
         { tegning: "rolig-visdom", tekst: "Tanna blir bedøvet før den tas ut." },
         // St. Olavs: the gum is folded aside, a little bone is removed, the tooth divided if needed
         { tegning: "trekk-deler", tekst: "Tannkjøttet brettes til side, og tanna tas ut, noen ganger i flere biter." },
         // St. Olavs: usually a couple of stitches
-        { tegning: "sting", tekst: "Ofte syr vi et par sting.", mellom: true },
+        { tegning: "sting", tekst: "Ofte sys det et par sting.", mellom: true },
         // St. Olavs: the patient gets advice for afterwards
-        { tegning: "snakke-dager", tekst: "Til slutt forteller tannlegen deg hva du bør tenke på de første dagene." },
+        { tegning: "snakke-dager", tekst: "Til slutt forteller vi deg hva du bør tenke på de første dagene." },
       ],
       // St. Olavs: ordinary wisdom teeth are removed by the patient's own dentist; others are referred
       etter: "Vanlige visdomstenner fjernes hos tannlegen. Ligger tanna vanskelig til, kan det være aktuelt å bli henvist til en spesialist.",
@@ -80,7 +81,7 @@ export const visdomstenner: Behandlingsside = {
       tittel: "Hva skjer etterpå?",
       avsnitt: [
         // St. Olavs: advice for the first days (food, brushing, smoking)
-        "Tannlegen gir deg råd om hva du bør tenke på de første dagene, for eksempel om mat, tannpuss og røyking. Rådene kan være litt forskjellige fra person til person.",
+        "Vi gir deg råd om hva du bør tenke på de første dagene, for eksempel om mat, tannpuss og røyking. Rådene kan være litt forskjellige fra person til person.",
         "Lurer du på noe, eller blir det verre i stedet for bedre, ring oss.",
       ],
       tegning: "kompress",

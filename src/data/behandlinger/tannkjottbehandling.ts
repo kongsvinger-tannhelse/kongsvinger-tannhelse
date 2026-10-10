@@ -10,6 +10,7 @@ export const tannkjottbehandling: Behandlingsside = {
   navn: "Tannkjøttbehandling",
   // the clinic's own words (klinikk.ts)
   ingress: "Rødt, hovent eller blødende tannkjøtt er ofte gingivitt, det tidligste stadiet av tannkjøttsykdom. Her ser du hvordan tannkjøttsykdom behandles, og hva du selv kan gjøre.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på tannkjøttet ditt, og henviser deg videre hvis det trengs.",
   tittelbilde: "tannkjott",
   beskrivelse: "Tannkjøttbehandling hos tannlegen i Kongsvinger: gingivitt og periodontitt, tegn på tannkjøttsykdom, hvordan det behandles, og hva du selv kan gjøre.",
   deler: [
@@ -49,7 +50,7 @@ export const tannkjottbehandling: Behandlingsside = {
       tittel: "Slik behandles det",
       ruter: [
         // SML Gingivitt and Periodontitt: dentists or hygienists diagnose it; the pocket depth is measured
-        { tegning: "sonde", tekst: "Tannlegen eller tannpleieren undersøker tannkjøttet og måler hvor dypt det går ned langs tennene." },
+        { tegning: "sonde", tekst: "Vi undersøker tannkjøttet og måler hvor dypt det går ned langs tennene." },
         // UiO, Behandling av periodontitt: the patient learns an effective way to keep the teeth clean
         { tegning: "hjem-utstyr", tekst: "Du får råd om hvordan du best holder tennene rene hjemme." },
         // SML Periodontitt (remove plaque and tartar), UiO (scraped away under the gum margin)
@@ -80,7 +81,7 @@ export const tannkjottbehandling: Behandlingsside = {
       tittel: "Hva kan jeg gjøre selv?",
       avsnitt: [
         // SML Periodontitt: cleaning aids vary from patient to patient; UiO: daily cleaning is crucial
-        "Det viktigste er å holde tennene rene hver dag. Hva slags hjelpemidler som passer, er forskjellig fra person til person, og tannlegen eller tannpleieren gir deg råd.",
+        "Det viktigste er å holde tennene rene hver dag. Hva slags hjelpemidler som passer, er forskjellig fra person til person, og vi gir deg råd.",
         // SML Periodontitt: smoking can give a poorer outcome
         "Røyking kan gjøre at behandlingen virker dårligere.",
       ],

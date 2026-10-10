@@ -11,6 +11,7 @@ export const munntorrhet: Behandlingsside = {
   navn: "Munntørrhet",
   // the clinic's own words (klinikk.ts)
   ingress: "Munntørrhet betyr at du lager for lite spytt. Det kan gi ubehag, dårlig ånde og flere hull i tennene. Her ser du hva det kan komme av, og hva som kan hjelpe.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på hva den tørre munnen gjør med tennene dine, og hva som kan hjelpe.",
   tittelbilde: "torr",
   beskrivelse: "Munntørrhet hos tannlegen i Kongsvinger: hva munntørrhet er, hva det kan komme av, hva det gjør med tennene, og hva som kan hjelpe.",
   deler: [
@@ -59,7 +60,7 @@ export const munntorrhet: Behandlingsside = {
         // NHI Munntørrhet: the doctor considers whether the medicines can be changed
         { tegning: "snakke-medisin", tekst: "Bruker du medisiner, kan legen vurdere om de kan endres.", mellom: true },
         // NHI Munntørrhet: see the dentist for individual guidance
-        { tegning: "rad-torr", tekst: "Tannlegen gir deg råd som passer for deg." },
+        { tegning: "rad-torr", tekst: "Vi gir deg råd som passer for deg." },
       ],
       // SML Munntørrhet: the dryness itself can't be treated, only eased
       etter: "Munntørrhet kan ikke alltid fjernes, men plagene kan ofte bli mindre.",

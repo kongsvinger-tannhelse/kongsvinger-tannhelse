@@ -10,7 +10,7 @@ export const mistetFylling: Behandlingsside = {
   slug: "mistet-fylling",
   navn: "Mistet fylling",
   // the clinic's own words (klinikk.ts)
-  ingress: "Har du mistet en fylling, kontakt tannlegen så snart som mulig. Her ser du hvorfor det kan skje, og hva tannlegen gjør.",
+  ingress: "Har du mistet en fylling, kontakt oss så snart som mulig. Her ser du hvorfor det kan skje, og hva vi gjør.",
   tittelbilde: "skjaere",
   beskrivelse: "Mistet fylling hos tannlegen i Kongsvinger: hvorfor en fylling kan falle ut, hvorfor du bør komme snart, og hva tannlegen gjør.",
   deler: [
@@ -43,12 +43,12 @@ export const mistetFylling: Behandlingsside = {
     {
       type: "serie",
       id: "slik",
-      tittel: "Slik går det for seg hos tannlegen",
+      tittel: "Slik går det for seg hos oss",
       ruter: [
         // Helsenorge Hull i tennene: x-rays are needed in most cases
-        { tegning: "rontgen-fylling", tekst: "Tannlegen ser på tannen, og tar ofte et røntgenbilde." },
+        { tegning: "rontgen-fylling", tekst: "Vi ser på tannen, og tar ofte et røntgenbilde." },
         // Helsenorge Hull i tennene: the damaged tooth tissue is removed
-        { tegning: "fjerne-kant", tekst: "Er det et nytt hull, fjerner tannlegen det ødelagte tannvevet." },
+        { tegning: "fjerne-kant", tekst: "Er det et nytt hull, fjerner vi det ødelagte tannvevet." },
         // Helsenorge Hull i tennene (a new filling), Gjør kloke valg (part of a filling can be repaired)
         { tegning: "lapp-fylling", tekst: "Så får tannen en ny fylling, eller den gamle repareres." },
         // Helsenorge Hull i tennene (an inlay where much is gone, a crown when too little is left), Gjør kloke valg, advice 6

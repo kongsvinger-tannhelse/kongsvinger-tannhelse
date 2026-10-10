@@ -10,7 +10,8 @@ export const isingITenner: Behandlingsside = {
   slug: "ising-i-tenner",
   navn: "Ising i tenner",
   // the clinic's own words (klinikk.ts)
-  ingress: "Isner det i tennene når du drikker noe kaldt? Her ser du hvorfor det skjer, hva tannlegen ser etter, og hva som kan hjelpe.",
+  ingress: "Isner det i tennene når du drikker noe kaldt? Her ser du hvorfor det skjer, hva vi ser etter, og hva som kan hjelpe.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på hvorfor det iser, og hva som kan hjelpe deg.",
   tittelbilde: "lue",
   beskrivelse: "Ising i tennene hos tannlegen i Kongsvinger: hvorfor det iser, hva tannlegen ser etter, og hva som kan gjøres hos tannlegen.",
   deler: [
@@ -30,9 +31,9 @@ export const isingITenner: Behandlingsside = {
     {
       type: "tegn",
       id: "ser-etter",
-      tittel: "Hva ser tannlegen etter?",
+      tittel: "Hva ser vi etter?",
       // Tidende 2012: before calling it sensitive teeth, decay, cracks, gingivitis, pulpitis and leaking fillings are ruled out
-      intro: "Det kan ise av flere grunner. Derfor ser tannlegen først etter andre ting enn følsomme tenner:",
+      intro: "Det kan ise av flere grunner. Derfor ser vi først etter andre ting enn følsomme tenner:",
       punkter: [
         // Tidende 2012; SML Tannsmerter (a hole)
         { tekst: "Et hull i tannen.", tegning: "ising-hull" },
@@ -51,14 +52,14 @@ export const isingITenner: Behandlingsside = {
     {
       type: "serie",
       id: "hjelpe",
-      tittel: "Slik kan tannlegen hjelpe",
+      tittel: "Slik kan vi hjelpe",
       ruter: [
         // Tidende 2012: register which teeth are sensitive
         { tegning: "snakke-ising", tekst: "Først snakker vi sammen om når og hvor det iser." },
         // Tidende 2012: brushing instruction, a softer brush and less force so the gum does not draw back
-        { tegning: "myk-puss", tekst: "Tannlegen kan vise deg hvordan du pusser mykt, så tannkjøttet ikke trekker seg mer tilbake." },
+        { tegning: "myk-puss", tekst: "Vi kan vise deg hvordan du pusser mykt, så tannkjøttet ikke trekker seg mer tilbake." },
         // Tidende 2012: special pastes and preparations for use at the clinic
-        { tegning: "egne-midler", tekst: "Tannlegen kan bruke egne midler mot ising på de følsomme tennene." },
+        { tegning: "egne-midler", tekst: "Vi kan bruke egne midler mot ising på de følsomme tennene." },
         // Tidende 2012: bonding can be used if needed
         { tegning: "tynt-lag", tekst: "Noen ganger dekkes et bart område med et tynt lag som tetter det.", mellom: true },
         // Tidende 2012 (rule out decay and leaking fillings), Helsenorge (a filling stops the hole from growing)

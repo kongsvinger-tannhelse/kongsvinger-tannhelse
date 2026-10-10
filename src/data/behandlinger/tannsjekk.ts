@@ -11,6 +11,7 @@ export const tannsjekk: Behandlingsside = {
   navn: "Tannsjekk",
   // the clinic's own words
   ingress: "En tannsjekk er den enkleste måten å holde munnen frisk på. Vi finner problemer tidlig, mens de er små og enkle å behandle.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse får du vite hva vi fant, og hva vi foreslår videre.",
   tittelbilde: "stol",
   beskrivelse: "Tannsjekk hos tannlegen i Kongsvinger: hva som skjer på en tannsjekk, hvor ofte du bør komme, og røntgen.",
   deler: [
@@ -20,7 +21,7 @@ export const tannsjekk: Behandlingsside = {
       tittel: "Hva er en tannsjekk?",
       avsnitt: [
         // Helsedirektoratet, voksne: history, clinical examination of teeth, mouth and jaws, x-rays
-        "På en tannsjekk går tannlegen gjennom helsen din, undersøker tennene, munnen og kjeven, og ser på røntgenbildene.",
+        "På en tannsjekk går vi gjennom helsen din, undersøker tennene, munnen og kjeven, og ser på røntgenbildene.",
         // Helsedirektoratet: diagnosis and a plan for follow-up; the clinic's text (hull, tannkjøttsykdom, slitasje)
         "Målet er å finne hull, tannkjøttsykdom og slitasje tidlig, og lage en plan for hva som bør gjøres.",
       ],
@@ -34,9 +35,9 @@ export const tannsjekk: Behandlingsside = {
         // Helsedirektoratet: updating the history (anamnese)
         { tegning: "snakke-helse", tekst: "Først snakker vi om helsen din, og om noe har endret seg siden sist." },
         // Helsedirektoratet: clinical examination of teeth, mouth and jaws
-        { tegning: "speil", tekst: "Tannlegen undersøker tennene, tannkjøttet, munnen og kjeven." },
+        { tegning: "speil", tekst: "Vi undersøker tennene, tannkjøttet, munnen og kjeven." },
         // SML Tannrøntgen: at ordinary check-ups two bitewing images are taken
-        { tegning: "rontgen-to", tekst: "Trengs det, tas det røntgenbilder. Ved en vanlig kontroll er det ofte to små bilder.", mellom: true },
+        { tegning: "rontgen-to", tekst: "Trengs det, tar vi røntgenbilder. Ved en vanlig kontroll er det ofte to små bilder.", mellom: true },
         // Helsedirektoratet: diagnosis and a plan for follow-up
         { tegning: "tannkart", tekst: "Til slutt får du vite hva vi fant, og en plan for veien videre." },
       ],
@@ -50,7 +51,7 @@ export const tannsjekk: Behandlingsside = {
       avsnitt: [
         // Helsedirektoratet: between 12 and 24 months for adults, set after an individual risk assessment
         "Det er forskjellig fra person til person. For voksne går det ofte ett til to år mellom hver gang.",
-        "Tannlegen vurderer hvor ofte du bør komme, ut fra tennene og tannkjøttet ditt.",
+        "Vi vurderer hvor ofte du bør komme, ut fra tennene og tannkjøttet ditt.",
       ],
       tegning: "kalender",
     },

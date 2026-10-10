@@ -82,13 +82,18 @@ export function BroElv({ strek = true, className, forsink }: Stil) {
   );
 }
 
-/** Grinding at night: a sleeping face on the pillow, the teeth pressed together, the moon outside. */
-export function Natt({ strek = true, className, forsink }: Stil) {
+/**
+ * Grinding at night: a sleeping face on the pillow, the teeth pressed together, the moon outside.
+ * `paaMork`: on a night sky. The moon and stars are lit and what stands in the dark is drawn in light
+ * ink; what is drawn on the white pillow keeps its dark pen.
+ */
+export function Natt({ strek = true, className, forsink, paaMork = false }: Stil & { paaMork?: boolean }) {
+  const lyst = paaMork ? { ink: "#F6E3A6", penFill: "#F1D58A" } : {};
   return (
     <Ramme className={className} forsink={forsink} boks={BOKS}>
-      <path d="M58,26 a18,18 0 1 0 13,31 a13,13 0 1 1 -13,-31 Z" {...form(strek, "#F1D58A", { w: 2 })} />
-      <path d={`${stjerne(108, 22, 6)} ${stjerne(252, 30, 7)} ${stjerne(284, 70, 5)}`} {...form(strek, "#F1D58A", { w: 1.6, ink: F.teal })} />
-      <path d="M40,128 Q36,108 60,106 L260,106 Q284,108 280,128 L280,176 Q284,196 260,196 L60,196 Q36,196 40,176 Z" {...form(strek, F.hvit, { w: 2.2, penFill: "#FFFFFF" })} />
+      <path d="M58,26 a18,18 0 1 0 13,31 a13,13 0 1 1 -13,-31 Z" {...form(strek, "#F1D58A", { w: 2, ...lyst })} />
+      <path d={`${stjerne(108, 22, 6)} ${stjerne(252, 30, 7)} ${stjerne(284, 70, 5)}`} {...form(strek, "#F1D58A", { w: 1.6, ink: F.teal, ...lyst })} />
+      <path d="M40,128 Q36,108 60,106 L260,106 Q284,108 280,128 L280,176 Q284,196 260,196 L60,196 Q36,196 40,176 Z" {...form(strek, F.hvit, { w: 2.2, penFill: "#FFFFFF", ...(paaMork && { ink: "#F4ECD8" }) })} />
       <circle cx={160} cy={118} r={48} {...form(strek, F.hvit, { w: 2.4, penFill: F.papir })} />
       <path d="M113,108 Q112,70 160,69 Q208,70 207,108 Q196,86 160,84 Q128,85 113,108 Z" {...form(strek, F.metall, { w: 2, penFill: "#E3E8E8" })} />
       <path d="M134,114 q8,6 16,0 M170,114 q8,6 16,0" {...linje(strek, BLEKK, 2.4)} />
@@ -96,8 +101,12 @@ export function Natt({ strek = true, className, forsink }: Stil) {
       <rect x={144} y={130} width={32} height={13} rx={5} {...form(strek, F.hvit, { w: 2.2, penFill: "#FFFFFF" })} />
       <path d="M145,136.5 l4,-3 l4,3 l4,-3 l4,3 l4,-3 l4,3 l4,-3 l3,2.5" {...linje(strek, AKSENT, 1.8, AKSENT)} />
       <path d="M104,124 l-9,5 l9,5 l-9,5 M216,124 l9,5 l-9,5 l9,5" {...linje(strek, AKSENT, 2.4, AKSENT)} />
-      <path d="M14,170 Q90,154 160,166 Q230,154 306,170 L306,220 L14,220 Z" {...form(strek, "#DDEFF2", { w: 2.2, ink: F.teal, penFill: "#E8F4F6" })} />
-      <path d="M216,62 l11,0 l-11,11 l11,0 M236,42 l8,0 l-8,8 l8,0" {...linje(strek, F.teal, 2.2, F.teal)} />
+      {/* the duvet; on the night sky its foot is rounded, so it isn't cut off square against the dark */}
+      <path
+        d={paaMork ? "M14,170 Q90,154 160,166 Q230,154 306,170 L306,200 Q306,214 292,214 L28,214 Q14,214 14,200 Z" : "M14,170 Q90,154 160,166 Q230,154 306,170 L306,220 L14,220 Z"}
+        {...form(strek, "#DDEFF2", { w: 2.2, ink: F.teal, penFill: "#E8F4F6" })}
+      />
+      <path d="M216,62 l11,0 l-11,11 l11,0 M236,42 l8,0 l-8,8 l8,0" {...linje(strek, F.teal, 2.2, paaMork ? "#BFE3E8" : F.teal)} />
     </Ramme>
   );
 }

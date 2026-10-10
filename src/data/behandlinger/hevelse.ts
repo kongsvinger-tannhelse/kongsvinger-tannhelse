@@ -10,8 +10,9 @@ export const hevelse: Behandlingsside = {
   slug: "hevelse",
   navn: "Hevelse",
   // the clinic's own words (klinikk.ts)
-  ingress: "Hevelse rundt en tann eller i ansiktet kan komme av en infeksjon. Ta kontakt så fort det lar seg gjøre. Her ser du hva det kan være, og hva tannlegen gjør.",
+  ingress: "Hevelse rundt en tann eller i ansiktet kan komme av en infeksjon. Ta kontakt med oss så fort det lar seg gjøre. Her ser du hva det kan være, og hva vi gjør.",
   tittelbilde: "kulefisk",
+  blekk: "tegl",
   beskrivelse: "Hevelse ved en tann hos tannlegen i Kongsvinger: hva en tannbyll er, tegn du bør se etter, når du må ha hjelp med en gang, og hva tannlegen gjør.",
   deler: [
     {
@@ -60,16 +61,17 @@ export const hevelse: Behandlingsside = {
         "Har du pustevansker, ring 113.",
       ],
       tegning: "blaalys",
+      varsel: true,
     },
     {
       type: "serie",
       id: "slik",
-      tittel: "Slik går det for seg hos tannlegen",
+      tittel: "Slik går det for seg hos oss",
       ruter: [
         // Helsenorge Tannbyll: the dentist examines the teeth and takes x-rays to find where the infection is and what causes it
-        { tegning: "rontgen-byll", tekst: "Tannlegen undersøker tennene og tar røntgenbilder for å finne hvor infeksjonen er, og hva som er årsaken." },
+        { tegning: "rontgen-byll", tekst: "Vi undersøker tennene og tar røntgenbilder for å finne hvor infeksjonen er, og hva som er årsaken." },
         // SML Tannbyll (an opening relieves the pressure), Helsenorge Tannbyll (draining the pus)
-        { tegning: "byll-letter", tekst: "Ofte lager tannlegen en liten åpning i byllen, så trykket letter." },
+        { tegning: "byll-letter", tekst: "Ofte lages det en liten åpning i byllen, så trykket letter." },
         // Helsenorge Tannbyll: as a rule no antibiotics, but with fever, feeling poorly or a spreading infection; the clinic's text
         { tegning: "antibiotika", tekst: "Noen ganger trengs antibiotika i tillegg.", mellom: true },
         // Helsenorge Tannbyll, SML Tannbyll: a root filling, or the tooth is taken out

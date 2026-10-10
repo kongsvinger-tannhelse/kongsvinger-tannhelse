@@ -21,8 +21,8 @@ import s from "./artikler.module.css";
    take the margin, the sketch steps into the text, on the left, clear of
    the arrows. */
 
-export function Sporsmal({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-[26px] font-bold leading-[1.15] tracking-[-0.03em] text-[var(--color-glomma-deep)] md:text-[30px]">{children}</h2>;
+export function Sporsmal({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <h2 className={cn("text-[26px] font-bold leading-[1.15] tracking-[-0.03em] text-[var(--color-glomma-deep)] md:text-[30px]", className)}>{children}</h2>;
 }
 
 export function Brod({ children, className }: { children: React.ReactNode; className?: string }) {

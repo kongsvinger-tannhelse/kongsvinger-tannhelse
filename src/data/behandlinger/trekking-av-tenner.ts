@@ -11,6 +11,7 @@ export const trekkingAvTenner: Behandlingsside = {
   slug: "trekking-av-tenner",
   navn: "Trekking av tenner",
   ingress: "Noen tenner kan ikke reddes. Da kan det være best å trekke dem. Her ser du hvorfor en tann kan måtte trekkes, og hvordan det går for seg.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på tannen, og henviser deg videre hvis det trengs.",
   tittelbilde: "tang",
   beskrivelse: "Trekking av tenner hos tannlegen i Kongsvinger: når en tann må trekkes, hvordan det går for seg, bedøvelse, og hva som kan gjøres med tannluka etterpå.",
   deler: [
@@ -34,14 +35,14 @@ export const trekkingAvTenner: Behandlingsside = {
       tittel: "Slik går det for seg",
       ruter: [
         // Helsenorge: the dentist judges whether it can be treated
-        { tegning: "lupe-rot", tekst: "Først undersøker tannlegen tannen og vurderer om den kan reddes." },
+        { tegning: "lupe-rot", tekst: "Først undersøker vi tannen og vurderer om den kan reddes." },
         // SML Tanntrekking: usually local anaesthesia
         { tegning: "rolig-trekk", tekst: "Tannen bedøves, vanligvis med lokalbedøvelse." },
         // SML Tanntrekking; Helsedirektoratet takst 401 (roots may be split)
         { tegning: "trekk", tekst: "Tannen tas ut. Noen ganger deles den først, så det blir enklere." },
         // SML Tanntrekking: the gum may be stitched
         { tegning: "sting", tekst: "Noen ganger trengs et par sting i tannkjøttet.", mellom: true },
-        { tegning: "snakke-luke", tekst: "Til slutt forteller tannlegen deg hva du bør tenke på de første dagene." },
+        { tegning: "snakke-luke", tekst: "Til slutt forteller vi deg hva du bør tenke på de første dagene." },
       ],
       // Helse Bergen: tooth surgery is normally done by the dentist; the hospital takes referred patients
       etter: "De fleste tenner trekkes hos tannlegen. Er det vanskelig å få ut tannen, kan det være aktuelt å bli henvist videre.",
@@ -52,11 +53,11 @@ export const trekkingAvTenner: Behandlingsside = {
       tittel: "Gjør det vondt?",
       avsnitt: [
         // SML Tanntrekking: local anaesthesia
-        "Tannen bedøves før den trekkes. Hvordan det kjennes etterpå, er forskjellig fra person til person, og tannlegen gir deg råd.",
+        "Tannen bedøves før den trekkes. Hvordan det kjennes etterpå, er forskjellig fra person til person, og vi gir deg råd.",
         // SML Tanntrekking: general anaesthesia can be considered for dental fear
         "Har du sterk tannlegeskrekk, kan behandling i narkose noen ganger være aktuelt.",
         // Tannlegeforeningen: with blood thinners the dentist may plan with your doctor
-        "Bruker du blodfortynnende medisiner, si fra til tannlegen på forhånd.",
+        "Bruker du blodfortynnende medisiner, si fra til oss på forhånd.",
       ],
       tegning: "tablett",
     },
@@ -66,7 +67,7 @@ export const trekkingAvTenner: Behandlingsside = {
       tittel: "Hva med tannluka?",
       avsnitt: [
         // the clinic's text (klinikk.ts); SML Tannskade: replaced with a prosthesis, bridge or implant
-        "Etterpå kan tannen ofte erstattes, for eksempel med et implantat, en bro eller en protese. Tannlegen går gjennom valgene med deg.",
+        "Etterpå kan tannen ofte erstattes, for eksempel med et implantat, en bro eller en protese. Vi går gjennom valgene med deg.",
       ],
       tegning: "luke-sporsmal",
     },

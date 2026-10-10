@@ -11,6 +11,7 @@ export const tannkrone: Behandlingsside = {
   navn: "Tannkrone",
   // the clinic's own words (klinikk.ts)
   ingress: "En tannkrone er en hette formet som en tann, som settes over en svekket tann. Den gir tannen styrke og form igjen.",
+  hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på om tannen trenger en krone, og forklarer valgene.",
   tittelbilde: "krone",
   beskrivelse: "Tannkrone hos tannlegen i Kongsvinger: hva en krone er, når du trenger en, hvordan den lages steg for steg, og hvordan du tar vare på den.",
   deler: [
@@ -48,7 +49,7 @@ export const tannkrone: Behandlingsside = {
         // Helsenorge: the tooth must be ground to the right shape first
         { tegning: "stubb", tekst: "Tannen slipes til riktig form, så kronen får plass." },
         // SML Tannprotese (made after exact impressions), UiO (scanning)
-        { tegning: "skanner", tekst: "Tannlegen tar avtrykk eller skanner tennene, og kronen lages etter dem." },
+        { tegning: "skanner", tekst: "Det tas avtrykk, eller tennene skannes, og kronen lages etter dem." },
         // UiO clinic handbook: a temporary crown, cemented with temporary cement
         { tegning: "provisorium", tekst: "Mens kronen lages, får du en midlertidig krone.", mellom: true },
         // SML Tannprotese: fixed for good with special cements
