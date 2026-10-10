@@ -2,6 +2,7 @@ import { FARGE as F, JEKSEL, PULPA, STUBB, draape, lauv, r2, stjerne } from "@/c
 import { AKSENT, BLEKK, Ramme, blekk, form, linje, type Stil } from "@/components/artikler/tegninger";
 import { Krone } from "./ruter3";
 import { Fortann, OverFortann } from "./ruter4";
+import m from "./side.module.css";
 
 /* The title pictures of the other thirteen pages, 320 × 220, in the same
    pen as tittelbilder.tsx. Server-safe. */
@@ -289,7 +290,12 @@ export function Skjell({ strek = true, className, forsink }: Stil) {
   );
 }
 
-/** An implant among the teeth: the jaw cut through, a natural tooth either side, and the new tooth on its screw in the middle. */
+/**
+ * An implant among the teeth: the jaw cut through, a natural tooth either
+ * side, and the new tooth on its screw in the middle. It is drawn in parts,
+ * apart on a dashed line, and put together once drawn: the post comes down
+ * onto the screw, then the crown onto the post (side.module.css).
+ */
 export function ImplantatTittel({ strek = true, className, forsink }: Stil) {
   return (
     <Ramme className={className} forsink={forsink} boks={BOKS}>
@@ -314,12 +320,19 @@ export function ImplantatTittel({ strek = true, className, forsink }: Stil) {
         <path d="M-8,0 L8,0 L6,40 Q0,48 -6,40 Z" {...form(strek, F.metall, { w: 2.2 / 1.8 })} />
         <path d="M-8,8 L8,4 M-8,16 L8,12 M-7,24 L7,20 M-6,32 L6,28" {...linje(strek, F.metallMork, 1.4 / 1.8)} />
       </g>
-      <path d="M150,124 L152,108 L168,108 L170,124 Z" {...form(strek, F.metall, { w: 2 })} />
-      <g transform="translate(160 112) scale(0.62)">
-        <path d={JEKSEL.krone} {...form(strek, KRONE_FYLL, { w: 2.4 / 0.62, ink: F.teal, penFill: KRONE_FYLL })} />
-        <path d={JEKSEL.fure} {...linje(strek, F.fure, 1.8 / 0.62)} />
+      <g className={m.akse}>
+        <path d="M160,8 L160,122" fill="none" stroke={F.metallMork} strokeWidth={1.4} strokeDasharray="3 5" strokeLinecap="round" {...blekk(strek)} />
+      </g>
+      <g className={m.bygg1}>
+        <path d="M150,124 L152,108 L168,108 L170,124 Z" {...form(strek, F.metall, { w: 2 })} />
       </g>
       <path d="M10,116 Q70,104 120,118 Q160,124 200,118 Q250,104 310,116" {...linje(strek, F.tannkjottMork, 2.4, F.tannkjottMork)} />
+      <g className={m.bygg2}>
+        <g transform="translate(160 112) scale(0.62)">
+          <path d={JEKSEL.krone} {...form(strek, KRONE_FYLL, { w: 2.4 / 0.62, ink: F.teal, penFill: KRONE_FYLL })} />
+          <path d={JEKSEL.fure} {...linje(strek, F.fure, 1.8 / 0.62)} />
+        </g>
+      </g>
       {gnist(strek, [
         [204, 36, 7],
         [118, 40, 5],

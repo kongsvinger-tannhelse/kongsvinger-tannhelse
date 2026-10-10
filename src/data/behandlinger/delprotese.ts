@@ -13,6 +13,8 @@ export const delprotese: Behandlingsside = {
   ingress: "En delprotese er en avtakbar protese som festes til tennene du har igjen, og erstatter de tennene som mangler. Her ser du hvordan den lages, og hva som er viktig når du har den.",
   hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på tennene du har igjen, og hva som passer for deg.",
   tittelbilde: "puslespill",
+  blekk: "lavendel",
+  stripe: "puslespill",
   beskrivelse: "Delprotese hos tannlegen i Kongsvinger: hva en delprotese er, når den kan passe, hvordan den lages steg for steg, og hvorfor kontroller er viktig.",
   deler: [
     {

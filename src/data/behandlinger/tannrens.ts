@@ -13,6 +13,8 @@ export const tannrens: Behandlingsside = {
   ingress: "En tannrens fjerner plakk og tannstein som har bygget seg opp over tid. Her ser du hvorfor det er viktig, og hvordan det foregår.",
   hosOss: "Hos oss på Kongsvinger Tannhelse fjerner vi tannsteinen, og gir deg råd om hvordan du holder tennene rene hjemme.",
   tittelbilde: "rens",
+  blekk: "mynte",
+  stripe: "fliser",
   beskrivelse: "Tannrens hos tannlegen i Kongsvinger: hva plakk og tannstein er, hva det kan gjøre med tennene og tannkjøttet, og hvordan tannsteinen fjernes.",
   deler: [
     {

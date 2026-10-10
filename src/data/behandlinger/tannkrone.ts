@@ -13,6 +13,8 @@ export const tannkrone: Behandlingsside = {
   ingress: "En tannkrone er en hette formet som en tann, som settes over en svekket tann. Den gir tannen styrke og form igjen.",
   hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på om tannen trenger en krone, og forklarer valgene.",
   tittelbilde: "krone",
+  blekk: "rubin",
+  stripe: "kroner",
   beskrivelse: "Tannkrone hos tannlegen i Kongsvinger: hva en krone er, når du trenger en, hvordan den lages steg for steg, og hvordan du tar vare på den.",
   deler: [
     {

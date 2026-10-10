@@ -13,6 +13,8 @@ export const tannfylling: Behandlingsside = {
   ingress: "Har du fått hull i tannen, fjerner vi det ødelagte tannvevet og fyller rommet med en tannfarget fylling. Her ser du hvordan det går for seg.",
   hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på tannen først, og forteller deg om den trenger en fylling.",
   tittelbilde: "fylling",
+  blekk: "kobolt",
+  stripe: "tannrad",
   beskrivelse: "Tannfylling hos tannlegen i Kongsvinger: tegn på hull i tennene, hvordan en fylling lages steg for steg, bedøvelse, og hva du bør tenke på etterpå.",
   deler: [
     {

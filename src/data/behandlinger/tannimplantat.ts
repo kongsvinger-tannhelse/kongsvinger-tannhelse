@@ -14,6 +14,7 @@ export const tannimplantat: Behandlingsside = {
   hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på om et implantat passer for deg, og henviser deg videre hvis det trengs.",
   tittelbilde: "implantat",
   blekk: "salvie",
+  stripe: "arbeidstegning",
   beskrivelse: "Tannimplantat hos tannlegen i Kongsvinger: hva et implantat er, hvem det passer for, hvordan det settes inn steg for steg, og hvordan du tar vare på det.",
   deler: [
     {

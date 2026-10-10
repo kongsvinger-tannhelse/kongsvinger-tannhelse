@@ -13,6 +13,8 @@ export const munntorrhet: Behandlingsside = {
   ingress: "Munntørrhet betyr at du lager for lite spytt. Det kan gi ubehag, dårlig ånde og flere hull i tennene. Her ser du hva det kan komme av, og hva som kan hjelpe.",
   hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på hva den tørre munnen gjør med tennene dine, og hva som kan hjelpe.",
   tittelbilde: "torr",
+  blekk: "petrol",
+  stripe: "draaper",
   beskrivelse: "Munntørrhet hos tannlegen i Kongsvinger: hva munntørrhet er, hva det kan komme av, hva det gjør med tennene, og hva som kan hjelpe.",
   deler: [
     {

@@ -8,7 +8,8 @@ import s from "./side.module.css";
 
 /* The pieces that make a treatment page its own, beside its drawings: the
    watercolour wash in the page's ink, the night sky over the tanngnissing
-   page, and the phone card at the top of the pages for what can't wait. */
+   page, the calendar binding on the tannsjekk page, and the phone card at
+   the top of the pages for what can't wait. */
 
 /** A watercolour wash in the page's ink, behind a pen drawing. It fills its box and comes once the pen has drawn. */
 export function Vask({ seed, className }: { seed: number; className?: string }) {
@@ -52,6 +53,21 @@ export function Stjerner() {
         />
       ))}
       <path d={`${stjerne(120, 70, 7)} ${stjerne(846, 118, 8)} ${stjerne(930, 300, 5)} ${stjerne(64, 330, 5)}`} fill="#F6E3A6" />
+    </svg>
+  );
+}
+
+/** The tannsjekk page bound at the top like a wall calendar: a wire ring through a hole, every 24 px along the sheet's top edge. */
+export function Spiral() {
+  return (
+    <svg aria-hidden="true" className={s.spiral}>
+      <defs>
+        <pattern id="spiral" width={24} height={34} patternUnits="userSpaceOnUse">
+          <ellipse cx={13.5} cy={24} rx={3.4} ry={2.8} fill="#27373E" fillOpacity={0.75} />
+          <path d="M12,24 L12.6,4.5 Q13,1 15.5,1.2 Q18,1.6 17.6,5 L17,14" fill="none" stroke="#78858A" strokeWidth={2.2} strokeLinecap="round" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#spiral)" />
     </svg>
   );
 }

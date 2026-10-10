@@ -1,16 +1,17 @@
 import type { Rute, Stripe } from "@/data/behandlinger/typer";
 import { cn } from "@/lib/utils";
+import { Arbeidstegning, Fargeskala, Kalender, Puter, Tannrad, Tekst } from "./striper2";
+import { Bro, Buer, Fliser, Kroner, Rotter } from "./striper3";
+import { Draaper, Luke, Maal, Puslespill, Skjell, Smil } from "./striper4";
+import { Hakk, Lokk, Lupe, Plaster, Skyer, Strikk } from "./striper5";
 import { BTEGNINGER } from "./tegninger";
 import s from "./side.module.css";
 
 /* The treatment told as a comic strip, in the shape the treatment asks for:
-   squares in rows, or round frames on a string. The frames take the page's
-   ink (blekk.ts). A step not everyone needs has a dashed frame.
-   Server-safe: the line between the round frames is plain SVG. */
-
-function Tekst({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <figcaption className={cn("text-[15.5px] leading-[1.45] text-[var(--color-tekst)] md:text-[16.5px]", className)}>{children}</figcaption>;
-}
+   squares in rows, round frames on a string, or one of the shapes in
+   striper2.tsx to striper5.tsx. The frames take the page's ink (blekk.ts). A step not
+   everyone needs has a dashed frame. Server-safe: the line between the
+   round frames is plain SVG. */
 
 /** Squares in rows: two on a phone, three or four on a wider screen. */
 function Ruter({ ruter }: { ruter: Rute[] }) {
@@ -78,5 +79,49 @@ export function Stripen({ form = "ruter", ruter }: { form?: Stripe; ruter: Rute[
       return <Ruter ruter={ruter} />;
     case "perler":
       return <Perler ruter={ruter} />;
+    case "puter":
+      return <Puter ruter={ruter} />;
+    case "arbeidstegning":
+      return <Arbeidstegning ruter={ruter} />;
+    case "kalender":
+      return <Kalender ruter={ruter} />;
+    case "tannrad":
+      return <Tannrad ruter={ruter} />;
+    case "fargeskala":
+      return <Fargeskala ruter={ruter} />;
+    case "fliser":
+      return <Fliser ruter={ruter} />;
+    case "rotter":
+      return <Rotter ruter={ruter} />;
+    case "buer":
+      return <Buer ruter={ruter} />;
+    case "kroner":
+      return <Kroner ruter={ruter} />;
+    case "bro":
+      return <Bro ruter={ruter} />;
+    case "smil":
+      return <Smil ruter={ruter} />;
+    case "puslespill":
+      return <Puslespill ruter={ruter} />;
+    case "skjell":
+      return <Skjell ruter={ruter} />;
+    case "luke":
+      return <Luke ruter={ruter} />;
+    case "draaper":
+      return <Draaper ruter={ruter} />;
+    case "maal":
+      return <Maal ruter={ruter} />;
+    case "strikk":
+      return <Strikk ruter={ruter} />;
+    case "skyer":
+      return <Skyer ruter={ruter} />;
+    case "lupe":
+      return <Lupe ruter={ruter} />;
+    case "plaster":
+      return <Plaster ruter={ruter} />;
+    case "hakk":
+      return <Hakk ruter={ruter} />;
+    case "lokk":
+      return <Lokk ruter={ruter} />;
   }
 }

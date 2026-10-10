@@ -11,7 +11,7 @@ import { GRUPPER } from "@/components/forside/behandlinger/grupper";
 import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";
 import { blekkStil } from "./blekk";
-import { MedNummer, RingOss, Stjerner, Vask } from "./signaturer";
+import { MedNummer, RingOss, Spiral, Stjerner, Vask } from "./signaturer";
 import { Stripen } from "./striper";
 import { BTEGNINGER } from "./tegninger";
 import { Natt, TITTELBILDER } from "./tittelbilder";
@@ -32,7 +32,7 @@ import s from "./side.module.css";
  * What makes each page its own, beside its drawings: its ink (blekk.ts),
  * which colours the frames, the notes and a watercolour wash behind the
  * drawings; the shape of its strip (striper.tsx); and what only it has
- * (signatur: a night sky over the top).
+ * (signatur: a night sky over the top, or a calendar's binding).
  */
 
 /** Under every comic strip: this is how it often goes, not a promise. */
@@ -173,6 +173,7 @@ export function Behandlingsside({ side }: { side: Side }) {
       <div className="mx-auto w-full max-w-[1040px] px-[var(--container-px)]" style={blekkStil(side.blekk)}>
         <Smuler sider={[{ navn: "Behandlinger", href: "/behandlinger" }, { navn: side.navn }]} />
         <Ark className="mt-8">
+          {side.signatur === "spiral" && <Spiral />}
           <Vis as="header" margin="0px" className={cn("text-center", natt && s.natt)}>
             {natt && <Stjerner />}
             <h1 className={cn("relative mx-auto max-w-[22ch] text-balance font-bold", natt ? "text-[#FFF8E7]" : "text-[var(--color-glomma-deep)]")} style={SIDETITTEL}>

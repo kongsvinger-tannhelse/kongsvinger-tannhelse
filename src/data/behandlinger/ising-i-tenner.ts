@@ -13,6 +13,8 @@ export const isingITenner: Behandlingsside = {
   ingress: "Isner det i tennene når du drikker noe kaldt? Her ser du hvorfor det skjer, hva vi ser etter, og hva som kan hjelpe.",
   hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på hvorfor det iser, og hva som kan hjelpe deg.",
   tittelbilde: "lue",
+  blekk: "is",
+  stripe: "strikk",
   beskrivelse: "Ising i tennene hos tannlegen i Kongsvinger: hvorfor det iser, hva tannlegen ser etter, og hva som kan gjøres hos tannlegen.",
   deler: [
     {

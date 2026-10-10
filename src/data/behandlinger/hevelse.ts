@@ -13,6 +13,7 @@ export const hevelse: Behandlingsside = {
   ingress: "Hevelse rundt en tann eller i ansiktet kan komme av en infeksjon. Ta kontakt med oss så fort det lar seg gjøre. Her ser du hva det kan være, og hva vi gjør.",
   tittelbilde: "kulefisk",
   blekk: "tegl",
+  stripe: "puter",
   beskrivelse: "Hevelse ved en tann hos tannlegen i Kongsvinger: hva en tannbyll er, tegn du bør se etter, når du må ha hjelp med en gang, og hva tannlegen gjør.",
   deler: [
     {

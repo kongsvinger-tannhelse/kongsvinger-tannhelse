@@ -13,6 +13,8 @@ export const trekkingAvTenner: Behandlingsside = {
   ingress: "Noen tenner kan ikke reddes. Da kan det være best å trekke dem. Her ser du hvorfor en tann kan måtte trekkes, og hvordan det går for seg.",
   hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på tannen, og henviser deg videre hvis det trengs.",
   tittelbilde: "tang",
+  blekk: "granitt",
+  stripe: "luke",
   beskrivelse: "Trekking av tenner hos tannlegen i Kongsvinger: når en tann må trekkes, hvordan det går for seg, bedøvelse, og hva som kan gjøres med tannluka etterpå.",
   deler: [
     {

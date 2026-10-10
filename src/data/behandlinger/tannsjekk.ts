@@ -13,6 +13,9 @@ export const tannsjekk: Behandlingsside = {
   ingress: "En tannsjekk er den enkleste måten å holde munnen frisk på. Vi finner problemer tidlig, mens de er små og enkle å behandle.",
   hosOss: "Hos oss på Kongsvinger Tannhelse får du vite hva vi fant, og hva vi foreslår videre.",
   tittelbilde: "stol",
+  blekk: "oker",
+  stripe: "kalender",
+  signatur: "spiral",
   beskrivelse: "Tannsjekk hos tannlegen i Kongsvinger: hva som skjer på en tannsjekk, hvor ofte du bør komme, og røntgen.",
   deler: [
     {

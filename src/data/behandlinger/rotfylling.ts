@@ -13,6 +13,8 @@ export const rotfylling: Behandlingsside = {
   ingress: "Er nerven inne i tannen betent eller død, kan en rotfylling redde tannen. Her ser du hva som skjer, steg for steg.",
   hosOss: "Hos oss på Kongsvinger Tannhelse ser vi på tannen, og henviser deg videre hvis det trengs.",
   tittelbilde: "rot",
+  blekk: "skifer",
+  stripe: "rotter",
   beskrivelse: "Rotfylling hos tannlegen i Kongsvinger: hva det er, tegn på at nerven er syk, hvordan det foregår steg for steg, om det gjør vondt, og hva som skjer etterpå.",
   deler: [
     {

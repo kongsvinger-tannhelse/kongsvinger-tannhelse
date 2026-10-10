@@ -12,6 +12,8 @@ export const losnetTannkrone: Behandlingsside = {
   navn: "Løsnet tannkrone",
   ingress: "Har en tannkrone løsnet, ta kontakt med oss. Her ser du hvordan en krone sitter fast, hvorfor den kan løsne, og hva vi gjør.",
   tittelbilde: "vind",
+  blekk: "tegl",
+  stripe: "lokk",
   beskrivelse: "Løsnet tannkrone hos tannlegen i Kongsvinger: hvordan en krone sitter fast, hvorfor den kan løsne, og hva tannlegen gjør.",
   deler: [
     {

@@ -13,6 +13,8 @@ export const tannskade: Behandlingsside = {
   // the clinic's own words (klinikk.ts; the old site: «kontakte oss så snart som mulig»)
   ingress: "Er en tann løs, slått inn, slått ut eller knekt? Kontakt oss så snart som mulig, og ta med tannen eller biten hvis du finner den.",
   tittelbilde: "ball",
+  blekk: "tegl",
+  stripe: "plaster",
   beskrivelse: "Tannskade hos tannlegen i Kongsvinger: hva du gjør hvis en tann blir slått ut eller knekker, hvordan tannlegen behandler skaden, og hvem som betaler.",
   deler: [
     {

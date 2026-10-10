@@ -12,6 +12,8 @@ export const darligAnde: Behandlingsside = {
   ingress: "Dårlig ånde er svært vanlig, og som regel kan du gjøre mye med det selv. Her ser du hvor den kommer fra, og hva vi kan hjelpe med.",
   hosOss: "Hos oss på Kongsvinger Tannhelse ser vi etter om lukten kommer fra munnen, og hva som kan hjelpe.",
   tittelbilde: "klesklype",
+  blekk: "skog",
+  stripe: "skyer",
   beskrivelse: "Dårlig ånde hos tannlegen i Kongsvinger: hvor den kommer fra, hva den kan komme av, hva du kan gjøre selv, og hva tannlegen kan hjelpe med.",
   deler: [
     {
