@@ -15,8 +15,10 @@ const LENKER = [
 ];
 
 /**
- * Floats over the hero with no background of its own; once the page has
- * moved, it settles onto a sheet of paper with a hairline under it.
+ * Floats over the hero with no background of its own (on the front page a
+ * frosted white, so the links read where the hero's photo runs up under
+ * them); once the page has moved, it settles onto a sheet of paper with a
+ * hairline under it.
  * On the front page (`forside`) the hero's own big name sits right below, so
  * while the bar floats over it only the tooth shows; the name comes in once
  * the page moves. Screen readers get the name all along.
@@ -38,7 +40,9 @@ export function Navbar({ forside = false }: { forside?: boolean }) {
         "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-500",
         flyttet || apen
           ? "bg-[color-mix(in_srgb,var(--color-papir)_88%,transparent)] shadow-[0_1px_0_var(--color-strek)] backdrop-blur-md"
-          : "bg-transparent"
+          : forside
+            ? "bg-white/85 backdrop-blur-md"
+            : "bg-transparent"
       )}
     >
       <nav
