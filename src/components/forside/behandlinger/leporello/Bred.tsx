@@ -104,10 +104,11 @@ export function Bred() {
     width: useMotionTemplate`calc(var(--w) * ${skyggeBredde})`,
   };
 
-  // a scene is pure picture; the words under it are the panel's text
+  // a scene is pure picture; the words under it are the panel's text. It is
+  // drawn when the strip starts to open: closed, only the cover shows.
   const scene = (k: number) => (
     <div aria-hidden="true" className="absolute inset-0">
-      <Scene id={TRE[k].id} oppe={staar > k} spiller={synlig && staar > k} redusert={redusert} />
+      {vist && <Scene id={TRE[k].id} oppe={staar > k} spiller={synlig && staar > k} redusert={redusert} />}
     </div>
   );
   const ord = (k: number) => (

@@ -34,9 +34,10 @@ export function Smal() {
       {TRE.map((t, k) => (
         <Fragment key={t.id}>
           <Brett n={2 * k} redusert={redusert} aria-hidden>
-            {(apen) => (
+            {/* the scene is drawn when its panel comes into view: it lies folded out of sight until then */}
+            {(apen, vist) => (
               <div className="relative aspect-[400/480] w-full">
-                <Scene id={t.id} oppe={apen} spiller={synlig && apen} redusert={redusert} />
+                {vist && <Scene id={t.id} oppe={apen} spiller={synlig && apen} redusert={redusert} />}
               </div>
             )}
           </Brett>
@@ -82,7 +83,7 @@ export function Smal() {
  * page, edge on, and drops open on a spring when its place comes into view.
  * Its place is kept the whole time, so nothing below it moves.
  */
-function Brett({ n, redusert, "aria-hidden": skjult, children }: { n: number; redusert: boolean; "aria-hidden"?: boolean; children: (apen: boolean) => ReactNode }) {
+function Brett({ n, redusert, "aria-hidden": skjult, children }: { n: number; redusert: boolean; "aria-hidden"?: boolean; children: (apen: boolean, vist: boolean) => ReactNode }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const vist = useInView(ref, { once: true, margin: "0px 0px -12% 0px" });
   // open: the drop has settled, so the scene on it may stand up
@@ -102,7 +103,7 @@ function Brett({ n, redusert, "aria-hidden": skjult, children }: { n: number; re
         animate={vist ? { rotateX: 0, opacity: 1 } : { rotateX: -88, opacity: 0 }}
         transition={redusert ? { duration: 0 } : { rotateX: { type: "spring", stiffness: 70, damping: 12 }, opacity: { duration: 0.18 } }}
       >
-        {children(apen)}
+        {children(apen, vist)}
       </m.div>
     </div>
   );

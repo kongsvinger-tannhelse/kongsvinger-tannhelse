@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/forside/Hero";
 import { Leporello } from "@/components/forside/behandlinger/leporello/Leporello";
@@ -14,12 +15,23 @@ export default function Home() {
   return (
     <>
       <Navbar forside />
+      {/* Each section below the hero in its own Suspense boundary: React then
+          wakes (hydrates) them one at a time, in short turns, instead of the
+          whole page in one long one that holds a phone's processor. */}
       <main>
         <Hero />
-        <Leporello />
-        <OmOss />
-        <RadOgTips />
-        <Kontakt />
+        <Suspense>
+          <Leporello />
+        </Suspense>
+        <Suspense>
+          <OmOss />
+        </Suspense>
+        <Suspense>
+          <RadOgTips />
+        </Suspense>
+        <Suspense>
+          <Kontakt />
+        </Suspense>
       </main>
     </>
   );

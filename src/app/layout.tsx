@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Schibsted_Grotesk } from "next/font/google";
+import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { klinikk } from "@/data/klinikk";
@@ -73,7 +74,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="antialiased font-sans min-h-screen">
         <Bevegelse>
           {children}
-          <Bunntekst />
+          {/* woken on its own, after the page above it (see app/page.tsx) */}
+          <Suspense>
+            <Bunntekst />
+          </Suspense>
         </Bevegelse>
         {/* Visits and load times from real visitors, counted by Vercel without
             cookies or anything stored in the browser, so no consent banner is

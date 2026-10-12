@@ -28,6 +28,9 @@ const ruta = ["bilde9", "bilde1", "bilde3"].map((navn) => klinikkbilder.find((b)
  */
 export function Klinikkbilder() {
   const klar = useHeroKlar(900);
+  // the rooms are fetched once the view is in, 0.9 s before the pane stands
+  // up; not with the top of the page, where they would only slow the words
+  const hent = useHeroKlar(0);
   const redusert = useReducedMotion() ?? false;
   const [nr, setNr] = useState(0);
   const [vist, setVist] = useState(1); // how many rooms have had their turn
@@ -67,9 +70,10 @@ export function Klinikkbilder() {
     >
       <div className={s.ramme}>
         <div className={s.glass}>
-          {ruta.map((b, i) => (
-            <Image key={b.src} src={b.src} alt="" fill sizes="(min-width: 768px) 420px, 58vw" className={s.rom} data-vis={klar && i === nr} loading={i < 2 ? "eager" : "lazy"} />
-          ))}
+          {hent &&
+            ruta.map((b, i) => (
+              <Image key={b.src} src={b.src} alt="" fill sizes="(min-width: 768px) 420px, 58vw" className={s.rom} data-vis={klar && i === nr} loading={i < 2 ? "eager" : "lazy"} />
+            ))}
           <span className={s.innerskygge} aria-hidden="true" />
         </div>
 

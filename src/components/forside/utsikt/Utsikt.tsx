@@ -49,32 +49,51 @@ const TELEFON = 1600;
  * ask for another), whatever their pixel density: the panorama is about
  * 1600 CSS px wide there (what PageSpeed measures as displayed), and bigger
  * files cost bytes for treetops a little sharper than anyone sees in motion.
- * Loaded eagerly at high priority, not through Next's preload, which would
- * fetch the wide-screen size on phones as well.
+ *
+ * The addresses wait in data-srcset / data-src until the HTML has been read
+ * (HENT, run by VAKT): the words of the hero are the page's largest
+ * content, and they need nothing but the HTML and the CSS, so the view's
+ * two big files must not share the line with them. A frame later the view
+ * starts loading, long before the page's scripts wake. Not through Next's
+ * preload, which would fetch the wide-screen size on phones as well.
  */
 function Dybdefoto({ src, telefon = TELEFON }: { src: StaticImageData; telefon?: number }) {
   const felles = { src, alt: "", quality: 75 } as const;
-  const { props: bred } = getImageProps({ ...felles, sizes: "max(130vw, 195vh)" });
+  const {
+    props: { src: bredSrc, srcSet: bredSrcSet, ...bred },
+  } = getImageProps({ ...felles, sizes: "max(130vw, 195vh)" });
   const { props: smal } = getImageProps({ ...felles, width: telefon, height: Math.round(telefon / AR) });
   // getImageProps gives the phone version as "…w=1600 1x, …w=3200 2x"; keep only the first
   const smalSrc = smal.srcSet?.split(", ")[0].split(" ")[0] ?? smal.src;
   return (
     <picture>
-      <source media="(max-width: 767px)" srcSet={`${smalSrc} ${telefon}w`} sizes="max(130vw, 195vh)" />
-      <img {...bred} alt="" loading="eager" fetchPriority="high" />
+      <source media="(max-width: 767px)" data-srcset={`${smalSrc} ${telefon}w`} sizes="max(130vw, 195vh)" />
+      <img {...bred} data-srcset={bredSrcSet} data-src={bredSrc} alt="" loading="eager" />
     </picture>
   );
 }
 
+/** Give the two depths their addresses (see Dybdefoto); once is enough. HENT is the same, for VAKT. */
+function hent(el: HTMLElement) {
+  el.querySelectorAll<HTMLImageElement | HTMLSourceElement>("[data-srcset]").forEach((e) => {
+    if (e.getAttribute("srcset")) return;
+    if (e instanceof HTMLImageElement && e.dataset.src) e.src = e.dataset.src;
+    e.srcset = e.dataset.srcset ?? "";
+  });
+}
+const HENT = `function(s){s.querySelectorAll("[data-srcset]").forEach(function(e){if(e.getAttribute("srcset"))return;if(e.dataset.src)e.src=e.dataset.src;e.srcset=e.dataset.srcset})}`;
+
 /**
  * The view is ready (data-klar) once both photos are in, and the entrance
  * starts; data-klar-ved notes when, so useHeroKlar can keep time from it.
- * VAKT does this in the page's own HTML, before React wakes: a photo that is
- * cached, or just quicker than the page's scripts, has loaded before React
- * could listen for it (on 2026-10-09 the view stood still for 2.7–3.9 s
- * waiting on the fallback). The effect does the same for a visit by a link.
+ * VAKT does this in the page's own HTML, before React wakes: it starts the
+ * photos a frame after the whole HTML is read (HENT), when the words above
+ * the view have been painted, and listens for them, since
+ * React wakes too late to hear a quick photo arrive (on 2026-10-09 the view
+ * stood still for 2.7–3.9 s waiting on the fallback). The effect does the
+ * same for a visit by a link.
  */
-const VAKT = `(function(s){var b=s.querySelectorAll("img"),n=0;function k(){if(++n<b.length||s.dataset.klar)return;s.dataset.klar="true";s.dataset.klarVed=String(Math.round(performance.now()))}b.forEach(function(i){if(i.complete)k();else{i.addEventListener("load",k);i.addEventListener("error",k)}})})(document.currentScript.parentElement)`;
+const VAKT = `(function(s){var b=s.querySelectorAll("img"),n=0;function k(){if(++n<b.length||s.dataset.klar)return;s.dataset.klar="true";s.dataset.klarVed=String(Math.round(performance.now()))}b.forEach(function(i){i.addEventListener("load",k);i.addEventListener("error",k)});function h(){requestAnimationFrame(function(){setTimeout(function(){(${HENT})(s)},0)})}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",h):h()})(document.currentScript.parentElement)`;
 
 function merkKlar(el: HTMLElement) {
   if (el.dataset.klar) return;
@@ -165,6 +184,8 @@ export function Utsikt({ fx = 0.6, fxSmal = 0.7, fy = 0.5, skar = false, glid = 
   useEffect(() => {
     const el = ref.current;
     if (!el || el.dataset.klar) return;
+    // after a visit by a link (no VAKT), or if VAKT's frame hasn't come yet
+    hent(el);
     const venter = [...el.querySelectorAll("img")].filter((b) => !b.complete);
     let igjen = venter.length;
     if (!igjen) {

@@ -54,10 +54,6 @@ body {
 }
 
 /* ── Shared hero entrance helpers ── */
-@keyframes stig {
-  from { transform: translateY(105%); }
-  to   { transform: translateY(0); }
-}
 @keyframes loft {
   from { opacity: 0; transform: translateY(var(--fra-y, 12px)); }
   to   { opacity: 1; transform: translateY(0); }
@@ -81,9 +77,8 @@ body {
   }
 }
 
-.hero-linje { animation: stig 1.1s var(--ease-film) both; }
-.hero-loft  { animation: loft 0.9s var(--ease-rolig) both; }
+.hero-loft { animation: loft 0.9s var(--ease-rolig) both; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-linje, .hero-loft { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .hero-loft { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
