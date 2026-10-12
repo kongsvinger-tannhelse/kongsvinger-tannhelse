@@ -5,6 +5,8 @@ import { klinikk } from "@/data/klinikk";
 import { Apningsstatus } from "@/components/forside/Apningsstatus";
 import { kortskrift } from "@/components/omoss/skrift";
 import { cn } from "@/lib/utils";
+import farTegnet from "@/components/forside/utsikt/far-tegnet.webp";
+import naerTegnet from "@/components/forside/utsikt/near-tegnet.webp";
 
 /*
  * MOCKUPS of a new hero (not on the live front page): white at the top with
@@ -27,6 +29,27 @@ function Byen({ className }: { className?: string }) {
   return (
     <div aria-hidden="true" className={cn("pointer-events-none absolute -left-[45%] bottom-0 w-[190%] translate-y-[34%] md:left-0 md:w-full md:translate-y-[46%]", className)}>
       <Image src="/images/tegninger/landskap-bred.webp" alt="" width={3200} height={964} sizes="(min-width: 768px) 100vw, 190vw" className="block h-auto w-full" />
+    </div>
+  );
+}
+
+/**
+ * The live hero's drawing (tools/tegn_hero.py: Glomma, the bridge, the town
+ * and the fortress under a low sun), its two layers stacked, showing only its
+ * lower part, across the foot of the hero. Its top fades out, so the white
+ * above turns yellow and runs straight into the drawing's own hazy horizon.
+ */
+function Utsikten({ className }: { className?: string }) {
+  const maske = "linear-gradient(to bottom, transparent 0%, #000 26%)";
+  return (
+    <div aria-hidden="true" className={cn("pointer-events-none absolute inset-x-0 bottom-0 overflow-hidden", className)} style={{ maskImage: maske, WebkitMaskImage: maske }}>
+      {/* the whole drawing (3:2), sunk so its foreground trees are cut off; on a phone
+          enlarged and moved left so the town and the fortress stand in the middle */}
+      <div className="absolute bottom-0 left-[-130%] aspect-[3/2] w-[230%] translate-y-[12%] md:left-0 md:w-full md:translate-y-[14%]">
+        {[farTegnet, naerTegnet].map((lag, i) => (
+          <Image key={i} src={lag} alt="" fill sizes="(min-width: 768px) 100vw, 230vw" quality={75} className="object-cover" />
+        ))}
+      </div>
     </div>
   );
 }
@@ -60,17 +83,21 @@ function Knapper({ className }: { className?: string }) {
 
 /* ─────────────────────────────────────────────────────────────────────
    1 · «Snitt». The words on white to the left, as on the live hero; the
-   treatment room up in the top right corner, the whole photo (its own
-   5:4 shape, nothing cropped) about half the screen high, its left edge
-   cut on a gentle diagonal. Under it the white warms to yellow and the
-   town stands across the foot.
+   treatment room in the top right, the whole photo (its own 5:4 shape,
+   nothing cropped), reaching down to where the white turns yellow and in
+   close to the name, its left edge cut on a gentle diagonal. Below, the
+   live hero's drawing of the town rises out of the yellow.
    ───────────────────────────────────────────────────────────────────── */
 export function Snitt() {
   return (
-    <section aria-label="Velkommen" className="relative flex min-h-[100svh] flex-col overflow-hidden bg-white md:block md:min-h-[max(680px,100svh)]">
+    <section
+      aria-label="Velkommen"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden md:block md:min-h-[max(680px,100svh)]"
+      style={{ background: `linear-gradient(to bottom, #fff 0%, #fff 52%, ${SOL_LYS} 66%, ${SOL} 78%)` }}
+    >
       {/* the room: full width under the words on a phone, top right from md up */}
-      <div className="relative z-[6] order-2 mt-8 aspect-[5/4] w-full [clip-path:polygon(0_10%,100%_0,100%_100%,0_100%)] md:absolute md:right-0 md:top-0 md:mt-0 md:w-[min(52vw,calc(56svh*1.25))] md:[clip-path:polygon(14%_0,100%_0,100%_100%,0_100%)]">
-        <Image src={ROMMET} alt="Behandlingsrommet: stolen, instrumentene og brettet" fill priority sizes="(min-width: 768px) 52vw, 100vw" className="object-cover" />
+      <div className="relative z-[6] order-2 mt-8 aspect-[5/4] w-full [clip-path:polygon(0_10%,100%_0,100%_100%,0_100%)] md:absolute md:right-0 md:top-0 md:mt-0 md:w-[min(56vw,calc(64svh*1.25))] md:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]">
+        <Image src={ROMMET} alt="Behandlingsrommet: stolen, instrumentene og brettet" fill priority sizes="(min-width: 768px) 58vw, 100vw" className="object-cover" />
       </div>
 
       <div className="relative z-10 order-1 mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pt-[100px] md:pt-[clamp(112px,15vh,150px)]">
@@ -85,13 +112,9 @@ export function Snitt() {
         </div>
       </div>
 
-      {/* white → yellow, then the town */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[30%] md:h-[36%]"
-        style={{ background: `linear-gradient(to bottom, rgba(255,255,255,0) 0%, ${SOL_LYS} 45%, ${SOL} 100%)` }}
-      />
-      <Byen className="z-[7]" />
+      {/* on a phone the drawing needs its own room under the photo */}
+      <div className="order-3 h-[300px] md:hidden" aria-hidden="true" />
+      <Utsikten className="z-[5] h-[340px] md:h-[48%]" />
     </section>
   );
 }
