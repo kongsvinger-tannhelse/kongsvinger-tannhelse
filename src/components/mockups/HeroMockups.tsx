@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { ArrowRight, Phone } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { Apningsstatus } from "@/components/forside/Apningsstatus";
@@ -84,9 +85,10 @@ function Knapper({ className }: { className?: string }) {
 
 /* ─────────────────────────────────────────────────────────────────────
    1 · «Snitt». The words on white to the left, as on the live hero; the
-   treatment room in the top right, the whole photo (its own 5:4 shape,
-   nothing cropped), from the top of the page down to the line that says
-   whether the clinic is open, its left edge cut on a gentle diagonal.
+   treatment room in the top right, from just past the name to the edge of
+   the screen and from the top of the page down to the line that says
+   whether the clinic is open, its left edge cut on a diagonal that
+   follows the words.
    Below, the live hero's drawing of the town rises out of the yellow.
    Phones and tablets: the words, then the photo, then the drawing.
    ───────────────────────────────────────────────────────────────────── */
@@ -112,8 +114,17 @@ export function Snitt() {
           </div>
         </div>
 
-        <div className="relative mt-8 aspect-[5/4] w-full [clip-path:polygon(0_10%,100%_0,100%_100%,0_100%)] lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-full lg:w-auto lg:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]">
-          <Image src={ROMMET} alt="Behandlingsrommet: stolen, instrumentene og brettet" fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+        {/* from lg up: from just past the name to the right edge of the screen, as tall as
+            the words; the frame is wider than the photo there, so a strip of ceiling and floor
+            is trimmed, keeping the chair, the instruments and the tray. Its left edge is worked
+            out from the name (5.74 em wide in this face, at the size the h1 below sets), so the
+            diagonal keeps the same gap from «Kongsvinger» on every screen and comes in close
+            under it, by the buttons. */}
+        <div
+          className="relative mt-8 aspect-[5/4] w-full [clip-path:polygon(0_10%,100%_0,100%_100%,0_100%)] lg:absolute lg:inset-y-0 lg:left-[var(--fra)] lg:right-0 lg:mt-0 lg:aspect-auto lg:h-full lg:w-auto lg:[clip-path:polygon(14%_0,100%_0,100%_100%,0_100%)]"
+          style={{ "--fra": "calc(max(0px, (100vw - var(--container-max)) / 2) + var(--container-px) + 5.4 * clamp(44px, 6vw, 92px) + 24px)" } as CSSProperties}
+        >
+          <Image src={ROMMET} alt="Behandlingsrommet: stolen, instrumentene og brettet" fill priority sizes="(min-width: 1024px) 60vw, 100vw" className="object-cover lg:object-[50%_32%]" />
         </div>
       </div>
 
