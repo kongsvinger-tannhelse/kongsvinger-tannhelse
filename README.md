@@ -15,6 +15,7 @@ npm run build && npm run start   # http://localhost:3200
 - `src/data/klinikk.ts` — fakta om klinikken, behandlinger, bilder og fotokreditt.
 - `src/components/forside/` — forsiden. Toppen («Snitt») har navnet til venstre, behandlingsrommet til høyre bak en skrå kant,
   og nederst tegningen av utsikten over Glomma (`utsikt/far-tegnet.webp` / `near-tegnet.webp`, laget med `tools/tegn_hero.py`).
+  På mobil og nettbrett er toppen én skjerm høy: rammen under teksten åpner på tegningen, og så feies bildet inn (`Bytte.tsx`).
 - `crawl/` — alt innholdet fra den gamle nettsiden, hentet med Crawl4AI (`tools/crawl_site.py`). `crawl/SITE-BRIEF.md` er sammendraget.
 
 ## Bilder

@@ -5,33 +5,26 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import farTegnet from "@/components/forside/utsikt/far-tegnet.webp";
 import naerTegnet from "@/components/forside/utsikt/near-tegnet.webp";
-import styles from "./mobilbytte.module.css";
+import styles from "./bytte.module.css";
 
 /*
- * MOCKUP (phones and tablets, below lg): the frame under the words opens on
- * the drawing of the view over Glomma, and a moment later the treatment room
- * takes its place. Three ways for it to come in:
- *
- *   snitt         — the photo sweeps in from the left behind a slanted edge
- *                   (the hero's own diagonal) with a rim of low sun on it.
- *   sola          — the photo opens out of the sun in the drawing, a soft
- *                   circle growing until it fills the frame.
- *   fremkalling   — the camera drifts towards the town while it waits, then
- *                   the sun floods the frame with light and the room comes
- *                   up out of it, like a photo developing.
+ * Phones and tablets (below lg): the frame under the words opens on the
+ * drawing of the view over Glomma, and a moment later the treatment room
+ * sweeps in from the left behind a slanted edge (the hero's own diagonal),
+ * with a rim of low sun along it. «Snitt», chosen 2026-10-12 from three
+ * proposals (the others: the photo opening out of the drawing's sun, and the
+ * frame flooding with light; in git history).
  *
  * It waits for the photo to have loaded, and for VENT ms since the page
  * started loading (not since the scripts woke up), so a slow phone doesn't
- * get a longer look at the drawing. With reduced motion: no movement, the
- * photo simply takes over.
+ * get a longer look at the drawing. With reduced motion the photo simply
+ * takes over, without the sweep.
  */
-
-export type Variant = "snitt" | "sola" | "fremkalling";
 
 const ROMMET = "/images/klinikk/behandlingsrom.webp";
 const VENT = 1100;
 
-export function MobilBytte({ variant, className }: { variant: Variant; className?: string }) {
+export function Bytte({ className }: { className?: string }) {
   const [lastet, setLastet] = useState(false);
   const [bilde, setBilde] = useState(false);
   const foto = useRef<HTMLImageElement>(null);
@@ -50,7 +43,7 @@ export function MobilBytte({ variant, className }: { variant: Variant; className
 
   return (
     <div className={cn(styles.rute, className)}>
-      <div className={cn(styles.innhold, styles[variant])} data-fase={bilde ? "bilde" : "tegning"}>
+      <div className={styles.innhold} data-fase={bilde ? "bilde" : "tegning"}>
         {/* the drawing: its two layers, framed on the sun, the bridge and the town */}
         <div aria-hidden="true" className={styles.tegning}>
           <div className={styles.flytt}>
@@ -75,7 +68,7 @@ export function MobilBytte({ variant, className }: { variant: Variant; className
           </div>
         </div>
 
-        {/* the light that rides on the change */}
+        {/* the rim of sun on the edge */}
         <div aria-hidden="true" className={styles.lys} />
       </div>
     </div>
