@@ -84,37 +84,41 @@ function Knapper({ className }: { className?: string }) {
 /* ─────────────────────────────────────────────────────────────────────
    1 · «Snitt». The words on white to the left, as on the live hero; the
    treatment room in the top right, the whole photo (its own 5:4 shape,
-   nothing cropped), reaching down to where the white turns yellow and in
-   close to the name, its left edge cut on a gentle diagonal. Below, the
-   live hero's drawing of the town rises out of the yellow.
+   nothing cropped), from the top of the page down to the line that says
+   whether the clinic is open, its left edge cut on a gentle diagonal.
+   Below, the live hero's drawing of the town rises out of the yellow.
+   Phones and tablets: the words, then the photo, then the drawing.
    ───────────────────────────────────────────────────────────────────── */
 export function Snitt() {
   return (
     <section
       aria-label="Velkommen"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden md:block md:min-h-[max(680px,100svh)]"
+      className="relative min-h-[100svh] overflow-hidden lg:min-h-[max(680px,100svh)]"
       style={{ background: `linear-gradient(to bottom, #fff 0%, #fff 52%, ${SOL_LYS} 66%, ${SOL} 78%)` }}
     >
-      {/* the room: full width under the words on a phone, top right from md up */}
-      <div className="relative z-[6] order-2 mt-8 aspect-[5/4] w-full [clip-path:polygon(0_10%,100%_0,100%_100%,0_100%)] md:absolute md:right-0 md:top-0 md:mt-0 md:w-[min(56vw,calc(64svh*1.25))] md:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]">
-        <Image src={ROMMET} alt="Behandlingsrommet: stolen, instrumentene og brettet" fill priority sizes="(min-width: 768px) 58vw, 100vw" className="object-cover" />
-      </div>
+      {/* the words, and the room sized by them: from lg up it runs from the top of the
+          page to the foot of the words (the opening hours), as tall as they reach */}
+      <div className="relative z-10">
+        <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pt-[100px] lg:pt-[clamp(112px,15vh,150px)]">
+          <div className="max-w-[560px]">
+            <h1 className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(44px, 6vw, 92px)", lineHeight: 0.92, letterSpacing: "-0.035em" }}>
+              Kongsvinger
+              <br />
+              Tannhelse
+            </h1>
+            <p className="mt-4 text-[18px] font-medium text-[var(--color-glomma)] md:mt-5 md:text-[20px]">Tannlegene Hafthun og Zia</p>
+            <Knapper className="mt-7" />
+          </div>
+        </div>
 
-      <div className="relative z-10 order-1 mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pt-[100px] md:pt-[clamp(112px,15vh,150px)]">
-        <div className="max-w-[560px]">
-          <h1 className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(44px, 6vw, 92px)", lineHeight: 0.92, letterSpacing: "-0.035em" }}>
-            Kongsvinger
-            <br />
-            Tannhelse
-          </h1>
-          <p className="mt-4 text-[18px] font-medium text-[var(--color-glomma)] md:mt-5 md:text-[20px]">Tannlegene Hafthun og Zia</p>
-          <Knapper className="mt-7" />
+        <div className="relative mt-8 aspect-[5/4] w-full [clip-path:polygon(0_10%,100%_0,100%_100%,0_100%)] lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-full lg:w-auto lg:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]">
+          <Image src={ROMMET} alt="Behandlingsrommet: stolen, instrumentene og brettet" fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
         </div>
       </div>
 
-      {/* on a phone the drawing needs its own room under the photo */}
-      <div className="order-3 h-[300px] md:hidden" aria-hidden="true" />
-      <Utsikten className="z-[5] h-[340px] md:h-[48%]" />
+      {/* on phones and tablets the drawing needs its own room under the photo */}
+      <div className="h-[300px] lg:hidden" aria-hidden="true" />
+      <Utsikten className="z-[5] h-[340px] lg:h-[46%]" />
     </section>
   );
 }

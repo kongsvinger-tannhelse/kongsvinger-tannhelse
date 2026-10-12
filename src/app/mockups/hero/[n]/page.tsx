@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
 import { MOCKUPS } from "@/components/mockups/HeroMockups";
+import { Leporello } from "@/components/forside/behandlinger/leporello/Leporello";
+import { OmOss } from "@/components/forside/omoss/OmOss";
+import { RadOgTips } from "@/components/forside/radogtips/RadOgTips";
+import { Kontakt } from "@/components/forside/kontakt/Kontakt";
 
-/* /mockups/hero/1–3: proposals for a new front-page hero, to look at. Not
-   linked anywhere, not in the sitemap, and kept out of search engines. */
+/* /mockups/hero/1–3: proposals for a new front-page hero, to look at, with
+   the rest of the front page under them as it is. Not linked anywhere, not
+   in the sitemap, and kept out of search engines. */
 
 export const dynamicParams = false;
 
@@ -27,6 +33,18 @@ export default async function Page({ params }: Props) {
       <Navbar />
       <main>
         <m.Hero />
+        <Suspense>
+          <Leporello />
+        </Suspense>
+        <Suspense>
+          <OmOss />
+        </Suspense>
+        <Suspense>
+          <RadOgTips />
+        </Suspense>
+        <Suspense>
+          <Kontakt />
+        </Suspense>
       </main>
     </>
   );
