@@ -29,7 +29,7 @@ import styles from "./mobilbytte.module.css";
 export type Variant = "snitt" | "sola" | "fremkalling";
 
 const ROMMET = "/images/klinikk/behandlingsrom.webp";
-const VENT = 2200;
+const VENT = 1100;
 
 export function MobilBytte({ variant, className }: { variant: Variant; className?: string }) {
   const [lastet, setLastet] = useState(false);
