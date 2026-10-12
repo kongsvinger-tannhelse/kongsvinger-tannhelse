@@ -1,0 +1,164 @@
+/* MOCKUP: the drawing giving way to the photo, on phones and tablets (MobilBytte.tsx). */
+
+/* how far the change has come: 0 the drawing, 1 the photo. Registered, so it can glide. */
+@property --t {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+/* the frame; its size is what the parts inside measure themselves by (cqw, cqh) */
+.rute {
+  position: relative;
+  container-type: size;
+  overflow: hidden;
+  /* the hero's diagonal, rising to the right */
+  clip-path: polygon(0 36px, 100% 0, 100% 100%, 0 100%);
+  background: #fcefc4;
+}
+
+.innhold {
+  position: absolute;
+  inset: 0;
+  /* the drawing is 3:2, taller than the frame and set in its bottom right corner, so the
+     frame holds its right half: the sun (62 % across, 48 % down), the bridge and the town
+     on its hill, with the river and the trees below them */
+  --h: max(130cqh, 66.667cqw);
+  --x0: calc(100cqw - 1.5 * var(--h));
+  --y0: calc(100cqh - var(--h));
+  --sx: calc(var(--x0) + 0.619 * 1.5 * var(--h));
+  --sy: calc(var(--y0) + 0.48 * var(--h));
+  --t: 0;
+}
+.innhold[data-fase="bilde"] {
+  --t: 1;
+}
+
+.tegning {
+  position: absolute;
+  top: var(--y0);
+  left: var(--x0);
+  height: var(--h);
+  aspect-ratio: 3 / 2;
+}
+.foto,
+.lys {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.flytt {
+  position: absolute;
+  inset: 0;
+}
+
+/* ── 1 Snitt: a slanted edge sweeps across from the left, the photo behind it ── */
+.snitt {
+  /* the edge's top runs from 0 to past the right side; its foot trails 35 % of the frame's height behind */
+  --x: calc(var(--t) * (100cqw + 35cqh + 40px));
+  transition: --t 1.7s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.snitt .foto {
+  clip-path: polygon(0 0, var(--x) 0, calc(var(--x) - 35cqh) 100%, 0 100%);
+}
+.snitt .foto .flytt {
+  transform: translateX(calc((1 - var(--t)) * 10%)) scale(calc(1.08 - 0.08 * var(--t)));
+}
+.snitt .tegning .flytt {
+  transform-origin: 100% 50%;
+  transform: scale(calc(1 + 0.08 * var(--t)));
+}
+/* a rim of low sun along the edge, as wide as a hand */
+.snitt .lys {
+  inset: 0 auto 0 0;
+  left: calc(var(--x) - 110px);
+  width: 150px;
+  transform-origin: 110px 0;
+  transform: skewX(-19.29deg); /* tan = 0.35: the edge's slant */
+  background: linear-gradient(
+    to right,
+    rgba(252, 239, 196, 0) 0%,
+    rgba(252, 239, 196, 0.35) 45%,
+    rgba(255, 249, 228, 0.95) 71%,
+    rgba(255, 255, 255, 1) 73.5%,
+    rgba(247, 220, 140, 0.45) 80%,
+    rgba(247, 220, 140, 0) 100%
+  );
+  mix-blend-mode: screen;
+  opacity: min(1, calc(var(--t) * 12), calc((1 - var(--t)) * 5));
+}
+
+/* ── 2 Sola: the photo opens out of the sun, a soft circle growing to fill the frame ── */
+.sola {
+  --r: calc(var(--t) * (150cqmax + 80px));
+  transition: --t 2.1s cubic-bezier(0.65, 0, 0.25, 1);
+}
+.sola .foto {
+  -webkit-mask-image: radial-gradient(circle at var(--sx) var(--sy), #000 calc(var(--r) - 70px), transparent var(--r));
+  mask-image: radial-gradient(circle at var(--sx) var(--sy), #000 calc(var(--r) - 70px), transparent var(--r));
+}
+.sola .foto .flytt {
+  transform-origin: var(--sx) var(--sy);
+  transform: scale(calc(1.18 - 0.18 * var(--t)));
+}
+/* while it waits the sun breathes; then a ring of its light rides out on the circle's edge */
+.sola .lys {
+  background:
+    radial-gradient(
+      circle at var(--sx) var(--sy),
+      rgba(255, 255, 255, 0) calc(var(--r) - 90px),
+      rgba(252, 239, 196, 0.75) calc(var(--r) - 40px),
+      rgba(255, 252, 240, 0.95) calc(var(--r) - 14px),
+      rgba(247, 220, 140, 0) calc(var(--r) + 30px)
+    ),
+    radial-gradient(circle at var(--sx) var(--sy), rgba(255, 253, 244, 0.95) 0, rgba(252, 239, 196, 0.55) 26px, rgba(252, 239, 196, 0) 70px);
+  mix-blend-mode: screen;
+  opacity: min(1, calc((1 - var(--t)) * 4));
+  animation: pust 2.4s ease-in-out infinite;
+}
+@keyframes pust {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.18); }
+}
+
+/* ── 3 Fremkalling: the camera drifts in, the sun floods the frame, the room comes up out of the light ── */
+.fremkalling {
+  transition: --t 2.4s cubic-bezier(0.45, 0, 0.25, 1);
+}
+.fremkalling .tegning .flytt {
+  transform-origin: 85% 55%; /* the town and the fortress */
+  animation: naermere 5s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+@keyframes naermere {
+  from { transform: scale(1); }
+  to { transform: scale(1.18); }
+}
+.fremkalling .lys {
+  --r: calc(var(--t) * 190cqmax);
+  background: radial-gradient(
+    circle at var(--sx) var(--sy),
+    rgba(255, 253, 246, 1) 0,
+    rgba(255, 250, 232, 0.97) calc(var(--r) * 0.45),
+    rgba(252, 239, 196, 0.85) calc(var(--r) * 0.7),
+    rgba(247, 220, 140, 0) var(--r)
+  );
+  /* up to full and down again: brightest a third of the way, gone by the end */
+  opacity: min(1, calc(var(--t) * 3), calc((1 - var(--t)) * 1.6));
+}
+.fremkalling .foto {
+  opacity: clamp(0, calc((var(--t) - 0.3) * 2.2), 1);
+}
+.fremkalling .foto .flytt {
+  transform: scale(calc(1.1 - 0.1 * var(--t)));
+  filter: saturate(calc(0.55 + 0.45 * var(--t))) brightness(calc(1.35 - 0.35 * var(--t)));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .innhold {
+    transition: none !important;
+  }
+  .lys,
+  .flytt {
+    animation: none !important;
+  }
+}
