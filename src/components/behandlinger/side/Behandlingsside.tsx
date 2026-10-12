@@ -37,8 +37,6 @@ import s from "./side.module.css";
 
 /** Under every comic strip: this is how it often goes, not a promise. */
 const SERIE_FORBEHOLD = "Slik går det ofte for seg, men det er forskjellig fra pasient til pasient. Vi forteller deg hva som gjelder for deg.";
-/** PREVIEW: the two layouts of the top, to choose between. */
-const OPPSETT: "side" | "under" = "side";
 const KANT = "scroll-mt-28 border-t border-dashed border-[var(--color-strek)] py-10 md:py-14";
 
 /** The pages for what can't wait: the book's «Akutt» group, each by the page it has. */
@@ -143,9 +141,9 @@ export function Behandlingsside({ side }: { side: Side }) {
         <Smuler sider={[{ navn: "Behandlinger", href: "/behandlinger" }, { navn: side.navn }]} />
         <Ark className="mt-8">
           {side.signatur === "spiral" && <Spiral />}
-          {/* The top across the sheet's whole width, the words from the left: the title and
-              its few lines take fewer lines, and the page gets shorter. */}
-          <Vis as="header" margin="0px" className={cn(OPPSETT === "side" && "md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,280px)] md:items-center md:gap-12", natt && s.natt, natt && OPPSETT === "side" && s.nattSide)}>
+          {/* The top across the sheet's whole width: the words from the left, the
+              drawing beside them (under them on a phone), so the page gets shorter. */}
+          <Vis as="header" margin="0px" className={cn("md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,280px)] md:items-center md:gap-12", natt && cn(s.natt, s.nattSide))}>
             {natt && <Stjerner />}
             <div className="relative">
               <h1 className={cn("text-pretty font-bold", natt ? "text-[#FFF8E7]" : "text-[var(--color-glomma-deep)]")} style={SIDETITTEL}>
@@ -161,7 +159,7 @@ export function Behandlingsside({ side }: { side: Side }) {
                 </div>
               )}
             </div>
-            <div className={cn("relative mx-auto mt-8 w-full max-w-[260px]", OPPSETT === "side" && "md:mx-0 md:mt-0 md:max-w-none")}>
+            <div className="relative mx-auto mt-8 w-full max-w-[260px] md:mx-0 md:mt-0 md:max-w-none">
               {vask && !natt && <Vask seed={5} className="-inset-x-6 -inset-y-4" />}
               {natt ? <Natt paaMork className="relative w-full" /> : <Tittelbilde className="relative w-full" />}
             </div>
