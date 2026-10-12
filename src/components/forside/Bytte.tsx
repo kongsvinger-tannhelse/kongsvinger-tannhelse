@@ -3,8 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import farTegnet from "@/components/forside/utsikt/far-tegnet.webp";
-import naerTegnet from "@/components/forside/utsikt/near-tegnet.webp";
+import tegnet from "@/components/forside/utsikt/tegnet.webp";
 import styles from "./bytte.module.css";
 
 /*
@@ -44,12 +43,10 @@ export function Bytte({ className }: { className?: string }) {
   return (
     <div className={cn(styles.rute, className)}>
       <div className={styles.innhold} data-fase={bilde ? "bilde" : "tegning"}>
-        {/* the drawing: its two layers, framed on the sun, the bridge and the town */}
+        {/* the drawing, framed on the sun, the bridge and the town */}
         <div aria-hidden="true" className={styles.tegning}>
           <div className={styles.flytt}>
-            {[farTegnet, naerTegnet].map((lag, i) => (
-              <Image key={i} src={lag} alt="" fill priority sizes="(min-width: 1024px) 100vw, 170vw" className="object-cover" />
-            ))}
+            <Image src={tegnet} alt="" fill preload sizes="(min-width: 1024px) 100vw, 170vw" className="object-cover" />
           </div>
         </div>
 

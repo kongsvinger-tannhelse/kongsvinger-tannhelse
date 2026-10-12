@@ -58,16 +58,18 @@
   transform: scale(calc(1 + 0.08 * var(--t)));
 }
 
-/* a rim of low sun along the edge, as wide as a hand */
+/* a rim of low sun along the edge, as wide as a hand. It travels by transform,
+   not by `left`: a box whose `left` changes is moved by layout every frame, and
+   PageSpeed counts each of those frames as a layout shift (CLS 0.23 from this alone). */
 .lys {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: calc(var(--x) - 110px);
+  left: -110px;
   width: 150px;
   pointer-events: none;
   transform-origin: 110px 0;
-  transform: skewX(-19.29deg); /* tan = 0.35: the edge's slant */
+  transform: translateX(var(--x)) skewX(-19.29deg); /* tan = 0.35: the edge's slant */
   background: linear-gradient(
     to right,
     rgba(252, 239, 196, 0) 0%,

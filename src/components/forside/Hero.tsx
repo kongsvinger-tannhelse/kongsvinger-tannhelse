@@ -5,8 +5,7 @@ import { ArrowRight, Phone } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { Apningsstatus } from "@/components/forside/Apningsstatus";
 import { Bytte } from "@/components/forside/Bytte";
-import farTegnet from "@/components/forside/utsikt/far-tegnet.webp";
-import naerTegnet from "@/components/forside/utsikt/near-tegnet.webp";
+import tegnet from "@/components/forside/utsikt/tegnet.webp";
 
 /**
  * «Snitt» (chosen 2026-10-12 from three proposals). White at the top with the
@@ -28,7 +27,7 @@ const SOL = "#F7DC8C"; // the low sun in the drawing
 const SOL_LYS = "#FCEFC4";
 
 /**
- * From lg up: the drawing, its two layers stacked, showing only its lower part
+ * From lg up: the drawing, showing only its lower part
  * across the foot of the hero. Its top fades out, so the yellow above runs
  * straight into the drawing's own hazy horizon.
  */
@@ -38,9 +37,7 @@ function Utsikten() {
     <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] hidden h-[46%] overflow-hidden lg:block" style={{ maskImage: maske, WebkitMaskImage: maske }}>
       {/* the whole drawing (3:2), sunk so its foreground trees are cut off */}
       <div className="absolute bottom-0 left-0 aspect-[3/2] w-full translate-y-[14%]">
-        {[farTegnet, naerTegnet].map((lag, i) => (
-          <Image key={i} src={lag} alt="" fill sizes="(min-width: 1024px) 100vw, 170vw" className="object-cover" />
-        ))}
+        <Image src={tegnet} alt="" fill sizes="(min-width: 1024px) 100vw, 170vw" className="object-cover" />
       </div>
     </div>
   );
