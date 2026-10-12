@@ -1,13 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { Suspense, useSyncExternalStore } from "react";
+import { ArrowRight } from "lucide-react";
 import { Bred } from "./Bred";
 import { INNLEDNING } from "./deler";
 import { Smal } from "./Smal";
 
 /**
- * «Behandlinger» on the front page: «Leporelloen». The scenes are printed on
- * a strip of paper folded like a concertina. On a wide screen it stands
+ * «Behandlinger» on the front page: «Leporelloen». Four treatments' scenes are
+ * printed on a strip of paper folded like a concertina, and under it the way
+ * on to all of them. On a wide screen it stands
  * across the page and unfolds sideways (Bred); on a phone or a tablet it
  * hangs down the page and each panel drops open as it comes into view
  * (Smal). The scenes and their motion are the ones /behandlinger shows.
@@ -56,6 +59,16 @@ export function Leporello() {
           </Suspense>
         </div>
       )}
+
+      <div className="mt-12 flex justify-center px-[var(--container-px)] md:mt-14 lg:mt-20">
+        <Link
+          href="/behandlinger"
+          className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
+        >
+          Se alle behandlingene
+          <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+        </Link>
+      </div>
     </section>
   );
 }

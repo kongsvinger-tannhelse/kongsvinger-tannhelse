@@ -1,18 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import type { CSSProperties } from "react";
-import { cn } from "@/lib/utils";
-import { GRUPPER } from "../grupper";
 import { Kasse } from "../popup/Popup";
 import { FARGE } from "../popup/tegning";
 import { SCENER } from "../scener";
 
 /* What both folds of «Leporelloen» share: the words, a scene on its paper,
-   the list of every treatment, and the cover. */
+   and the cover. */
 
-/** The old site's own description of what the clinic does (its meta description). */
-export const INNLEDNING = "Vi tilbyr alt fra tannsjekk og tannrens til estetisk tannbehandling.";
+/** What the clinic does, from the first and simplest to the last panel's dentures. */
+export const INNLEDNING = "Vi tilbyr alt fra tannsjekk og tannrens til proteser.";
 
 /** One treatment's pop-up, standing on the scenes' own paper, anchored at its foot. */
 export function Scene({ id, oppe, spiller, redusert }: { id: string; oppe: boolean; spiller: boolean; redusert: boolean }) {
@@ -21,29 +18,6 @@ export function Scene({ id, oppe, spiller, redusert }: { id: string; oppe: boole
     <div className="absolute inset-0 overflow-hidden" style={{ background: FARGE.papir }}>
       <Kasse>{S ? <S oppe={oppe} spiller={spiller} redusert={redusert} /> : null}</Kasse>
     </div>
-  );
-}
-
-/** Every treatment by its group, as running lines: «Ordinære Tannsjekk · Tannfylling · …».
-    Each name keeps its dot, so a line never starts with one. */
-export function Alle({ className, style }: { className?: string; style?: CSSProperties }) {
-  return (
-    <span className={cn("block text-[var(--color-tekst-2)]", className)} style={style}>
-      {GRUPPER.map((g) => (
-        <span key={g.id} className="mb-[0.7em] block last:mb-0">
-          <b className="font-semibold text-[var(--color-glomma-deep)]">{g.kort}e </b>
-          {g.liste.map((b, i) => (
-            <span key={b.navn}>
-              <span className="whitespace-nowrap">
-                {b.navn}
-                {i < g.liste.length - 1 ? "\u00a0·" : ""}
-              </span>
-              {i < g.liste.length - 1 ? " " : ""}
-            </span>
-          ))}
-        </span>
-      ))}
-    </span>
   );
 }
 

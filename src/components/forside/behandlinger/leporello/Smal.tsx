@@ -6,23 +6,23 @@ import { m, useInView, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { harSide, sideSti } from "@/data/behandlinger/sider";
 import { cn } from "@/lib/utils";
-import { TRE } from "../grupper";
-import { Alle, Scene } from "./deler";
+import { FIRE } from "../grupper";
+import { Scene } from "./deler";
 import s from "./leporello.module.css";
 
 /**
  * «Leporelloen» on a phone or a tablet. The same strip hangs down the page
  * instead, folded at every crease: a scene, then its words printed on the
- * paper under it, then the next scene, and last the panel with every
- * treatment and the way on to them. Each panel lies folded back behind the
+ * paper under it, then the next scene, down to the fourth treatment's words
+ * at the strip's foot. Each panel lies folded back behind the
  * crease above it, and drops open as it comes into view, the way a
  * fold-out falls open in the hand; once a scene's panel is open, the scene
  * stands up. The panels lie flat once open, with only the creases left:
  * a shadow where the paper folds in, a line of light where it folds out.
  */
 
-/** The last panel's place along the strip. */
-const SISTE = 2 * TRE.length;
+/** The last panel's place along the strip: the fourth treatment's words. */
+const SISTE = 2 * FIRE.length - 1;
 
 export function Smal() {
   const redusert = useReducedMotion() ?? false;
@@ -31,7 +31,7 @@ export function Smal() {
 
   return (
     <div ref={ref} className={s.heng}>
-      {TRE.map((t, k) => (
+      {FIRE.map((t, k) => (
         <Fragment key={t.id}>
           <Brett n={2 * k} redusert={redusert} aria-hidden>
             {/* the scene is drawn when its panel comes into view: it lies folded out of sight until then */}
@@ -59,21 +59,6 @@ export function Smal() {
           </Brett>
         </Fragment>
       ))}
-
-      <Brett n={SISTE} redusert={redusert}>
-        {() => (
-          <div className="px-6 pb-7 pt-7">
-            <Alle className="text-[16px] leading-[1.55]" />
-            <Link
-              href="/behandlinger"
-              className="group mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
-            >
-              Se alle behandlingene
-              <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
-            </Link>
-          </div>
-        )}
-      </Brett>
     </div>
   );
 }

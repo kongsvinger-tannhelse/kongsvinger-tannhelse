@@ -6,15 +6,15 @@ import { animate, m, useInView, useMotionTemplate, useMotionValue, useReducedMot
 import { ArrowRight } from "lucide-react";
 import { harSide, sideSti } from "@/data/behandlinger/sider";
 import { cn } from "@/lib/utils";
-import { TRE } from "../grupper";
+import { FIRE } from "../grupper";
 import { FARGE } from "../popup/tegning";
-import { Alle, Omslag, Scene } from "./deler";
+import { Omslag, Scene } from "./deler";
 import s from "./leporello.module.css";
 
 /**
- * «Leporelloen» on a wide screen. The three scenes are printed on one long
- * strip folded like a concertina, with a fourth panel at the end that holds
- * all the treatments. It lies closed on the page, showing its cover; when it
+ * «Leporelloen» on a wide screen. The four scenes are printed on one long
+ * strip folded like a concertina. It lies closed on the page, showing its
+ * cover (the back of the last panel); when it
  * comes into view it unfolds from the middle, fold by fold, and comes to
  * rest standing in a gentle zigzag, the panels catching the light from the
  * left by turns (the two middle panels flatter than the outer two, so their
@@ -108,7 +108,7 @@ export function Bred() {
   // drawn when the strip starts to open: closed, only the cover shows.
   const scene = (k: number) => (
     <div aria-hidden="true" className="absolute inset-0">
-      {vist && <Scene id={TRE[k].id} oppe={staar > k} spiller={synlig && staar > k} redusert={redusert} />}
+      {vist && <Scene id={FIRE[k].id} oppe={staar > k} spiller={synlig && staar > k} redusert={redusert} />}
     </div>
   );
   const ord = (k: number) => (
@@ -139,7 +139,7 @@ export function Bred() {
             <Panel forste ledd={fot} vinkel={a0} forside={side(0, scene(0))}>
               <Panel ledd={l1} vinkel={a1} forside={side(1, scene(1))}>
                 <Panel ledd={l2} vinkel={a2} forside={side(2, scene(2))}>
-                  <Panel ledd={l3} vinkel={a3} forside={<Register>{ord(3)}</Register>} bakside={<Omslag />} />
+                  <Panel ledd={l3} vinkel={a3} forside={side(3, scene(3))} bakside={<Omslag />} />
                 </Panel>
               </Panel>
             </Panel>
@@ -166,28 +166,13 @@ function Side({ bilde, children }: { bilde: ReactNode; children: ReactNode }) {
 }
 
 /**
- * What a panel says: the treatment, a few words and the way to its page; on
- * the last panel, the way to them all. (No small capitals over the names:
+ * What a panel says: the treatment, a few words and the way to its page. (No small capitals over the names:
  * the scene and the words say which kind of treatment it is.) `skjult` is the unseen
  * copy that sizes the box, with no heading or link of its own.
  */
 function Ord({ k, skjult = false }: { k: number; skjult?: boolean }) {
   const Tittel = skjult ? "p" : "h3";
-  if (k === TRE.length) {
-    return (
-      <>
-        <Lenke
-          skjult={skjult}
-          href="/behandlinger"
-          className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
-        >
-          Se alle behandlingene
-          <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
-        </Lenke>
-      </>
-    );
-  }
-  const t = TRE[k];
+  const t = FIRE[k];
   return (
     <>
       <Tittel className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(26px, 2.3vw, 32px)", lineHeight: 1, letterSpacing: "-0.03em" }}>
@@ -235,19 +220,5 @@ function Panel({ forste = false, ledd, vinkel, forside, bakside, children }: { f
       </div>
       {children}
     </m.div>
-  );
-}
-
-/** The last panel: every treatment, set large enough to fill the whole page like the back of a book, and the way to them all at its foot. */
-function Register({ children }: { children: ReactNode }) {
-  return (
-    <div className="absolute inset-0 flex flex-col" style={{ background: FARGE.papir }}>
-      <div className="flex min-h-0 flex-1 flex-col px-[9%] pt-[9%] text-[var(--color-glomma-deep)]">
-        {/* 0.058: the largest that fits every width from 1024 to 1920 px (measured); any room left spreads between the groups */}
-        <Alle className="flex flex-1 flex-col justify-between" style={{ fontSize: "calc(var(--w) * 0.058)", lineHeight: 1.45 }} />
-      </div>
-      <div className="mx-[8%] mt-[6%] border-t border-[var(--color-strek)]" />
-      {children}
-    </div>
   );
 }

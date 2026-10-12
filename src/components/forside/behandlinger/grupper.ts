@@ -35,5 +35,9 @@ export const UTVALGTE = GRUPPER.map((g) => ({ ...g, liste: g.liste.filter((t) =>
 
 export const UTVALGTE_REKKE = UTVALGTE.map((_, gi) => ({ g: gi, i: 0 }));
 
-/** The front page's three, flat: each treatment with the group it belongs to. */
-export const TRE = UTVALGTE.map((g) => ({ ...g.liste[0], gruppe: g }));
+/** The front page's leporello: four treatments, from the check-up to a full set
+    of dentures, each with the group it belongs to. The rest are on /behandlinger. */
+export const FIRE = ["tannsjekk", "tannsmerte", "tannimplantat", "helprotese"].map((id) => {
+  const gruppe = GRUPPER.find((g) => g.liste.some((t) => t.id === id))!;
+  return { ...gruppe.liste.find((t) => t.id === id)!, gruppe };
+});

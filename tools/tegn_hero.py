@@ -15,11 +15,12 @@ sun stands low in front of you, so everything is lit from behind: a warm rim
 along the tops of the trees and the roof ridges, and long soft shadows lying
 towards you across the fields.
 
-Two depths, like the photo's far/near, so Utsikt's camera glide and parallax
-work unchanged:
-  far-tegnet.webp   sky, hills, fields, town, fortress, river, bridge (opaque)
-  near-tegnet.webp  the treetops in front (alpha)
-both 4800 x 3200 (3:2, like the photo), into src/components/forside/utsikt/.
+Drawn in two depths, like the photo's far/near: far (sky, hills, fields,
+town, fortress, river, bridge) and near (the treetops in front). Nothing on
+the site moves them apart any more, so they are written flattened, as one
+picture: one download and one decode for a phone instead of two (the drawing
+is the largest thing on a phone's first screen, which PageSpeed times):
+  tegnet.webp   4800 x 3200 (3:2, like the photo), into src/components/forside/utsikt/.
 
 Where things sit follows the hero's crops (Utsikt: zoom 1.22, fx 0.62 / 0.7
 on phones, fy 0.46): the sky stays calm where the name, the buttons and the
@@ -1383,7 +1384,8 @@ UT = os.path.join(os.path.dirname(__file__), "..", "src", "components", "forside
 KROM = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 
-def skriv(navn, tegn, gjennomsiktig):
+def skriv(navn, tegn):
+    """Draws one depth and renders it, transparent where nothing is drawn."""
     from PIL import Image
 
     _ut[0] = []
@@ -1405,11 +1407,15 @@ def skriv(navn, tegn, gjennomsiktig):
          "--default-background-color=00000000", f"--screenshot={png}", "file:///" + svg.replace(os.sep, "/")],
         check=True, capture_output=True,
     )
-    bilde = Image.open(png).convert("RGBA" if gjennomsiktig else "RGB")
+    print("drew", navn, "svg", len(innhold) // 1024, "KB")
+    return Image.open(png).convert("RGBA")
+
+
+def lagre(navn, bilde):
     mal = os.path.join(UT, navn + ".webp")
     bilde.save(mal + ".tmp", "WEBP", quality=84, method=6)
     os.replace(mal + ".tmp", mal)
-    print("wrote", os.path.normpath(mal), bilde.size, os.path.getsize(mal) // 1024, "KB", "svg", len(innhold) // 1024, "KB")
+    print("wrote", os.path.normpath(mal), bilde.size, os.path.getsize(mal) // 1024, "KB")
 
 
 def dis():
@@ -1449,5 +1455,6 @@ def far():
 
 
 if __name__ == "__main__":
-    skriv("far-tegnet", far, False)
-    skriv("near-tegnet", naer, True)
+    from PIL import Image
+
+    lagre("tegnet", Image.alpha_composite(skriv("far-tegnet", far), skriv("near-tegnet", naer)).convert("RGB"))
