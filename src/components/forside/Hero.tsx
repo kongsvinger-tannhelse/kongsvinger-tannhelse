@@ -23,7 +23,7 @@ const TEGNING: Lag = { far: farTegnet, near: naerTegnet, telefon: 2560 };
  * clinic's rooms appear beside it in a square pane with a ring of light: all
  * of it in about two seconds. The words don't wait for the pictures; only the
  * view and the pane do. Under the buttons: whether the clinic is open right now, and
- * what to do with a toothache. Nothing stands at the foot of the view.
+ * from md up what to do with a toothache. Nothing stands at the foot of the view.
  *
  * (Earlier versions of the clinic photos are kept on the git branch
  * mockups/klinikkbilder.)
@@ -49,13 +49,12 @@ export function Hero() {
             </h1>
 
             <p className="hero-loft mt-4 text-[18px] font-medium leading-[1.4] text-[var(--color-glomma)] md:mt-5 md:text-[20px]" style={{ animationDelay: "0.95s" }}>
-              Tannlegene Hafthun og Zia, {klinikk.adresse.gate}.{" "}
-              <br />
-              Vi tar imot nye pasienter.
+              Tannlegene Hafthun og Zia
             </p>
 
             {/* the two buttons, and under them, as wide as both together, a white note
-                (not a button): open or closed right now, and what to do with a toothache */}
+                (not a button): open or closed right now, and (not on phones, where it takes
+                too much room) what to do with a toothache */}
             <div className="hero-loft mt-7 inline-flex flex-col gap-2.5" style={{ animationDelay: "1.05s" }}>
               <div className="flex gap-2.5">
                 <Link
@@ -76,7 +75,7 @@ export function Hero() {
                 <p className="flex items-center gap-2 font-medium text-[var(--color-glomma-deep)]">
                   <Apningsstatus />
                 </p>
-                <p className="mt-1 text-[var(--color-tekst-2)]">
+                <p className="mt-1 hidden text-[var(--color-tekst-2)] md:block">
                   Akutt tannpine?{" "}
                   <a href={klinikk.telefon.lenke} className="font-medium text-[var(--color-glomma-deep)] underline decoration-1 underline-offset-[3px]">
                     Ring oss
