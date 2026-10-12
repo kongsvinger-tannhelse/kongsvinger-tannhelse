@@ -13,16 +13,20 @@ import s from "./leporello.module.css";
 /**
  * «Leporelloen» on a phone or a tablet. The same strip hangs down the page
  * instead, folded at every crease: a scene, then its words printed on the
- * paper under it, then the next scene, down to the fourth treatment's words
- * at the strip's foot. Each panel lies folded back behind the
+ * paper under it, then the next scene, down to the third treatment's words
+ * at the strip's foot (the wide strip's fourth, the dentures, is left off a
+ * phone, where the strip is long enough). Each panel lies folded back behind the
  * crease above it, and drops open as it comes into view, the way a
  * fold-out falls open in the hand; once a scene's panel is open, the scene
  * stands up. The panels lie flat once open, with only the creases left:
  * a shadow where the paper folds in, a line of light where it folds out.
  */
 
-/** The last panel's place along the strip: the fourth treatment's words. */
-const SISTE = 2 * FIRE.length - 1;
+/** The three treatments the narrow strip shows. */
+const TRE = FIRE.slice(0, 3);
+
+/** The last panel's place along the strip: the third treatment's words. */
+const SISTE = 2 * TRE.length - 1;
 
 export function Smal() {
   const redusert = useReducedMotion() ?? false;
@@ -31,7 +35,7 @@ export function Smal() {
 
   return (
     <div ref={ref} className={s.heng}>
-      {FIRE.map((t, k) => (
+      {TRE.map((t, k) => (
         <Fragment key={t.id}>
           <Brett n={2 * k} redusert={redusert} aria-hidden>
             {/* the scene is drawn when its panel comes into view: it lies folded out of sight until then */}
