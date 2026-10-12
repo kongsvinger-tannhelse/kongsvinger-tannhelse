@@ -24,12 +24,15 @@ export function Kart({
   redusert,
   skrift = 11,
   papir = "#F6F3EB",
+  tegning = true,
   className,
 }: {
   utsnitt: Utsnitt;
   vis: boolean;
   redusert: boolean;
   skrift?: number;
+  /** false until the map is near: the drawing (kart.svg) is fetched once it is true */
+  tegning?: boolean;
   papir?: string;
   className?: string;
 }) {
@@ -46,7 +49,7 @@ export function Kart({
       style={{ aspectRatio: `${b} / ${h}`, background: papir }}
     >
       <svg viewBox={`${x} ${y} ${b} ${h}`} className="absolute inset-0 h-full w-full" aria-hidden="true">
-        <image href={TEGNING.src} x={TEGNING.x} y={TEGNING.y} width={TEGNING.b} height={TEGNING.h} />
+        {tegning && <image href={TEGNING.src} x={TEGNING.x} y={TEGNING.y} width={TEGNING.b} height={TEGNING.h} />}
         <path d={KLINIKKHUS} fill="var(--color-teal)" stroke="var(--color-glomma-deep)" strokeWidth={1} />
         <path id={id} d={FJELLGATA} fill="none" />
         <text fontSize={skrift * 0.82} fill="#7C766A" letterSpacing={skrift * 0.06} fontWeight={500}>

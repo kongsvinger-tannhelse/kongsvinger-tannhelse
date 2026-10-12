@@ -18,11 +18,11 @@ const TEGNING: Lag = { far: farTegnet, near: naerTegnet, telefon: 2560 };
 /**
  * «Langs elva». On first paint the camera follows Glomma from the fortress,
  * from the farms on the left down to the bend in the river, and comes to
- * rest. While it settles, the name arrives up in the sky, top left, in the
- * river's own dark slate, with the buttons under it, and the clinic's rooms
- * appear beside it in a square pane with a ring of light: all of it in about
- * two seconds. The words don't wait for the pictures; only the view and
- * the pane do. Under the buttons: whether the clinic is open right now, and
+ * rest. The name stands in the sky from the start, top left, in the river's
+ * own dark slate; while the camera settles the buttons rise under it, and the
+ * clinic's rooms appear beside it in a square pane with a ring of light: all
+ * of it in about two seconds. The words don't wait for the pictures; only the
+ * view and the pane do. Under the buttons: whether the clinic is open right now, and
  * what to do with a toothache. Nothing stands at the foot of the view.
  *
  * (Earlier versions of the clinic photos are kept on the git branch
@@ -31,19 +31,19 @@ const TEGNING: Lag = { far: farTegnet, near: naerTegnet, telefon: 2560 };
 export function Hero() {
   return (
     <section aria-label="Velkommen" className="relative h-[100svh] min-h-[640px] overflow-hidden">
-      <Utsikt glid zoom={1.22} fx={0.62} fy={0.46} fxSmal={0.7} lag={TEGNING} />
-
-      {/* The wrapper spans the hero; only what is in it takes the pointer. */}
-      <div className="pointer-events-none absolute inset-x-0 top-[84px] md:top-[clamp(96px,13vh,132px)]">
+      {/* The wrapper spans the hero; only what is in it takes the pointer. It
+          comes before the view in the HTML (and over it by z-index), so the
+          browser paints the name in its very first frame. */}
+      <div className="pointer-events-none absolute inset-x-0 top-[84px] z-10 md:top-[clamp(96px,13vh,132px)]">
         <div className="mx-auto flex w-full max-w-[var(--container-max)] flex-col gap-6 px-[var(--container-px)] md:flex-row md:items-start md:justify-between md:gap-10 [&>*]:pointer-events-auto">
           <div className="pt-1">
             <h1 className="text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(44px, 6.4vw, 104px)", lineHeight: 0.92, letterSpacing: "-0.035em" }}>
               <span className="sr-only">{klinikk.navn}</span>
-              {["Kongsvinger", "Tannhelse"].map((tekst, i) => (
-                <span key={tekst} aria-hidden="true" className="block overflow-hidden pb-[0.07em]">
-                  <span className="hero-linje inline-block font-bold" style={{ animationDelay: `${0.7 + i * 0.1}s` }}>
-                    {tekst}
-                  </span>
+              {/* there from the first frame: the name is the page's largest
+                  content, which PageSpeed times (LCP), so it doesn't slide in */}
+              {["Kongsvinger", "Tannhelse"].map((tekst) => (
+                <span key={tekst} aria-hidden="true" className="block pb-[0.07em] font-bold">
+                  {tekst}
                 </span>
               ))}
             </h1>
@@ -90,6 +90,8 @@ export function Hero() {
           <Klinikkbilder />
         </div>
       </div>
+
+      <Utsikt glid zoom={1.22} fx={0.62} fy={0.46} fxSmal={0.7} lag={TEGNING} />
     </section>
   );
 }

@@ -6,4 +6,7 @@ export const kortskrift = Cormorant_Garamond({
   weight: ["500", "600"],
   style: ["normal", "italic"],
   display: "swap",
+  // not preloaded: Next.js otherwise preloads it on every page, the front page too,
+  // where it costs 76 KB before the first paint and shows nowhere
+  preload: false,
 });

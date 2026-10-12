@@ -33,6 +33,8 @@ export function Kontakt() {
   const redusert = useReducedMotion() ?? false;
   const ref = useRef<HTMLDivElement | null>(null);
   const vist = useInView(ref, { once: true, margin: "0px 0px -15% 0px" });
+  // the map's drawing is fetched a few screens ahead, not with the top of the page
+  const naer = useInView(ref, { once: true, margin: "1600px 0px" });
 
   return (
     <section id="kontakt" aria-labelledby="kontakt-tittel" className="bg-[var(--color-papir)] pb-[clamp(88px,10vw,140px)] pt-[clamp(88px,11vw,152px)]">
@@ -47,8 +49,8 @@ export function Kontakt() {
             <div className="grid grid-cols-1 gap-x-8 rounded-[6px] bg-[#FFFDF8] p-3 shadow-[0_34px_70px_-34px_rgba(10,25,32,0.6),0_2px_0_rgba(10,25,32,0.04)] sm:p-4 md:grid-cols-2 md:p-5">
               {/* the picture side */}
               <div className="relative">
-                <Kart utsnitt={BILDE_SMAL} vis={vist} redusert={redusert} skrift={13} className="rounded-[3px] md:hidden" />
-                <Kart utsnitt={BILDE} vis={vist} redusert={redusert} skrift={13} className="hidden h-full rounded-[3px] md:block" />
+                <Kart utsnitt={BILDE_SMAL} vis={vist} tegning={naer} redusert={redusert} skrift={13} className="rounded-[3px] md:hidden" />
+                <Kart utsnitt={BILDE} vis={vist} tegning={naer} redusert={redusert} skrift={13} className="hidden h-full rounded-[3px] md:block" />
               </div>
 
               {/* the writing side */}

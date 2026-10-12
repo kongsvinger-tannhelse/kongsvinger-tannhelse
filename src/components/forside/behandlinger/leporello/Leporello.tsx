@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { Suspense, useSyncExternalStore } from "react";
 import { Bred } from "./Bred";
 import { INNLEDNING } from "./deler";
 import { Smal } from "./Smal";
@@ -14,6 +14,8 @@ import { Smal } from "./Smal";
  *
  * The server cannot know the screen, so it sends both, each hidden by CSS on
  * the other's screens; once the page is live only the one that fits is kept.
+ * Each in its own Suspense boundary, so React wakes them in two short turns
+ * rather than one long one.
  */
 
 const BRED = "(min-width: 1024px)";
@@ -42,12 +44,16 @@ export function Leporello() {
 
       {bred !== false && (
         <div className="mt-20 hidden lg:block">
-          <Bred />
+          <Suspense>
+            <Bred />
+          </Suspense>
         </div>
       )}
       {bred !== true && (
         <div className="mt-12 px-[var(--container-px)] md:mt-14 lg:hidden">
-          <Smal />
+          <Suspense>
+            <Smal />
+          </Suspense>
         </div>
       )}
     </section>

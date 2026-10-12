@@ -2,16 +2,19 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { KontaktSide } from "@/components/kontakt/KontaktSide";
 import { klinikk } from "@/data/klinikk";
+import { OPENGRAPH } from "@/lib/deling";
 
 const { telefon, adresse, apningstider: tid } = klinikk;
 
-const description = `Kontakt Kongsvinger Tannhelse, tannlegen i ${adresse.gate} i Kongsvinger. Ring ${telefon.visning}, send e-post eller skriv til oss. Åpent ${tid.dager.toLowerCase()} ${tid.fra}–${tid.til}. Akutt tannpine? Ring tidlig, vi gjør vårt beste for å gi deg time samme dag.`;
+// Under 160 characters, so Google shows all of it.
+const description = `Tannlegen i ${adresse.gate}, Kongsvinger. Ring ${telefon.visning} eller skriv til oss. Åpent ${tid.dager.toLowerCase()} ${tid.fra}–${tid.til}. Akutt tannpine? Ring tidlig.`;
 
 export const metadata: Metadata = {
   title: "Kontakt tannlegen i Kongsvinger",
   description,
   alternates: { canonical: "/kontakt" },
   openGraph: {
+    ...OPENGRAPH,
     title: `Kontakt tannlegen i Kongsvinger | ${klinikk.navn}`,
     description,
     url: "/kontakt",

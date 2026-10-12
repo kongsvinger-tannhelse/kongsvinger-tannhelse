@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Oppslag } from "@/components/behandlinger/Oppslag";
 import { Sporsmal, Strukturert, Topp } from "@/components/behandlinger/side";
+import { OPENGRAPH } from "@/lib/deling";
 
 export const metadata: Metadata = {
-  title: "Tannbehandling i Kongsvinger: alle behandlinger",
+  title: "Tannbehandling i Kongsvinger",
   description:
     "Tannlege i Kongsvinger: tannsjekk, tannrens, fylling, rotfylling, tannbleking, tannimplantat, kroner og akutt hjelp ved tannpine. Fjellgata 4. Ring 62 81 50 09.",
   alternates: { canonical: "/behandlinger" },
   openGraph: {
+    ...OPENGRAPH,
     title: "Tannbehandling i Kongsvinger | Kongsvinger Tannhelse",
     description: "Alle de 25 behandlingene hos tannlegene Hafthun & Zia i Fjellgata 4, forklart enkelt.",
     url: "/behandlinger",

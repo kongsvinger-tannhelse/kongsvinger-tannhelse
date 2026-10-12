@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Behandlingsside } from "@/components/behandlinger/side/Behandlingsside";
 import { BEHANDLINGSSIDER, BGJENNOMGATT, finnBehandlingsside, sideSti, type Behandlingsside as Side } from "@/data/behandlinger";
 import { klinikk } from "@/data/klinikk";
+import { OPENGRAPH } from "@/lib/deling";
 
 /* /behandlinger/<treatment>: the treatments that have a page of their own. */
 
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: tittel,
     description: side.beskrivelse,
     alternates: { canonical: sti },
-    openGraph: { title: `${tittel} | ${klinikk.navn}`, description: side.beskrivelse, url: sti, type: "article" },
+    openGraph: { ...OPENGRAPH, title: `${tittel} | ${klinikk.navn}`, description: side.beskrivelse, url: sti, type: "article" },
   };
 }
 

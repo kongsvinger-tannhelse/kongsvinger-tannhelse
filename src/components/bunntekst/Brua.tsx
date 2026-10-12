@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useRef, type CSSProperties } from "react";
+import { useEffect, useId, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
 import {
   m,
   useInView,
@@ -182,6 +182,19 @@ function Tegning({ utsnitt, skumring, overgang, className }: { utsnitt: Utsnitt;
   );
 }
 
+const BRED = "(min-width: 768px)";
+function lytt(cb: () => void) {
+  const m = window.matchMedia(BRED);
+  m.addEventListener("change", cb);
+  return () => m.removeEventListener("change", cb);
+}
+
+/** The room a crop takes before it is drawn, so nothing moves when it comes. */
+function Plass({ utsnitt, className }: { utsnitt: Utsnitt; className?: string }) {
+  const u = UTSNITT[utsnitt];
+  return <div className={className} style={{ aspectRatio: `${u.b} / ${u.h}` }} />;
+}
+
 /**
  * The band: a wide crop from md up, a narrower one on phones. Full width, so
  * its foot meets the footer (`overgang` is the footer's colour); it rises a
@@ -189,15 +202,33 @@ function Tegning({ utsnitt, skumring, overgang, className }: { utsnitt: Utsnitt;
  * is measured over the band itself, from its top near the bottom of the
  * screen to its foot a little above the middle, so the lamps are lit while
  * it is in sight.
+ *
+ * The drawing (some 300 elements a crop) is only built once the reader is
+ * within a couple of screens of it, and only the crop the screen shows: it
+ * is on every page, and building it while the page starts up held the
+ * phone's processor for longer than anything above it. Until then its room
+ * is kept, so the page doesn't move. Its entrance waits for the reader anyway.
  */
 export function Brua({ overgang }: { overgang: string }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.55"] });
   const skumring = useTransform(scrollYProgress, [0.12, 0.95], [0, 1]);
+  const bred = useSyncExternalStore(lytt, () => window.matchMedia(BRED).matches, () => null);
+  const [naer, setNaer] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || naer) return;
+    const obs = new IntersectionObserver((e) => e.some((x) => x.isIntersecting) && setNaer(true), { rootMargin: "1600px 0px" });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [naer]);
+
+  const tegnet = naer && bred !== null;
   return (
     <div ref={ref} aria-hidden="true" className="pointer-events-none relative -mt-[clamp(48px,7vw,104px)] w-full">
-      <Tegning utsnitt="smal" skumring={skumring} overgang={overgang} className="md:hidden" />
-      <Tegning utsnitt="bred" skumring={skumring} overgang={overgang} className="hidden md:block" />
+      {tegnet && !bred ? <Tegning utsnitt="smal" skumring={skumring} overgang={overgang} className="md:hidden" /> : <Plass utsnitt="smal" className="md:hidden" />}
+      {tegnet && bred ? <Tegning utsnitt="bred" skumring={skumring} overgang={overgang} className="hidden md:block" /> : <Plass utsnitt="bred" className="hidden md:block" />}
     </div>
   );
 }
