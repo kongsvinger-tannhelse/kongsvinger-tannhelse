@@ -59,42 +59,39 @@ function Knapper({ className }: { className?: string }) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   1 · «Snitt». The page is cut in two by one straight diagonal: the
-   words on white to the left, the treatment room to the right. The name
-   is set big and plain, with a teal second line and a small label over it.
-   At the foot the white warms to yellow and the town stands across both.
+   1 · «Snitt». The words on white to the left, as on the live hero; the
+   treatment room up in the top right corner, the whole photo (its own
+   5:4 shape, nothing cropped) about half the screen high, its left edge
+   cut on a gentle diagonal. Under it the white warms to yellow and the
+   town stands across the foot.
    ───────────────────────────────────────────────────────────────────── */
 export function Snitt() {
   return (
-    <section aria-label="Velkommen" className="relative flex min-h-[100svh] flex-col overflow-hidden bg-white md:block md:min-h-[max(720px,100svh)]">
-      {/* the room, behind the diagonal (top of the photo slanted on a phone) */}
-      <div className="relative order-2 mt-8 h-[46svh] min-h-[300px] w-full [clip-path:polygon(0_14%,100%_0,100%_100%,0_100%)] md:absolute md:inset-y-0 md:right-0 md:mt-0 md:h-auto md:w-[54%] md:[clip-path:polygon(24%_0,100%_0,100%_100%,0_100%)]">
-        <Image src={ROMMET} alt="Behandlingsrommet: stolen, instrumentene og brettet" fill priority sizes="(min-width: 768px) 54vw, 100vw" className="object-cover object-[30%_50%]" />
+    <section aria-label="Velkommen" className="relative flex min-h-[100svh] flex-col overflow-hidden bg-white md:block md:min-h-[max(680px,100svh)]">
+      {/* the room: full width under the words on a phone, top right from md up */}
+      <div className="relative z-[6] order-2 mt-8 aspect-[5/4] w-full [clip-path:polygon(0_10%,100%_0,100%_100%,0_100%)] md:absolute md:right-0 md:top-0 md:mt-0 md:w-[min(52vw,calc(56svh*1.25))] md:[clip-path:polygon(14%_0,100%_0,100%_100%,0_100%)]">
+        <Image src={ROMMET} alt="Behandlingsrommet: stolen, instrumentene og brettet" fill priority sizes="(min-width: 768px) 52vw, 100vw" className="object-cover" />
       </div>
 
-      <div className="relative z-10 order-1 mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pt-[108px] md:pt-[clamp(150px,22vh,220px)]">
+      <div className="relative z-10 order-1 mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pt-[100px] md:pt-[clamp(112px,15vh,150px)]">
         <div className="max-w-[560px]">
-          <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.18em] text-[var(--color-teal-tekst)]">
-            <span className="h-px w-10 bg-[var(--color-teal)]" aria-hidden="true" />
-            Tannlege i Kongsvinger
-          </p>
-          <h1 className="mt-5 font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(46px, 6.4vw, 96px)", lineHeight: 0.92, letterSpacing: "-0.04em" }}>
+          <h1 className="font-bold text-[var(--color-glomma-deep)]" style={{ fontSize: "clamp(44px, 6vw, 92px)", lineHeight: 0.92, letterSpacing: "-0.035em" }}>
             Kongsvinger
             <br />
-            <span className="text-[var(--color-teal)]">Tannhelse</span>
+            Tannhelse
           </h1>
-          <p className="mt-5 text-[18px] font-medium text-[var(--color-glomma)] md:text-[20px]">Tannlegene Hafthun og Zia</p>
-          <Knapper className="mt-8" />
+          <p className="mt-4 text-[18px] font-medium text-[var(--color-glomma)] md:mt-5 md:text-[20px]">Tannlegene Hafthun og Zia</p>
+          <Knapper className="mt-7" />
         </div>
       </div>
 
       {/* white → yellow, then the town */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[34%] md:h-[38%]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[30%] md:h-[36%]"
         style={{ background: `linear-gradient(to bottom, rgba(255,255,255,0) 0%, ${SOL_LYS} 45%, ${SOL} 100%)` }}
       />
-      <Byen className="z-[6]" />
+      <Byen className="z-[7]" />
     </section>
   );
 }
