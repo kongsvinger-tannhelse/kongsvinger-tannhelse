@@ -309,7 +309,7 @@ export function Oppslag() {
                 aria-labelledby={`${p.id}-tittel`}
                 hidden={p.id !== aktiv}
                 onScroll={p.id === aktiv ? folg : undefined}
-                className={cn("min-h-0 flex-1 overflow-y-auto px-10 pt-8", p.id === aktiv && s.blad)}
+                className={cn("flex min-h-0 flex-1 flex-col overflow-y-auto px-10 pt-8", p.id === aktiv && s.blad)}
               >
                 {p.id === aktiv && bred && <Vindu p={p} className="aspect-[2/1] max-h-[28svh] w-full rounded-[22px] shadow-[0_18px_34px_-24px_rgba(22,48,59,0.6)]" opp />}
                 <Innhold p={p} />
@@ -344,13 +344,15 @@ function Innhold({ p, tittelId = `${p.id}-tittel` }: { p: Punkt; tittelId?: stri
   return (
     <>
       <p className="sr-only">{GRUPPENAVN[p.gruppe]}</p>
-      <h2 id={tittelId} className="mt-6 text-[30px] md:mt-8 font-bold leading-[1.02] tracking-[-0.04em] text-[var(--color-glomma-deep)] md:text-[clamp(34px,3.4vw,46px)] md:tracking-[-0.045em]">
+      {/* on the book's right page (md up) the name is a fifth smaller than it was, and the words take
+          their room: more air between them, and the buttons at the foot of the page */}
+      <h2 id={tittelId} className="mt-6 text-[30px] md:mt-10 font-bold leading-[1.02] tracking-[-0.04em] text-[var(--color-glomma-deep)] md:text-[clamp(27px,2.72vw,37px)] md:tracking-[-0.04em]">
         {p.navn}
       </h2>
-      <p className="mt-2 text-[16px] font-medium text-[var(--color-tekst-svak)] md:text-[18px]">{KORT[p.id]}</p>
-      <p className="mt-3 max-w-[60ch] text-[17.5px] leading-[1.6] text-[var(--color-tekst)] md:mt-4 md:text-[18.5px] md:leading-[1.65]">{p.tekst}</p>
+      <p className="mt-2 text-[16px] font-medium text-[var(--color-tekst-svak)] md:mt-3 md:text-[18px]">{KORT[p.id]}</p>
+      <p className="mt-3 max-w-[60ch] text-[17.5px] leading-[1.6] text-[var(--color-tekst)] md:mt-7 md:text-[18.5px] md:leading-[1.7]">{p.tekst}</p>
       {/* on the book's right page the buttons stay in sight while a long text scrolls under them */}
-      <div className="mt-6 grid grid-cols-2 gap-2.5 pb-6 md:sticky md:bottom-0 md:z-10 md:-mx-10 md:mt-3 md:flex md:flex-wrap md:bg-[#FFFDF8] md:px-10 md:pb-6 md:pt-4 md:shadow-[0_-18px_18px_-6px_#FFFDF8]">
+      <div className="mt-6 grid grid-cols-2 gap-2.5 pb-6 md:sticky md:bottom-0 md:z-10 md:-mx-10 md:mt-auto md:flex md:flex-wrap md:bg-[#FFFDF8] md:px-10 md:pb-8 md:pt-8 md:shadow-[0_-18px_18px_-6px_#FFFDF8]">
         {harSide(p.id) && (
           <Link href={sideSti(p.id)} className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 text-[15px] font-semibold text-white transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]">
             Les mer<span className="sr-only"> om {p.navn.toLowerCase()}</span>

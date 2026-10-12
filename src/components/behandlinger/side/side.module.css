@@ -54,6 +54,23 @@
     #1B2347 100%
   );
 }
+/* With the drawing beside the words (md up), the night needs less room
+   under them: the dawn comes sooner, its bands about two thirds as tall. */
+@media (min-width: 768px) {
+  .nattSide {
+    padding-bottom: 140px;
+    background: linear-gradient(
+      to top,
+      #FFFDF8 0,
+      #F8E6D6 26px,
+      #DDBFC2 53px,
+      #9790B7 81px,
+      #4B5584 109px,
+      #2A3360 140px,
+      #1B2347 100%
+    );
+  }
+}
 .stjerne { animation: blinke 5s ease-in-out infinite both; }
 @keyframes blinke {
   0%, 100% { opacity: 1; }
