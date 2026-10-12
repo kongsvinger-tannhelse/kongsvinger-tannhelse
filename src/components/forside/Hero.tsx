@@ -10,9 +10,10 @@ import tegnet from "@/components/forside/utsikt/tegnet.webp";
 /**
  * «Snitt» (chosen 2026-10-12 from three proposals). White at the top with the
  * name to the left; the treatment room in the top right, cut on a diagonal
- * that follows the words; and lower down the white warms to yellow and the
- * drawing of the view over Glomma (tools/tegn_hero.py: the river, the bridge,
- * the town and the fortress) rises out of it. From lg up nothing waits or
+ * that follows the words; and lower down the drawing of the view over Glomma
+ * (tools/tegn_hero.py: the river, the bridge, the town and the fortress)
+ * rises out of the white. Nothing behind it is coloured, so there is nothing
+ * to see but white until the drawing has come. From lg up nothing waits or
  * slides in: the name and the photo are there in the first frame, which is
  * what PageSpeed times.
  *
@@ -23,13 +24,11 @@ import tegnet from "@/components/forside/utsikt/tegnet.webp";
 
 // bilde6, upscaled by the clinic (2000 × 1600); the source is kilder/klinikk/behandlingsrom-oppskalert.webp
 const ROMMET = "/images/klinikk/behandlingsrom.webp";
-const SOL = "#F7DC8C"; // the low sun in the drawing
-const SOL_LYS = "#FCEFC4";
 
 /**
  * From lg up: the drawing, showing only its lower part
- * across the foot of the hero. Its top fades out, so the yellow above runs
- * straight into the drawing's own hazy horizon.
+ * across the foot of the hero. Its top fades out, so the drawing's own hazy
+ * horizon runs straight into the white above it.
  */
 function Utsikten() {
   const maske = "linear-gradient(to bottom, transparent 0%, #000 26%)";
@@ -46,9 +45,6 @@ function Utsikten() {
 export function Hero() {
   return (
     <section aria-label="Velkommen" className="relative flex h-[100svh] min-h-[520px] flex-col overflow-hidden bg-white lg:block lg:h-auto lg:min-h-[max(680px,100svh)]">
-      {/* from lg up, the white warming to yellow behind the drawing */}
-      <div aria-hidden="true" className="absolute inset-0 hidden lg:block" style={{ background: `linear-gradient(to bottom, #fff 0%, #fff 52%, ${SOL_LYS} 66%, ${SOL} 78%)` }} />
-
       {/* the words, and from lg up the room sized by them: from the top of the page
           to the foot of the words (the opening hours), as tall as they reach */}
       <div className="relative z-10">

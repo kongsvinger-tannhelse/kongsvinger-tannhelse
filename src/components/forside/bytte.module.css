@@ -14,7 +14,8 @@
   overflow: hidden;
   /* the hero's diagonal, rising to the right */
   clip-path: polygon(0 36px, 100% 0, 100% 100%, 0 100%);
-  background: #fcefc4;
+  /* the page's white: until the drawing has come, the frame shows nothing */
+  background: #fff;
 }
 
 .innhold {
