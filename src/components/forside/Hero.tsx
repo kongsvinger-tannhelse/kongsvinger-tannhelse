@@ -5,6 +5,7 @@ import { ArrowRight, Phone } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { Apningsstatus } from "@/components/forside/Apningsstatus";
 import { Bytte } from "@/components/forside/Bytte";
+import { FORVARSEL } from "@/components/forside/utsikt/forvarsel";
 import tegnet from "@/components/forside/utsikt/tegnet.webp";
 
 /**
@@ -28,7 +29,8 @@ const ROMMET = "/images/klinikk/behandlingsrom.webp";
 /**
  * From lg up: the drawing, showing only its lower part
  * across the foot of the hero. Its top fades out, so the drawing's own hazy
- * horizon runs straight into the white above it.
+ * horizon runs straight into the white above it. Fetched with the top of the
+ * page; until it has come, its own miniature stands in (see FORVARSEL).
  */
 function Utsikten() {
   const maske = "linear-gradient(to bottom, transparent 0%, #000 26%)";
@@ -36,7 +38,7 @@ function Utsikten() {
     <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] hidden h-[46%] overflow-hidden lg:block" style={{ maskImage: maske, WebkitMaskImage: maske }}>
       {/* the whole drawing (3:2), sunk so its foreground trees are cut off */}
       <div className="absolute bottom-0 left-0 aspect-[3/2] w-full translate-y-[14%]">
-        <Image src={tegnet} alt="" fill sizes="(min-width: 1024px) 100vw, 170vw" className="object-cover" />
+        <Image src={tegnet} alt="" fill preload sizes="(min-width: 1024px) 100vw, 170vw" className="object-cover" style={FORVARSEL} />
       </div>
     </div>
   );
