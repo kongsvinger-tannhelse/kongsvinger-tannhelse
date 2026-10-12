@@ -10,13 +10,14 @@ import naerTegnet from "@/components/forside/utsikt/near-tegnet.webp";
 
 /*
  * MOCKUPS of a new hero (not on the live front page): white at the top with
- * the name, the treatment room (bilde6: the chair, the instruments, the tray)
+ * the name, the treatment room (bilde6, upscaled: the chair, the instruments, the tray)
  * beside it behind a diagonal edge, and at the foot the white warms to
  * yellow and the town on its hill (landskap-*.webp, from «Om oss») rises
  * under it. Three ways to set it: Snitt, Solstripe, Vindu.
  */
 
-const ROMMET = "/images/klinikk/bilde6.webp";
+// bilde6, upscaled by the clinic (2000 × 1600, 2026-10-12); the source is kilder/klinikk/behandlingsrom-oppskalert.webp
+const ROMMET = "/images/klinikk/behandlingsrom.webp";
 const SOL = "#F7DC8C"; // the low sun in the hero drawing
 const SOL_LYS = "#FCEFC4";
 
