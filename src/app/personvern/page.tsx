@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { OPPDATERT, PersonvernSide } from "@/components/personvern/PersonvernSide";
 import { klinikk } from "@/data/klinikk";
+import { OPENGRAPH } from "@/lib/deling";
 
 const description = `Hva nettsiden til ${klinikk.navn} samler inn om deg, og hvorfor: kontaktskjemaet, hvem som får opplysningene, rettighetene dine og hvordan du klager.`;
 
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/personvern" },
   openGraph: {
+    ...OPENGRAPH,
     title: `Personvern | ${klinikk.navn}`,
     description,
     url: "/personvern",

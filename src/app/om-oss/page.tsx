@@ -3,12 +3,14 @@ import { Navbar } from "@/components/Navbar";
 import { OmOssSide } from "@/components/omoss/OmOssSide";
 import { BILDER, METADATA, TITTEL } from "@/components/omoss/tekst";
 import { ansatte, klinikk } from "@/data/klinikk";
+import { OPENGRAPH } from "@/lib/deling";
 
 export const metadata: Metadata = {
   title: METADATA.title,
   description: METADATA.description,
   alternates: { canonical: "/om-oss" },
   openGraph: {
+    ...OPENGRAPH,
     title: `${METADATA.title} | ${klinikk.navn}`,
     description: METADATA.description,
     url: "/om-oss",

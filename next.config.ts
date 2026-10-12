@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 import { SAMME_SIDE } from "./src/data/behandlinger/sider";
 
 const securityHeaders = [
+  // HTTPS only, for two years. Vercel already sends plain http on to https;
+  // this tells the browser never to try http again. No includeSubDomains: the
+  // domain's other names (the mail at one.com) are not the site's to decide.
+  { key: "Strict-Transport-Security", value: "max-age=63072000" },
   { key: "X-DNS-Prefetch-Control", value: "on" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -34,6 +38,8 @@ const gamleBilder = [
 ].map(([gammel, ny]) => ({ source: `/${gammel}`, destination: `/images/klinikk/${ny}` }));
 
 const nextConfig: NextConfig = {
+  // no «X-Powered-By: Next.js» on every answer
+  poweredByHeader: false,
   images: {
     // next/image qualities used across the site (Next 16 requires them listed).
     qualities: [75],

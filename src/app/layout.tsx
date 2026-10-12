@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Schibsted_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { klinikk } from "@/data/klinikk";
+import { DELINGSBILDE, OPENGRAPH } from "@/lib/deling";
 import { Bunntekst } from "@/components/bunntekst/Bunntekst";
 import { Bevegelse } from "@/components/Bevegelse";
 import "./globals.css";
@@ -26,12 +29,9 @@ export const metadata: Metadata = {
   },
   description:
     "Tannlege i Fjellgata 4 i Kongsvinger. Tannsjekk, tannrens, fyllinger, rotfylling, kroner, implantater og akutt hjelp. Ring 62 81 50 09.",
-  openGraph: {
-    type: "website",
-    locale: "nb_NO",
-    siteName: "Kongsvinger Tannhelse",
-    url: klinikk.url,
-  },
+  openGraph: { ...OPENGRAPH, url: klinikk.url },
+  // the big preview when shared on X too
+  twitter: { card: "summary_large_image", images: [DELINGSBILDE] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -75,6 +75,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
           <Bunntekst />
         </Bevegelse>
+        {/* Visits and load times from real visitors, counted by Vercel without
+            cookies or anything stored in the browser, so no consent banner is
+            needed (see /personvern). Turn both on under the project's
+            Analytics and Speed Insights tabs in Vercel. */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Artikkelside } from "@/components/artikler/Artikkelside";
 import { ARTIKLER, RAD_OG_TIPS, finnArtikkel } from "@/data/artikler";
+import { OPENGRAPH } from "@/lib/deling";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: a.tittel,
     description: a.beskrivelse,
     alternates: { canonical: sti },
-    openGraph: { type: "article", title: `${a.tittel} | Kongsvinger Tannhelse`, description: a.beskrivelse, url: sti },
+    openGraph: { ...OPENGRAPH, type: "article", title: `${a.tittel} | Kongsvinger Tannhelse`, description: a.beskrivelse, url: sti },
   };
 }
 

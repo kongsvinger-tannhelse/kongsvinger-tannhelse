@@ -108,7 +108,7 @@ export function Sider() {
 }
 
 /**
- * The bottom line: copyright and the privacy page, the credits, back to the
+ * The bottom line: copyright, the privacy and terms pages, the credits, back to the
  * top. The hero is our own drawing and needs no credit. The fortress drawing
  * in «Om oss» is drawn over a CC BY 2.0 photo, and the map on the front
  * page is drawn from OpenStreetMap; both licences ask for one.
@@ -120,6 +120,10 @@ export function Bunnlinje({ className }: { className?: string }) {
         © {new Date().getFullYear()} {klinikk.navn} ·{" "}
         <Link href="/personvern" className="underline decoration-1 underline-offset-2 hover:text-white">
           Personvern
+        </Link>{" "}
+        ·{" "}
+        <Link href="/vilkar" className="underline decoration-1 underline-offset-2 hover:text-white">
+          Vilkår
         </Link>
       </p>
       <p className="max-w-[70ch] md:text-center">
