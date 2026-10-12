@@ -1,7 +1,7 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { RAD_OG_TIPS } from "@/data/artikler/typer";
-import { BGJENNOMGATT, type Behandlingsside as Side, type Del, type Stripe } from "@/data/behandlinger";
+import { type Behandlingsside as Side, type Del, type Stripe } from "@/data/behandlinger";
 import { SAMME_SIDE } from "@/data/behandlinger/sider";
 import { Smuler, Vis } from "@/components/artikler/deler";
 import { Ark, Brod, Hilsen, Sporsmal } from "@/components/artikler/lapp";
@@ -37,8 +37,9 @@ import s from "./side.module.css";
 
 /** Under every comic strip: this is how it often goes, not a promise. */
 const SERIE_FORBEHOLD = "Slik går det ofte for seg, men det er forskjellig fra pasient til pasient. Vi forteller deg hva som gjelder for deg.";
+/** PREVIEW: the two layouts of the top, to choose between. */
+const OPPSETT: "side" | "under" = "side";
 const KANT = "scroll-mt-28 border-t border-dashed border-[var(--color-strek)] py-10 md:py-14";
-const DATO = new Date(`${BGJENNOMGATT}T12:00:00Z`).toLocaleDateString("nb-NO", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Oslo" });
 
 /** The pages for what can't wait: the book's «Akutt» group, each by the page it has. */
 const AKUTT = new Set<string>(GRUPPER.find((g) => g.id === "akutt")?.liste.map((b) => SAMME_SIDE[b.id] ?? b.id));
@@ -129,38 +130,6 @@ function Visning({ del, n, i, vask, stripe }: { del: Del; n: number; i: number; 
   }
 }
 
-/** What the page rests on: the pages it was checked against, and when. */
-function Kilder({ side }: { side: Side }) {
-  return (
-    <section aria-labelledby="kilder" className="mt-10 border-t border-dashed border-[var(--color-strek)] pt-8 md:mt-12">
-      <h2 id="kilder" className="text-[15px] font-bold uppercase tracking-[0.12em] text-[var(--color-tekst-2)]">
-        Kilder
-      </h2>
-      <p className="mt-2 max-w-[60ch] text-[15px] leading-[1.6] text-[var(--color-tekst-2)]">
-        Teksten er sjekket mot disse sidene, sist {DATO}. Den erstatter ikke en undersøkelse hos tannlegen.
-      </p>
-      <ul className="mt-4 grid gap-x-8 gap-y-2 sm:grid-cols-2">
-        {side.kilder.map((k) => (
-          <li key={k.url}>
-            <a
-              href={k.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-baseline gap-1.5 text-[14.5px] leading-[1.45] text-[var(--color-tekst)] underline decoration-[var(--color-strek)] decoration-1 underline-offset-4 hover:decoration-[var(--color-glomma)]"
-            >
-              <span>
-                <span className="font-semibold text-[var(--color-glomma-deep)]">{k.utgiver}:</span> {k.navn}
-              </span>
-              <ArrowUpRight className="size-3.5 shrink-0 translate-y-0.5 text-[var(--color-tekst-svak)]" aria-hidden="true" />
-              <span className="sr-only">(åpnes i ny fane)</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
 export function Behandlingsside({ side }: { side: Side }) {
   const Tittelbilde = TITTELBILDER[side.tittelbilde];
   const natt = side.signatur === "natt";
@@ -174,25 +143,25 @@ export function Behandlingsside({ side }: { side: Side }) {
         <Smuler sider={[{ navn: "Behandlinger", href: "/behandlinger" }, { navn: side.navn }]} />
         <Ark className="mt-8">
           {side.signatur === "spiral" && <Spiral />}
-          <Vis as="header" margin="0px" className={cn("text-center", natt && s.natt)}>
+          {/* The top across the sheet's whole width, the words from the left: the title and
+              its few lines take fewer lines, and the page gets shorter. */}
+          <Vis as="header" margin="0px" className={cn(OPPSETT === "side" && "md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,280px)] md:items-center md:gap-12", natt && s.natt, natt && OPPSETT === "side" && s.nattSide)}>
             {natt && <Stjerner />}
-            <h1 className={cn("relative mx-auto max-w-[22ch] text-balance font-bold", natt ? "text-[#FFF8E7]" : "text-[var(--color-glomma-deep)]")} style={SIDETITTEL}>
-              {side.navn}
-            </h1>
-            <p className={cn("relative mx-auto mt-4 max-w-[44ch] text-balance text-[18px] leading-[1.55] md:mt-5 md:text-[20px]", natt ? "text-[#FFF8E7]/80" : "text-[var(--color-tekst-2)]")}>
-              {side.ingress}
-            </p>
-            {side.hosOss && (
-              <p className={cn("relative mx-auto mt-3 max-w-[44ch] text-balance text-[18px] font-semibold leading-[1.5] md:text-[20px]", natt ? "text-[#FFF8E7]" : "text-[var(--color-glomma-deep)]")}>
-                {side.hosOss}
-              </p>
-            )}
-            {akutt && (
-              <div className="mt-7">
-                <RingOss />
-              </div>
-            )}
-            <div className="relative mx-auto mt-8 w-full max-w-[300px]">
+            <div className="relative">
+              <h1 className={cn("text-pretty font-bold", natt ? "text-[#FFF8E7]" : "text-[var(--color-glomma-deep)]")} style={SIDETITTEL}>
+                {side.navn}
+              </h1>
+              <p className={cn("mt-4 text-pretty text-[18px] leading-[1.55] md:mt-5 md:text-[20px]", natt ? "text-[#FFF8E7]/80" : "text-[var(--color-tekst-2)]")}>{side.ingress}</p>
+              {side.hosOss && (
+                <p className={cn("mt-3 text-pretty text-[18px] font-semibold leading-[1.5] md:text-[20px]", natt ? "text-[#FFF8E7]" : "text-[var(--color-glomma-deep)]")}>{side.hosOss}</p>
+              )}
+              {akutt && (
+                <div className="mt-7">
+                  <RingOss />
+                </div>
+              )}
+            </div>
+            <div className={cn("relative mx-auto mt-8 w-full max-w-[260px]", OPPSETT === "side" && "md:mx-0 md:mt-0 md:max-w-none")}>
               {vask && !natt && <Vask seed={5} className="-inset-x-6 -inset-y-4" />}
               {natt ? <Natt paaMork className="relative w-full" /> : <Tittelbilde className="relative w-full" />}
             </div>
@@ -203,7 +172,9 @@ export function Behandlingsside({ side }: { side: Side }) {
             ))}
           </div>
           <Hilsen tekst={side.slutt} apent={akutt} />
-          <Kilder side={side} />
+          {/* No list of sources here: these are the clinic's own pages. The
+              sources stay in the data (and in the structured data for search
+              engines); the Råd og tips articles still show theirs. */}
         </Ark>
       </div>
       <Bunnlinje />
