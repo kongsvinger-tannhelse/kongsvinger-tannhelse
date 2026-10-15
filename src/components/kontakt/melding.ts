@@ -1,5 +1,6 @@
 "use server";
 
+import { Resolver } from "node:dns/promises";
 import { headers } from "next/headers";
 import nodemailer from "nodemailer";
 import { klinikk } from "@/data/klinikk";
@@ -38,6 +39,27 @@ function forMange(ip: string) {
   return false;
 }
 
+// A short wait: a slow lookup lets the message through rather than keep a patient waiting
+const dns = new Resolver({ timeout: 2500, tries: 2 });
+
+/**
+ * Whether the address's domain takes e-mail, i.e. has a mail server (MX)
+ * listed. Made-up domains have none. Whether the mailbox itself exists only
+ * a mail to it can tell. When the lookup itself fails, the message goes
+ * through.
+ */
+async function tarImotPost(epost: string) {
+  const domene = epost.split("@").pop()!;
+  try {
+    const mx = await dns.resolveMx(domene);
+    // a "null MX" (RFC 7505), one record pointing at ".", says the domain takes no mail
+    return mx.some((r) => r.exchange !== "" && r.exchange !== ".");
+  } catch (err) {
+    const code = (err as NodeJS.ErrnoException).code;
+    return code !== "ENOTFOUND" && code !== "ENODATA";
+  }
+}
+
 function les(form: FormData, key: string) {
   const v = form.get(key);
   return typeof v === "string" ? v.trim() : "";
@@ -49,13 +71,14 @@ export async function sendMelding(_forrige: MeldingState, form: FormData): Promi
 
   const v = Object.fromEntries(FELT.map((f) => [f, les(form, f)])) as Record<Felt, string>;
   const errors = feilene(v);
+  if (!errors.epost && !(await tarImotPost(v.epost))) errors.epost = "Vi finner ikke denne e-postadressen. Sjekk at den er skrevet riktig.";
   if (Object.keys(errors).length) return { status: "invalid", errors };
 
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() || "ukjent";
   if (forMange(ip)) return { status: "error", reason: "busy" };
 
   const subject = `Melding fra nettsiden: ${v.navn.replace(/[\r\n]+/g, " ")}`;
-  const text = `Navn: ${v.navn}\nTelefon: ${v.telefon || "(ikke oppgitt)"}\nE-post: ${v.epost || "(ikke oppgitt)"}\n\n${v.melding}\n`;
+  const text = `Navn: ${v.navn}\nTelefon: ${v.telefon}\nE-post: ${v.epost}\n\n${v.melding}\n`;
 
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
@@ -80,8 +103,8 @@ export async function sendMelding(_forrige: MeldingState, form: FormData): Promi
       .sendMail({
         from: { name: "Nettsiden", address: user },
         to: process.env.SMTP_TO ?? klinikk.epost,
-        // The clinic answers by pressing Svar, when there is an address to answer
-        ...(v.epost && { replyTo: { name: v.navn, address: v.epost } }),
+        // The clinic answers by pressing Svar
+        replyTo: { name: v.navn, address: v.epost },
         subject,
         text,
       });
