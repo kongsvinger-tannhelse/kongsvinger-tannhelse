@@ -19,7 +19,7 @@ export const klinikk = {
 
 export const ansatte = [
   { navn: "Per Hafthun", rolle: "Tannlege", bilde: "/images/klinikk/hafthun.webp" },
-  { navn: "Umer Zia", rolle: "Tannlege", bilde: "/images/klinikk/zia.webp" },
+  { navn: "Umair Zia", rolle: "Tannlege", bilde: "/images/klinikk/zia.webp" },
   { navn: "Eba Wasty", rolle: "Tannpleier", bilde: "/images/klinikk/eba.webp" },
 ] as const;
 

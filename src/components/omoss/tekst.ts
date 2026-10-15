@@ -26,7 +26,7 @@ type Navn = (typeof ansatte)[number]["navn"];
  */
 export const BIOER: Record<Navn, string | null> = {
   "Per Hafthun": "[Kort om Per, fra klinikken: to eller tre setninger, skrevet eller godkjent av Per selv.]",
-  "Umer Zia": "[Kort om Umer, fra klinikken: to eller tre setninger, skrevet eller godkjent av Umer selv.]",
+  "Umair Zia": "[Kort om Umair, fra klinikken: to eller tre setninger, skrevet eller godkjent av Umair selv.]",
   "Eba Wasty": "[Kort om Eba, fra klinikken: to eller tre setninger, skrevet eller godkjent av Eba selv.]",
 };
 
@@ -52,5 +52,5 @@ export type Bilde = (typeof BILDER)[number];
 
 export const METADATA = {
   title: "Om oss: tannlegene i Fjellgata 4",
-  description: `Kongsvinger Tannhelse er en tannklinikk i ${adresse.gate} i Kongsvinger. Møt tannlegene Per Hafthun og Umer Zia og tannpleier Eba Wasty, og se bilder fra klinikken.`,
+  description: `Kongsvinger Tannhelse er en tannklinikk i ${adresse.gate} i Kongsvinger. Møt tannlegene Per Hafthun og Umair Zia og tannpleier Eba Wasty, og se bilder fra klinikken.`,
 };

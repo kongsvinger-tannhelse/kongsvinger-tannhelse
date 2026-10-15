@@ -9,7 +9,7 @@ export const TEKST = "Hos oss møter du et dedikert team som vil at du skal føl
 /** Where each face is in its photo, and how far to zoom so the three heads are the same size (the photos are framed differently). */
 const UTSNITT: Record<string, { fokus: string; zoom: number }> = {
   "Per Hafthun": { fokus: "50% 30%", zoom: 1 },
-  "Umer Zia": { fokus: "50% 28%", zoom: 1.08 },
+  "Umair Zia": { fokus: "50% 28%", zoom: 1.08 },
   "Eba Wasty": { fokus: "51% 22%", zoom: 1.75 },
 };
 
