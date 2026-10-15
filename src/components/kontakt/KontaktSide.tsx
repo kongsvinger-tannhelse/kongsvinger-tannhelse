@@ -318,7 +318,7 @@ export function KontaktSide() {
                   </div>
                   <div>
                     <label htmlFor={`${id}epost`} className={ETIKETT}>
-                      eller på e-post
+                      og på e-post
                     </label>
                     <input type="email" autoComplete="email" className={LINJE} {...felt("epost")} />
                     {melding("epost")}
