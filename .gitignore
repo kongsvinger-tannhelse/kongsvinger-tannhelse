@@ -37,3 +37,6 @@ src/components/forside/utsikt/debug-*.jpg
 
 # generated drawing sources (tools/tegn_landskap.py)
 /tools/tegninger/
+
+# local design inspection
+.taste-skill/

@@ -22,8 +22,8 @@ import tegnet from "@/components/forside/utsikt/tegnet.webp";
  * opens on the drawing and then lets the room sweep in (Bytte.tsx).
  */
 
-// bilde6, upscaled by the clinic (2000 × 1600); the source is kilder/klinikk/behandlingsrom-oppskalert.webp
-const ROMMET = "/images/klinikk/behandlingsrom.webp";
+// Retouched version of the clinic's treatment-room photo; the original remains beside it.
+const ROMMET = "/images/klinikk/behandlingsrom-polert.webp";
 
 /**
  * From lg up: the drawing, showing only its lower part

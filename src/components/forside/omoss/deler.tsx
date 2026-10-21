@@ -20,16 +20,18 @@ const SPILL = 1.05;
  * a zoomed face is not a small picture stretched.
  */
 function Foto({ person, kolonne }: { person: Person; kolonne: Kolonne }) {
+  // The retouched portrait has more of Eba's hair near the top of the frame.
+  const fokus = person.navn === "Eba Wasty" ? "51% 0%" : person.fokus;
   const k = SPILL * person.zoom;
   const sizes = `(min-width: 768px) ${Math.ceil(kolonne.px * k)}px, ${Math.ceil(kolonne.vw * k)}vw`;
   return (
     <Image
-      src={person.bilde}
+      src={person.bilde.replace(".webp", "-polert.webp")}
       alt={`${person.navn}, ${person.rolle.toLowerCase()}`}
       fill
       sizes={sizes}
       className="object-cover"
-      style={{ objectPosition: person.fokus, transform: `scale(${person.zoom})`, transformOrigin: person.fokus }}
+      style={{ objectPosition: fokus, transform: `scale(${person.zoom})`, transformOrigin: fokus }}
     />
   );
 }

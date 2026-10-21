@@ -20,7 +20,7 @@ import styles from "./bytte.module.css";
  * takes over, without the sweep.
  */
 
-const ROMMET = "/images/klinikk/behandlingsrom.webp";
+const ROMMET = "/images/klinikk/behandlingsrom-polert.webp";
 const VENT = 1100;
 
 export function Bytte({ className }: { className?: string }) {

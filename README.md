@@ -24,3 +24,6 @@ npm run build && npm run start   # http://localhost:3200
   [Pexels](https://www.pexels.com/photo/view-from-the-kongsvinger-fortress-hedmark-norway-14777353/) (Pexels-lisens).
 - Bildene fra klinikken er klinikkens egne, fra den gamle nettsiden. Behandlingsrommet i toppen
   (`public/images/klinikk/behandlingsrom.webp`) er klinikkens egen oppskalering av `bilde6`.
+
+Forsiden bruker AI-retusjerte varianter (`*-polert.webp`) av behandlingsrommet og de tre ansattportrettene.
+Originalbildene er beholdt. Retusjen endrer lys og fargetoner, og portrettene har en felles nøytral bakgrunn.
