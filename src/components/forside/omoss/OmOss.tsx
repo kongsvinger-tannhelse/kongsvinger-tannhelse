@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { useId, useRef, type CSSProperties } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 import { Buebilde, Navn, Opp } from "./deler";
@@ -104,8 +106,19 @@ export function OmOss() {
           ))}
         </ul>
 
+        {/* on to the Om oss page, where each of the three gets their own words */}
+        <div className="mt-9 flex justify-center md:mt-11">
+          <Link
+            href="/om-oss"
+            className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-glomma)] px-6 py-3.5 text-[14px] font-semibold text-[var(--color-papir)] shadow-[0_12px_30px_-14px_rgba(22,48,59,0.7)] transition-colors duration-300 hover:bg-[var(--color-glomma-deep)]"
+          >
+            Mer om oss
+            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+          </Link>
+        </div>
+
         {/* what the clinic stands for */}
-        <Punkter className="mx-auto mt-10 grid max-w-[960px] gap-8 sm:grid-cols-3 sm:gap-8 md:mt-14 md:gap-12" />
+        <Punkter className="mx-auto mt-12 grid max-w-[960px] gap-8 sm:grid-cols-3 sm:gap-8 md:mt-16 md:gap-12" />
       </div>
 
       {/* the town and the fortress, along the foot of the section, with open sky
