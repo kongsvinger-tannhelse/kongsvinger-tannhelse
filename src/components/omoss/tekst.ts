@@ -31,11 +31,22 @@ export type Bio = {
 };
 
 /**
- * The three bios, in the order they stand in the triptych. Every fact comes
+ * The three bios, in the order of the swipe row on a phone: Umair first. (The
+ * triptych on a wide screen places them by name, see Triptyk.tsx.) Every fact comes
  * from the person's own text; nothing is added. Per's quote is his own
  * sentence, so he should see it before the page goes live.
  */
 export const BIOER: Bio[] = [
+  {
+    navn: "Umair Zia",
+    initialer: "UZ",
+    rolle: "Tannlege",
+    avsnitt: [
+      "Umair ble ferdig utdannet tannlege ved Universitetet i Oslo i 2012.",
+      "Han har jobbet på flere arbeidsplasser. Den erfaringen gir ham et godt faglig grunnlag og trygghet i møte med pasienter i alle aldre og med ulike behov. Han tilbyr både vanlig tannbehandling og implantatbehandling.",
+    ],
+    skole: "Universitetet i Oslo, 2012",
+  },
   {
     navn: "Per Hafthun",
     initialer: "PH",
@@ -46,16 +57,6 @@ export const BIOER: Bio[] = [
     ],
     sitat: "Jeg har vært dedikert oppgaven og likt de utfordringene jeg har møtt på vegen.",
     skole: "Ferdig utdannet 1976",
-  },
-  {
-    navn: "Umair Zia",
-    initialer: "UZ",
-    rolle: "Tannlege",
-    avsnitt: [
-      "Umair ble ferdig utdannet tannlege ved Universitetet i Oslo i 2012.",
-      "Han har jobbet på flere arbeidsplasser. Den erfaringen gir ham et godt faglig grunnlag og trygghet i møte med pasienter i alle aldre og med ulike behov. Han tilbyr både vanlig tannbehandling og implantatbehandling.",
-    ],
-    skole: "Universitetet i Oslo, 2012",
   },
   {
     navn: "Eba Wasty",

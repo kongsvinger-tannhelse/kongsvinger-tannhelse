@@ -213,9 +213,10 @@
   .eskole { font-size: 18px; }
   .estempel { right: 26px; bottom: 22px; }
 
-  .epanel[data-pos="v"] { transform-origin: 100% 50%; transform: rotateY(-5deg); }
-  .epanel[data-pos="h"] { transform-origin: 0 50%; transform: rotateY(5deg); }
-  .epanel[data-pos="m"] { z-index: 2; margin-block: -14px; padding-top: 50px; transition: transform 1.2s var(--ease-rolig), opacity 0.8s ease; }
+  /* the list is in phone order (Umair first); here each panel goes to its own column */
+  .epanel[data-pos="v"] { grid-area: 1 / 1; transform-origin: 100% 50%; transform: rotateY(-5deg); }
+  .epanel[data-pos="h"] { grid-area: 1 / 3; transform-origin: 0 50%; transform: rotateY(5deg); }
+  .epanel[data-pos="m"] { grid-area: 1 / 2; z-index: 2; margin-block: -14px; padding-top: 50px; transition: transform 1.2s var(--ease-rolig), opacity 0.8s ease; }
   .epanel[data-pos="m"] .efoto { width: 182px; height: 228px; }
 
   /* shut until it is seen: the wings folded in over the middle, then they swing open */

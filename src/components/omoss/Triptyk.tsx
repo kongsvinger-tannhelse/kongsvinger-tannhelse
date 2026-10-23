@@ -3,7 +3,7 @@ import { Buebilde } from "@/components/forside/omoss/deler";
 import { PERSONER } from "@/components/forside/omoss/ansatte";
 import { kortskrift } from "./skrift";
 import { cn } from "@/lib/utils";
-import { BIOER } from "./tekst";
+import { BIOER, type Navn } from "./tekst";
 import { Guilloche, Ornament, Signatur, Stempel } from "./triptykdeler";
 import { Spor } from "./Spor";
 import r from "./triptyk.module.css";
@@ -16,7 +16,12 @@ import r from "./triptyk.module.css";
  * is a card in a row you swipe sideways (see Spor).
  */
 
-const POS = ["v", "m", "h"] as const;
+/** Where each stands in the triptych: Per in the left wing, Umair in the middle, Eba in the right wing. */
+const PLASS: Record<Navn, "v" | "m" | "h"> = {
+  "Per Hafthun": "v",
+  "Umair Zia": "m",
+  "Eba Wasty": "h",
+};
 
 export function Triptyk() {
   return (
@@ -24,9 +29,10 @@ export function Triptyk() {
       <Spor n={BIOER.length} className={r.eprad} etikett="Tannlegene og tannpleieren">
         {BIOER.map((bio, i) => {
           const person = PERSONER.find((p) => p.navn === bio.navn)!;
+          const plass = PLASS[bio.navn];
           return (
-            <li key={bio.navn} data-pos={POS[i % POS.length]} className={r.epanel}>
-              {i === 1 && (
+            <li key={bio.navn} data-pos={plass} className={r.epanel}>
+              {plass === "m" && (
                 <>
                   <span className={cn(r.ehengsel, r.ehv)} aria-hidden="true" />
                   <span className={cn(r.ehengsel, r.ehh)} aria-hidden="true" />
