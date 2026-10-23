@@ -142,8 +142,8 @@
   scroll-snap-align: center;
   display: grid;
   grid-template-columns: 112px minmax(0, 1fr);
-  grid-template-areas: "foto topp" "brod brod" "sitat sitat" "fot fot";
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-areas: "foto topp" "brod brod" "fot fot";
+  grid-template-rows: auto auto 1fr;
   column-gap: 18px;
   padding: 30px 24px 70px;
 }
@@ -163,17 +163,6 @@
   hyphens: auto;
 }
 .ebrod:first-child { margin-top: 0; }
-.esitat {
-  grid-area: sitat;
-  margin: 16px 0 0;
-  padding-left: 16px;
-  border-left: 2px solid rgba(164, 126, 62, 0.55);
-  font-size: 20px;
-  font-style: italic;
-  font-weight: 500;
-  line-height: 1.22;
-  text-wrap: balance;
-}
 .efot { grid-area: fot; align-self: end; margin-top: 16px; min-height: 40px; padding-right: 96px; }
 .estempel { right: 22px; bottom: 18px; }
 .ehengsel { display: none; }
@@ -208,7 +197,6 @@
   .eguil { margin-top: 14px; }
   .ekropp { margin-top: 16px; }
   .ebrod { font-size: 20px; }
-  .esitat { margin-top: 18px; font-size: 21px; }
   .efot { align-self: stretch; margin-top: auto; padding-top: 24px; padding-right: 0; }
   .eskole { font-size: 18px; }
   .estempel { right: 26px; bottom: 22px; }

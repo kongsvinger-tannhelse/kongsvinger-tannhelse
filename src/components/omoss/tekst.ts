@@ -5,7 +5,9 @@ import { ansatte, klinikk, klinikkbilder } from "@/data/klinikk";
    tannpleier, tannklinikk, Fjellgata) in ordinary sentences. The welcome
    comes from the old site; the three bios come from Per, Umair and Eba
    themselves (their own texts, 2026-10-23), cut down to the person: no
-   story of who bought or sold the practice and no names of others. */
+   story of who bought or sold the practice and no names of others. One
+   line each for Per (loves his profession) and Umair (happy to help patients
+   and always does his best for them) was added at the clinic's word. */
 
 const { adresse } = klinikk;
 
@@ -24,8 +26,6 @@ export type Bio = {
   initialer: string;
   rolle: string;
   avsnitt: string[];
-  /** Their own words, when we have them. */
-  sitat?: string;
   /** The line at the foot of the panel. */
   skole: string;
 };
@@ -33,8 +33,7 @@ export type Bio = {
 /**
  * The three bios, in the order of the swipe row on a phone: Umair first. (The
  * triptych on a wide screen places them by name, see Triptyk.tsx.) Every fact comes
- * from the person's own text; nothing is added. Per's quote is his own
- * sentence, so he should see it before the page goes live.
+ * from the person's own text; nothing is added.
  */
 export const BIOER: Bio[] = [
   {
@@ -42,7 +41,7 @@ export const BIOER: Bio[] = [
     initialer: "UZ",
     rolle: "Tannlege",
     avsnitt: [
-      "Umair ble ferdig utdannet tannlege ved Universitetet i Oslo i 2012.",
+      "Umair ble ferdig utdannet tannlege ved Universitetet i Oslo i 2012. Han blir glad av å vite at han hjelper pasientene sine, og han gjør alltid sitt beste for å ta godt vare på dem.",
       "Han har jobbet på flere arbeidsplasser. Den erfaringen gir ham et godt faglig grunnlag og trygghet i møte med pasienter i alle aldre og med ulike behov. Han tilbyr både vanlig tannbehandling og implantatbehandling.",
     ],
     skole: "Universitetet i Oslo, 2012",
@@ -53,9 +52,8 @@ export const BIOER: Bio[] = [
     rolle: "Tannlege",
     avsnitt: [
       "Per ble ferdig utdannet tannlege i 1976. Han begynte i militæret, som tannlege på Andøya flystasjon, og jobbet deretter noen år i det offentlige.",
-      "Til sammen har han rundt 50 år ved tannlegestolen.",
+      "Til sammen har han rundt 50 år ved tannlegestolen. Han brenner for yrket sitt og elsker å være tannlege.",
     ],
-    sitat: "Jeg har vært dedikert oppgaven og likt de utfordringene jeg har møtt på vegen.",
     skole: "Ferdig utdannet 1976",
   },
   {
