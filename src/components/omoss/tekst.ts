@@ -6,8 +6,8 @@ import { ansatte, klinikk, klinikkbilder } from "@/data/klinikk";
    comes from the old site; the three bios come from Per, Umair and Eba
    themselves (their own texts, 2026-10-23), cut down to the person: no
    story of who bought or sold the practice and no names of others. One
-   line each for Per (loves his profession) and Umair (professional, patients
-   first) was added at the clinic's word. */
+   line each for Per (loves his profession) and Umair (glad to help patients
+   and relieve their pain) was added at the clinic's word. */
 
 const { adresse } = klinikk;
 
@@ -41,7 +41,7 @@ export const BIOER: Bio[] = [
     initialer: "UZ",
     rolle: "Tannlege",
     avsnitt: [
-      "Umair ble ferdig utdannet tannlege ved Universitetet i Oslo i 2012. Han er profesjonell, og pasientene er alltid hovedfokuset hans.",
+      "Umair ble ferdig utdannet tannlege ved Universitetet i Oslo i 2012. Han trives med å vite at han hjelper pasientene sine, og at han kan gi lindring til dem som kommer med smerter.",
       "Han har jobbet på flere arbeidsplasser. Den erfaringen gir ham et godt faglig grunnlag og trygghet i møte med pasienter i alle aldre og med ulike behov. Han tilbyr både vanlig tannbehandling og implantatbehandling.",
     ],
     skole: "Universitetet i Oslo, 2012",
