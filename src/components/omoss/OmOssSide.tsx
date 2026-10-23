@@ -1,16 +1,18 @@
 import { Smuler } from "@/components/Smuler";
-import { Ingress, Laget, Skog, Tittel } from "./deler";
+import { Ingress, Skog, Tittel } from "./deler";
 import { Galleri } from "./Galleri";
 import { Skogen } from "./Skogbunn";
 import { GALLERI, LAGET } from "./tekst";
+import { Triptyk } from "./Triptyk";
 
 /**
  * The «Om oss» page, «Skogbunnen»: mostly light paper, and the forest seen
- * from its floor. A short welcome, centred. Then the three, as old studio
- * portraits with a few words about each on the card, and under them the
- * forest, a path coming up out of the paper into a clearing in the middle.
- * Last, the photos in the order of a visit: one large, arrows on each side,
- * all of them small underneath.
+ * from its floor. A short welcome, centred. Then the three as a folding
+ * triptych, each with a portrait and a few words about them (a row you
+ * swipe sideways on a phone), and under them the forest, a path coming up
+ * out of the paper into a clearing in the middle. Last, the photos in the
+ * order of a visit: one large, arrows on each side, all of them small
+ * underneath.
  */
 
 const h2 = { fontSize: "clamp(30px, 3.4vw, 48px)", lineHeight: 1, letterSpacing: "-0.045em" } as const;
@@ -30,9 +32,7 @@ export function OmOssSide() {
         <h2 id="laget-tittel" className="sr-only">
           {LAGET.tittel}
         </h2>
-        <div className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)]">
-          <Laget className="mx-auto" />
-        </div>
+        <Triptyk />
         {/* the forest under them */}
         <Skog className="relative mt-4 h-[240px] w-full md:mt-6 md:h-[clamp(270px,25vw,380px)]" margin="0px 0px -8% 0px">
           <div className="absolute inset-0 md:hidden">
