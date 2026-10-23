@@ -54,7 +54,6 @@ export function Triptyk() {
                   </p>
                 ))}
               </div>
-              {bio.sitat && <p className={r.esitat}>«{bio.sitat}»</p>}
               <footer className={r.efot}>
                 <p className={r.eskole}>{bio.skole}</p>
                 <Signatur i={i} forsink={1.4 + i * 0.3} className={r.esignatur} />
