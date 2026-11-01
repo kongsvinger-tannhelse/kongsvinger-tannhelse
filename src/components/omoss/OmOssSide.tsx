@@ -1,4 +1,5 @@
 import { Smuler } from "@/components/Smuler";
+import { Bunnlinje } from "@/components/behandlinger/deler";
 import { Ingress, Skog, Tittel } from "./deler";
 import { Galleri } from "./Galleri";
 import { Skogen } from "./Skogbunn";
@@ -55,6 +56,8 @@ export function OmOssSide() {
           <Galleri />
         </div>
       </section>
+      {/* phones: Ring oss and Be om time along the bottom, as on the treatment pages */}
+      <Bunnlinje />
       {/* the page ends in the footer's own landscape, the bridge at dusk */}
     </main>
   );
