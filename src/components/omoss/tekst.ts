@@ -83,6 +83,9 @@ const BESOK = ["bilde9", "bilde1", "bilde3", "bilde8", "bilde6"];
 
 export const BILDER = BESOK.map((navn) => klinikkbilder.find((b) => b.src.endsWith(`/${navn}.webp`))!).map((b) => ({
   ...b,
+  src: b.src.replace(".webp", "-polert.webp"),
+  bredde: 2400,
+  hoyde: 1920,
   alt: `${b.tekst}, hos Kongsvinger Tannhelse i ${adresse.gate}`,
 }));
 

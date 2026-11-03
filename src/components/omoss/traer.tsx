@@ -3,9 +3,8 @@ import { SKOG, bjork, bregne, furu, gran, prikker, stein, tue, type Tone } from 
 import s from "./skog.module.css";
 
 /* The forest's pieces as SVG, drawn from the kit in skog.ts. No hooks, so
-   they draw the same on the server and in the browser. Each tree stands up
-   from its foot when its forest gets `data-vis="ja"` (see skog.module.css);
-   `n` sets its turn. */
+   they draw the same on the server and in the browser. All pieces are
+   visible at their final size in the initial page (see skog.module.css). */
 
 type Felles = { x: number; y: number; h: number; w: number; seed: number; n?: number; vind?: boolean; skygge?: boolean; utenStamme?: boolean };
 

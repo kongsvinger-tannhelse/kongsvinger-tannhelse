@@ -27,3 +27,9 @@ npm run build && npm run start   # http://localhost:3200
 
 Forsiden bruker AI-retusjerte varianter (`*-polert.webp`) av behandlingsrommet og de tre ansattportrettene.
 Originalbildene er beholdt. Retusjen endrer lys og fargetoner, og portrettene har en felles nøytral bakgrunn.
+
+Om oss-galleriet bruker retusjerte `bilde{1,3,6,8,9}-polert.webp` (2400 × 1920).
+Umairs portrett bruker `zia-retusjert.webp` på forsiden og Om oss, med dempede
+skygger under øynene. Bildene er redigert med det innebygde ImageGen-verktøyet;
+promptene ligger i `tools/photo-retouch-prompts.json`. Originalene er beholdt.
+Skogen på Om oss er ferdig tegnet på serveren og vises uten innlastingsanimasjon.

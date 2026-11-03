@@ -1,24 +1,9 @@
-"use client";
-
-import { useRef, type ReactNode } from "react";
-import { useInView, type UseInViewOptions } from "framer-motion";
 import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";
 import { INGRESS, TITTEL } from "./tekst";
 
-/* The parts of the «Om oss» page: the forest's "in view" switch, and the
-   heading and text. (The three bios are the triptych, Triptyk.tsx.) */
-
-/** A forest that stands up the first time it is seen. Server and first render say "nei", so it hydrates. */
-export function Skog({ className, children, margin = "0px 0px -12% 0px" }: { className?: string; children: ReactNode; margin?: UseInViewOptions["margin"] }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const vist = useInView(ref, { once: true, margin });
-  return (
-    <div ref={ref} data-vis={vist ? "ja" : "nei"} className={className}>
-      {children}
-    </div>
-  );
-}
+/* Server-rendered heading and introduction. The forest also renders on
+   the server, fully visible without a viewport observer or animation. */
 
 export function Tittel({ className }: { className?: string }) {
   return (

@@ -1,6 +1,6 @@
 import { Smuler } from "@/components/Smuler";
 import { Bunnlinje } from "@/components/behandlinger/deler";
-import { Ingress, Skog, Tittel } from "./deler";
+import { Ingress, Tittel } from "./deler";
 import { Galleri } from "./Galleri";
 import { Skogen } from "./Skogbunn";
 import { GALLERI, LAGET } from "./tekst";
@@ -10,10 +10,9 @@ import { Triptyk } from "./Triptyk";
  * The «Om oss» page, «Skogbunnen»: mostly light paper, and the forest seen
  * from its floor. A short welcome, centred. Then the three as a folding
  * triptych, each with a portrait and a few words about them (a row you
- * swipe sideways on a phone), and under them the forest, a path coming up
- * out of the paper into a clearing in the middle. Last, the photos in the
- * order of a visit: one large, arrows on each side, all of them small
- * underneath.
+ * swipe sideways on a phone). Next, the clinic photos in the order of a
+ * visit: one large, arrows on each side, all of them small underneath.
+ * Last, the forest, a path coming up out of the paper into a clearing.
  */
 
 const h2 = { fontSize: "clamp(30px, 3.4vw, 48px)", lineHeight: 1, letterSpacing: "-0.045em" } as const;
@@ -34,15 +33,6 @@ export function OmOssSide() {
           {LAGET.tittel}
         </h2>
         <Triptyk />
-        {/* the forest under them */}
-        <Skog className="relative mt-4 h-[240px] w-full md:mt-6 md:h-[clamp(270px,25vw,380px)]" margin="0px 0px -8% 0px">
-          <div className="absolute inset-0 md:hidden">
-            <Skogen W={640} H={300} />
-          </div>
-          <div className="absolute inset-0 hidden md:block">
-            <Skogen W={1600} H={380} />
-          </div>
-        </Skog>
       </section>
 
       <section aria-labelledby="galleri-tittel" className="mx-auto w-full max-w-[var(--container-max)] px-[var(--container-px)] pb-[clamp(96px,11vw,160px)] pt-[clamp(56px,7vw,104px)]">
@@ -56,6 +46,15 @@ export function OmOssSide() {
           <Galleri />
         </div>
       </section>
+      {/* the complete forest follows the people and clinic photos */}
+      <div className="relative mt-4 h-[240px] w-full md:mt-6 md:h-[clamp(270px,25vw,380px)]" data-forest="ready" aria-hidden="true">
+        <div className="absolute inset-0 md:hidden">
+          <Skogen W={640} H={300} />
+        </div>
+        <div className="absolute inset-0 hidden md:block">
+          <Skogen W={1600} H={380} />
+        </div>
+      </div>
       {/* phones: Ring oss and Be om time along the bottom, as on the treatment pages */}
       <Bunnlinje />
       {/* the page ends in the footer's own landscape, the bridge at dusk */}

@@ -26,7 +26,7 @@ function Foto({ person, kolonne }: { person: Person; kolonne: Kolonne }) {
   const sizes = `(min-width: 768px) ${Math.ceil(kolonne.px * k)}px, ${Math.ceil(kolonne.vw * k)}vw`;
   return (
     <Image
-      src={person.bilde.replace(".webp", "-polert.webp")}
+      src={person.navn === "Umair Zia" ? "/images/klinikk/zia-retusjert.webp" : person.bilde.replace(".webp", "-polert.webp")}
       alt={`${person.navn}, ${person.rolle.toLowerCase()}`}
       fill
       sizes={sizes}
