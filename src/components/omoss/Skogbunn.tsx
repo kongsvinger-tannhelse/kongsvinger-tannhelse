@@ -36,9 +36,8 @@ const f = (v: number) => Math.round(v * 10) / 10;
  * and birches on moss and heather, two dark spruces at the edges, and a
  * clearing in the middle where a path comes up out of the paper. Drawn
  * `W` × `H` (wide, or narrower and lower for a phone; every size is drawn
- * for 380 high and scaled). The trees stand up when the forest is first
- * seen, the middle first and then outwards, the far ones a beat before the
- * near; the paper comes back over its foot.
+ * for 380 high and scaled). The complete forest is drawn on the server
+ * and visible immediately; the paper comes back over its foot.
  */
 export function Skogen({ W, H, seed = 11 }: { W: number; H: number; seed?: number }) {
   const k = H / 380;

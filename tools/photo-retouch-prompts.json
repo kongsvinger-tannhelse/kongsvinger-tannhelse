@@ -1,0 +1,35 @@
+{
+  "tool": "Built-in image_gen",
+  "assets": [
+    {
+      "input": "zia-polert.webp",
+      "output": "zia-retusjert.webp",
+      "prompt": "Use case: identity-preserve. Edit target: the supplied dentist headshot. Professionally retouch ONLY the dark circles and black shadows directly beneath BOTH eyes, removing the tired appearance. Gently lift and even the under-eye skin tone to blend with his cheeks, retain realistic fine skin texture and natural lower eyelid anatomy. Keep his identity, face shape, age, eyes, gaze, expression, hair, beard, clothing, neutral background, lighting and framing exactly unchanged. No beautification elsewhere, no plastic smoothing, no changes to facial structure. Deliver a single high-resolution photographic portrait with the exact same 3:4 framing."
+    },
+    {
+      "input": "bilde9.webp",
+      "output": "bilde9-polert.webp",
+      "prompt": "Use case: lighting-weather. Edit target: supplied real dental clinic photograph bilde9.webp. Professionally retouch and upscale this exact photograph for a premium dental clinic website, like a carefully lit architectural editorial photo shoot. Improve exposure and shadow detail, remove muddy yellow/green colour casts, balance whites to clean warm-neutral, retain subtle inviting warmth and realistic colours, natural contrast, crisp fine detail without sharpening halos. Reduce noise and existing compression artifacts. Preserve the actual room, all furniture, equipment, plants, wall pictures, floor and countertop materials, camera angle, composition and 5:4 landscape framing exactly. Do not redesign, add or remove objects, change room geometry, invent text or add people.   Deliver one polished high-resolution photorealistic image, ideally 2400x1920 or larger, with no frame, watermark or text."
+    },
+    {
+      "input": "bilde1.webp",
+      "output": "bilde1-polert.webp",
+      "prompt": "Use case: lighting-weather. Edit target: supplied real dental clinic photograph bilde1.webp. Professionally retouch and upscale this exact photograph for a premium dental clinic website, like a carefully lit architectural editorial photo shoot. Improve exposure and shadow detail, remove muddy yellow/green colour casts, balance whites to clean warm-neutral, retain subtle inviting warmth and realistic colours, natural contrast, crisp fine detail without sharpening halos. Reduce noise and existing compression artifacts. Preserve the actual room, all furniture, equipment, plants, wall pictures, floor and countertop materials, camera angle, composition and 5:4 landscape framing exactly. Do not redesign, add or remove objects, change room geometry, invent text or add people.  Preserve the foreground succulent planter and its naturally soft background depth of field. Deliver one polished high-resolution photorealistic image, ideally 2400x1920 or larger, with no frame, watermark or text."
+    },
+    {
+      "input": "bilde3.webp",
+      "output": "bilde3-polert.webp",
+      "prompt": "Use case: lighting-weather. Edit target: supplied real dental clinic photograph bilde3.webp. Professionally retouch and upscale this exact photograph for a premium dental clinic website, like a carefully lit architectural editorial photo shoot. Improve exposure and shadow detail, remove muddy yellow/green colour casts, balance whites to clean warm-neutral, retain subtle inviting warmth and realistic colours, natural contrast, crisp fine detail without sharpening halos. Reduce noise and existing compression artifacts. Preserve the actual room, all furniture, equipment, plants, wall pictures, floor and countertop materials, camera angle, composition and 5:4 landscape framing exactly. Do not redesign, add or remove objects, change room geometry, invent text or add people. Preserve the round illuminated mirror and the reflected room exactly.  Deliver one polished high-resolution photorealistic image, ideally 2400x1920 or larger, with no frame, watermark or text."
+    },
+    {
+      "input": "bilde8.webp",
+      "output": "bilde8-polert.webp",
+      "prompt": "Use case: lighting-weather. Edit target: supplied real dental clinic photograph bilde8.webp. Professionally retouch and upscale this exact photograph for a premium dental clinic website, like a carefully lit architectural editorial photo shoot. Improve exposure and shadow detail, remove muddy yellow/green colour casts, balance whites to clean warm-neutral, retain subtle inviting warmth and realistic colours, natural contrast, crisp fine detail without sharpening halos. Reduce noise and existing compression artifacts. Preserve the actual room, all furniture, equipment, plants, wall pictures, floor and countertop materials, camera angle, composition and 5:4 landscape framing exactly. Do not redesign, add or remove objects, change room geometry, invent text or add people.   Deliver one polished high-resolution photorealistic image, ideally 2400x1920 or larger, with no frame, watermark or text."
+    },
+    {
+      "input": "bilde6.webp",
+      "output": "bilde6-polert.webp",
+      "prompt": "Use case: lighting-weather. Edit target: supplied real dental clinic photograph bilde6.webp. Professionally retouch and upscale this exact photograph for a premium dental clinic website, like a carefully lit architectural editorial photo shoot. Improve exposure and shadow detail, remove muddy yellow/green colour casts, balance whites to clean warm-neutral, retain subtle inviting warmth and realistic colours, natural contrast, crisp fine detail without sharpening halos. Reduce noise and existing compression artifacts. Preserve the actual room, all furniture, equipment, plants, wall pictures, floor and countertop materials, camera angle, composition and 5:4 landscape framing exactly. Do not redesign, add or remove objects, change room geometry, invent text or add people.   Deliver one polished high-resolution photorealistic image, ideally 2400x1920 or larger, with no frame, watermark or text."
+    }
+  ]
+}

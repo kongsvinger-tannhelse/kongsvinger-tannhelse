@@ -1,46 +1,10 @@
-/* The forest's motion: trees stand up from their foot, one after another,
-   when their forest comes into view (data-vis="ja" on an ancestor); the
-   nearest sway a little in the wind. */
-
+/* The complete forest is in the initial server-rendered page. Keep every
+   tree and plant at its final size, including before JavaScript loads.
+   No staggered entrance or continuous wind animation: scrolling past this
+   illustration should never look like it is still loading. */
 .tre,
-.tue {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  transform: scaleY(0.04);
-  opacity: 0;
-  transition:
-    transform 0.9s cubic-bezier(0.34, 1.45, 0.64, 1) calc(var(--n, 0) * 55ms + 120ms),
-    opacity 0.25s ease calc(var(--n, 0) * 55ms + 120ms);
-}
-.tue {
-  transform: scale(0.2, 0.04);
-}
-[data-vis="ja"] .tre,
-[data-vis="ja"] .tue {
+.tue,
+.vind {
   transform: none;
   opacity: 1;
-}
-
-/* the wind: a slow lean from the foot. It runs on the same element as the
-   standing up, so it waits (no fill) until the tree has stood. */
-[data-vis="ja"] .vind {
-  animation: vind 7s ease-in-out calc(var(--n, 0) * 55ms + 1.4s) infinite;
-}
-@keyframes vind {
-  0%, 100% { transform: rotate(0deg); }
-  40% { transform: rotate(0.9deg); }
-  70% { transform: rotate(-0.4deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tre,
-  .tue {
-    transition: none;
-    transform: none;
-    opacity: 1;
-  }
-  .vind,
-  [data-vis="ja"] .vind {
-    animation: none;
-  }
 }
