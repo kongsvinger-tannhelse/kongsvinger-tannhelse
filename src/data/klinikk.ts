@@ -3,7 +3,8 @@
 export const klinikk = {
   navn: "Kongsvinger Tannhelse",
   undertittel: "Tannlege Hafthun & Zia",
-  url: "https://kongsvingertannhelse.no",
+  // www: the apex domain 308-redirects to www on Vercel, so www is the address Google reaches.
+  url: "https://www.kongsvingertannhelse.no",
   telefon: { visning: "62 81 50 09", lenke: "tel:+4762815009" },
   epost: "post@kongsvingertannhelse.no",
   adresse: { gate: "Fjellgata 4", postnummer: "2212", sted: "Kongsvinger" },
