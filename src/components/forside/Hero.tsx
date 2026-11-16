@@ -55,7 +55,7 @@ export function Hero() {
               className="text-[length:clamp(34px,min(11.5vw,6.4svh),64px)] font-bold text-[var(--color-glomma-deep)] lg:text-[length:clamp(44px,6vw,92px)]"
               style={{ lineHeight: 0.92, letterSpacing: "-0.035em" }}
             >
-              Kongsvinger
+              Kongsvinger{" "}
               <br />
               Tannhelse
             </h1>

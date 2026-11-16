@@ -2,6 +2,9 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { ARTIKLER, GJENNOMGATT, RAD_OG_TIPS, type Artikkel } from "@/data/artikler";
+import { LesOgsa } from "@/components/behandlinger/side/Beslektet";
+import { ARTIKKEL_SIDER } from "@/data/artikler/tema";
+import { finnBehandlingsside, sideSti } from "@/data/behandlinger";
 import { Smuler, Vis } from "./deler";
 import { Ark, Brod, DelVisning, Hilsen, Sporsmal, Topp, type Seksjon } from "./lapp";
 import { Margflyt } from "./Margflyt";
@@ -121,6 +124,12 @@ export function Artikkelside({ artikkel }: { artikkel: Artikkel }) {
               <Sjekk sjekk={artikkel.sjekk} className="mt-7" />
             </Vis>
           </Margflyt>
+          <div className="mt-10 md:mt-14">
+            <LesOgsa lenker={(ARTIKKEL_SIDER[artikkel.slug] ?? []).flatMap((s) => {
+              const side = finnBehandlingsside(s);
+              return side ? [{ href: sideSti(side.slug), navn: side.navn }] : [];
+            })} />
+          </div>
           <Hilsen tekst={artikkel.slutt} apent />
           <Kilder artikkel={artikkel} />
         </Ark>

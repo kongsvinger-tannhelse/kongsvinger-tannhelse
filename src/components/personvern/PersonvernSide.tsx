@@ -29,7 +29,7 @@ const AVSNITT: { id: string; tekst: React.ReactNode }[] = [
     tekst: (
       <>
         Ansvarlig for opplysningene er <span className={STERK}>{klinikk.navn}</span>, {adresse.gate}, {adresse.postnummer} {adresse.sted}.<br />
-        <Lenke href={`mailto:${epost}`}>{epost}</Lenke>
+        <Lenke href={`mailto:${epost}`}>{epost}</Lenke>{" "}
         <br />
         <Lenke href={telefon.lenke}>{telefon.visning}</Lenke>
       </>

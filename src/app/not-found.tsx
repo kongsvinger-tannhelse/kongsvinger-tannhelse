@@ -93,7 +93,7 @@ export default function NotFound() {
           </nav>
 
           <p className="mt-12 text-center text-[16px] leading-[1.6] text-[var(--color-tekst-2)]">
-            Eller ring oss, så hjelper vi deg:
+            Eller ring oss, så hjelper vi deg:{" "}
             <br />
             <a
               href={telefon.lenke}
