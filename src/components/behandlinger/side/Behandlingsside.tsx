@@ -11,6 +11,7 @@ import { GRUPPER } from "@/components/forside/behandlinger/grupper";
 import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";
 import { blekkStil } from "./blekk";
+import { Beslektet } from "./Beslektet";
 import { MedNummer, RingOss, Spiral, Stjerner, Vask } from "./signaturer";
 import { Stripen } from "./striper";
 import { BTEGNINGER } from "./tegninger";
@@ -169,6 +170,7 @@ export function Behandlingsside({ side }: { side: Side }) {
               <Visning key={del.type === "lapp" ? `lapp-${i}` : del.id} del={del} n={del.type === "lapp" ? lapper++ : 0} i={i} vask={vask} stripe={side.stripe} />
             ))}
           </div>
+          <Beslektet slug={side.slug} />
           <Hilsen tekst={side.slutt} apent={akutt} />
           {/* No list of sources here: these are the clinic's own pages. The
               sources stay in the data (and in the structured data for search
