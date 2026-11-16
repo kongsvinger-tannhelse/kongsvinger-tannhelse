@@ -49,6 +49,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               "@id": `${klinikk.url}/#klinikk`,
               name: klinikk.navn,
               url: klinikk.url,
+              // a photo of the clinic first, then the picture shared links show
+              image: [`${klinikk.url}/images/klinikk/behandlingsrom-polert.webp`, `${klinikk.url}${DELINGSBILDE.url}`],
               telephone: "+4762815009",
               email: klinikk.epost,
               address: {
