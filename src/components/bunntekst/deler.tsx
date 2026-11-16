@@ -50,7 +50,7 @@ export function Kontakt() {
       <p className="text-[16px] leading-[1.7]">
         <a href={telefon.lenke} className={lenke}>
           {telefon.visning}
-        </a>
+        </a>{" "}
         <br />
         <a href={`mailto:${epost}`} className={lenke}>
           {epost}
@@ -65,7 +65,7 @@ export function Besok() {
     <div>
       <h3 className={etikett}>Besøk oss</h3>
       <p className={tekst}>
-        {adresse.gate}
+        {adresse.gate}{" "}
         <br />
         {adresse.postnummer} {adresse.sted}
       </p>
@@ -82,7 +82,7 @@ export function Tider() {
     <div>
       <h3 className={etikett}>Åpningstider</h3>
       <p className={tekst}>
-        {tid.dager} <span className="whitespace-nowrap">{tid.fra}–{tid.til}</span>
+        {tid.dager} <span className="whitespace-nowrap">{tid.fra}–{tid.til}</span>{" "}
         <br />
         {tid.stengt} stengt
       </p>

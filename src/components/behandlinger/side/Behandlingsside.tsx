@@ -170,7 +170,7 @@ export function Behandlingsside({ side }: { side: Side }) {
               <Visning key={del.type === "lapp" ? `lapp-${i}` : del.id} del={del} n={del.type === "lapp" ? lapper++ : 0} i={i} vask={vask} stripe={side.stripe} />
             ))}
           </div>
-          <Beslektet slug={side.slug} />
+          <Beslektet side={side} />
           <Hilsen tekst={side.slutt} apent={akutt} />
           {/* No list of sources here: these are the clinic's own pages. The
               sources stay in the data (and in the structured data for search

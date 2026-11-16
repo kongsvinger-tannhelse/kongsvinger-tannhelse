@@ -45,28 +45,44 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Dentist",
-              "@id": `${klinikk.url}/#klinikk`,
-              name: klinikk.navn,
-              url: klinikk.url,
-              // a photo of the clinic first, then the picture shared links show
-              image: [`${klinikk.url}/images/klinikk/behandlingsrom-polert.webp`, `${klinikk.url}${DELINGSBILDE.url}`],
-              telephone: "+4762815009",
-              email: klinikk.epost,
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: klinikk.adresse.gate,
-                addressLocality: klinikk.adresse.sted,
-                postalCode: klinikk.adresse.postnummer,
-                addressCountry: "NO",
-              },
-              geo: { "@type": "GeoCoordinates", latitude: klinikk.geo.lat, longitude: klinikk.geo.lng },
-              openingHoursSpecification: [
+              "@graph": [
+                // the site itself: where Google takes the site name shown above results from
                 {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                  opens: "08:30",
-                  closes: "15:30",
+                  "@type": "WebSite",
+                  "@id": `${klinikk.url}/#nettsted`,
+                  url: `${klinikk.url}/`,
+                  name: klinikk.navn,
+                  alternateName: "Tannlege Hafthun & Zia",
+                  inLanguage: "nb-NO",
+                  publisher: { "@id": `${klinikk.url}/#klinikk` },
+                },
+                {
+                  "@type": "Dentist",
+                  "@id": `${klinikk.url}/#klinikk`,
+                  name: klinikk.navn,
+                  alternateName: "Tannlege Hafthun & Zia",
+                  url: klinikk.url,
+                  logo: `${klinikk.url}/images/merke.png`,
+                  // a photo of the clinic first, then the picture shared links show
+                  image: [`${klinikk.url}/images/klinikk/behandlingsrom-polert.webp`, `${klinikk.url}${DELINGSBILDE.url}`],
+                  telephone: "+4762815009",
+                  email: klinikk.epost,
+                  address: {
+                    "@type": "PostalAddress",
+                    streetAddress: klinikk.adresse.gate,
+                    addressLocality: klinikk.adresse.sted,
+                    postalCode: klinikk.adresse.postnummer,
+                    addressCountry: "NO",
+                  },
+                  geo: { "@type": "GeoCoordinates", latitude: klinikk.geo.lat, longitude: klinikk.geo.lng },
+                  openingHoursSpecification: [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                      opens: "08:30",
+                      closes: "15:30",
+                    },
+                  ],
                 },
               ],
             }),

@@ -46,7 +46,7 @@ export function Bytte({ className }: { className?: string }) {
         {/* the drawing, framed on the sun, the bridge and the town */}
         <div aria-hidden="true" className={styles.tegning}>
           <div className={styles.flytt}>
-            <Image src={tegnet} alt="" fill preload sizes="(min-width: 1024px) 100vw, 170vw" className="object-cover" />
+            <Image src={tegnet} alt="" fill preload fetchPriority="high" sizes="(min-width: 1024px) 100vw, 170vw" className="object-cover" />
           </div>
         </div>
 

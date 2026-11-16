@@ -242,7 +242,7 @@ export function Hilsen({ tekst, className, apent = false, bestill = true }: { te
       <div className="flex items-center gap-4">
         <Merke className="size-12" />
         <p className="text-[17px] leading-[1.45] text-[var(--color-tekst)]">
-          {tekst}
+          {tekst}{" "}
           <br />
           <span className="font-semibold text-[var(--color-glomma-deep)]">Hilsen alle oss</span>
           <span className="text-[var(--color-tekst-2)]"> på {klinikk.navn}</span>
