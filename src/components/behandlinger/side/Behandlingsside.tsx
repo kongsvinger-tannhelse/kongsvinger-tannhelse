@@ -6,7 +6,7 @@ import { SAMME_SIDE } from "@/data/behandlinger/sider";
 import { Smuler, Vis } from "@/components/artikler/deler";
 import { Ark, Brod, Hilsen, Sporsmal } from "@/components/artikler/lapp";
 import { GulLapp } from "@/components/artikler/mellom";
-import { Bunnlinje } from "@/components/behandlinger/deler";
+import { Bunnlinje } from "@/components/Ringelinje";
 import { GRUPPER } from "@/components/forside/behandlinger/grupper";
 import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";

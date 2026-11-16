@@ -8,6 +8,9 @@ export const FELT = ["navn", "telefon", "epost", "melding"] as const;
 export type Felt = (typeof FELT)[number];
 export type Verdier = Record<Felt, string>;
 
+/** The hidden field people never see. A name no browser autofills. */
+export const FELLE = "la_sta_tomt";
+
 export const MAX: Record<Felt, number> = { navn: 100, telefon: 30, epost: 200, melding: 4000 };
 
 /** Every field must be filled in, so the clinic can both ring and write back. */

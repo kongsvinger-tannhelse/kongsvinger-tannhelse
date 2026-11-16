@@ -48,9 +48,23 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1600, 1920, 2048, 2560, 3200, 3840],
     // AVIF first: smaller than WebP at the same look; browsers without it get WebP.
     formats: ["image/avif", "image/webp"],
+    // Resized copies are kept a week before the source is checked again
+    // (they were sent with max-age=0 and fetched again on every view).
+    minimumCacheTTL: 604800,
   },
   async redirects() {
-    return [...gamleSider, ...gamleBilder, ...sammeSide].map((r) => ({ ...r, permanent: true }));
+    return [
+      ...[...gamleSider, ...gamleBilder, ...sammeSide].map((r) => ({ ...r, permanent: true })),
+      // The site's old Vercel address, where it ran before the .no domain:
+      // every page there goes on to the same page at the real address, so
+      // search engines don't keep a second copy of the site.
+      {
+        source: "/:path*",
+        has: [{ type: "host" as const, value: "kongsvinger-tannhelse.vercel.app" }],
+        destination: "https://www.kongsvingertannhelse.no/:path*",
+        permanent: true,
+      },
+    ];
   },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];

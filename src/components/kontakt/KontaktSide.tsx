@@ -10,7 +10,7 @@ import { klinikk } from "@/data/klinikk";
 import { SIDETITTEL } from "@/lib/sidetittel";
 import { cn } from "@/lib/utils";
 import { sendMelding, type MeldingState } from "./melding";
-import { MAX, PAKREVD, type Felt, type Verdier } from "./sjekk";
+import { FELLE, MAX, PAKREVD, type Felt, type Verdier } from "./sjekk";
 import { AKUTT, INTRO, SVAR } from "./tekst";
 import s from "./brevveksling.module.css";
 
@@ -335,8 +335,8 @@ export function KontaktSide() {
                   </div>
                   <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
                     <label>
-                      Nettsted
-                      <input name="nettsted" tabIndex={-1} autoComplete="off" defaultValue="" />
+                      La dette feltet stå tomt
+                      <input name={FELLE} tabIndex={-1} autoComplete="off" defaultValue="" />
                     </label>
                   </div>
                   <button

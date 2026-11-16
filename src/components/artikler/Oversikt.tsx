@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Bunnlinje } from "@/components/Ringelinje";
 import { klinikk } from "@/data/klinikk";
 import { ARTIKLER_GRUPPERT, RAD_OG_TIPS, type Artikkel } from "@/data/artikler";
 import { cn } from "@/lib/utils";
@@ -108,6 +109,8 @@ export function Oversikt() {
           <Hilsen tekst="Lurer du på noe mer? Spør oss neste gang du er her." apent bestill={false} className="md:mt-10" />
         </Ark>
       </div>
+      {/* on phones: call or ask for an appointment from anywhere on the page */}
+      <Bunnlinje />
     </main>
   );
 }

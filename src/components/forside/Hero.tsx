@@ -61,7 +61,7 @@ export function Hero() {
             </h1>
             <p className="mt-2.5 text-[16px] font-medium text-[var(--color-glomma)] md:text-[18px] lg:mt-5 lg:text-[20px]">Tannlegene Hafthun og Zia</p>
 
-            <div className="mt-5 flex flex-col gap-3 lg:mt-7">
+            <div id="hero-knapper" className="mt-5 flex flex-col gap-3 lg:mt-7">
               {/* one line on every phone: the two buttons share it, and the icons wait for sm */}
               <div className="flex gap-2 lg:gap-2.5">
                 <Link

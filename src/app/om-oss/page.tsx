@@ -33,7 +33,7 @@ const strukturert = {
         "@type": "Dentist",
         "@id": `${klinikk.url}/#klinikk`,
         name: klinikk.navn,
-        employee: ansatte.map((a) => ({ "@type": "Person", name: a.navn, jobTitle: a.rolle, image: `${klinikk.url}${a.bilde}` })),
+        employee: ansatte.map((a) => ({ "@type": "Person", "@id": `${URL}#${a.navn.toLowerCase().replace(/\s+/g, "-")}`, name: a.navn, jobTitle: a.rolle, image: `${klinikk.url}${a.bilde}` })),
         image: BILDER.map((b) => `${klinikk.url}${b.src}`),
       },
     },

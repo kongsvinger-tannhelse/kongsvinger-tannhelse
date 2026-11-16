@@ -4,7 +4,7 @@ import { Resolver } from "node:dns/promises";
 import { headers } from "next/headers";
 import nodemailer from "nodemailer";
 import { klinikk } from "@/data/klinikk";
-import { FELT, feilene, type Felt } from "@/components/kontakt/sjekk";
+import { FELLE, FELT, feilene, type Felt } from "@/components/kontakt/sjekk";
 
 /**
  * Sends a message from the contact form to the clinic's inbox, as Ringebu
@@ -66,8 +66,10 @@ function les(form: FormData, key: string) {
 }
 
 export async function sendMelding(_forrige: MeldingState, form: FormData): Promise<MeldingState> {
-  // The hidden field only a bot fills in. It is told it worked, and nothing is sent.
-  if (les(form, "nettsted")) return { status: "sent" };
+  // The hidden field only a bot should fill in. Browser autofill or an agent
+  // can fill it too, so a filled-in field no longer drops the message: it is
+  // checked like any other and reaches the clinic marked as possible spam.
+  const mistenkt = les(form, FELLE) !== "";
 
   const v = Object.fromEntries(FELT.map((f) => [f, les(form, f)])) as Record<Felt, string>;
   const errors = feilene(v);
@@ -77,7 +79,7 @@ export async function sendMelding(_forrige: MeldingState, form: FormData): Promi
   const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() || "ukjent";
   if (forMange(ip)) return { status: "error", reason: "busy" };
 
-  const subject = `Melding fra nettsiden: ${v.navn.replace(/[\r\n]+/g, " ")}`;
+  const subject = `${mistenkt ? "[mulig spam] " : ""}Melding fra nettsiden:${v.navn.replace(/[\r\n]+/g, " ")}`;
   const text = `Navn: ${v.navn}\nTelefon: ${v.telefon}\nE-post: ${v.epost}\n\n${v.melding}\n`;
 
   const user = process.env.SMTP_USER;
