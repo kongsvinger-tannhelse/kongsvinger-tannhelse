@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Behandlingsside } from "@/components/behandlinger/side/Behandlingsside";
 import { BEHANDLINGSSIDER, BGJENNOMGATT, finnBehandlingsside, sideSti, type Behandlingsside as Side } from "@/data/behandlinger";
+import { BESLEKTET } from "@/data/behandlinger/beslektet";
 import { klinikk } from "@/data/klinikk";
 import { OPENGRAPH } from "@/lib/deling";
 
@@ -32,6 +33,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 /** For search engines: the page, the treatment it is about, the crumbs, and its questions with their answers. */
 function strukturert(side: Side) {
   const url = `${klinikk.url}${sideSti(side.slug)}`;
+  // the «Les også» pages, as absolute addresses
+  const beslektet = ((BESLEKTET as Record<string, readonly string[]>)[side.slug] ?? []).map((s) => `${klinikk.url}${sideSti(s)}`);
   const sporsmal = side.deler.flatMap((d) => (d.type === "tekst" && d.tittel.endsWith("?") ? [{ s: d.tittel, svar: d.avsnitt.join(" ") }] : []));
   return {
     "@context": "https://schema.org",
@@ -45,6 +48,7 @@ function strukturert(side: Side) {
         inLanguage: "nb-NO",
         audience: { "@type": "PeopleAudience", audienceType: "Pasienter" },
         lastReviewed: BGJENNOMGATT,
+        relatedLink: beslektet,
         about: { "@type": "MedicalProcedure", name: side.navn, description: side.ingress },
         citation: side.kilder.map((k) => ({ "@type": "CreativeWork", name: k.navn, url: k.url, publisher: { "@type": "Organization", name: k.utgiver } })),
         publisher: { "@type": "Dentist", "@id": `${klinikk.url}/#klinikk`, name: klinikk.navn },
