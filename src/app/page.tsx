@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
+import { Bunnlinje } from "@/components/Ringelinje";
 import { Hero } from "@/components/forside/Hero";
 import { Leporello } from "@/components/forside/behandlinger/leporello/Leporello";
 import { OmOss } from "@/components/forside/omoss/OmOss";
@@ -32,6 +33,8 @@ export default function Home() {
         <Suspense>
           <Kontakt />
         </Suspense>
+        {/* on phones: call or ask for an appointment, once the hero's own buttons have scrolled away */}
+        <Bunnlinje etter="hero-knapper" />
       </main>
     </>
   );

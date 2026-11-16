@@ -78,9 +78,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                   openingHoursSpecification: [
                     {
                       "@type": "OpeningHoursSpecification",
+                      // the days match klinikk.apningstider.dager («Mandag–fredag»); the times are read from it
                       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                      opens: "08:30",
-                      closes: "15:30",
+                      opens: klinikk.apningstider.fra,
+                      closes: klinikk.apningstider.til,
                     },
                   ],
                 },

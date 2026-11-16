@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown, Phone } from "lucide-react";
 import { PUNKTER } from "./punkter";
 import { klinikk } from "@/data/klinikk";
+import { harSide, sideSti } from "@/data/behandlinger/sider";
 import { SIDETITTEL } from "@/lib/sidetittel";
 
 /* The parts of /behandlinger around the treatments themselves: the top,
@@ -59,7 +60,8 @@ export const strukturert = {
         itemListElement: PUNKTER.map((p) => ({
           "@type": "ListItem",
           position: p.nr,
-          item: { "@type": "MedicalProcedure", name: p.navn, description: p.tekst, url: `${URL}#${p.id}` },
+          // a treatment's own page where it has one (tannstein and tannsmerte share one), its card here otherwise
+          item: { "@type": "MedicalProcedure", name: p.navn, description: p.tekst, url: harSide(p.id) ? `${klinikk.url}${sideSti(p.id)}` : `${URL}#${p.id}` },
         })),
       },
     },

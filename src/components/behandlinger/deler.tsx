@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useRef, type CSSProperties, type Ref } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
-import { CalendarDays, Phone } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { Scene } from "@/components/forside/behandlinger/leporello/deler";
 import { TONE } from "@/components/forside/behandlinger/popup/tegning";
@@ -12,7 +10,7 @@ import { cn } from "@/lib/utils";
 import o from "./oppslag.module.css";
 
 /* The small parts of /behandlinger: the short words, the ribbon bookmark,
-   a window on a treatment's paper scene, and the phone's bottom bar. */
+   and a window on a treatment's paper scene. */
 
 /** Each treatment in a few words, for a list row or a card's subtitle. */
 export const KORT: Record<string, string> = {
@@ -79,20 +77,5 @@ export function Vindu({ p, className, opp, rund = false }: { p: Punkt; className
   );
 }
 
-/** Two big buttons along the bottom of the screen, where a thumb reaches. */
-export function Bunnlinje() {
-  return (
-    <div className="fixed inset-x-0 bottom-0 z-40 md:hidden border-t border-[var(--color-strek)] bg-[color-mix(in_srgb,var(--color-papir)_94%,transparent)] px-4 pb-[max(12px,env(safe-area-inset-bottom))] pt-3 backdrop-blur-md">
-      <div className="mx-auto grid max-w-[440px] grid-cols-2 gap-2.5">
-        <a href={klinikk.telefon.lenke} className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--color-glomma)] text-[15px] font-semibold text-[var(--color-papir)]">
-          <Phone className="size-4" aria-hidden="true" />
-          Ring oss
-        </a>
-        <Link href="/kontakt" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-strek)] bg-white text-[15px] font-semibold text-[var(--color-glomma-deep)]">
-          <CalendarDays className="size-4" aria-hidden="true" />
-          Be om time
-        </Link>
-      </div>
-    </div>
-  );
-}
+// the phone's bottom bar now lives in components/Ringelinje.tsx, so pages without the book don't load this module
+export { Bunnlinje } from "@/components/Ringelinje";

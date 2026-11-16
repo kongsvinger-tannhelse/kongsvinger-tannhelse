@@ -1,8 +1,7 @@
 import { Smuler } from "@/components/Smuler";
-import { Bunnlinje } from "@/components/behandlinger/deler";
+import { Bunnlinje } from "@/components/Ringelinje";
 import { Ingress, Tittel } from "./deler";
 import { Galleri } from "./Galleri";
-import { Skogen } from "./Skogbunn";
 import { GALLERI, LAGET } from "./tekst";
 import { Triptyk } from "./Triptyk";
 
@@ -48,12 +47,9 @@ export function OmOssSide() {
       </section>
       {/* the complete forest follows the people and clinic photos */}
       <div className="relative mt-4 h-[240px] w-full md:mt-6 md:h-[clamp(270px,25vw,380px)]" data-forest="ready" aria-hidden="true">
-        <div className="absolute inset-0 md:hidden">
-          <Skogen W={640} H={300} />
-        </div>
-        <div className="absolute inset-0 hidden md:block">
-          <Skogen W={1600} H={380} />
-        </div>
+        {/* drawn by Skogen (Skogbunn.tsx), saved as files by tools/skogen_svg.py so the page's HTML stays small */}
+        <img src="/images/tegninger/skogen/skogen-640.svg" alt="" loading="lazy" decoding="async" className="absolute inset-0 size-full md:hidden" />
+        <img src="/images/tegninger/skogen/skogen-1600.svg" alt="" loading="lazy" decoding="async" className="absolute inset-0 hidden size-full md:block" />
       </div>
       {/* phones: Ring oss and Be om time along the bottom, as on the treatment pages */}
       <Bunnlinje />

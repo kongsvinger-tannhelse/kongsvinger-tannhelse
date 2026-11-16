@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { cn } from "@/lib/utils";
 import { sendMelding, type MeldingState } from "./melding";
-import { FELT, MAX, PAKREVD, type Felt, type Verdier } from "./sjekk";
+import { FELLE, FELT, MAX, PAKREVD, type Felt, type Verdier } from "./sjekk";
 
 /**
  * The contact form. It posts to sendMelding (melding.ts), which mails it to
@@ -131,11 +131,11 @@ export function Skjema({
           .
         </p>
 
-        {/* Hidden from people; a bot that fills it in is quietly turned away */}
+        {/* Hidden from people; a message with it filled in reaches the clinic marked as possible spam */}
         <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
           <label>
-            Nettsted
-            <input name="nettsted" tabIndex={-1} autoComplete="off" defaultValue="" />
+            La dette feltet stå tomt
+            <input name={FELLE} tabIndex={-1} autoComplete="off" defaultValue="" />
           </label>
         </div>
 
