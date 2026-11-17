@@ -31,9 +31,8 @@ export const NAVN = [
 /** Fjellgata, from the bridge end up the hill, for its name to run along. */
 export const FJELLGATA = "M-93.8,-129.5 L-18.6,-19.9";
 
-export const GOOGLE_MAPS = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  `${klinikk.navn}, ${klinikk.adresse.gate}, ${klinikk.adresse.postnummer} ${klinikk.adresse.sted}`
-)}`;
+/** Where the map links to: 1881's map of Fjellgata 4 (Google's pin is off, see klinikk.ts). */
+export const KARTLENKE = klinikk.kart;
 
 /** The map is drawn from OpenStreetMap (ODbL), which asks for this credit. */
 export const KART_KREDITT = { tekst: "Kartdata © OpenStreetMap-bidragsytere", href: "https://www.openstreetmap.org/copyright" } as const;

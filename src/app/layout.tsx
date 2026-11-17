@@ -75,6 +75,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     addressCountry: "NO",
                   },
                   geo: { "@type": "GeoCoordinates", latitude: klinikk.geo.lat, longitude: klinikk.geo.lng },
+                  hasMap: klinikk.kart,
                   openingHoursSpecification: [
                     {
                       "@type": "OpeningHoursSpecification",

@@ -6,14 +6,14 @@ import { useId } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { klinikk } from "@/data/klinikk";
 import { cn } from "@/lib/utils";
-import { FJELLGATA, GOOGLE_MAPS, KLINIKKHUS, NAVN, TEGNING, type Utsnitt } from "./kartdata";
+import { FJELLGATA, KARTLENKE, KLINIKKHUS, NAVN, TEGNING, type Utsnitt } from "./kartdata";
 
 /**
  * The drawn map of the clinic's part of town, cut to `utsnitt`. The drawing
  * is a picture (kart.svg); the clinic's house, the names and the pin are laid
  * over it here, so the type is the page's own. The pin, an arch with the
  * clinic's tooth in it, drops onto Fjellgata 4 on the hero's spring once
- * `vis` turns true. The whole map is one link to Google Maps.
+ * `vis` turns true. The whole map is one link to 1881's map.
  *
  * `skrift` is the size of the quiet names in map units; choose it so they come
  * out about 11px at the size the map is shown.
@@ -41,10 +41,10 @@ export function Kart({
 
   return (
     <a
-      href={GOOGLE_MAPS}
+      href={KARTLENKE}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Vis ${klinikk.adresse.gate} i Google Maps (åpnes i ny fane)`}
+      aria-label={`Vis ${klinikk.adresse.gate} i kart på 1881.no (åpnes i ny fane)`}
       className={cn("group relative block overflow-hidden", className)}
       style={{ aspectRatio: `${b} / ${h}`, background: papir }}
     >
@@ -109,7 +109,7 @@ export function Kart({
       </span>
 
       <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-[#FFFDF8]/95 px-3.5 py-2 text-[12.5px] font-semibold text-[var(--color-glomma-deep)] shadow-[0_6px_16px_-8px_rgba(10,25,32,0.5)] transition-colors group-hover:bg-white">
-        Vis i Google Maps
+        Vis i kart
         <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-px group-hover:translate-x-px" aria-hidden="true" />
       </span>
     </a>
