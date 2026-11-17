@@ -18,8 +18,8 @@ const SIDER = [
   { href: "/kontakt", tekst: "Kontakt" },
 ];
 
-/** A plain link out to the map; nothing is embedded. */
-const KARTLENKE = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${adresse.gate}, ${adresse.postnummer} ${adresse.sted}`)}`;
+/** A plain link out to the map (1881, see klinikk.ts); nothing is embedded. */
+const KARTLENKE = klinikk.kart;
 
 const tekst = "text-[16px] leading-[1.7] text-[var(--color-tekst-lys-2)]";
 const lenke = "text-[var(--color-tekst-lys)] transition-colors duration-300 hover:text-white";
@@ -71,7 +71,7 @@ export function Besok() {
       </p>
       <a href={KARTLENKE} target="_blank" rel="noopener noreferrer" className={cn("mt-1 inline-flex items-center gap-1 text-[14px] font-medium underline decoration-white/30 decoration-1 underline-offset-[5px]", lenke)}>
         Vis i kart <ArrowUpRight className="size-3.5" aria-hidden="true" />
-        <span className="sr-only">(åpner Google Maps)</span>
+        <span className="sr-only">(åpner kartet på 1881.no)</span>
       </a>
     </div>
   );

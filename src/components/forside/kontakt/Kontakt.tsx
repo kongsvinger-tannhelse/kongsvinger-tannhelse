@@ -16,7 +16,7 @@ import { Frimerke, Poststempel } from "./deler";
  * up on the hero's spring (phone, e-mail and hours are in the footer just below,
  * so they are not repeated here):
  * its picture side is the drawn map of the clinic's part of town (a link to
- * Google Maps, with the pin dropping onto Fjellgata 4); its writing side is
+ * 1881's map, with the pin dropping onto Fjellgata 4); its writing side is
  * the form, on writing lines, with the clinic's address printed where the
  * address goes, a stamp with the clinic's tooth, and the opening hours as
  * the postmark, pressed on once the card stands. Under the card, a link to

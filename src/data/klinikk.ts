@@ -8,8 +8,11 @@ export const klinikk = {
   telefon: { visning: "62 81 50 09", lenke: "tel:+4762815009" },
   epost: "post@kongsvingertannhelse.no",
   adresse: { gate: "Fjellgata 4", postnummer: "2212", sted: "Kongsvinger" },
-  // From the Google Maps embed on the old site
-  geo: { lat: 60.1915, lng: 11.9955 },
+  // Fjellgata 4 as 1881 places it (the same point as Kartverket's address
+  // register). Google's pin for the clinic is about 500 m off, so the site's
+  // map links go to 1881 instead (2026-11-17).
+  geo: { lat: 60.19149, lng: 11.99803 },
+  kart: "https://kart.1881.no/kongsvinger/2212-kongsvinger/fjellgata-4",
   apningstider: { dager: "Mandag–fredag", fra: "08:30", til: "15:30", stengt: "Lørdag–søndag" },
   // Days the clinic is closed on a weekday beyond the public holidays (holidays,
   // courses), as YYYY-MM-DD. The front page's «Åpent nå» reads it; ask the clinic.
