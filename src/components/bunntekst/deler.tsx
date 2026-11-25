@@ -124,7 +124,11 @@ export function Bunnlinje({ className }: { className?: string }) {
         ·{" "}
         <Link href="/vilkar" className="underline decoration-1 underline-offset-2 hover:text-white">
           Vilkår
-        </Link>
+        </Link>{" "}
+        · Levert av{" "}
+        <a href="https://www.idweb.no" target="_blank" rel="noopener" className="underline decoration-1 underline-offset-2 hover:text-white">
+          idweb
+        </a>
       </p>
       <p className="max-w-[70ch] md:text-center">
         Festningen er tegnet etter et bilde fra Kongsvinger kommune (CC BY 2.0).{" "}
